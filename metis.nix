@@ -5,10 +5,7 @@ let
     PAGER = "less";
     MAILDIR = "\$HOME/.var/mail";
     MBLAZE = "\$HOME/.config/mblaze";
-    MBLAZE_PAGER = "cat";
     NOTMUCH_CONFIG = "\$HOME/.config/notmuch/config";
-    PASSWORD_STORE_DIR = "\$HOME/src/password-store";
-    SSH_AGENT_SOCKET = "\$XDG_RUNTIME_DIR/ssh-agent";
   };
 in
 {

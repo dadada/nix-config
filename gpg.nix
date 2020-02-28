@@ -18,4 +18,8 @@
     defaultCacheTtl = 1800;
     enableSshSupport = false;
   };
+
+  programs.git.extraConfig = {
+    commit = { gpgSign = true; };
+  };
 }

@@ -2,6 +2,7 @@ self: super:
 let
   tubslatex = super.callPackage ../pkgs/tubslatex.nix {};
 in {
+  # Based on https://gist.github.com/clefru/9ed1186bf0b76d27e0ad20cbd9966b87
   texlive-tubs = super.lib.overrideDerivation (super.texlive.combine {
     inherit (super.texlive) scheme-full;
     tubslatex.pkgs = [ tubslatex ];

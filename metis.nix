@@ -50,7 +50,7 @@ in
     spotify
     sshfs-fuse
     tdesktop
-    texlive.combined.scheme-full
+    #texlive.combined.scheme-full
     thunderbird-bin
     tor-browser-bundle-bin
     virtmanager
@@ -60,6 +60,7 @@ in
     unzip
     anki
     bluez-tools
+    texlive-tubs
   ];
 
   services.syncthing = {

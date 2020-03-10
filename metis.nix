@@ -6,7 +6,10 @@ let
     MAILDIR = "\$HOME/.var/mail";
     MBLAZE = "\$HOME/.config/mblaze";
     NOTMUCH_CONFIG = "\$HOME/.config/notmuch/config";
+    GDK_BACKEND= "wayland";
+    MOZ_ENABLE_WAYLAND= "1";
   };
+  unstable = import <nixpkgs-unstable> {};
 in
 {
   imports = [
@@ -21,9 +24,11 @@ in
   systemd.user.sessionVariables = userEnv;
 
   home.packages = with pkgs; [
+    nfs-utils
+    lsof
+    samba
     firefox-bin
     chromium
-    android-studio
     bc
     brightnessctl
     file
@@ -61,18 +66,27 @@ in
     anki
     bluez-tools
     texlive-tubs
-  ];
+    openssl
+  ] ++ (with unstable; [
+    python38Packages.managesieve
+    android-studio
+  ]);
+
+  #wayland.windowManager.sway =  {
+  #  enable = true;
+  #  extraConfig = (builtins.readFile sway/config);
+  #};
 
   services.syncthing = {
     enable = true;
     tray = false;
   };
 
-  services.screen-locker = {
-    enable = true;
-    inactiveInterval = 5;
-    lockCmd = "\${pkgs.swaylock}/bin/swaylock";
-  };
+  #services.screen-locker = {
+  #  enable = true;
+  #  inactiveInterval = 5;
+  #  lockCmd = "\${pkgs.swaylock}/bin/swaylock";
+  #};
 
   xdg = {
     enable = true;

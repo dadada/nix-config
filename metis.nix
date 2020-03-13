@@ -24,6 +24,7 @@ in
   systemd.user.sessionVariables = userEnv;
 
   home.packages = with pkgs; [
+    slic3r
     nfs-utils
     lsof
     samba

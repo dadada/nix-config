@@ -253,13 +253,21 @@ input 2:7:SynPS/2_Synaptics_TouchPad {
 	events disabled
 }
 
-output LVDS-1 {
-	background $wallpaper fill
-}
-
 output VGA-1 {
 	background $wallpaper fill
+	pos 0 0
 }
+
+output DP-2 {
+	background $wallpaper fill
+	pos 1280 0
+}
+
+output LVDS-1 {
+	background $wallpaper fill
+	pos 3840 0
+}
+
 
 seat * {
 	hide_cursor 5000

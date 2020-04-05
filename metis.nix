@@ -66,7 +66,7 @@ in
     unzip
     anki
     bluez-tools
-    texlive-tubs
+    texlive-tubslatex
     openssl
   ] ++ (with unstable; [
     python38Packages.managesieve

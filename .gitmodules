@@ -1,0 +1,3 @@
+[submodule "nur-packages"]
+	path = nur-packages
+	url = git@github.com:dadada/nur-packages.git

@@ -24,6 +24,11 @@ in
   systemd.user.sessionVariables = userEnv;
 
   home.packages = with pkgs; [
+    xdg_utils
+    pwgen
+    mkpasswd
+    irssi
+    mumble
     slic3r
     nfs-utils
     lsof
@@ -68,6 +73,9 @@ in
     bluez-tools
     texlive-tubslatex
     openssl
+    audio-recorder
+    qt59.qttools
+    emacs
   ] ++ (with unstable; [
     python38Packages.managesieve
     android-studio
@@ -92,11 +100,17 @@ in
   xdg = {
     enable = true;
     mimeApps = {
-      enable = true;
-      #associations.added = {
-      #};
-      #defaultApplications = {
-      #};
+      enable = false;
+      associations.added = {
+        "text/html" = "firefox.desktop";
+        "text/plain" = "vim.desktop";
+        "application/plain" = "zathura.desktop";
+      };
+      defaultApplications = {
+        "text/html" = "firefox.desktop";
+        "text/plain" = "vim.desktop";
+        "application/plain" = "zathura.desktop";
+      };
     };
     userDirs = {
       download ="\$HOME/tmp";

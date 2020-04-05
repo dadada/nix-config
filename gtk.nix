@@ -3,7 +3,7 @@
   gtk = {
     enable = true;
     theme.package = pkgs.gnome3.gnome-themes-extra;
-    theme.name = "Adwaita Dark";
+    theme.name = "Adwaita-dark";
     iconTheme.package = pkgs.gnome3.adwaita-icon-theme;
     iconTheme.name = "Adwaita";
     font.package = pkgs.cantarell-fonts;

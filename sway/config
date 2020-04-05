@@ -278,6 +278,6 @@ for_window [class="jetbrains-studio"] floating enable
 focus_follows_mouse no
 
 exec xset s off
-exec xss-lock -- lock-session
-#exec swayidle timeout 60 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -f -i ~/.config/nixpkhs/sway/wallpaper'
+#exec xss-lock -- lock-session
+exec swayidle -w timeout 300 '$HOME/bin/lock-session' timeout 240 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep '$HOME/bin/lock-session' lock '$HOME/bin/lock-session'
 #exec redshift

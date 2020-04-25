@@ -13,5 +13,6 @@
     ./ssh.nix
     ./git.nix
     ./gtk.nix
+    ./xdg.nix
   ];
 }

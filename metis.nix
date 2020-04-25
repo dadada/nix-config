@@ -8,6 +8,7 @@ let
     NOTMUCH_CONFIG = "\$HOME/.config/notmuch/config";
     GDK_BACKEND= "wayland";
     MOZ_ENABLE_WAYLAND= "1";
+    SSH_ASKPASS = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
   };
   unstable = import <nixpkgs-unstable> {};
 in
@@ -24,6 +25,10 @@ in
   systemd.user.sessionVariables = userEnv;
 
   home.packages = with pkgs; [
+    slurp
+    grim
+    jq
+    lxqt.lxqt-openssh-askpass
     xdg_utils
     pwgen
     mkpasswd
@@ -44,7 +49,6 @@ in
     inkscape
     inotify-tools
     jmtpfs
-    keepassxc
     ldns
     libreoffice
     mblaze
@@ -79,6 +83,8 @@ in
   ] ++ (with unstable; [
     python38Packages.managesieve
     android-studio
+    cachix
+    keepassxc
   ]);
 
   #wayland.windowManager.sway =  {
@@ -99,19 +105,6 @@ in
 
   xdg = {
     enable = true;
-    mimeApps = {
-      enable = false;
-      associations.added = {
-        "text/html" = "firefox.desktop";
-        "text/plain" = "vim.desktop";
-        "application/plain" = "zathura.desktop";
-      };
-      defaultApplications = {
-        "text/html" = "firefox.desktop";
-        "text/plain" = "vim.desktop";
-        "application/plain" = "zathura.desktop";
-      };
-    };
     userDirs = {
       download ="\$HOME/tmp";
       music = "\$HOME/lib/music";

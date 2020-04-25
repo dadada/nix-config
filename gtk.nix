@@ -12,5 +12,8 @@
   dconf.settings."org/gnome/desktop/interface" = {
     enable-animations = false;
   };
-  qt.platformTheme = true;
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+  };
 }

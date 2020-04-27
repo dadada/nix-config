@@ -3,7 +3,7 @@
   foregroundBold = "#e8e8e8";
   cursor = "#e8e8e8";
   cursorForeground = "#1f2022";
-  background = "#1f2022";
+  background = "#292b2e";
   color0  = "#1f2022";
   color8  = "#585858";
   color7  = "#a3a3a3";

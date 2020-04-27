@@ -18,7 +18,7 @@ set $light_cyan	#4f97d7ff
 set $dark_white	#a31db1ff
 set $light_white   #b03060ff
 
-#xwayland disable
+xwayland enable
 
 # global modifier key
 set $mod Mod4
@@ -70,6 +70,9 @@ default_border pixel 1
 # keep focus within current container?
 focus_wrapping no
 
+# focus goes to window if mouse is moved onto it
+focus_follows_mouse yes
+
 # enter fullscreen mode for the focused container
 bindsym $mod+o fullscreen
 
@@ -98,10 +101,19 @@ set $9 9
 set $10 10
 
 # default mode
-#workspace_layout tabbed
+workspace_layout tabbed
 
 # automatically jump back to previous workspace
 workspace_auto_back_and_forth yes
+
+# messaging
+workspace 2 output LVDS-1
+
+# web and doc
+workspace 1 output VGA-1
+
+# editor and IDE
+workspace 3 output DP-2
 
 # change focus
 bindsym $mod+h focus left
@@ -273,11 +285,22 @@ seat * {
 	hide_cursor 5000
 }
 
-#default_floating_border none
-for_window [class="jetbrains-studio"] floating enable
-focus_follows_mouse no
+assign [app_id="thunderbird"] workspace 1
+assign [app_id="telegramdesktop"] workspace 1
+assign [app_id="firefox" title="Riot.*"] workspace 1
+assign [app_id="firefox" title="Instant messaging.*"] workspace 1
+assign [app_id="firefox" title="Threema Web.*"] workspace 1
+assign [app_id="firefox" title="chaos\.social.*"] workspace 1
+assign [app_id="thunderbird" title="Write:.*"] workspace 3
+assign [app_id="firefox"] workspace 2
+assign [app_id="jetbrains-studio"] workspace 3
+assign [app_id="org.keepassxc.KeePassXC"] workspace 10
 
 exec xset s off
 #exec xss-lock -- lock-session
 exec swayidle -w timeout 300 '$HOME/bin/lock-session' timeout 240 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep '$HOME/bin/lock-session' lock '$HOME/bin/lock-session'
 #exec redshift
+exec keepassxc
+exec firefox
+exec thunderbird
+exec telegram

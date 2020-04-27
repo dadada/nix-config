@@ -14,5 +14,6 @@
     ./git.nix
     ./gtk.nix
     ./xdg.nix
+    ./sway
   ];
 }

@@ -6,7 +6,7 @@ let
     MAILDIR = "\$HOME/.var/mail";
     MBLAZE = "\$HOME/.config/mblaze";
     NOTMUCH_CONFIG = "\$HOME/.config/notmuch/config";
-    GDK_BACKEND= "wayland";
+    GDK_BACKEND= "x11";
     MOZ_ENABLE_WAYLAND= "1";
     SSH_ASKPASS = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
   };
@@ -25,6 +25,7 @@ in
   systemd.user.sessionVariables = userEnv;
 
   home.packages = with pkgs; [
+    xwayland
     slurp
     grim
     jq
@@ -78,19 +79,15 @@ in
     texlive-tubslatex
     openssl
     audio-recorder
-    qt59.qttools
+    qt5.qttools
     emacs
   ] ++ (with unstable; [
     python38Packages.managesieve
     android-studio
     cachix
     keepassxc
+    signal-desktop
   ]);
-
-  #wayland.windowManager.sway =  {
-  #  enable = true;
-  #  extraConfig = (builtins.readFile sway/config);
-  #};
 
   services.syncthing = {
     enable = true;

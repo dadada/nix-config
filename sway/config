@@ -197,13 +197,13 @@ mode "$mode_move" {
 }
 
 # lock the screen
-bindsym $mod+equal exec loginctl lock-session
+bindsym $mod+equal exec ~/bin/lock-session
 
 # control volume
 bindsym --locked XF86AudioRaiseVolume exec amixer set 'Master' 5%+ && pkill -RTMIN+10 i3blocks
 bindsym --locked XF86AudioLowerVolume exec amixer set 'Master' 5%- && pkill -RTMIN+10 i3blocks
 bindsym --locked XF86AudioMute exec amixer set Master toggle && pkill -RTMIN+10 i3blocks
-bindsym --locked XF86AudioMicMute exec amixer set 'Capture' toggle && pkill -RTMIN+10 i3blocks
+bindsym --locked --to-code XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
 
 # control media player
 bindsym --locked XF86AudioPlay exec playerctl play-pause && pkill -RTMIN+11 i3blocks
@@ -297,10 +297,9 @@ assign [app_id="jetbrains-studio"] workspace 3
 assign [app_id="org.keepassxc.KeePassXC"] workspace 10
 
 exec xset s off
-#exec xss-lock -- lock-session
-exec swayidle -w timeout 300 '$HOME/bin/lock-session' timeout 240 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep '$HOME/bin/lock-session' lock '$HOME/bin/lock-session'
+#exec swayidle -w timeout 300 '$HOME/bin/lock-session' timeout 240 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep '$HOME/bin/lock-session' lock '$HOME/bin/lock-session'
 #exec redshift
-exec keepassxc
-exec firefox
-exec thunderbird
-exec telegram
+#exec keepassxc
+#exec firefox
+#exec thunderbird
+#exec riot-desktop 

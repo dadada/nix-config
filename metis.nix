@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 let 
   userEnv = {
+    TERMINAL="xterm-256color";
     EDITOR = "vim";
     PAGER = "less";
     MAILDIR = "\$HOME/.var/mail";
@@ -25,6 +26,14 @@ in
   systemd.user.sessionVariables = userEnv;
 
   home.packages = with pkgs; [
+    aspellDicts.en
+    aspellDicts.de
+    aspellDicts.en-science
+    aspellDicts.en-computers
+    aspell
+    xorg.xev
+    gnumake
+    graphviz
     xwayland
     slurp
     grim
@@ -55,7 +64,6 @@ in
     mblaze
     mpv
     nmap
-    pandoc
     pass
     pavucontrol
     pinentry
@@ -81,12 +89,22 @@ in
     audio-recorder
     qt5.qttools
     emacs
+    qt5.qtwayland
+    swayidle
+    mako
+    swaylock
+    kanshi
+    termite
+    bemenu
+    xss-lock
+    htop
   ] ++ (with unstable; [
     python38Packages.managesieve
     android-studio
     cachix
     keepassxc
     signal-desktop
+    libguestfs
   ]);
 
   services.syncthing = {
@@ -94,11 +112,11 @@ in
     tray = false;
   };
 
-  #services.screen-locker = {
-  #  enable = true;
-  #  inactiveInterval = 5;
-  #  lockCmd = "\${pkgs.swaylock}/bin/swaylock";
-  #};
+  services.screen-locker = {
+    enable = false;
+    inactiveInterval = 5;
+    lockCmd = "~/bin/lock-session";
+  };
 
   xdg = {
     enable = true;

@@ -28,7 +28,8 @@
       set fish_prompt_pwd_dir_length 0
 
       set -U FZF_LEGACY_KEYBINDINGS 0
-      #set -x TERM xterm-256color
+      set -x TERM xterm-256color
+      set -U fish_user_paths ~/bin $fish_user_paths
 
       #if status is-interactive
       #and not status is-login

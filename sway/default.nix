@@ -1,8 +1,9 @@
 { config, pkgs, lib, ...}:
-{
+let
+  unstable = import <nixpkgs-unstable> {};
+in {
   home.packages = with pkgs; [
     qt5.qtwayland
-    swaylock
     swayidle
     xwayland
     mako
@@ -11,7 +12,9 @@
     termite
     bemenu
     xss-lock
-  ];
+  ] ++ (with unstable; [
+    swaylock
+  ]);
 
   wayland.windowManager.sway =  {
     enable = true;

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ...}:
+{ config, pkgs, lib, colors, ...}:
 let
   unstable = import <nixpkgs-unstable> {};
 in {
@@ -31,3 +31,4 @@ in {
     '';
   };
 }
+

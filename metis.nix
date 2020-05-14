@@ -26,12 +26,14 @@ in
   systemd.user.sessionVariables = userEnv;
 
   home.packages = with pkgs; [
+    libnotify
     aspellDicts.en
     aspellDicts.de
     aspellDicts.en-science
     aspellDicts.en-computers
     aspell
     xorg.xev
+    evince
     gnumake
     graphviz
     xwayland

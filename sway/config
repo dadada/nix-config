@@ -223,7 +223,7 @@ bar {
 	status_command i3blocks
 	mode dock
 	modifier $mod
-	position top
+	position bottom
 	strip_workspace_numbers yes
 	workspace_buttons yes
 	#output LVDS-1
@@ -297,6 +297,7 @@ assign [app_id="jetbrains-studio"] workspace 3
 assign [app_id="org.keepassxc.KeePassXC"] workspace 10
 
 exec xset s off
+exec mako
 #exec swayidle -w timeout 300 '$HOME/bin/lock-session' timeout 240 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep '$HOME/bin/lock-session' lock '$HOME/bin/lock-session'
 #exec redshift
 #exec keepassxc

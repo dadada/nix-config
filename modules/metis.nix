@@ -96,9 +96,7 @@ in
     qt5.qttools
     emacs
     qt5.qtwayland
-    swayidle
     mako
-    swaylock
     kanshi
     termite
     bemenu

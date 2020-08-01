@@ -1,4 +1,4 @@
-set $wallpaper ~/.config/nixpkgs/sway/wallpaper
+set $wallpaper ~/.config/nixpkgs/modules/sway/wallpaper
 set $foreground	#a3a3a3ff
 set $background	#1f2022e5
 set $dark_black	#1f2022ff

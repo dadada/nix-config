@@ -22,5 +22,6 @@ in {
       colors = colors;
     })
     ./keyring.nix
+    ./sway
   ];
 }

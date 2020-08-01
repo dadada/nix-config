@@ -35,6 +35,7 @@ in
       #pkgs.vimPlugins.vim-gnupg
       #pkgs.vimPlugins.vim-l9
       pkgs.vimPlugins.vim-ledger
+      #pkgs.vimPlugins.clang_complete
     ];
   };
 }

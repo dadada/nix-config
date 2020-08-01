@@ -162,10 +162,10 @@ bindsym $mod+m mode "$mode_move"
 mode "$mode_move" {
 
 	# move focused container
-	bindsym h move left
-	bindsym j move down
-	bindsym k move up
-	bindsym l move right
+	bindsym h move left ;mode "default"
+	bindsym j move down ;mode "default"
+	bindsym k move up   ;mode "default"
+	bindsym l move right;mode "default"
 	bindsym 1 move container to workspace number $1     ;mode "default"
 	bindsym 2 move container to workspace number $2     ;mode "default"
 	bindsym 3 move container to workspace number $3     ;mode "default"

@@ -1,22 +1,23 @@
 { config, pkgs, lib, ... }:
 let 
   userEnv = {
+    XDISPLAY=":0";
     TERMINAL="xterm-256color";
     EDITOR = "vim";
     PAGER = "less";
     MAILDIR = "\$HOME/.var/mail";
     MBLAZE = "\$HOME/.config/mblaze";
     NOTMUCH_CONFIG = "\$HOME/.config/notmuch/config";
-    GDK_BACKEND= "x11";
+    #GDK_BACKEND= "x11";
     MOZ_ENABLE_WAYLAND= "1";
     SSH_ASKPASS = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
   };
   unstable = import <nixpkgs-unstable> {};
+
 in
 {
   imports = [
     ./common.nix
-    ./private/metis
   ];
 
   # Let Home Manager install and manage itself.
@@ -25,7 +26,12 @@ in
   home.sessionVariables = userEnv;
   systemd.user.sessionVariables = userEnv;
 
+
   home.packages = with pkgs; [
+    sqlite
+    clang
+    gitAndTools.git-bug
+    pypi2nix
     libnotify
     aspellDicts.en
     aspellDicts.de
@@ -50,7 +56,6 @@ in
     nfs-utils
     lsof
     samba
-    firefox-bin
     chromium
     bc
     brightnessctl
@@ -64,10 +69,10 @@ in
     ldns
     libreoffice
     mblaze
-    mpv
     nmap
     pass
     pavucontrol
+    clang-tools
     pinentry
     playerctl
     i3blocks
@@ -77,8 +82,7 @@ in
     sshfs-fuse
     tdesktop
     #texlive.combined.scheme-full
-    thunderbird-bin
-    tor-browser-bundle-bin
+    #tor-browser-bundle-bin
     virtmanager
     whois
     youtube-dl
@@ -100,13 +104,20 @@ in
     bemenu
     xss-lock
     htop
+    gnome3.nautilus
+    gnome3.eog
+    imagemagick
+    corefonts
+    mpv
+    firefox-bin
   ] ++ (with unstable; [
+    thunderbird-bin
     python38Packages.managesieve
     android-studio
     cachix
     keepassxc
     signal-desktop
-    libguestfs
+    minecraft
   ]);
 
   services.syncthing = {
@@ -118,18 +129,6 @@ in
     enable = false;
     inactiveInterval = 5;
     lockCmd = "~/bin/lock-session";
-  };
-
-  xdg = {
-    enable = true;
-    userDirs = {
-      download ="\$HOME/tmp";
-      music = "\$HOME/lib/music";
-      videos ="\$HOME/lib/videos";
-      pictures = "\$HOME/lib/pictures";
-      documents = "\$HOME/lib";
-      desktop = "$HOME/tmp";
-    };
   };
 
   # This value determines the Home Manager release that your

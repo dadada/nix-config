@@ -23,8 +23,12 @@
        source ~/.nix-profile/share/zsh-git-prompt/zshrc.sh
        source ~/.nix-profile/share/fzf/key-bindings.zsh
        source ~/.nix-profile/share/fzf/completion.zsh
-       PROMPT='%F{red}%?%f %F{green}%m%f:%F{blue}%~%f '
+
+       preexec() { echo -n -e "\033]0;$1\007" }
+
+       PROMPT="%F{red}%?%f %F{green}%m%f:%F{blue}%~%f "
        RPROMPT='$(git_super_status)'
+       #NIX_BUILD_SHELL="${pkgs.zsh}/bin/zsh"
     '';
     profileExtra = ''
       '';

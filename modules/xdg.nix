@@ -21,9 +21,17 @@ in {
   xdg = {
     enable = true;
     mimeApps = {
-      enable = true;
+      enable = false;
       associations.added = apps;
       defaultApplications = apps;
+    };
+    userDirs = {
+      download ="\$HOME/tmp";
+      music = "\$HOME/lib/music";
+      videos ="\$HOME/lib/videos";
+      pictures = "\$HOME/lib/pictures";
+      documents = "\$HOME/lib";
+      desktop = "$HOME/tmp";
     };
   };
   home.packages = with pkgs; [

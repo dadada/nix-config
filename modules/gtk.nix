@@ -9,9 +9,6 @@
     font.package = pkgs.cantarell-fonts;
     font.name = "Cantarell";
   };
-  dconf.settings."org/gnome/desktop/interface" = {
-    enable-animations = false;
-  };
   qt = {
     enable = true;
     platformTheme = "gtk";

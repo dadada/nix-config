@@ -7,7 +7,6 @@
     enableCompletion = true;
     autocd = true;
     sessionVariables = {
-      TERM = "xterm-256color";
       EDITOR = "vim";
     };
     history = {

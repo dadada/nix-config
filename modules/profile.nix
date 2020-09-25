@@ -3,7 +3,6 @@
   programs.bash = {
     enable = true;
     profileExtra = ''
-        export TERM="xterm-256color"
         export EDITOR="vim"
         alias gst="git status"
         alias gco="git commit";

@@ -5,8 +5,8 @@
     anchor = "bottom-right";
     backgroundColor = colors.color8;
     borderColor = colors.color0;
-    defaultTimeout = -1;
-    font = "Source Code Pro 8";
+    #defaultTimeout = -1;
+    font = "Source Code Pro 10";
     format = ''<b>%a</b> %s\n%b'';
     height = 100;
     #groupBy = "app-name";

@@ -1,8 +1,6 @@
 { config, pkgs, lib, ... }:
 let 
   userEnv = {
-    XDISPLAY=":0";
-    TERMINAL="xterm-256color";
     EDITOR = "vim";
     PAGER = "less";
     MAILDIR = "\$HOME/.var/mail";
@@ -10,10 +8,8 @@ let
     NOTMUCH_CONFIG = "\$HOME/.config/notmuch/config";
     #GDK_BACKEND= "x11";
     MOZ_ENABLE_WAYLAND= "1";
-    SSH_ASKPASS = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
   };
   unstable = import <nixpkgs-unstable> {};
-
 in
 {
   imports = [
@@ -28,11 +24,11 @@ in
 
 
   home.packages = with pkgs; [
+    tcpdump
     sqlite
     clang
     gitAndTools.git-bug
     pypi2nix
-    libnotify
     aspellDicts.en
     aspellDicts.de
     aspellDicts.en-science
@@ -46,7 +42,6 @@ in
     slurp
     grim
     jq
-    lxqt.lxqt-openssh-askpass
     xdg_utils
     pwgen
     mkpasswd
@@ -90,7 +85,7 @@ in
     unzip
     anki
     bluez-tools
-    texlive-tubslatex
+    #texlive-tubslatex
     openssl
     audio-recorder
     qt5.qttools
@@ -108,14 +103,28 @@ in
     corefonts
     mpv
     firefox-bin
+    libvirt
+    qprint
+    apacheHttpd
+    netanim
+    ns-3
+    kitty
+    git-lfs
+    kcachegrind
+    wf-recorder
+    ffmpeg
   ] ++ (with unstable; [
+    wireshark
+    valgrind
+    gnuplot
     thunderbird-bin
+    keepassxc
     python38Packages.managesieve
     android-studio
     cachix
-    keepassxc
     signal-desktop
     minecraft
+    plantuml
   ]);
 
   services.syncthing = {

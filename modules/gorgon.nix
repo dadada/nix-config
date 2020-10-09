@@ -10,10 +10,19 @@ let
     MOZ_ENABLE_WAYLAND= "1";
   };
   unstable = import <nixpkgs-unstable> {};
+  colors = import ./colors.nix;
 in
 {
   imports = [
-    ./common.nix
+    ./vim
+    ./tmux.nix
+    ./zsh.nix
+    ./gpg.nix
+    ./ssh.nix
+    ./git.nix
+    ./gtk.nix
+    ./xdg.nix
+    ./keyring.nix
   ];
 
   # Let Home Manager install and manage itself.

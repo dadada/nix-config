@@ -23,6 +23,7 @@ in
     ./gtk.nix
     ./xdg.nix
     ./keyring.nix
+    ./kitty.nix
   ];
 
   # Let Home Manager install and manage itself.

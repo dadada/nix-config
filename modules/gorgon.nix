@@ -24,6 +24,10 @@ in
 
 
   home.packages = with pkgs; [
+    p7zip
+    texlive.combined.scheme-full
+    wireguard
+    ncurses
     tcpdump
     sqlite
     clang
@@ -113,9 +117,9 @@ in
     kcachegrind
     wf-recorder
     ffmpeg
+    valgrind
   ] ++ (with unstable; [
     wireshark
-    valgrind
     gnuplot
     thunderbird-bin
     keepassxc

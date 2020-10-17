@@ -14,6 +14,7 @@ let
 in
 {
   imports = [
+    ./direnv.nix
     ./vim
     ./tmux.nix
     ./zsh.nix

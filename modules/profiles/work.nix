@@ -1,32 +1,34 @@
 { config, pkgs, lib, ... }:
-let 
-  userEnv = {
-    EDITOR = "vim";
-    PAGER = "less";
-  };
-in
 {
   imports = [
-    ./common.nix
-    #./private/work
+    (import ../session.nix {
+      inherit config;
+      sessionVars = {
+        EDITOR = "vim";
+        PAGER = "less";
+        MOZ_ENABLE_WAYLAND= "1";
+      };
+    })
+    ../vim
+    ../direnv.nix
+    ../git.nix
+    ../gpg.nix
+    ../gtk.nix
+    ../keyring.nix
+    ../kitty.nix
+    ../ssh.nix
+    ../tmux.nix
+    ../zsh.nix
   ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.sessionVariables = userEnv;
-
   home.packages = with pkgs; [
-    firefox-bin
-    chromium
-    android-studio
     file
-    fzf
     gnupg
     libreoffice
-    pinentry
     python3
-    spotify
     sshfs-fuse
     unzip
   ];

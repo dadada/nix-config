@@ -45,6 +45,7 @@
   };
 
   home.packages = [
+    pkgs.fzf
     pkgs.exa
     pkgs.zsh-git-prompt
   ];

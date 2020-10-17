@@ -1,17 +1,19 @@
 { config, pkgs, lib, ... }:
 let 
-  userEnv = {
-    EDITOR = "vim";
-    PAGER = "less";
-    MAILDIR = "\$HOME/.var/mail";
-    MBLAZE = "\$HOME/.config/mblaze";
-    NOTMUCH_CONFIG = "\$HOME/.config/notmuch/config";
-    MOZ_ENABLE_WAYLAND= "1";
-  };
   unstable = import <nixpkgs-unstable> {};
 in {
-
   imports = [
+    (import ../session.nix {
+      inherit config;
+      sessionVars = {
+        EDITOR = "vim";
+        PAGER = "less";
+        MAILDIR = "\$HOME/.var/mail";
+        MBLAZE = "\$HOME/.config/mblaze";
+        NOTMUCH_CONFIG = "\$HOME/.config/notmuch/config";
+        MOZ_ENABLE_WAYLAND= "1";
+      };
+    })
     ../direnv.nix
     ../vim
     ../tmux.nix
@@ -28,9 +30,6 @@ in {
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  home.sessionVariables = userEnv;
-  systemd.user.sessionVariables = userEnv;
 
   home.packages = with pkgs; [
     anki

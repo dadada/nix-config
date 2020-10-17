@@ -6,25 +6,24 @@ let
     MAILDIR = "\$HOME/.var/mail";
     MBLAZE = "\$HOME/.config/mblaze";
     NOTMUCH_CONFIG = "\$HOME/.config/notmuch/config";
-    #GDK_BACKEND= "x11";
     MOZ_ENABLE_WAYLAND= "1";
   };
   unstable = import <nixpkgs-unstable> {};
-  colors = import ./colors.nix;
-in
-{
+in {
+
   imports = [
-    ./direnv.nix
-    ./vim
-    ./tmux.nix
-    ./zsh.nix
-    ./gpg.nix
-    ./ssh.nix
-    ./git.nix
-    ./gtk.nix
-    ./xdg.nix
-    ./keyring.nix
-    ./kitty.nix
+    ../direnv.nix
+    ../vim
+    ../tmux.nix
+    ../zsh.nix
+    ../gpg.nix
+    ../ssh.nix
+    ../git.nix
+    ../gtk.nix
+    ../xdg.nix
+    ../keyring.nix
+    ../kitty.nix
+    ../syncthing.nix
   ];
 
   # Let Home Manager install and manage itself.
@@ -32,7 +31,6 @@ in
 
   home.sessionVariables = userEnv;
   systemd.user.sessionVariables = userEnv;
-
 
   home.packages = with pkgs; [
     anki
@@ -109,17 +107,6 @@ in
     wireshark
     youtube-dl
   ]);
-
-  services.syncthing = {
-    enable = true;
-    tray = false;
-  };
-
-  services.screen-locker = {
-    enable = false;
-    inactiveInterval = 5;
-    lockCmd = "~/bin/lock-session";
-  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

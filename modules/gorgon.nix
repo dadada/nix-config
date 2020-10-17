@@ -34,111 +34,79 @@ in
 
 
   home.packages = with pkgs; [
-    p7zip
-    texlive.combined.scheme-full
-    wireguard
-    ncurses
-    tcpdump
-    sqlite
-    clang
-    gitAndTools.git-bug
-    pypi2nix
-    aspellDicts.en
-    aspellDicts.de
-    aspellDicts.en-science
-    aspellDicts.en-computers
+    anki
     aspell
-    xorg.xev
-    evince
-    gnumake
-    graphviz
-    xwayland
-    slurp
-    grim
-    jq
-    xdg_utils
-    pwgen
-    mkpasswd
-    irssi
-    mumble
-    slic3r
-    nfs-utils
-    lsof
-    samba
+    aspellDicts.de
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
+    bluez-tools
     chromium
-    bc
-    brightnessctl
+    clang
+    clang-tools
+    evince
+    ffmpeg
+    fido2luks
     file
     fzf
     gimp
+    git-lfs
+    gnome3.eog
+    gnome3.gnome-tweak-tool
+    gnome3.nautilus
+    gnumake
     gnupg
+    graphviz
+    grim
+    imagemagick
     inkscape
     inotify-tools
-    jmtpfs
+    jq
+    kcachegrind
+    kitty
     ldns
     libreoffice
+    libvirt
+    lsof
     mblaze
+    mkpasswd
+    mpv
+    mumble
+    ncurses
+    nfs-utils
     nmap
+    openssl
+    p7zip
     pass
     pavucontrol
-    clang-tools
-    pinentry
     playerctl
-    i3blocks
+    pwgen
+    python27Packages.dbus-python
     python3
     python38Packages.dateutil
-    spotify
+    python38Packages.solo-python
+    slurp
+    sqlite
     sshfs-fuse
+    steam
+    tcpdump
     tdesktop
-    #texlive.combined.scheme-full
-    #tor-browser-bundle-bin
+    unzip
+    usbutils
     virtmanager
     whois
-    youtube-dl
-    zathura
-    unzip
-    anki
-    bluez-tools
-    #texlive-tubslatex
-    openssl
-    audio-recorder
-    qt5.qttools
-    emacs
-    qt5.qtwayland
-    mako
-    kanshi
-    termite
-    bemenu
-    xss-lock
-    htop
-    gnome3.nautilus
-    gnome3.eog
-    imagemagick
-    corefonts
-    mpv
+    xdg_utils
     firefox-bin
-    libvirt
-    qprint
-    apacheHttpd
-    netanim
-    ns-3
-    kitty
-    git-lfs
-    kcachegrind
-    wf-recorder
-    ffmpeg
-    valgrind
+    direnv
   ] ++ (with unstable; [
-    wireshark
-    gnuplot
-    thunderbird-bin
-    keepassxc
-    python38Packages.managesieve
     android-studio
-    cachix
-    signal-desktop
+    keepassxc
     minecraft
-    plantuml
+    python38Packages.managesieve
+    signal-desktop
+    thunderbird-bin
+    wireshark
+    youtube-dl
   ]);
 
   services.syncthing = {

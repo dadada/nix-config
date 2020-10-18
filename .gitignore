@@ -2,3 +2,5 @@ private/
 home.nix
 *.swp
 result
+pkgs/tubslatex_1.3.2.tds.zip
+work.nix

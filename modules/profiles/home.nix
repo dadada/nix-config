@@ -42,6 +42,7 @@ in {
     chromium
     clang
     clang-tools
+    direnv
     evince
     ffmpeg
     fido2luks
@@ -95,7 +96,6 @@ in {
     whois
     xdg_utils
     firefox-bin
-    direnv
   ] ++ (with unstable; [
     android-studio
     keepassxc
@@ -103,6 +103,7 @@ in {
     python38Packages.managesieve
     signal-desktop
     thunderbird-bin
+    texlive-tubslatex
     wireshark
     youtube-dl
   ]);

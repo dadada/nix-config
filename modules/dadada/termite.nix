@@ -1,4 +1,10 @@
-{ config, lib, pkgs, colors, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  colors ? ../../lib/colors.nix,
+  ...
+}:
 with lib;
 let
   cfg = config.dadada.termite;

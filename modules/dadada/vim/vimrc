@@ -124,6 +124,7 @@ let g:ale_fix_on_save = 1
 let g:ale_warn_about_trailing_whitespace = 1
 let g:ale_warn_about_trailing_lines = 1
 let g:ale_completion_tsserver_autoimport = 1
+let g:ale_languagetool_executable = 'languagetool-commandline'
 
 "let g:ale_lint_on_text_changed = 'never'
 " You can disable this option too

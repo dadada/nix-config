@@ -1,4 +1,5 @@
 { config, pkgs, lib, ... }:
+with lib;
 let
   apps = {
     "x-scheme-handler/mailto" = "userapp-Thunderbird-PB7NI0.desktop";
@@ -17,26 +18,32 @@ let
     "text/plain" = "vim.desktop";
     "application/pdf" = "org.pwmt.zathura.desktop";
   };
+  cfg = config.dadada.xdg;
 in {
-  xdg = {
-    enable = true;
-    mimeApps = {
-      enable = false;
-      associations.added = apps;
-      defaultApplications = apps;
-    };
-    userDirs = {
-      download ="\$HOME/tmp";
-      music = "\$HOME/lib/music";
-      videos ="\$HOME/lib/videos";
-      pictures = "\$HOME/lib/pictures";
-      documents = "\$HOME/lib";
-      desktop = "$HOME/tmp";
-    };
+  options.dadada.xdg = {
+    enable = mkEnableOption "Enable XDG config";
   };
-  home.packages = with pkgs; [
-    firefox-bin
-    xdg_utils
-    zathura
-  ];
+  config = mkIf cfg.enable {
+    xdg = {
+      enable = true;
+      mimeApps = {
+        enable = false;
+        associations.added = apps;
+        defaultApplications = apps;
+      };
+      userDirs = {
+        download ="\$HOME/tmp";
+        music = "\$HOME/lib/music";
+        videos ="\$HOME/lib/videos";
+        pictures = "\$HOME/lib/pictures";
+        documents = "\$HOME/lib";
+        desktop = "$HOME/tmp";
+      };
+    };
+    home.packages = with pkgs; [
+      firefox-bin
+      xdg_utils
+      zathura
+    ];
+  };
 }

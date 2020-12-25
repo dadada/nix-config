@@ -1,0 +1,3 @@
+{
+  tubslatex = import ./tubslatex.nix;
+}

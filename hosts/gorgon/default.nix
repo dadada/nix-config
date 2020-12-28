@@ -4,7 +4,7 @@ let
 in
 {
   imports = (lib.attrValues this.modules) ++ [
-    ../../modules/profiles/base
+    ../../modules/profiles/laptop
     <nixos-hardware/lenovo/thinkpad/t14s/amd/gen1>
   ];
 

@@ -5,11 +5,6 @@ let
 in {
   options.dadada.networking = {
     useLocalResolver = mkEnableOption "Enable local caching name server";
-    domain = mkOption {
-      type = with types; nullOr str;
-      description = "Network domain name";
-      default = null;
-    };
     wanInterfaces = mkOption {
       type = with types; listOf str;
       description = "WAN network interfaces";
@@ -24,7 +19,6 @@ in {
   };
 
   config = {
-    networking.domain = cfg.domain;
     networking.resolvconf.useLocalResolver = mkIf cfg.useLocalResolver true;
     services.unbound = mkIf cfg.useLocalResolver {
       enable = true;

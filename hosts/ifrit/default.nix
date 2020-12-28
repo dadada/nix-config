@@ -11,7 +11,6 @@ let
   keys = ../../pkgs/keys/keys;
 in {
   imports = (lib.attrValues this.modules) ++ [
-    ../../modules/profiles/base
     <nixpkgs/nixos/modules/profiles/minimal.nix>
   ];
 
@@ -134,17 +133,12 @@ in {
     isNormalUser = true;
   };
 
-  services.ddclient = {
-    enable = true;
-    configFile = /var/lib/dyndns/config;
-  };
-
   services.avahi = {
-    enable = true;
+    enable = false;
     publish = {
       enable = true;
       addresses = true;
-      workstation = true;
+      workstation = false;
     };
   };
 }

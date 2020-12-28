@@ -10,8 +10,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.fwupd.enable = true;
-
     nix = {
       autoOptimiseStore = true;
       useSandbox = true;

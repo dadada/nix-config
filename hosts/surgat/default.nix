@@ -41,7 +41,9 @@ in {
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/disk/by-uuid/6e37ff6b-8cec-4d07-80d5-cd28651522ae";
 
-  boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/a28c8dd0-1824-4dd3-862c-7e0477871937";
+  # TODO
+  # backup
+
   #boot.initrd.network.ssh = {
   #  enable = true;
   #  port = 22;

@@ -16,7 +16,7 @@ let
   dadada = builtins.fetchGit {
     url = "/home/dadada/nix-config.git";
     ref = "main";
-    rev = "4337055f4512c390b99d631e7ed1db0282e82d17";
+    sha26sum = "0i8ga3d0bg4r3fdh00mfhhn6m1ck18iqjzmr9y89vjjyn430pdgf";
   } {};
 in {
   imports = [

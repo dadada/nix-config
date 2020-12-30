@@ -10,7 +10,9 @@ in {
 
   dadada.admin = {
     enable = true;
-    users = [ "dadada" ];
+    users = {
+      "dadada" = [ "${keys}/dadada.pub" ];
+    };
   };
 
   dadada.networking.vpnExtension = "4";

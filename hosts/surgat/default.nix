@@ -42,7 +42,6 @@ in {
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sda";
-  boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/a28c8dd0-1824-4dd3-862c-7e0477871937";
 
   # TODO
   # backup

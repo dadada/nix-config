@@ -1,14 +1,13 @@
 { config, pkgs, lib, ... }:
 with lib;
 {
-  imports = import ../../module-list.nix ++ [
+  imports = [
     ../base
   ];
 
   dadada = {
     networking = {
       useLocalResolver = mkDefault true;
-      domain = mkDefault "dadada.li";
     };
   };
 
@@ -31,4 +30,8 @@ with lib;
       highlighters = [ "main" "brackets" "pattern" "cursor" "root" "line" ];
     };
   };
+
+  environment.noXlibs = false;
+  documentation.enable = true;
+  documentation.nixos.enable = true;
 }

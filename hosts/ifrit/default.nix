@@ -7,19 +7,14 @@ let
     "media.local"
   ];
   backups = "/mnt/storage/backup";
-  this = import ../.. {};
-  keys = ../../pkgs/keys/keys;
 in {
-  imports = (lib.attrValues this.modules) ++ [
-    <nixpkgs/nixos/modules/profiles/minimal.nix>
+  imports = [
+    ../../modules/profiles/base
   ];
 
   dadada = {
     admin.enable = true;
     fileShare.enable = true;
-    admin.users = {
-      "dadada" = [ "${keys}/dadada.pub" ];
-    };
 
     vpnServer.enable = true;
     vpnServer.peers = {

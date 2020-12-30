@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> }:
 
 with pkgs;
-{
+rec {
   lib = import ./lib { inherit pkgs; };
   modules = import ./modules;
   hmModules = import ./modules/home;

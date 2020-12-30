@@ -35,6 +35,10 @@ in {
        PROMPT="%F{red}%?%f %F{green}%m%f:%F{blue}%~%f "
        RPROMPT='$(git_super_status)'
        #NIX_BUILD_SHELL="${pkgs.zsh}/bin/zsh"
+       if [ "$TMUX" = "" ]
+       then
+         tmux
+       fi
       '';
       profileExtra = ''
       '';
@@ -51,10 +55,11 @@ in {
       };
     };
 
-    home.packages = [
-      pkgs.fzf
-      pkgs.exa
-      pkgs.zsh-git-prompt
+    home.packages = with pkgs; [
+      fzf
+      exa
+      zsh-git-prompt
+      tmux
     ];
   };
 }

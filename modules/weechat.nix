@@ -13,6 +13,8 @@ in {
       sessionName = "weechat-dadada";
     };
 
+    services.nginx.enable = true;
+
     services.nginx.virtualHosts."webchat.dadada.li" = {
       enableACME = true;
       forceSSL = true;

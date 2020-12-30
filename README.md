@@ -1,8 +1,4 @@
-# nixpkgs configuration
-
-This repository contains nix modules, overlays and packages for my home and work setups.
-
-It requires [home-manager](https://github.com/nix-community/home-manager) to be set up and available in your path. Private parts of the configuration are not part of the repo. I include them from `home.nix` like so:
+# nix configuration
 
 ```nix
 {
@@ -10,5 +6,24 @@ It requires [home-manager](https://github.com/nix-community/home-manager) to be 
     ./modules/profiles/gorgon.nix
     ./private/metis
   ];
+}
+```
+
+```nix
+{ config, pkgs, lib, ... }:
+
+let
+  dadada = builtins.fetchGit {
+    url = "/home/dadada/nix-config.git";
+    ref = "main";
+    rev = "4337055f4512c390b99d631e7ed1db0282e82d17";
+  } {};
+in {
+  imports = [
+    ./hardware-configuration.nix
+    dadada.hosts.gorgon
+  ];
+
+  system.stateVersion = "20.03";
 }
 ```

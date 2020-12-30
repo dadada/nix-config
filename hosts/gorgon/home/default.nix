@@ -19,6 +19,7 @@ in
     kitty.enable = true;
     ssh.enable = true;
     syncthing.enable = true;
+    tmux.enable = true;
     xdg.enable = true;
     zsh.enable = true;
 

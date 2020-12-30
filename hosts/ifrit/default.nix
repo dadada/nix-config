@@ -2,7 +2,7 @@
 let
   hostAliases = [
     "ifrit.dadada.li"
-    "vpn.dadada.li"
+    "bs.vpn.dadada.li"
     "media.dadada.li"
     "media.local"
   ];
@@ -36,8 +36,6 @@ in {
         key = "0eWP1hzkyoXlrjPSOq+6Y1u8tnFH+SejBJs8f8lf+iU=";
       };
     };
-
-    weechat.enable = true;
   };
 
   services.borgbackup.repos = {
@@ -117,16 +115,16 @@ in {
   security.acme = {
     email = "d553a78d-0349-48db-9c20-5b27af3a1dfc@dadada.li";
     acceptTerms = true;
-    certs."webchat.dadada.li" = {
-      credentialsFile = "/var/lib/lego/acme-joker.env";
-      dnsProvider = "joker";
-      postRun = "systemctl reload nginx.service";
-    };
-    certs."weechat.dadada.li" = {
-      credentialsFile = "/var/lib/lego/acme-joker.env";
-      dnsProvider = "joker";
-      postRun = "systemctl reload nginx.service";
-    };
+  #  certs."webchat.dadada.li" = {
+  #    credentialsFile = "/var/lib/lego/acme-joker.env";
+  #    dnsProvider = "joker";
+  #    postRun = "systemctl reload nginx.service";
+  #  };
+  #  certs."weechat.dadada.li" = {
+  #    credentialsFile = "/var/lib/lego/acme-joker.env";
+  #    dnsProvider = "joker";
+  #    postRun = "systemctl reload nginx.service";
+  #  };
   };
 
   users.users."mist" = {

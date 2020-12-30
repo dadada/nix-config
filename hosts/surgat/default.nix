@@ -17,6 +17,7 @@ in {
 
   dadada.networking.vpnExtension = "4";
   dadada.weechat.enable = true;
+  dadada.homePage.enable = true;
 
   networking.useDHCP = false;
   networking.interfaces.ens3.useDHCP = true;
@@ -45,6 +46,16 @@ in {
 
   # TODO
   # backup
+
+  networking.interfaces."ens3".ipv6.addresses = [ {
+    address = "2a01:4f8:c17:1d70::";
+    prefixLength = 64;
+  } ];
+
+  networking.defaultGateway6 = {
+    address = "fe80::1";
+    interface = "ens3";
+  };
 
   #boot.initrd.network.ssh = {
   #  enable = true;

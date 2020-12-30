@@ -3,6 +3,7 @@
   ./backup.nix
   ./fido2.nix
   ./fileShare.nix
+  ./homepage.nix
   ./networking.nix
   ./steam.nix
   ./update.nix

@@ -18,10 +18,6 @@ in {
     services.nginx.virtualHosts."webchat.dadada.li" = {
       enableACME = true;
       forceSSL = true;
-      serverAliases = [
-        "webchat.${config.networking.domain}"
-        "weechat.${config.networking.domain}"
-      ];
 
       root = pkgs.glowing-bear;
 
@@ -37,7 +33,6 @@ in {
     services.nginx.virtualHosts."weechat.dadada.li" = {
       useACMEHost = "webchat.dadada.li";
       forceSSL = true;
-      serverAliases = [ "weechat.${config.networking.domain}" ];
 
       root = "${pkgs.nginx}/html";
       locations = {

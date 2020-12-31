@@ -9,6 +9,8 @@ then
 	exit 1
 fi
 
+git push
+
 function hash {
 	archive="$(mktemp /tmp/nix-config.XXX.tar.gz)"
 	git archive "$1" | gzip > "$archive"

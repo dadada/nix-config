@@ -4,8 +4,8 @@ with lib;
 let
   cfg = config.dadada.homePage;
   homePage = builtins.fetchTarball {
-    url = "https://github.com/dadada/dadada.li/archive/cb85ed00594f1d4396fe3f61f92e0ff19595596d.tar.gz";
-    sha256 = "176l913xsg9gicglkmpmnqwjn8r0psyyj2vx5pi26v0angnfg80a";
+    url = "https://github.com/dadada/dadada.li/archive/c77ffc04882f32c2feced7d0f2d8ce3622060230.tar.gz";
+      sha256 = "0mdqa9w1p6cmli6976v4wi0sw9r4p5prkj7lzfd1877wk11c9c73";
   };
 in {
   options.dadada.homePage = {

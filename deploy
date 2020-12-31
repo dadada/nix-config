@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -e
+set -o pipefail
+
+if [ -z "$1" ]
+then
+	echo "usage: deploy <hostname>"
+	exit 1
+fi
+
+function hash {
+	archive="$(mktemp /tmp/nix-config.XXX.tar.gz)"
+	git archive "$1" | gzip > "$archive"
+	nix-prefetch-url --unpack --type sha256 "file:$archive" 2>/dev/null
+	rm "$archive"
+}
+
+host="${1}"
+rev="$(git rev-parse HEAD)"
+url="https://github.com/dadada/nix-config/archive/${rev}.tar.gz"
+sha256=$(hash "$rev")
+
+cat <<EOF | ssh "${host}".dadada.li 'sudo bash -c "cat - > /etc/nixos/deploy.nix"'
+{ config, pkgs, lib, ... }:
+let
+  dadada = import (builtins.fetchTarball {
+    url = ${url};
+    sha256 = "${sha256}";
+  }) {};
+in {
+  imports = [
+    ./hardware-configuration.nix
+    dadada.hosts."${host}"
+  ];
+}
+EOF

@@ -21,7 +21,7 @@ rev="$(git rev-parse HEAD)"
 url="https://github.com/dadada/nix-config/archive/${rev}.tar.gz"
 sha256=$(hash "$rev")
 
-cat <<EOF | ssh "${host}".dadada.li 'sudo bash -c "cat - > /etc/nixos/deploy.nix"'
+cat <<EOF | ssh "${host}".dadada.li 'sudo nix-shell -p tmux --run "cat - > /etc/nixos/deploy.nix && tmux new -d \"nixos-rebuild switch |& tee /var/log/dadada-deploy.log\""'
 { config, pkgs, lib, ... }:
 let
   dadada = import (builtins.fetchTarball {

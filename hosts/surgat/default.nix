@@ -3,8 +3,13 @@ let
   hostName = "surgat";
   this = import ../.. {};
   keys = ../../pkgs/keys/keys;
+  homePage = self: super: { homePage = super.callPackage ../../pkgs/homePage {}; };
 in {
   imports = [ this.profiles.base ];
+
+  nixpkgs.overlays = [
+    homePage
+  ];
 
   networking.hostName = hostName;
 

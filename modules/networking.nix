@@ -54,7 +54,7 @@ in {
 
         peers = [
           {
-            publicKey = "0eWP1hzkyoXlrjPSOq+6Y1u8tnFH+SejBJs8f8lf+iU=";
+            publicKey = "lFB2DWtzp55ajV0Fk/OWdO9JlGvN9QsayYKQQHV3GEs=";
             allowedIPs = [ "fd42:dead:beef::/48" ];
             endpoint = "bs.vpn.dadada.li:51234";
             persistentKeepalive = 25;

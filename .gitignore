@@ -3,4 +3,5 @@ home.nix
 *.swp
 result
 *.zip
+*.qcow2
 work.nix

@@ -23,6 +23,7 @@ in {
   dadada.networking.vpnExtension = "4";
   dadada.weechat.enable = true;
   dadada.homePage.enable = true;
+  dadada.share.enable = true;
   dadada.backupClient = {
     enable = true;
     bs = true;

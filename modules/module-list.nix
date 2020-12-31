@@ -5,6 +5,7 @@
   ./fileShare.nix
   ./homepage.nix
   ./networking.nix
+  ./share.nix
   ./steam.nix
   ./update.nix
   ./vpnServer.nix

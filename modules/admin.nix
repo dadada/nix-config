@@ -43,6 +43,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       vim
+      tmux
     ];
 
     services.tor.hiddenServices = {

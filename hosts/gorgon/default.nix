@@ -105,14 +105,10 @@ in
     "fd42:dead:beef:0:5054:ff:fefb:7361" = [
       "media.dadada.li"
       "ifrit.dadada.li"
-      "weechat.dadada.li"
-      "webchat.dadada.li"
     ];
     "192.168.42.103" = [
       "media.dadada.li"
       "ifrit.dadada.li"
-      "weechat.dadada.li"
-      "webchat.dadada.li"
     ];
     "fd42:dead:beef::5054:ff:fe8b:58df" = [ "iot.dadada.li" ];
     "fd42:dead:beef::20d:b9ff:fe4c:c9ac" = [ "agares.dadada.li" ];

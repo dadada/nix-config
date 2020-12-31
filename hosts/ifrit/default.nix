@@ -30,6 +30,10 @@ in {
         id = "3";
         key = "0eWP1hzkyoXlrjPSOq+6Y1u8tnFH+SejBJs8f8lf+iU=";
       };
+      "surgat" = {
+        id = "4";
+        key = "+paiOqOITdLy3oqoI2DhOj4k8gncAcjFLkJrxJl0iBE=";
+      };
     };
   };
 
@@ -47,6 +51,13 @@ in {
       authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJyTgdVPPxQeL5KZo9frZQlDIv2QkelJw3gNGoGtUMfw tim@metis" ];
       path = "${backups}/gorgon";
       quota = "1T";
+    };
+    "surgat" = {
+      allowSubRepos = false;
+      authorizedKeysAppendOnly = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINGhatanrNG+M6jAkU7Yi44mJmTreJkqyZ6Z+qiEgV7O root@surgat" ];
+      authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJyTgdVPPxQeL5KZo9frZQlDIv2QkelJw3gNGoGtUMfw tim@metis" ];
+      path = "${backups}/surgat";
+      quota = "100G";
     };
     "wohnzimmerpi" = {
       allowSubRepos = false;

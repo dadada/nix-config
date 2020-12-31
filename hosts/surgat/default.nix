@@ -23,6 +23,10 @@ in {
   dadada.networking.vpnExtension = "4";
   dadada.weechat.enable = true;
   dadada.homePage.enable = true;
+  dadada.backupClient = {
+    enable = true;
+    bs = true;
+  };
 
   networking.useDHCP = false;
   networking.interfaces.ens3.useDHCP = true;
@@ -48,9 +52,6 @@ in {
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sda";
-
-  # TODO
-  # backup
 
   networking.interfaces."ens3".ipv6.addresses = [ {
     address = "2a01:4f8:c17:1d70::";

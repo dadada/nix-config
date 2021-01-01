@@ -17,8 +17,8 @@ in {
     recommendedTlsSettings = true;
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
-    logError = "off";
-    appendConfig = ''
+    logError = "/dev/null";
+    appendHttpConfig = ''
       access_log off;
     '';
   };

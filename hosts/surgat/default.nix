@@ -18,7 +18,7 @@ in {
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
     logError = "off";
-    appendHttpConfig = ''
+    appendConfig = ''
       access_log off;
     '';
   };

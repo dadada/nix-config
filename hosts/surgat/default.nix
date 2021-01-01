@@ -13,6 +13,16 @@ in {
 
   networking.hostName = hostName;
 
+  services.nginx = {
+    recommendedTlsSettings = true;
+    recommendedOptimisation = true;
+    recommendedGzipSettings = true;
+    logError = "off";
+    appendHttpConfig = ''
+      access_log off;
+    '';
+  };
+
   dadada.admin = {
     enable = true;
     users = {

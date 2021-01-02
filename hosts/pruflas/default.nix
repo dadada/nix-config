@@ -17,6 +17,9 @@ in
     listenHost = "10.3.3.3";
     #listenHost = "*";
     port = 3000;
+    extraConfig = ''
+      using_frontend_proxy 1
+    '';
   };
 
   nix.buildMachines = [

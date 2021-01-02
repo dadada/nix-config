@@ -23,7 +23,7 @@ in
     forceSSL = true;
 
     locations."/".extraConfig = ''
-      proxy_pass http://[fcde:ad:1]:3000;
+      proxy_pass http://[fcde:ad:1]:3000/;
     '';
   };
 

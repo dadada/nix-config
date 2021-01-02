@@ -8,7 +8,7 @@ in
 
   networking.hostName = hostName;
   networking.hosts = {
-    "10.3.3.1" = [ "hydra.dadada.li" ];
+    "10.3.3.3" = [ "hydra.dadada.li" ];
   };
 
   services.hydra = {

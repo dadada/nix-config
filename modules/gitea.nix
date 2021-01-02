@@ -26,7 +26,7 @@ in {
       forceSSL = true;
 
       locations."/".extraConfig = ''
-        proxy_pass unix:/run/gitea/gitea.sock;
+        proxy_pass http://unix:/run/gitea/gitea.sock:/;
       '';
     };
   };

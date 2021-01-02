@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 let
   hostName = "surgat";
-  this = import ../.. {};
+  this = import ../.. { inherit pkgs; };
   keys = ../../pkgs/keys/keys;
-  homePage = self: super: { homePage = super.callPackage ../../pkgs/homePage {}; };
+  homePage = self: super: { homePage = super.callPackage ../../pkgs/homePage { }; };
 in {
   imports = [ this.profiles.base ];
 

@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  this = import ../../.. {};
+  this = import ../../.. { inherit pkgs; };
 in
 {
   nixpkgs.overlays = [

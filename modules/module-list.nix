@@ -1,6 +1,7 @@
 [
   ./admin.nix
   ./backup.nix
+  ./element.nix
   ./fido2.nix
   ./fileShare.nix
   ./homepage.nix

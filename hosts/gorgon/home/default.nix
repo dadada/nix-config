@@ -31,7 +31,7 @@ in
         MAILDIR = "\$HOME/.var/mail";
         MBLAZE = "\$HOME/.config/mblaze";
         NOTMUCH_CONFIG = "\$HOME/.config/notmuch/config";
-        MOZ_ENABLE_WAYLAND= "1";
+        MOZ_ENABLE_WAYLAND = "1";
       };
     };
   };

@@ -49,7 +49,7 @@ in
   };
 
   networking.useDHCP = false;
-  networking.interfaces.enp3s0.useDHCP = true;
+  networking.interfaces."enp0s25".useDHCP = true;
 
   networking.firewall = {
     enable = true;

@@ -16,7 +16,7 @@ in {
       root = pkgs.element-web.override {
         conf = {
           default_server_config."m.homeserver" = {
-            "base_url" = "matrix.stratum0.org";
+            "base_url" = "https://matrix.stratum0.org/";
             "server_name" = "Stratum 0";
           };
         };

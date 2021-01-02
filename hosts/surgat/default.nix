@@ -49,6 +49,7 @@ in
     ];
     allowedUDPPorts = [
       51234 # Wireguard
+      51235 # Wireguard
     ];
   };
 

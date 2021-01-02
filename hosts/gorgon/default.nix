@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   this = import ../.. { inherit pkgs; };
-  nixos-hardware = buildins.fetchTarball {
+  nixos-hardware = builtins.fetchTarball {
     url = "https://github.com/NixOS/nixos-hardware/archive/c242378e63b0ec334e964ac0c0fbbdd2b3e89ebf.tar.gz";
     sha256 = "1z4cr5gsyfdpcy31vqg4ikalbxmnnac6jjk1nl8mxj0h0ix7pp36";
   };

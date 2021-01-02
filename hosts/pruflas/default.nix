@@ -14,6 +14,8 @@ in
     notificationSender = "hydra@localhost";
     buildMachinesFiles = [ ];
     useSubstitutes = true;
+    listenHost = "fcde:ad::1";
+    port = 3000;
   };
 
   nix.buildMachines = [
@@ -58,6 +60,7 @@ in
       22 # SSH
       80
       443 # HTTPS
+      3000 # Hydra
     ];
     allowedUDPPorts = [
       51234 # Wireguard

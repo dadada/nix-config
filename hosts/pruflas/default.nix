@@ -14,6 +14,7 @@ in
   services.hydra = {
     enable = true;
     hydraURL = "hydra.dadada.li";
+    package = pkgs.hydra-unstable;
     notificationSender = "hydra@localhost";
     buildMachinesFiles = [ ];
     useSubstitutes = true;

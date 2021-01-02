@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.dadada.home.zsh;
-in {
+in
+{
   options.dadada.home.zsh = {
     enable = mkEnableOption "Enable ZSH config";
   };
@@ -26,19 +27,19 @@ in {
       plugins = [
       ];
       initExtra = ''
-       source ~/.nix-profile/share/zsh-git-prompt/zshrc.sh
-       source ~/.nix-profile/share/fzf/key-bindings.zsh
-       source ~/.nix-profile/share/fzf/completion.zsh
+        source ~/.nix-profile/share/zsh-git-prompt/zshrc.sh
+        source ~/.nix-profile/share/fzf/key-bindings.zsh
+        source ~/.nix-profile/share/fzf/completion.zsh
 
-       preexec() { echo -n -e "\033]0;$1\007" }
+        preexec() { echo -n -e "\033]0;$1\007" }
 
-       PROMPT="%F{red}%?%f %F{green}%m%f:%F{blue}%~%f "
-       RPROMPT='$(git_super_status)'
-       #NIX_BUILD_SHELL="${pkgs.zsh}/bin/zsh"
-       if [ "$TMUX" = "" ]
-       then
-         tmux
-       fi
+        PROMPT="%F{red}%?%f %F{green}%m%f:%F{blue}%~%f "
+        RPROMPT='$(git_super_status)'
+        #NIX_BUILD_SHELL="${pkgs.zsh}/bin/zsh"
+        if [ "$TMUX" = "" ]
+        then
+          tmux
+        fi
       '';
       profileExtra = ''
       '';

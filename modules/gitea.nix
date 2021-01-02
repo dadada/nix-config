@@ -1,7 +1,8 @@
 { config, pkgs, lib, ... }:
 let
   cfg = config.dadada.gitea;
-in {
+in
+{
   options.dadada.gitea = {
     enable = lib.mkEnableOption "Enable gitea";
   };

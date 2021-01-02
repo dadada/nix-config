@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.dadada.home.kitty;
-in {
+in
+{
   options.dadada.home.kitty = {
     enable = mkEnableOption "Enable kitty config";
   };

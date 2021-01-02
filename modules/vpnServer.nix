@@ -21,13 +21,14 @@ let
       };
     };
   };
-in {
+in
+{
   options.dadada.vpnServer = {
     enable = mkEnableOption "Enable wireguard gateway";
     peers = mkOption {
       description = "Set of extensions and public keys of peers";
       type = with types; attrsOf (submodule wgPeer);
-      default = {};
+      default = { };
     };
   };
   config = mkIf cfg.enable {
@@ -37,11 +38,13 @@ in {
       privateKeyFile = "/var/lib/wireguard/wg0-key";
       ips = [ "fd42:dead:beef:1337::0/64" ];
       listenPort = 51234;
-      peers = map (peer: (
-        {
-          allowedIPs = [ "fd42:dead:beef:1337::${peer.id}/128" ];
-          publicKey = peer.key;
-        })) (attrValues cfg.peers);
+      peers = map
+        (peer: (
+          {
+            allowedIPs = [ "fd42:dead:beef:1337::${peer.id}/128" ];
+            publicKey = peer.key;
+          }))
+        (attrValues cfg.peers);
     };
   };
 }

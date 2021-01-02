@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 with lib;
-let 
+let
   cfg = config.dadada.home.vim;
-  vimPlugins = pkgs.callPackage ../../../pkgs/vimPlugins {};
+  vimPlugins = pkgs.callPackage ../../../pkgs/vimPlugins { };
 in
 {
   options.dadada.home.vim = {
@@ -32,6 +32,9 @@ in
         #pkgs.vimPlugins.clang_complete
       ];
     };
-    home.packages = [ pkgs.languagetool ];
+    home.packages = with pkgs; [
+      languagetool
+      nixpkgs-fmt
+    ];
   };
 }

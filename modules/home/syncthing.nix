@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.dadada.home.syncthing;
-in {
+in
+{
   options.dadada.home.syncthing = {
     enable = mkEnableOption "Enable Syncthing config";
   };

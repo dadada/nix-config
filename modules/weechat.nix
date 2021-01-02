@@ -3,7 +3,8 @@
 with lib;
 let
   cfg = config.dadada.weechat;
-in {
+in
+{
   options.dadada.weechat = {
     enable = mkEnableOption "Enable weechat relay";
   };
@@ -55,4 +56,3 @@ in {
     };
   };
 }
-

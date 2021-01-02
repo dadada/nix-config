@@ -3,15 +3,16 @@
 with lib;
 let
   cfg = config.dadada.admin;
-in {
+in
+{
   options.dadada.admin = {
     enable = mkEnableOption "Enable admin access";
 
     users = mkOption {
       type = with types; attrsOf (listOf path);
-      default = [];
+      default = [ ];
       description = ''
-              List of admin users with root access to all the machine.
+        List of admin users with root access to all the machine.
       '';
       example = literalExample "\"user1\" = [ /path/to/key1 /path/to/key2 ]";
     };
@@ -32,12 +33,14 @@ in {
 
     users.mutableUsers = false;
 
-    users.users = mapAttrs (user: keys: (
-      {
-        extraGroups = [ "wheel" ];
-        isNormalUser = true;
-        openssh.authorizedKeys.keyFiles = keys;
-      })) cfg.users;
+    users.users = mapAttrs
+      (user: keys: (
+        {
+          extraGroups = [ "wheel" ];
+          isNormalUser = true;
+          openssh.authorizedKeys.keyFiles = keys;
+        }))
+      cfg.users;
 
     networking.firewall.allowedTCPPorts = [ 22 ];
 
@@ -49,9 +52,8 @@ in {
     services.tor.hiddenServices = {
       "rat" = mkIf cfg.rat.enable {
         name = "rat";
-        map = [ { port = 22; } ];
+        map = [{ port = 22; }];
       };
     };
   };
 }
-

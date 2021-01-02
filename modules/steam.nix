@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.dadada.steam;
-in {
+in
+{
   options.dadada.steam = {
     enable = mkEnableOption "Enable Steam config";
   };

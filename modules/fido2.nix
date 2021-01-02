@@ -3,7 +3,8 @@ with lib;
 let
   luks = config.dadada.luks;
   fido2 = config.dadada.fido2;
-in {
+in
+{
 
   options = {
     dadada.luks = {
@@ -43,7 +44,7 @@ in {
       linuxPackages.acpi_call
       fido2luks
       python27Packages.dbus-python
-      python38Packages.solo-python    
+      python38Packages.solo-python
     ]);
 
     security.pam.u2f = mkIf fido2.enablePam {

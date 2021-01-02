@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.dadada.home.ssh;
-in {
+in
+{
   options.dadada.home.ssh = {
     enable = mkEnableOption "Enable SSH config";
   };

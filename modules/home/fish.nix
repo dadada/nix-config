@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.dadada.home.fish;
-in {
+in
+{
   options.dadada.home.fish = {
     enable = mkEnableOption "Enable fish config";
   };
@@ -45,21 +46,21 @@ in {
         #end
       '';
       promptInit = ''
-        function fish_prompt
-        set last_status $status
-        printf '%s %s:%s ' \
-        (set_color red
-	    echo $last_status) \
-        (set_color green
-	    hostname) \
-        (set_color blue
-	    prompt_pwd)
-        set_color normal
-        end
+          function fish_prompt
+          set last_status $status
+          printf '%s %s:%s ' \
+          (set_color red
+        echo $last_status) \
+          (set_color green
+        hostname) \
+          (set_color blue
+        prompt_pwd)
+          set_color normal
+          end
 
-        function fish_right_prompt
-        printf '%s' (__fish_git_prompt)
-        end
+          function fish_right_prompt
+          printf '%s' (__fish_git_prompt)
+          end
       '';
       shellAliases = {
         gst = "git status";

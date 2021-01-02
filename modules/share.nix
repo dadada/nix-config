@@ -3,7 +3,8 @@
 with lib;
 let
   cfg = config.dadada.share;
-in {
+in
+{
   options.dadada.share = {
     enable = mkEnableOption "Enable file share";
   };
@@ -27,4 +28,3 @@ in {
     };
   };
 }
-

@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.dadada.home.tmux;
-in {
+in
+{
   options.dadada.home.tmux = {
     enable = mkEnableOption "Enable tmux config";
   };
@@ -11,10 +12,10 @@ in {
       enable = true;
       terminal = "xterm-256color";
       extraConfig = ''
-          set -g status on
-          set-option -g set-titles on
-          set-option -g automatic-rename on
-          set-window-option -g mode-keys vi
+        set -g status on
+        set-option -g set-titles on
+        set-option -g automatic-rename on
+        set-window-option -g mode-keys vi
       '';
     };
   };

@@ -19,7 +19,8 @@ let
     "application/pdf" = "org.pwmt.zathura.desktop";
   };
   cfg = config.dadada.home.xdg;
-in {
+in
+{
   options.dadada.home.xdg = {
     enable = mkEnableOption "Enable XDG config";
   };
@@ -32,9 +33,9 @@ in {
         defaultApplications = apps;
       };
       userDirs = {
-        download ="\$HOME/tmp";
+        download = "\$HOME/tmp";
         music = "\$HOME/lib/music";
-        videos ="\$HOME/lib/videos";
+        videos = "\$HOME/lib/videos";
         pictures = "\$HOME/lib/pictures";
         documents = "\$HOME/lib";
         desktop = "$HOME/tmp";

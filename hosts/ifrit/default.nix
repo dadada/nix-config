@@ -7,7 +7,8 @@ let
     "media.local"
   ];
   backups = "/mnt/storage/backup";
-in {
+in
+{
   imports = [
     ../../modules/profiles/base
   ];
@@ -107,13 +108,22 @@ in {
     allowPing = true;
     allowedTCPPorts = [
       22 # SSH
-      80 443 # HTTP(S)
-      111 2049 # NFS
-      137 138 139 445 # SMB
+      80
+      443 # HTTP(S)
+      111
+      2049 # NFS
+      137
+      138
+      139
+      445 # SMB
     ];
     allowedUDPPorts = [
-      137 138 139 445 # SMB
-      111 2049 # NFS
+      137
+      138
+      139
+      445 # SMB
+      111
+      2049 # NFS
       51234 # Wireguard
     ];
   };
@@ -121,16 +131,16 @@ in {
   security.acme = {
     email = "d553a78d-0349-48db-9c20-5b27af3a1dfc@dadada.li";
     acceptTerms = true;
-  #  certs."webchat.dadada.li" = {
-  #    credentialsFile = "/var/lib/lego/acme-joker.env";
-  #    dnsProvider = "joker";
-  #    postRun = "systemctl reload nginx.service";
-  #  };
-  #  certs."weechat.dadada.li" = {
-  #    credentialsFile = "/var/lib/lego/acme-joker.env";
-  #    dnsProvider = "joker";
-  #    postRun = "systemctl reload nginx.service";
-  #  };
+    #  certs."webchat.dadada.li" = {
+    #    credentialsFile = "/var/lib/lego/acme-joker.env";
+    #    dnsProvider = "joker";
+    #    postRun = "systemctl reload nginx.service";
+    #  };
+    #  certs."weechat.dadada.li" = {
+    #    credentialsFile = "/var/lib/lego/acme-joker.env";
+    #    dnsProvider = "joker";
+    #    postRun = "systemctl reload nginx.service";
+    #  };
   };
 
   users.users."mist" = {

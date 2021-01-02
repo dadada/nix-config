@@ -9,8 +9,8 @@ stdenv.mkDerivation rec {
   buildPhase = "";
 
   installPhase = ''
-      mkdir $out
-      cp * $out
+    mkdir $out
+    cp * $out
   '';
 
   meta = with stdenv.lib; {

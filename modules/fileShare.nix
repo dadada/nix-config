@@ -6,7 +6,8 @@ let
   ipv6 = "fd42:dead:beef::/48";
   ipv4 = "192.168.42.0/24";
   allow = "192.168.42.0 fd42:dead:beef::";
-in {
+in
+{
   options.dadada.fileShare = {
     enable = mkEnableOption "Enable file share server";
   };
@@ -47,4 +48,3 @@ in {
     };
   };
 }
-

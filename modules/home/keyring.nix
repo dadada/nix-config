@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.dadada.home.keyring;
-in {
+in
+{
   options.dadada.home.keyring = {
     enable = mkEnableOption "Enable keyring config";
   };

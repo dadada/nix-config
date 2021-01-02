@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
-
 let
   cfg = config.dadada.homePage;
-in with lib; {
+in
+with lib; {
   options.dadada.homePage = {
     enable = mkEnableOption "Enable home page";
   };

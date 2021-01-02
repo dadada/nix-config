@@ -1,14 +1,15 @@
-{ config, pkgs, lib, ...}:
+{ config, pkgs, lib, ... }:
 with lib;
 let
   cfg = config.dadada.networking;
-in {
+in
+{
   options.dadada.networking = {
     useLocalResolver = mkEnableOption "Enable local caching name server";
     wanInterfaces = mkOption {
       type = with types; listOf str;
       description = "WAN network interfaces";
-      default = [];
+      default = [ ];
     };
     vpnExtension = mkOption {
       type = with types; nullOr str;
@@ -73,7 +74,7 @@ in {
       enable = true;
       allowedUDPPorts = [
         51234 # Wireguard
-        5353  # mDNS
+        5353 # mDNS
       ];
     };
   };

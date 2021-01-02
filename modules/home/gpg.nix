@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.dadada.home.gpg;
-in {
+in
+{
   options.dadada.home.gpg = {
     enable = mkEnableOption "Enable GnuPG config";
   };

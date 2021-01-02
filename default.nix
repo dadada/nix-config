@@ -12,7 +12,7 @@ rec {
 
   hosts = import ./hosts;
 
-  tubslatex = callPackage ./pkgs/tubslatex {};
-  keys = callPackage ./pkgs/keys {};
-  homePage = callPackage ./pkgs/homePage {};
+  tubslatex = callPackage ./pkgs/tubslatex { };
+  keys = callPackage ./pkgs/keys { };
+  homePage = callPackage ./pkgs/homePage { };
 }

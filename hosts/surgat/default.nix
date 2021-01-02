@@ -2,7 +2,8 @@
 let
   hostName = "surgat";
   this = import ../.. { inherit pkgs; };
-in {
+in
+{
   imports = [ this.profiles.base ];
 
   networking.hostName = hostName;
@@ -43,7 +44,8 @@ in {
     allowPing = true;
     allowedTCPPorts = [
       22 # SSH
-      80 443 # HTTPS
+      80
+      443 # HTTPS
     ];
     allowedUDPPorts = [
       51234 # Wireguard
@@ -60,10 +62,10 @@ in {
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sda";
 
-  networking.interfaces."ens3".ipv6.addresses = [ {
+  networking.interfaces."ens3".ipv6.addresses = [{
     address = "2a01:4f8:c17:1d70::";
     prefixLength = 64;
-  } ];
+  }];
 
   networking.defaultGateway6 = {
     address = "fe80::1";

@@ -1,7 +1,7 @@
-{ config, pkgs, lib, ...}:
+{ config, pkgs, lib, ... }:
 with lib;
 let
-  backupExcludes =  [
+  backupExcludes = [
     "/backup"
     "/dev"
     "/efi"
@@ -20,7 +20,8 @@ let
     "/var/tmp"
   ];
   cfg = config.dadada.backupClient;
-in {
+in
+{
   options.dadada.backupClient = {
     enable = mkEnableOption "Enable backup client";
     gs = mkEnableOption "Enable backup to GS location";
@@ -51,8 +52,8 @@ in {
         within = "1d"; # Keep all archives from the last day
         daily = 7;
         weekly = 2;
-        monthly = -1;  # Keep at least one archive for each month
-        yearly = -1;  # Keep at least one archive for each year
+        monthly = -1; # Keep at least one archive for each month
+        yearly = -1; # Keep at least one archive for each year
       };
       startAt = "monthly";
     };
@@ -63,7 +64,7 @@ in {
       ];
     };
 
-    services.borgbackup.jobs.bs = mkIf cfg.bs{
+    services.borgbackup.jobs.bs = mkIf cfg.bs {
       paths = "/";
       exclude = backupExcludes;
       repo = "borg@media.dadada.li:/mnt/storage/backup/${config.networking.hostName}";

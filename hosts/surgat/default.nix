@@ -106,7 +106,7 @@ in
     peers = [
       {
         publicKey = "CTKwL6+SJIqKXr1DIHejMDgjoxlWPaT78Pz3+JqcNlw=";
-        allowedIPs = [ "10.3.3.1/32" ];
+        allowedIPs = [ "10.3.3.3/32" ];
         persistentKeepalive = 25;
       }
     ];

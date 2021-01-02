@@ -12,6 +12,8 @@ in
     recommendedTlsSettings = true;
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
+    recommendedProxySettings = true;
+
     logError = "/dev/null";
     appendHttpConfig = ''
       access_log off;
@@ -24,15 +26,12 @@ in
 
     root = "${pkgs.nginx}/html";
 
-    locations."/".extraConfig = ''
-      proxy_set_header  X-Real-IP          $remote_addr;
-      proxy_set_header  X-Forwarded-For    $proxy_add_x_forwarded_for;
-      proxy_set_header  X-Forwarded-Proto  $scheme;
-      proxy_set_header  X-Forwarded-Server $host;
-      proxy_redirect http://10.3.3.3:3000 https://hydra.dadada.li;
-      proxy_redirect https://10.3.3.3:3000 https://hydra.dadada.li;
-      proxy_pass http://10.3.3.3:3000;
-    '';
+    locations."/" = {
+      proxyPass = "http://10.3.3.3:3000/";
+      extraConfig = ''
+        proxy_redirect default;
+      '';
+    };
   };
 
   dadada.admin = {

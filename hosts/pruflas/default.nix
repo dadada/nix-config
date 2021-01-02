@@ -6,6 +6,13 @@ in
 {
   imports = [ this.profiles.base ];
 
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
   networking.hostName = hostName;
   networking.hosts = {
     "10.3.3.3" = [ "hydra.dadada.li" ];
@@ -15,6 +22,7 @@ in
 
   services.hydra = {
     enable = true;
+    package = pkgs.hydra-unstable;
     hydraURL = "https://hydra.dadada.li";
     notificationSender = "hydra@localhost";
     buildMachinesFiles = [ ];

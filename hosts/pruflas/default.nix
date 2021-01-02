@@ -10,11 +10,12 @@ in
 
   services.hydra = {
     enable = true;
-    hydraURL = "http://hydra.dadada.li/";
+    hydraURL = "https://hydra.dadada.li/";
     notificationSender = "hydra@localhost";
     buildMachinesFiles = [ ];
     useSubstitutes = true;
-    listenHost = "fcde:ad::1";
+    #listenHost = "[fcde:ad::1]";
+    listenHost = "*";
     port = 3000;
   };
 

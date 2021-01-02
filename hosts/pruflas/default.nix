@@ -7,6 +7,9 @@ in
   imports = [ this.profiles.base ];
 
   networking.hostName = hostName;
+  networking.hosts = {
+    "10.3.3.1" = [ "hydra.dadada.li" ];
+  };
 
   services.hydra = {
     enable = true;
@@ -14,7 +17,7 @@ in
     notificationSender = "hydra@localhost";
     buildMachinesFiles = [ ];
     useSubstitutes = true;
-    listenHost = "10.3.3.3";
+    listenHost = "hydra.dadada.li";
     port = 3000;
   };
 

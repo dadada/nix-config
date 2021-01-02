@@ -10,7 +10,7 @@ in
 
   services.hydra = {
     enable = true;
-    hydraURL = "hydra.dadada.li";
+    hydraURL = "http://hydra.dadada.li/";
     notificationSender = "hydra@localhost";
     buildMachinesFiles = [ ];
     useSubstitutes = true;

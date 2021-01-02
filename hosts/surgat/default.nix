@@ -18,6 +18,15 @@ in
     '';
   };
 
+  services.nginx.virtualHosts."hydra.${config.networking.domain}" = {
+    enableACME = true;
+    forceSSL = true;
+
+    locations."/".extraConfig = ''
+      proxy_pass http://[fcde:ad:1]:3000;
+    '';
+  };
+
   dadada.admin = {
     enable = true;
     users = {

@@ -62,7 +62,14 @@ in
       authorizedKeysAppendOnly = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINGhatanrNG+M6jAkU7Yi44mJmTreJkqyZ6Z+qiEgV7O root@surgat" ];
       authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJyTgdVPPxQeL5KZo9frZQlDIv2QkelJw3gNGoGtUMfw tim@metis" ];
       path = "${backups}/surgat";
-      quota = "100G";
+      quota = "50G";
+    };
+    "pruflas" = {
+      allowSubRepos = false;
+      authorizedKeysAppendOnly = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBk7f9DSnXCOIUsxFsjCKG23vHShV4TSzzPJunPOwa1I root@pruflas" ];
+      authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJyTgdVPPxQeL5KZo9frZQlDIv2QkelJw3gNGoGtUMfw tim@metis" ];
+      path = "${backups}/pruflas";
+      quota = "50G";
     };
     "wohnzimmerpi" = {
       allowSubRepos = false;

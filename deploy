@@ -29,7 +29,7 @@ let
   dadada = import (builtins.fetchTarball {
     url = ${url};
     sha256 = "${sha256}";
-  }) {};
+  }) { inherit pkgs; };
 in {
   imports = [
     ./hardware-configuration.nix

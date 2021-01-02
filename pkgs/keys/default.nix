@@ -1,14 +1,16 @@
 { stdenv }:
 
 stdenv.mkDerivation rec {
-  pname = "infra-keys";
+  name = "dadadaKeys";
   version = "1";
 
   src = ./keys;
 
+  buildPhase = "";
+
   installPhase = ''
       mkdir $out
-      mv * $out
+      cp * $out
   '';
 
   meta = with stdenv.lib; {

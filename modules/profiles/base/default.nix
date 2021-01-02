@@ -1,15 +1,14 @@
 { config, pkgs, lib, ... }:
 with lib;
-let
-  dadadaKeys = ../../../pkgs/keys/keys;
-in
 {
+  nixpkgs.overlays = attrValues (import ../../../overlays);
+
   imports = import ../../module-list.nix;
 
   networking.domain = mkDefault "dadada.li";
 
   dadada.admin.users = {
-    "dadada" = [ "${dadadaKeys}/dadada.pub" ];
+    "dadada" = [ "${pkgs.dadadaKeys}/dadada.pub" ];
   };
 
   #dadada.autoUpgrade = mkDefault true;

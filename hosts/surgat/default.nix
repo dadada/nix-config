@@ -2,14 +2,8 @@
 let
   hostName = "surgat";
   this = import ../.. { inherit pkgs; };
-  keys = ../../pkgs/keys/keys;
-  homePage = self: super: { homePage = super.callPackage ../../pkgs/homePage { }; };
 in {
   imports = [ this.profiles.base ];
-
-  nixpkgs.overlays = [
-    homePage
-  ];
 
   networking.hostName = hostName;
 
@@ -26,7 +20,7 @@ in {
   dadada.admin = {
     enable = true;
     users = {
-      "dadada" = [ "${keys}/dadada.pub" ];
+      "dadada" = [ "${pkgs.dadadaKeys}/dadada.pub" ];
     };
   };
 

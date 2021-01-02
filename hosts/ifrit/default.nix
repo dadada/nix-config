@@ -35,6 +35,10 @@ in
         id = "4";
         key = "+paiOqOITdLy3oqoI2DhOj4k8gncAcjFLkJrxJl0iBE=";
       };
+      "pruflas" = {
+        id = "5";
+        key = "o8B8rTA+u5XOJK4JI+TRCFjVJn/3T7UofLqFRIPoNQk=";
+      };
     };
   };
 

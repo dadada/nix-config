@@ -14,7 +14,7 @@ in
     notificationSender = "hydra@localhost";
     buildMachinesFiles = [ ];
     useSubstitutes = true;
-    listenHost = "*";
+    listenHost = "10.3.3.3";
     port = 3000;
   };
 

@@ -11,6 +11,8 @@ in
     "10.3.3.3" = [ "hydra.dadada.li" ];
   };
 
+  services.logind.lidSwitch = "ignore";
+
   services.hydra = {
     enable = true;
     hydraURL = "https://hydra.dadada.li";

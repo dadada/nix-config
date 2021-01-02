@@ -89,7 +89,7 @@ in
 
 
   networking.wireguard.interfaces."hydra" = {
-    ips = [ "fcde:ad::1/64" ];
+    ips = [ "10.3.3.1/24" ];
     listenPort = 51235;
 
     privateKeyFile = "/var/lib/wireguard/hydra";
@@ -97,7 +97,7 @@ in
     peers = [
       {
         publicKey = "KzL+PKlv4LktIqqTqC9Esw8dkSZN2qSn/vq76UHbOlY=";
-        allowedIPs = [ "fcde:ad::2/128" ];
+        allowedIPs = [ "10.3.3.3/32" ];
         endpoint = "surgat.dadada.li:51235";
         persistentKeepalive = 25;
       }

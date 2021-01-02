@@ -23,7 +23,7 @@ in
     forceSSL = true;
 
     locations."/".extraConfig = ''
-      proxy_pass http://[fcde:ad:1]:3000/;
+      proxy_pass http://10.3.3.3:3000/;
     '';
   };
 
@@ -98,7 +98,7 @@ in
   ];
 
   networking.wireguard.interfaces."hydra" = {
-    ips = [ "fcde:ad::2/64" ];
+    ips = [ "10.3.3.1/24" ];
     listenPort = 51235;
 
     privateKeyFile = "/var/lib/wireguard/hydra";
@@ -106,7 +106,7 @@ in
     peers = [
       {
         publicKey = "CTKwL6+SJIqKXr1DIHejMDgjoxlWPaT78Pz3+JqcNlw=";
-        allowedIPs = [ "fcde:ad::1/128" ];
+        allowedIPs = [ "10.3.3.1/32" ];
         persistentKeepalive = 25;
       }
     ];

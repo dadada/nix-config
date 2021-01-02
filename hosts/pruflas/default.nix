@@ -10,17 +10,13 @@ in
 
   services.hydra = {
     enable = true;
-    hydraURL = "https://hydra.dadada.li/";
+    hydraURL = "hydra.dadada.li";
     notificationSender = "hydra@localhost";
     buildMachinesFiles = [ ];
     useSubstitutes = true;
     listenHost = "10.3.3.3";
     #listenHost = "*";
     port = 3000;
-    extraConfig = ''
-      using_frontend_proxy 1
-      base_uri hydra.dadada.li
-    '';
   };
 
   nix.buildMachines = [

@@ -19,6 +19,7 @@ in
     port = 3000;
     extraConfig = ''
       using_frontend_proxy 1
+      base_uri hydra.dadada.li
     '';
   };
 

@@ -86,4 +86,19 @@ in
       size = 4096;
     }
   ];
+
+  networking.wireguard.interfaces."hydra" = {
+    ips = [ "fcde:ad::2/64" ];
+    listenPort = 51235;
+
+    privateKeyFile = "/var/lib/wireguard/hydra";
+
+    peers = [
+      {
+        publicKey = "CTKwL6+SJIqKXr1DIHejMDgjoxlWPaT78Pz3+JqcNlw=";
+        allowedIPs = [ "fcde:ad::1/128" ];
+        persistentKeepalive = 25;
+      }
+    ];
+  };
 }

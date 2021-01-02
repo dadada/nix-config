@@ -4,6 +4,7 @@
   ./element.nix
   ./fido2.nix
   ./fileShare.nix
+  ./gitea.nix
   ./homepage.nix
   ./networking.nix
   ./share.nix

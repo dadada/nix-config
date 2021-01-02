@@ -5,6 +5,7 @@
   element = ./element.nix;
   fido2 = ./fido2.nix;
   fileShare = ./fileShare.nix;
+  gitea = ./gitea.nix;
   networking = ./networking.nix;
   share = ./share.nix;
   steam = ./steam.nix;

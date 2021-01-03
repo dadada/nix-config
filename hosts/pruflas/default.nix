@@ -2,6 +2,11 @@
 let
   hostName = "pruflas";
   this = import ../.. { inherit pkgs; };
+  logo = builtins.fetchurl {
+    sha256 = "1c8y19a3yz4g9dl7hbx7aq4y92jfxl4nrsparzyzwn0wcm9jan27";
+    url = "https://openmoji.org/php/download_from_github.php?emoji_hexcode=1F431-200D-1F4BB&emoji_variant=color";
+    name = "open-moji-hack-cat";
+  };
 in
 {
   imports = [ this.profiles.base ];
@@ -29,6 +34,7 @@ in
     useSubstitutes = true;
     listenHost = "hydra.dadada.li";
     port = 3000;
+    logo = logo;
   };
 
   nix.buildMachines = [

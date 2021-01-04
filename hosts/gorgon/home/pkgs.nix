@@ -42,6 +42,7 @@ with pkgs; [
   keepassxc
   #keys
   kitty
+  gitAndTools.lab
   ldns
   libreoffice
   libvirt

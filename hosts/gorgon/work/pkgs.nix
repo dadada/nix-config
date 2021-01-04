@@ -17,6 +17,7 @@ with pkgs; [
   inotify-tools
   jq
   kitty
+  gitAndTools.lab
   ldns
   libreoffice
   lsof

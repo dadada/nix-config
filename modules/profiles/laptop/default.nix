@@ -1,9 +1,7 @@
 { config, pkgs, lib, ... }:
 with lib;
 {
-  imports = [
-    ../base
-  ];
+  networking.domain = mkDefault "dadada.li";
 
   dadada = {
     networking = {
@@ -19,6 +17,12 @@ with lib;
 
   time.timeZone = mkDefault "Europe/Berlin";
 
+  i18n.defaultLocale = mkDefault "en_US.UTF-8";
+  console = mkDefault {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
+  };
+
   programs.zsh = mkDefault {
     enable = true;
     autosuggestions.enable = true;
@@ -30,8 +34,4 @@ with lib;
       highlighters = [ "main" "brackets" "pattern" "cursor" "root" "line" ];
     };
   };
-
-  environment.noXlibs = false;
-  documentation.enable = true;
-  documentation.nixos.enable = true;
 }

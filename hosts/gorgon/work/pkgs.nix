@@ -18,9 +18,11 @@ with pkgs; [
   jq
   kitty
   gitAndTools.lab
+  languagetool
   ldns
   libreoffice
   lsof
+  mpv
   openssl
   pavucontrol
   pinentry-gnome

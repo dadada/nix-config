@@ -23,13 +23,11 @@ rev="$(git rev-parse HEAD)"
 sha256=$(hash "$rev")
 
 cat <<EOF | ssh "${host}".dadada.li 'sudo nix-shell -p tmux --run "cat - > /etc/nixos/configuration.nix && tmux new -d \"nixos-rebuild switch |& tee /var/log/dadada-deploy.log\""'
+{ config, pkgs, ... }:
 let
   host = "$host";
   rev = "$rev";
   sha256 = "$sha256";
-in
-{ config, pkgs, lib, ... }:
-let
   dadada = import (builtins.fetchTarball {
     url = "https://github.com/dadada/nix-config/archive/\${rev}.tar.gz";
     sha256 = sha256;

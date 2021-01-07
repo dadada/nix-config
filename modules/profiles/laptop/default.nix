@@ -1,12 +1,15 @@
 { config, pkgs, lib, ... }:
 with lib;
 {
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   networking.domain = mkDefault "dadada.li";
 
   dadada = {
     networking = {
       useLocalResolver = mkDefault true;
     };
+    autoUpgrade.enable = true;
   };
 
   services.fwupd.enable = true;

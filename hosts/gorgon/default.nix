@@ -121,4 +121,6 @@ in
     "192.168.42.11" = [ "wohnzimmerpi.dadada.li" "wohnzimmerpi" ];
     "10.1.2.9" = [ "fgprinter.fginfo.tu-bs.de" ];
   };
+
+  system.stateVersion = "20.03";
 }

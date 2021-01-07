@@ -20,20 +20,25 @@ function hash {
 
 host="${1}"
 rev="$(git rev-parse HEAD)"
-url="https://github.com/dadada/nix-config/archive/${rev}.tar.gz"
 sha256=$(hash "$rev")
 
-cat <<EOF | ssh "${host}".dadada.li 'sudo nix-shell -p tmux --run "cat - > /etc/nixos/deploy.nix && tmux new -d \"nixos-rebuild switch |& tee /var/log/dadada-deploy.log\""'
+cat <<EOF | ssh "${host}".dadada.li 'sudo nix-shell -p tmux --run "cat - > /etc/nixos/configuration.nix && tmux new -d \"nixos-rebuild switch |& tee /var/log/dadada-deploy.log\""'
+let
+  host = "$host";
+  rev = "$rev";
+  sha256 = "$sha256";
+in
 { config, pkgs, lib, ... }:
 let
   dadada = import (builtins.fetchTarball {
-    url = ${url};
-    sha256 = "${sha256}";
+    url = "https://github.com/dadada/nix-config/archive/\${rev}.tar.gz";
+    sha256 = sha256;
   }) { inherit pkgs; };
-in {
+in
+{
   imports = [
     ./hardware-configuration.nix
-    dadada.hosts."${host}"
+    dadada.hosts."\${host}"
   ];
 }
 EOF

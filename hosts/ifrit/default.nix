@@ -166,4 +166,6 @@ in
       workstation = false;
     };
   };
+
+  system.stateVersion = "20.03";
 }

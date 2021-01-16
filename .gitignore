@@ -5,3 +5,4 @@ result
 *.zip
 *.qcow2
 work.nix
+.direnv/

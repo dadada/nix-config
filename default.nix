@@ -15,4 +15,5 @@ rec {
   tubslatex = callPackage ./pkgs/tubslatex { };
   keys = callPackage ./pkgs/keys { };
   homePage = callPackage ./pkgs/homePage { };
+  deploy = callPackage ./pkgs/deploy.nix { };
 }

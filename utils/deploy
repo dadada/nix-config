@@ -11,4 +11,4 @@ fi
 
 git push
 
-gen-config $1 | ssh "${host}".dadada.li 'sudo cat - > /etc/nixos/configuration.nix && (nixos-rebuild test && nixos-rebuild switch) || (nixos-rebuild switch --rollback && exit 1)'
+gen-config $1 | ssh "$1".dadada.li 'sudo bash -c "cat - > /etc/nixos/configuration.nix && (nixos-rebuild test && nixos-rebuild switch) || (nixos-rebuild switch --rollback && exit 1)"'

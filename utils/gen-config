@@ -1,16 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-set -o pipefail
-
-if [ -z "$1" ]
-then
-	echo "usage: deploy <hostname>"
-	exit 1
-fi
-
-git push
-
 function hash {
 	archive="$(mktemp /tmp/nix-config.XXX.tar.gz)"
 	git archive "$1" | gzip > "$archive"
@@ -18,11 +7,17 @@ function hash {
 	rm "$archive"
 }
 
+if [ -z "$1" ]
+then
+	echo "usage: deploy <hostname>"
+	exit 1
+fi
+
 host="${1}"
 rev="$(git rev-parse HEAD)"
 sha256=$(hash "$rev")
 
-cat <<EOF | ssh "${host}".dadada.li 'sudo cat - > /etc/nixos/configuration.nix && (nixos-rebuild test && nixos-rebuild switch) || (nixos-rebuild switch --rollback && exit 1)'
+cat <<EOF
 { config, pkgs, ... }:
 let
   host = "$host";

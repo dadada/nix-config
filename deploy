@@ -22,7 +22,7 @@ host="${1}"
 rev="$(git rev-parse HEAD)"
 sha256=$(hash "$rev")
 
-cat <<EOF | ssh "${host}".dadada.li 'sudo nix-shell -p tmux --run "cat - > /etc/nixos/configuration.nix && tmux new -d \"nixos-rebuild switch |& tee /var/log/dadada-deploy.log\""'
+cat <<EOF | ssh "${host}".dadada.li 'sudo cat - > /etc/nixos/configuration.nix && (nixos-rebuild test && nixos-rebuild switch) || (nixos-rebuild switch --rollback && exit 1)'
 { config, pkgs, ... }:
 let
   host = "$host";

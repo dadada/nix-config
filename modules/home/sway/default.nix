@@ -18,9 +18,8 @@ in
       termite
       bemenu
       xss-lock
-    ] ++ (with unstable; [
       swaylock
-    ]);
+    ];
 
     wayland.windowManager.sway = {
       enable = true;

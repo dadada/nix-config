@@ -6,4 +6,7 @@
   homePage = self: super: {
     homePage = super.callPackage ../pkgs/homePage { };
   };
+  dadadaScripts = self: super: {
+    dadadaScripts = super.callPackage ../pkgs/scripts.nix { };
+  };
 }

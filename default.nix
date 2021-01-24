@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs ? import <nixpkgs> { } }:
 
 with pkgs;
 rec {
@@ -16,4 +16,5 @@ rec {
   keys = callPackage ./pkgs/keys { };
   homePage = callPackage ./pkgs/homePage { };
   deploy = callPackage ./pkgs/deploy.nix { };
+  scripts = callPackage ./pkgs/scripts.nix { };
 }

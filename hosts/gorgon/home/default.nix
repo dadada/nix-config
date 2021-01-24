@@ -19,6 +19,7 @@ in
 {
   nixpkgs.overlays = [
     this.overlays.tubslatex
+    this.overlays.dadadaScripts
   ];
 
   imports = lib.attrValues this.hmModules;

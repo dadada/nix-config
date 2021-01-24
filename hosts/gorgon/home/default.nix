@@ -1,6 +1,20 @@
 { config, pkgs, lib, ... }:
 let
   this = import ../../.. { inherit pkgs; };
+  useFeatures = [
+    "vim"
+    "direnv"
+    "git"
+    "gpg"
+    "gtk"
+    "keyring"
+    "ssh"
+    "sway"
+    "syncthing"
+    "tmux"
+    "xdg"
+    "zsh"
+  ];
 in
 {
   nixpkgs.overlays = [
@@ -9,20 +23,7 @@ in
 
   imports = lib.attrValues this.hmModules;
 
-  dadada.home = {
-    vim.enable = true;
-    direnv.enable = true;
-    git.enable = true;
-    gpg.enable = true;
-    gtk.enable = true;
-    keyring.enable = true;
-    kitty.enable = true;
-    ssh.enable = true;
-    syncthing.enable = true;
-    tmux.enable = true;
-    xdg.enable = true;
-    zsh.enable = true;
-
+  dadada.home = lib.attrsets.genAttrs useFeatures (useFeatures: { enable = true; }) // {
     session = {
       enable = true;
       sessionVars = {

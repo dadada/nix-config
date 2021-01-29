@@ -24,13 +24,11 @@ in
         pkgs.vimPlugins.vim-airline
         pkgs.vimPlugins.vim-airline-themes
         pkgs.vimPlugins.vim-fish
+        pkgs.vimPlugins.vim-gitgutter
         vimPlugins.vim-buftabline
         vimPlugins.spacemacsTheme
         vimPlugins.filetype
-        #pkgs.vimPlugins.vim-gnupg
-        #pkgs.vimPlugins.vim-l9
         pkgs.vimPlugins.vim-ledger
-        #pkgs.vimPlugins.clang_complete
       ];
     };
     home.packages = with pkgs; [

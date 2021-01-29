@@ -30,7 +30,6 @@ in
     };
     luks.uuid = "3d0e5b93-90ca-412a-b4e0-3e6bfa47d3f4";
     networking = {
-      wanInterfaces = [ "enp2s0f0" "wlp3s0" ];
       enableBsShare = true;
       vpnExtension = "3";
     };

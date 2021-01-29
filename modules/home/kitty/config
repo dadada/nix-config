@@ -40,3 +40,5 @@ color18 #282828
 color19 #444155
 color20 #b8b8b8
 color21 #e8e8e8
+
+shell tmux

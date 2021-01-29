@@ -36,10 +36,6 @@ in
         PROMPT="%F{red}%?%f %F{green}%m%f:%F{blue}%~%f "
         RPROMPT='$(git_super_status)'
         #NIX_BUILD_SHELL="${pkgs.zsh}/bin/zsh"
-        if [ "$TMUX" = "" ]
-        then
-          tmux
-        fi
       '';
       profileExtra = ''
       '';

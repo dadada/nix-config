@@ -94,14 +94,12 @@ in
       isNormalUser = true;
       extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "kvm" "video" "scanner" "lp" "docker" ];
       shell = "/run/current-system/sw/bin/zsh";
-      initialHashedPassword = "nopass";
     };
 
     "tim.schubert" = {
       isNormalUser = true;
       extraGroups = [ "networkmanager" "libvirtd" "adbusers" "kvm" "video" "scanner" "lp" "docker" ];
       shell = "/run/current-system/sw/bin/zsh";
-      initialHashedPassword = "nopass";
     };
   };
 

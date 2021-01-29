@@ -24,6 +24,7 @@ in
         pkgs.vimPlugins.vim-airline
         pkgs.vimPlugins.vim-airline-themes
         pkgs.vimPlugins.vim-fish
+        vimPlugins.vim-buftabline
         vimPlugins.spacemacsTheme
         vimPlugins.filetype
         #pkgs.vimPlugins.vim-gnupg

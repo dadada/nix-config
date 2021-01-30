@@ -45,6 +45,8 @@ set wrap
 set linebreak
 set nolist  " list disables linebreak
 
+set mouse=a
+
 " Enable syntax highlighting
 syntax enable
 

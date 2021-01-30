@@ -9,4 +9,5 @@
   dadadaScripts = self: super: {
     dadadaScripts = super.callPackage ../pkgs/scripts.nix { };
   };
+  sudo = import ./sudo.nix;
 }

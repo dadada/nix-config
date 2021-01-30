@@ -9,7 +9,7 @@
   networking = ./networking.nix;
   share = ./share.nix;
   steam = ./steam.nix;
-  update = ./update.nix;
+  autoUpgrade = ./update.nix;
   vpnServer = ./vpnServer.nix;
   weechat = ./weechat.nix;
 }

@@ -16,7 +16,7 @@ set wildmenu
 set hidden
 
 " Clipboard copy & paste
-"set clipboard=unnamedplus
+set clipboard=unnamedplus
 
 " Always show current position
 set ruler

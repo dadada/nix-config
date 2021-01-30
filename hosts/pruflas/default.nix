@@ -1,4 +1,5 @@
 { config, pkgs, lib, ... }:
+with lib;
 let
   hostName = "pruflas";
   this = import ../.. { inherit pkgs; };
@@ -9,6 +10,8 @@ let
   };
 in
 {
+  nixpkgs.overlays = [ this.overlays.sudo ];
+
   imports = [ this.profiles.base ];
 
   nix = {

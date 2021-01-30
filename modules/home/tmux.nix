@@ -12,6 +12,10 @@ in
       enable = true;
       terminal = "xterm-256color";
       extraConfig = ''
+        set -g mouse on
+        set -g set-clipboard on
+        bind-key -Tcopy-mode v send -X begin-selection
+        bind-key -Tcopy-mode y send -X copy-selection
         set -g status on
         set-option -g set-titles on
         set-option -g automatic-rename on

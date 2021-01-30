@@ -14,11 +14,15 @@ in
       xwayland
       mako
       kanshi
-      i3blocks
-      termite
+      kitty
+      i3status
+      kitty
       bemenu
       xss-lock
       swaylock
+      brightnessctl
+      playerctl
+      dadadaScripts
     ];
 
     wayland.windowManager.sway = {

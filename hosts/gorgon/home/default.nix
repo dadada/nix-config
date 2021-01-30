@@ -10,6 +10,7 @@ let
     "kitty"
     "keyring"
     "ssh"
+    "sway"
     "syncthing"
     "tmux"
     "xdg"

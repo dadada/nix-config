@@ -34,6 +34,8 @@ in
     home.packages = with pkgs; [
       languagetool
       nixpkgs-fmt
+      shellcheck
+      perl530Packages.PerlCritic
     ];
   };
 }

@@ -16,8 +16,10 @@ in
 
   virtualisation = {
     libvirtd.enable = true;
-    docker.enable = false;
+    docker.enable = true;
   };
+
+  virtualisation.docker.extraOptions = "--bip=192.168.1.5/24";
 
   networking.hostName = "gorgon";
 

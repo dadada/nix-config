@@ -42,7 +42,7 @@ in
       };
     };
     home.packages = with pkgs; [
-      firefox-bin
+      firefox
       xdg_utils
       zathura
     ];

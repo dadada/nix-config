@@ -18,7 +18,7 @@ with pkgs; [
   evince
   ffmpeg
   file
-  firefox-bin
+  firefox
   fractal
   fzf
   gimp
@@ -37,6 +37,7 @@ with pkgs; [
   inotify-tools
   irssi
   jameica
+  jupyter
   jq
   kcachegrind
   keepassxc
@@ -47,6 +48,7 @@ with pkgs; [
   libreoffice
   libvirt
   lsof
+  manpages
   mblaze
   mkpasswd
   mpv
@@ -74,11 +76,11 @@ with pkgs; [
   steam
   tcpdump
   tdesktop
-  tubslatex
-  thunderbird-bin
+  thunderbird
   unzip
   usbutils
   virtmanager
+  vscodium
   whois
   wireshark
   xdg_utils

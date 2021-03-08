@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 with lib;
 {
-  nixpkgs.overlays = attrValues (import ../../../overlays);
+  #nixpkgs.overlays = attrValues (import ../../../overlays);
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 

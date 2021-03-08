@@ -93,6 +93,7 @@ nmap <leader>bb :Buffers<Enter>
 nmap <leader>bl :Buffers<Enter>
 nmap <leader>bn :bnext<Enter>
 nmap <leader>bp :bprevious<Enter>
+nmap <leader>bd :bdelete<Enter>
 
 nmap <leader>ll :Lines<Enter>
 nmap <leader>mm :Marks<Enter>

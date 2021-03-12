@@ -101,12 +101,6 @@ in
       extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "kvm" "video" "scanner" "lp" "docker" ];
       shell = "/run/current-system/sw/bin/zsh";
     };
-
-    "tim.schubert" = {
-      isNormalUser = true;
-      extraGroups = [ "networkmanager" "libvirtd" "adbusers" "kvm" "video" "scanner" "lp" "docker" ];
-      shell = "/run/current-system/sw/bin/zsh";
-    };
   };
 
   networking.hosts = {

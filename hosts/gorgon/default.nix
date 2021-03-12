@@ -35,6 +35,10 @@ in
       enableBsShare = true;
       vpnExtension = "3";
     };
+    backupClient = {
+      enable = true;
+      bs = true;
+    };
   };
 
   boot.kernel.sysctl = {

@@ -23,10 +23,8 @@ with lib;
   time.timeZone = mkDefault "Europe/Berlin";
 
   i18n.defaultLocale = mkDefault "en_US.UTF-8";
-  console = mkDefault {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-  };
+
+  console.keyMap = mkDefault "us";
 
   programs.zsh = mkDefault {
     enable = true;

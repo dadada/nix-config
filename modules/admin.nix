@@ -31,8 +31,6 @@ in
     services.openssh.passwordAuthentication = false;
     security.sudo.wheelNeedsPassword = false;
 
-    users.mutableUsers = false;
-
     users.users = mapAttrs
       (user: keys: (
         {
@@ -41,6 +39,8 @@ in
           openssh.authorizedKeys.keyFiles = keys;
         }))
       cfg.users;
+
+    users.mutableUsers = mkDefault false;
 
     networking.firewall.allowedTCPPorts = [ 22 ];
 

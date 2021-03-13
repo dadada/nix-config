@@ -26,6 +26,8 @@ with lib;
 
   console.keyMap = mkDefault "us";
 
+  users.mutableUsers = true;
+
   programs.zsh = mkDefault {
     enable = true;
     autosuggestions.enable = true;

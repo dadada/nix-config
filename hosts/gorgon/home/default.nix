@@ -20,6 +20,8 @@ in
 {
   nixpkgs.overlays = [
     this.overlays.dadadaScripts
+    this.overlays.python3Packages
+    this.overlays.recipemd
   ];
 
   imports = lib.attrValues this.hmModules;

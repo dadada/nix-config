@@ -69,6 +69,7 @@ with pkgs; [
   python38Packages.dateutil
   python38Packages.managesieve
   python38Packages.solo-python
+  recipemd
   signal-desktop
   slurp
   sqlite

@@ -12,6 +12,8 @@ rec {
 
   hosts = import ./hosts;
 
+  pythonPackages = ./pkgs/python-pkgs;
+
   tubslatex = callPackage ./pkgs/tubslatex { };
   keys = callPackage ./pkgs/keys { };
   homePage = callPackage ./pkgs/homePage { };

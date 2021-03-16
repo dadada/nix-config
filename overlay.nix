@@ -1,6 +1,14 @@
 self: super:
 let
-  isReserved = n: n == "lib" || n == "overlays" || n == "modules";
+  isReserved = n: builtins.elem n [
+    "lib"
+    "hosts"
+    "hmModules"
+    "modules"
+    "overlays"
+    "profiles"
+    "pythonPackages"
+  ];
   nameValuePair = n: v: { name = n; value = v; };
   attrs = import ./default.nix { pkgs = super; };
 in

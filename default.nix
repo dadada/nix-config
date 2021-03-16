@@ -8,7 +8,6 @@ rec {
   overlays = import ./overlays;
 
   profiles = import ./modules/profiles;
-  hmProfiles = import ./modules/home/profiles;
 
   hosts = import ./hosts;
 

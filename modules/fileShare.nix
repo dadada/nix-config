@@ -19,7 +19,7 @@ in
         workgroup = WORKGROUP
         server string = media
         netbios name = media
-        security = user 
+        security = user
         #use sendfile = yes
         #max protocol = smb2
         hosts allow = ${allow} localhost
@@ -31,7 +31,7 @@ in
         public = {
           path = sharePath;
           browseable = "yes";
-          "read only" = "no";
+          "read only" = "yes";
           "guest ok" = "yes";
           "create mask" = "0644";
           "directory mask" = "0755";

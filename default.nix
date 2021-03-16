@@ -17,6 +17,6 @@ rec {
   keys = callPackage ./pkgs/keys { };
   homePage = callPackage ./pkgs/homePage { };
   deploy = callPackage ./pkgs/deploy.nix { };
-  recipemd = python3.pkgs.toPythonApplication (python3Packages.callPackage ./pkgs/recipemd { });
+  recipemd = python3.pkgs.toPythonApplication (python3Packages.callPackage ./pkgs/python-pkgs/recipemd { });
   scripts = callPackage ./pkgs/scripts.nix { };
 }

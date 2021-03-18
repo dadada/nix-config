@@ -12,14 +12,15 @@ in
       enable = true;
       terminal = "xterm-256color";
       extraConfig = ''
+        set -g automatic-rename on
+        set -g mode-keys vi
         set -g mouse on
         set -g set-clipboard on
+        set -g set-titles on
+        set -g status on
+        set-window-option -g mode-keys vi
         bind-key -Tcopy-mode v send -X begin-selection
         bind-key -Tcopy-mode y send -X copy-selection
-        set -g status on
-        set-option -g set-titles on
-        set-option -g automatic-rename on
-        set-window-option -g mode-keys vi
       '';
     };
   };

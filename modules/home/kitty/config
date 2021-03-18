@@ -1,4 +1,17 @@
-enable_audio_bell = false;
+copy_on_select no
+clipboard_control no-append
+allow_hyperlinks yes
+detect_urls yes
+strip_trailing_spaces never
+window_alert_on_bell yes
+enable_audio_bell = yes
+bell_on_tab yes
+tab_bar_style hidden
+scrollback_lines 0
+
+map ctrl+shift+v no_op
+map ctrl+shift+p no_op
+
 background #1f2022
 foreground #a3a3a3
 selection_background #a3a3a3

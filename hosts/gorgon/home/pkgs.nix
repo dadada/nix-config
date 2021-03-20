@@ -12,6 +12,7 @@ with pkgs; [
   chromium
   clang
   clang-tools
+  php74Packages.composer
   darcs
   direnv
   element-desktop
@@ -61,6 +62,7 @@ with pkgs; [
   p7zip
   pass
   pavucontrol
+  jetbrains.phpstorm
   pinentry-gnome
   playerctl
   pwgen

@@ -12,7 +12,7 @@ in
     gpg.enable = true;
     gtk.enable = true;
     keyring.enable = true;
-    kitty.enable = true;
+    alacritty.enable = true;
     ssh.enable = true;
     tmux.enable = true;
     xdg.enable = true;

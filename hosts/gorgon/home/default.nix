@@ -2,12 +2,12 @@
 let
   this = import ../../.. { inherit pkgs; };
   useFeatures = [
+    "alacritty"
     "vim"
     "direnv"
     "git"
     "gpg"
     "gtk"
-    "kitty"
     "keyring"
     "ssh"
     "sway"

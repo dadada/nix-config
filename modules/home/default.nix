@@ -1,4 +1,5 @@
 {
+  alacritty = ./alacritty;
   colors = ./colors.nix;
   direnv = ./direnv.nix;
   fish = ./fish.nix;

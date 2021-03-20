@@ -1,18 +1,18 @@
-font_family Source Code Pro
-font_size 10
+font_family monospace
+font_size 9
 bold_font auto
 italic_font auto
 bold_italic_font auto
 copy_on_select no
-clipboard_control read-clipboard write-clipboard no-append
+clipboard_control no-append write-clipboard read-clipboard
 allow_hyperlinks yes
 detect_urls yes
 strip_trailing_spaces never
 window_alert_on_bell yes
 enable_audio_bell yes
 bell_on_tab yes
-tab_bar_style hidden
-scrollback_lines 0
+tab_bar_style hide
+scrollback_lines 20000
 
 map ctrl+shift+v no_op
 map ctrl+shift+c no_op
@@ -59,4 +59,4 @@ color19 #444155
 color20 #b8b8b8
 color21 #e8e8e8
 
-shell tmux
+#shell tmux

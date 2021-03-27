@@ -5,7 +5,7 @@ let
   sharePath = "/mnt/storage/share";
   ipv6 = "fd42:dead:beef::/48";
   ipv4 = "192.168.42.0/24";
-  allow = "192.168.42 fd42:dead:beef::";
+  allow = "192.168.42. fd42:dead:beef::";
 in
 {
   options.dadada.fileShare = {
@@ -24,7 +24,6 @@ in
         #max protocol = smb2
         min protocol = SMB3
         hosts allow = ${allow} localhost
-        hosts deny = 0.0.0.0/0
         guest account = nobody
         map to guest = bad user
       '';

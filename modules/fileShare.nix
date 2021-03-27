@@ -23,7 +23,6 @@ in
         #use sendfile = yes
         #max protocol = smb2
         min protocol = SMB3
-        hosts allow = ${allow} localhost
         guest account = nobody
         map to guest = bad user
       '';

@@ -65,6 +65,8 @@ in
     ];
   };
 
+  environment.systemPackages = [ pkgs.ghostscript ];
+
   hardware = {
     bluetooth.enable = true;
     pulseaudio = {

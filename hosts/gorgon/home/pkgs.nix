@@ -17,6 +17,7 @@ with pkgs; [
   direnv
   element-desktop
   evince
+  gnome3.evolution
   ffmpeg
   file
   firefox

@@ -123,16 +123,12 @@ in
       443 # HTTP(S)
       111
       2049 # NFS
-      137
-      138
       139
       445 # SMB
     ];
     allowedUDPPorts = [
       137
       138
-      139
-      445 # SMB
       111
       2049 # NFS
       51234 # Wireguard

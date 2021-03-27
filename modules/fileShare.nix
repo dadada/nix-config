@@ -22,6 +22,7 @@ in
         security = user
         #use sendfile = yes
         #max protocol = smb2
+        min protocol = SMB3
         hosts allow = ${allow} localhost
         hosts deny = 0.0.0.0/0
         guest account = nobody

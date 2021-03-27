@@ -22,7 +22,7 @@ in
         security = user
         #use sendfile = yes
         #max protocol = smb2
-        min protocol = SMB3
+        min protocol = SMB2
         guest account = nobody
         map to guest = bad user
       '';

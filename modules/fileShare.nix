@@ -5,7 +5,6 @@ let
   sharePath = "/mnt/storage/share";
   ipv6 = "fd42:dead:beef::/48";
   ipv4 = "192.168.42.0/24";
-  allow = "192.168.42. fd42:dead:beef::";
 in
 {
   options.dadada.fileShare = {
@@ -29,10 +28,11 @@ in
           browseable = "yes";
           "read only" = "yes";
           "guest ok" = "yes";
-          "create mask" = "0644";
-          "directory mask" = "0755";
-          "force user" = "username";
-          "force group" = "groupname";
+          "guest only" = "yes";
+          "create mask" = "0660";
+          "directory mask" = "2770";
+          "force user" = "nobody";
+          "force group" = "nobody";
         };
       };
     };

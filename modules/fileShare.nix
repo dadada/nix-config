@@ -5,7 +5,7 @@ let
   sharePath = "/mnt/storage/share";
   ipv6 = "fd42:dead:beef::/48";
   ipv4 = "192.168.42.0/24";
-  allow = "192.168.42. fd42:dead:beef::";
+  allow = "192.168.42 fd42:dead:beef::";
 in
 {
   options.dadada.fileShare = {

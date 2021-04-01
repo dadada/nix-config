@@ -38,6 +38,7 @@ in
     backupClient = {
       enable = true;
       bs = true;
+      gs = true;
     };
   };
 

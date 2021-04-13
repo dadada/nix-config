@@ -63,7 +63,6 @@ with pkgs; [
   p7zip
   pass
   pavucontrol
-  jetbrains.phpstorm
   pinentry-gnome
   playerctl
   pwgen

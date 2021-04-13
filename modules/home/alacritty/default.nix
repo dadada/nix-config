@@ -8,11 +8,32 @@ in
     enable = mkEnableOption "Enable alacritty config";
   };
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      jetbrains-mono
+    ];
     programs.alacritty = {
       enable = true;
       settings = {
         scrolling.history = 0;
-        font.size = 9;
+        font = {
+          size = 8;
+          normal = {
+            family = "Source Code Pro";
+            style = "Regular";
+          };
+          bold = {
+            family = "Source Code Pro";
+            style = "Bold";
+          };
+          italic = {
+            family = "Source Code Pro";
+            style = "Italic";
+          };
+          bold_italic = {
+            family = "Source Code Pro";
+            style = "Bold Italic";
+          };
+        };
         shell.program = "tmux";
         window.decorations = "none";
         # XTerm's default colors

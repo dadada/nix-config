@@ -1,6 +1,6 @@
 { lib
 , buildPythonPackage
-, fetchFromGitHub
+, fetchPypi
 , pytestCheckHook
 , pythonPackages
 , isPy36
@@ -9,21 +9,15 @@
 
 buildPythonPackage rec {
   pname = "recipemd";
-  version = "4.0.5";
+  version = "4.0.6";
 
   disabled = isPy36 || isPy27;
 
-  src = fetchFromGitHub {
-    owner = "tstehr";
-    repo = "RecipeMD";
-    rev = "v${version}";
-    sha256 = "17ph5gnbrx6159cryjlpkkp15gvazvxgm6ixcmrbdmsg6rgyqcpn";
+  src = fetchPypi {
+    pname = pname;
+    version = version;
+    sha256 = "05c185bhrc72a9c3gvjy50npwn6cqml69slis2v4waqj31snps33";
   };
-
-  patchPhase = ''
-    sed -i 's/argcomplete~=1.10.0/yarl~=1.0/' setup.py
-    sed -i 's/yarl~=1.3.0/yarl~=1.0/' setup.py
-  '';
 
   propagatedBuildInputs = with pythonPackages; [
     CommonMark

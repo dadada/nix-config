@@ -72,6 +72,7 @@ with pkgs; [
   python38Packages.managesieve
   python38Packages.solo-python
   recipemd
+  ripgrep
   signal-desktop
   slurp
   sqlite

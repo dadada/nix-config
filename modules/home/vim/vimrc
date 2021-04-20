@@ -86,24 +86,23 @@ let mapleader = " "
 map <leader>pp :setlocal paste!<Enter>
 
 " Fast saving
-nmap <leader>w :w!<Enter>
+nmap <leader>w :w<Enter>
 
 " Buffer switching
-nmap <leader>bb :Buffers<Enter>
 nmap <leader>bl :Buffers<Enter>
+nmap <leader>bd :bdelete<Enter>
 nmap <leader>bn :bnext<Enter>
 nmap <leader>bp :bprevious<Enter>
-nmap <leader>bd :bdelete<Enter>
 
+" List things
+nmap <leader>hl :History/<Enter>
 nmap <leader>ll :Lines<Enter>
-nmap <leader>mm :Marks<Enter>
-nmap <leader>ww :Windows<Enter>
-nmap <leader>hh :History/<Enter>
-nmap <leader>rr :reg<Enter>
+nmap <leader>ml :Marks<Enter>
+nmap <leader>rl :reg<Enter>
+nmap <leader>wl :Windows<Enter>
 
 " finding files
 nmap <leader>ff :Files<Enter>
-nmap <leader>pp :FufDir<Enter>
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -113,21 +112,23 @@ set statusline+=%*
 "let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
-nmap <leader>sp :ALEFindReferences<Enter>
-nmap <leader>ss :ALESymbolSearch<Enter>
+nmap <leader>fr :ALEFindReferences<Enter>
 nmap <leader>gd :ALEGoToDefinition<Enter>
-nmap <leader>?? :ALEHover<Enter>
+nmap <leader>hh :ALEHover<Enter>
+nmap <leader>ss :ALESymbolSearch <C-R><C-A><Enter>
+nmap <leader>rn :ALERename<Enter>
+nmap <leader>rf :ALERefactor<Enter>
+nmap <leader>ca :ALE<Enter>
 
 " Enable completion where available.
 " This setting must be set before ALE is loaded.
 let g:ale_completion_enabled = 1
-
-let g:ale_fix_on_save = 1
-
+let g:ale_fix_on_save = 0
 let g:ale_warn_about_trailing_whitespace = 1
 let g:ale_warn_about_trailing_lines = 1
 let g:ale_completion_tsserver_autoimport = 1
 let g:ale_languagetool_executable = 'languagetool-commandline'
+let g:ale_set_quickfix = 1
 
 "let g:ale_lint_on_text_changed = 'never'
 " You can disable this option too

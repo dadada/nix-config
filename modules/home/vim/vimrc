@@ -56,8 +56,8 @@ endif
 
 set t_Co=256
 
-set background=light
-"colorscheme spacemacs-theme
+set background=dark
+colorscheme spacemacs-theme
 
 " Use tabs for indent
 set smarttab

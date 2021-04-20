@@ -119,6 +119,7 @@ nmap <leader>ss :ALESymbolSearch <C-R><C-A><Enter>
 nmap <leader>rn :ALERename<Enter>
 nmap <leader>rf :ALERefactor<Enter>
 nmap <leader>ca :ALE<Enter>
+nmap <leader>fx :ALEFix<Enter>
 
 " Enable completion where available.
 " This setting must be set before ALE is loaded.

@@ -9,7 +9,6 @@
   dadadaScripts = self: super: {
     dadadaScripts = super.callPackage ../pkgs/scripts.nix { };
   };
-  sudo = import ./sudo.nix;
   python3Packages = import ./python3-packages.nix;
   recipemd = self: super: {
     recipemd = super.python3Packages.toPythonApplication super.python3Packages.recipemd;

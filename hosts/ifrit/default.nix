@@ -163,5 +163,31 @@ in
     };
   };
 
+  environment.systemPackages = [ pkgs.curl ];
+  systemd = {
+    timers.ddns-joker = {
+      wantedBy = [ "timers.target" ];
+      partOf = [ "ddns-joker.service" ];
+      timerConfig.OnCalendar = "hourly";
+    };
+    services.ddns-joker = {
+      serviceConfig.Type = "oneshot";
+      script = ''
+        function url() {
+        echo "https://svc.joker.com/nic/update?username=$1&password=$2&hostname=$3"
+        }
+
+        IFS=':'
+        read -r user password < /var/lib/ddns/credentials
+        unset IFS
+
+        curl_url=$(url "$user" "$password" bs.vpn.dadada.li)
+
+        ${pkgs.curl}/bin/curl -4 "$curl_url"
+        ${pkgs.curl}/bin/curl -6 "$curl_url"
+      '';
+    };
+  };
+
   system.stateVersion = "20.03";
 }

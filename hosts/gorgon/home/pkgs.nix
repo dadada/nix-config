@@ -1,6 +1,5 @@
-{ pkgs }:
+{ pkgs, unstable }:
 with pkgs; [
-  android-studio
   anki
   aspell
   aspellDicts.de
@@ -23,12 +22,12 @@ with pkgs; [
   firefox
   fractal
   fzf
+  gdb
   gimp
-  git-lfs
-  gitAndTools.hub
   gnome3.gnome-tweak-tool
   gnome3.nautilus
   gnome3.vinagre
+  gnomeExtensions.paperwm
   gnucash
   gnumake
   gnupg
@@ -45,7 +44,6 @@ with pkgs; [
   keepassxc
   #keys
   kitty
-  gitAndTools.lab
   ldns
   libreoffice
   libvirt
@@ -89,4 +87,8 @@ with pkgs; [
   wireshark
   xdg_utils
   youtube-dl
+  git-lfs
+  gitAndTools.hub
+  gitAndTools.lab
+  unstable.android-studio
 ]

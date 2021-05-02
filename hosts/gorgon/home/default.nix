@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, unstable, lib, ... }:
 let
   this = import ../../.. { inherit pkgs; };
   useFeatures = [
@@ -16,6 +16,7 @@ let
     "xdg"
     "zsh"
   ];
+  unstable = import <nixpkgs-unstable> {};
 in
 {
   nixpkgs.overlays = [
@@ -59,5 +60,5 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.packages = import ./pkgs.nix { pkgs = pkgs; };
+  home.packages = import ./pkgs.nix { pkgs = pkgs; unstable = unstable; };
 }

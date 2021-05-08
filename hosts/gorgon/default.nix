@@ -82,6 +82,7 @@ in
 
   services.avahi.enable = true;
 
+  networking.networkmanager.enable = true;
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
@@ -94,7 +95,7 @@ in
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome3.enable = true;
+  services.xserver.desktopManager.gnome3.enable = true;
 
   programs.sway = {
     enable = true;

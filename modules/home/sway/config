@@ -31,7 +31,7 @@ bindsym $mod+Shift+r restart
 # the font to be used for i3bar and window decorations
 font pango:Source Code Pro 8
 
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
 bindsym $mod+Space exec bemenu-run
 
 # switch keyboard to neo

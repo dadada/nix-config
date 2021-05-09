@@ -39,6 +39,10 @@ in
         id = "5";
         key = "o8B8rTA+u5XOJK4JI+TRCFjVJn/3T7UofLqFRIPoNQk=";
       };
+      "fginfo" = {
+        id = "6";
+        key = "zadidMDiALJUHdhMrGqAa5RGjPN/x5XJ8aR5elnaeUc=";
+      };
     };
   };
 

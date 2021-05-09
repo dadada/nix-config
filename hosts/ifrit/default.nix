@@ -43,7 +43,7 @@ in
         id = "6";
         key = "zadidMDiALJUHdhMrGqAa5RGjPN/x5XJ8aR5elnaeUc=";
       };
-      "fginfoi-git" = {
+      "fginfo-git" = {
         id = "7";
         key = "5EaLm7uC8XzoN8+BaGzgGRUU4q5shM7gQJcs/d7n+Vo=";
       };

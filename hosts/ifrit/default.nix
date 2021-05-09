@@ -78,6 +78,13 @@ in
       path = "${backups}/wohnzimmerpi";
       quota = "50G";
     };
+    "fginfo" = {
+      allowSubRepos = false;
+      authorizedKeysAppendOnly = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxsyJeZVlVix0FPE8S/Gx0DVutS1ZNESVdYvHBwo36wGlYpSsQoSy/2HSwbpxs88MOGw1QNboxvvpBxCWxZ5HyjxuO5SwYgtmpjPXvmqfVqNXXnLChhSnKgk9b+HesQJCbHyrF9ZAJXEFCOGhOL3YTgd6lTX3lQUXgh/LEDlrPrigUMDNPecPWxpPskP6Vvpe9u+duhL+ihyxXaV+CoPk8nkWrov5jCGPiM48pugbwAfqARyZDgFpmWwL7Xg2UKgVZ1ttHZCWwH+htgioVZMYpdkQW1aq6LLGwN34Hj2VKXzmJN5frh6vQoZr2AFGHNKyJwAMpqnoY//QwuREpZTrh root@fginfo.ibr.cs.tu-bs.de" ];
+      authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJyTgdVPPxQeL5KZo9frZQlDIv2QkelJw3gNGoGtUMfw tim@metis" ];
+      path = "${backups}/fginfo";
+      quota = "20G";
+    };
   };
 
   networking.hostName = "ifrit";

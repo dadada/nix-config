@@ -64,6 +64,19 @@ in
       };
     };
 
+    # https://lists.zx2c4.com/pipermail/wireguard/2017-November/002028.html
+    systemd.timers.wg-reresolve-dns = mkIf (cfg.vpnExtension != null) {
+      wantedBy = [ "timers.target" ];
+      partOf = [ "wg-reresolve-dns.service" ];
+      timerConfig.OnCalendar = "hourly";
+    };
+    systemd.services.wg-reresolve-dns =  mkIf (cfg.vpnExtension != null) {
+      serviceConfig.Type = "oneshot";
+      script = ''
+        ${pkgs.wireguard-tools}/bin/wg set bs peer lFB2DWtzp55ajV0Fk/OWdO9JlGvN9QsayYKQQHV3GEs= endpoint bs.vpn.dadada.li:51234 persistent-keepalive 25 allowed-ips fd42:dead:beef::/48
+      '';
+    };
+
     fileSystems."/mnt/media.dadada.li" = mkIf cfg.enableBsShare {
       device = "media.dadada.li:/mnt/storage/share";
       fsType = "nfs";

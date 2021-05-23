@@ -115,6 +115,9 @@ in
     "1.0.0.1"
   ];
 
+  # weird issues with crappy plastic router
+  networking.interfaces."ens3".tempAddress = "disabled";
+
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;

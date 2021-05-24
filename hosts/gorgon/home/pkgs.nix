@@ -38,6 +38,7 @@ with pkgs; [
   inotify-tools
   irssi
   jameica
+  jetbrains.idea-community
   jupyter
   jq
   kcachegrind
@@ -71,6 +72,7 @@ with pkgs; [
   python38Packages.solo-python
   recipemd
   ripgrep
+  rustup
   signal-desktop
   slurp
   sqlite

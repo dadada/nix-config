@@ -80,7 +80,7 @@ in
     };
   };
 
-  services.avahi.enable = true;
+  services.avahi.enable = false;
 
   networking.networkmanager.enable = true;
   networking.firewall = {

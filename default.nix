@@ -1,6 +1,10 @@
 { pkgs ? import <nixpkgs> { } }:
 
 with pkgs;
+let
+  myPythonPackages = import ./pkgs/python-pkgs;
+  myPython3Packages = myPythonPackages { callPackage = python3Packages.callPackage; };
+in
 rec {
   lib = import ./lib { inherit pkgs; };
   modules = import ./modules;
@@ -11,12 +15,14 @@ rec {
 
   hosts = import ./hosts;
 
-  pythonPackages = ./pkgs/python-pkgs;
+  pythonPackages = myPythonPackages;
 
   tubslatex = callPackage ./pkgs/tubslatex { };
   keys = callPackage ./pkgs/keys { };
   homePage = callPackage ./pkgs/homePage { };
   deploy = callPackage ./pkgs/deploy.nix { };
-  recipemd = python3.pkgs.toPythonApplication (python3Packages.callPackage ./pkgs/python-pkgs/recipemd { });
+
+  recipemd = python3Packages.toPythonApplication myPython3Packages.recipemd;
+
   scripts = callPackage ./pkgs/scripts.nix { };
 }

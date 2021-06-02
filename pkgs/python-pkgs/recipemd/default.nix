@@ -42,12 +42,12 @@ buildPythonPackage rec {
     #installShellCompletion --zsh --name _recipemd $out/completions.zsh
   '';
 
-  #checkInputs = [
-  #  pytestCheckHook
-  #  pythonPackages.pytestcov
-  #];
+  checkInputs = [
+    pytestCheckHook
+    pythonPackages.pytestcov
+  ];
 
-  doCheck = false;
+  #doCheck = true;
 
   meta = with lib; {
     description = "Markdown recipe manager, reference implementation of RecipeMD";

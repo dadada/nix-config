@@ -7,6 +7,7 @@ with pkgs; [
   aspellDicts.en-computers
   aspellDicts.en-science
   aqbanking
+  bash
   bluez-tools
   chromium
   clang

@@ -17,7 +17,6 @@ with pkgs; [
   direnv
   element-desktop
   evince
-  gnome3.evolution
   ffmpeg
   file
   firefox
@@ -25,9 +24,9 @@ with pkgs; [
   fzf
   gdb
   gimp
-  gnome3.gnome-tweak-tool
-  gnome3.nautilus
-  gnome3.vinagre
+  gnome4.gnome-tweak-tool
+  gnome4.nautilus
+  gnome4.vinagre
   gnomeExtensions.paperwm
   gnucash
   gnumake

@@ -1,4 +1,4 @@
-{ pkgs, unstable }:
+{ pkgs }:
 with pkgs; [
   anki
   aspell
@@ -24,10 +24,6 @@ with pkgs; [
   fzf
   gdb
   gimp
-  gnome4.gnome-tweak-tool
-  gnome4.nautilus
-  gnome4.vinagre
-  gnomeExtensions.paperwm
   gnucash
   gnumake
   gnupg
@@ -69,7 +65,6 @@ with pkgs; [
   python3
   python38Packages.dateutil
   python38Packages.managesieve
-  python38Packages.solo-python
   recipemd
   ripgrep
   rustup
@@ -92,5 +87,4 @@ with pkgs; [
   git-lfs
   gitAndTools.hub
   gitAndTools.lab
-  unstable.android-studio
 ]

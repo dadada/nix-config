@@ -1,4 +1,5 @@
 { stdenv
+, lib
 , git
 , openssh
 , bash
@@ -24,7 +25,7 @@ stdenv.mkDerivation rec {
       install $script $out/bin/
     done
   '';
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "deploy scripts";
     license = licenses.publicDomain;
     platforms = platforms.linux;

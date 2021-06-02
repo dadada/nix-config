@@ -47,7 +47,7 @@ buildPythonPackage rec {
     pythonPackages.pytestcov
   ];
 
-  #doCheck = true;
+  doCheck = false;
 
   meta = with lib; {
     description = "Markdown recipe manager, reference implementation of RecipeMD";

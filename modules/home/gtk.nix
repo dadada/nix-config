@@ -17,9 +17,5 @@ in
       font.package = pkgs.cantarell-fonts;
       font.name = "Cantarell";
     };
-    qt = {
-      enable = true;
-      platformTheme = "gnome";
-    };
   };
 }

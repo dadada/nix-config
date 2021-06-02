@@ -26,10 +26,10 @@ in
   dadada = {
     admin.enable = false;
     steam.enable = true;
-    fido2 = {
-      credential = "04ea2813a116f634e90f9728dbbb45f1c0f93b7811941a5a14fb75e711794df0c26552dae2262619c1da2be7562ec9dd94888c71a9326fea70dfe16214b5ea8ec01473070000";
-      enablePam = true;
-    };
+    #fido2 = {
+    #  credential = "04ea2813a116f634e90f9728dbbb45f1c0f93b7811941a5a14fb75e711794df0c26552dae2262619c1da2be7562ec9dd94888c71a9326fea70dfe16214b5ea8ec01473070000";
+    #  enablePam = true;
+    #};
     luks.uuid = "3d0e5b93-90ca-412a-b4e0-3e6bfa47d3f4";
     networking = {
       enableBsShare = true;
@@ -95,7 +95,7 @@ in
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome3.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   programs.sway = {
     enable = true;

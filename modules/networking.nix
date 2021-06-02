@@ -23,21 +23,26 @@ in
     networking.resolvconf.useLocalResolver = mkIf cfg.useLocalResolver true;
     services.unbound = mkIf cfg.useLocalResolver {
       enable = true;
-      allowedAccess = [
-        "127.0.0.1/8"
-        "::1"
-      ];
-      extraConfig = ''
-        tls-upstream: yes
-        tls-cert-bundle: "/etc/ssl/certs/ca-bundle.crt"
-        forward-zone:
-        name: .
-        forward-tls-upstream: yes
-        forward-addr: 2606:4700:4700::1001@853#cloudflare-dns.com
-        forward-addr: 2606:4700:4700::1111@853#cloudflare-dns.com
-        forward-addr: 1.1.1.1@853#cloudflare-dns.com
-        forward-addr: 1.0.0.1@853#cloudflare-dns.com
-      '';
+      settings = {
+        server.interface = [
+          "127.0.0.1"
+          "::1"
+        ];
+        tls-upstream = "yes";
+        tls-cert-bundle = "/etc/ssl/certs/ca-bundle.crt";
+        forward-zone = [
+          {
+            name = ".";
+            forward-tls-upstream = "yes";
+            forward-addr = [
+              "2606:4700:4700::1001@853#cloudflare-dns.com"
+              "2606:4700:4700::1111@853#cloudflare-dns.com"
+              "1.1.1.1@853#cloudflare-dns.com"
+              "1.0.0.1@853#cloudflare-dns.com"
+            ];
+          }
+        ];
+      };
     };
 
     networking.useDHCP = false;

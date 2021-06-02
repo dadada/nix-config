@@ -3,6 +3,9 @@ with lib;
 {
   #nixpkgs.overlays = attrValues (import ../../../overlays);
 
+  # conflicts with power-management
+  services.tlp.enable = false;
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.domain = mkDefault "dadada.li";

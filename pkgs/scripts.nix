@@ -1,4 +1,4 @@
-{ stdenv }:
+{ lib }:
 
 (import
   (builtins.fetchGit {
@@ -6,4 +6,4 @@
     ref = "main";
     rev = "3393073cd3511d43f622972b891a20ba069fa052";
   })
-  { inherit stdenv; })
+  { inherit lib; })

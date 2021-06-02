@@ -1,5 +1,6 @@
-{ stdenv, pandoc, fetchFromGitHub }:
-stdenv.mkDerivation rec {
+{ lib, pandoc, fetchFromGitHub }:
+with lib;
+mkDerivation rec {
   src = fetchFromGitHub {
     owner = "dadada";
     repo = "dadada.li";

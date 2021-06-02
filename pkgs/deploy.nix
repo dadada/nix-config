@@ -1,9 +1,10 @@
-{ stdenv
+{ lib 
 , git
 , openssh
 , bash
 }:
-stdenv.mkDerivation rec {
+with lib;
+mkDerivation rec {
   name = "dadada-deploy";
   version = "0.1";
 
@@ -24,7 +25,7 @@ stdenv.mkDerivation rec {
       install $script $out/bin/
     done
   '';
-  meta = with stdenv.lib; {
+  meta = {
     description = "deploy scripts";
     license = licenses.publicDomain;
     platforms = platforms.linux;

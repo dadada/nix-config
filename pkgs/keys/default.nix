@@ -1,7 +1,6 @@
-{ lib }:
+{ stdenv }:
 
-with lib;
-mkDerivation rec {
+stdenv.mkDerivation rec {
   name = "dadadaKeys";
   version = "1";
 
@@ -14,7 +13,7 @@ mkDerivation rec {
     cp * $out
   '';
 
-  meta = {
+  meta = with stdenv.lib; {
     description = "Public keys for my infrastructure";
     license = licenses.publicDomain;
     platforms = platforms.all;

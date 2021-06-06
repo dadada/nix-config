@@ -3,8 +3,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "dadada";
     repo = "dadada.li";
-    rev = "9dcb016b71abefe5546bc118a618bba87295a859";
-    sha256 = "1d3vz1h66n8dka90br10niiv8n5blpbfqgcvx8dh8y6880sm1fd7";
+    rev = "39db7ded7ddc8a3b8de079d6dd7d97b1afa366a7";
+    sha256 = "1d3vz1h66n8dka90br10niiv8n5blpbfqgcv98dh8y6880sm1fd7";
   };
   nativeBuildInputs = [ pandoc ];
   buildPhase = ''

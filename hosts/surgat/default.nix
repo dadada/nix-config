@@ -1,10 +1,11 @@
 { config, pkgs, lib, ... }:
 let
   hostName = "surgat";
-  this = import ../.. { inherit pkgs; };
 in
 {
-  imports = [ this.profiles.base ];
+  imports = [
+    ../../modules/profiles/base
+  ];
 
   networking.hostName = hostName;
 

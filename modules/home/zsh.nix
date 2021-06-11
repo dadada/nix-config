@@ -13,6 +13,7 @@ in
       enable = true;
       enableAutosuggestions = true;
       enableCompletion = true;
+      enableVteIntegration = true;
       autocd = true;
       sessionVariables = {
         EDITOR = "vim";
@@ -42,10 +43,20 @@ in
       profileExtra = ''
       '';
       shellAliases = {
+        ga = "git add";
+        gc = "git commit";
+        gd = "git diff";
+        gf = "git fetch";
+        gl = "git log";
+        gpu = "git push";
+        gpul = "git pull";
+        grb = "git rebase";
+        gre = "git reflog";
+        gs = "git status";
+        gsh = "git show";
         gst = "git status";
-        gco = "git commit";
-        glo = "git log";
-        gad = "git add";
+        gsta = "git stash";
+        gstap = "git stash apply";
         ls = "exa";
         la = "exa -a";
         ll = "exa -la --no-filesize --changed --time-style=long-iso --git  --octal-permissions --no-permissions --no-user --ignore-glob=\".git\"";

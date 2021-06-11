@@ -39,7 +39,7 @@ with lib;
     vteIntegration = true;
     syntaxHighlighting = {
       enable = true;
-      highlighters = [ "main" "brackets" "pattern" "cursor" "root" "line" ];
+      highlighters = [ "main" "brackets" "pattern" "root" "line" ];
     };
   };
 }

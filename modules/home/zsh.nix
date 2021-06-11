@@ -31,6 +31,8 @@ in
         source ~/.nix-profile/share/fzf/key-bindings.zsh
         source ~/.nix-profile/share/fzf/completion.zsh
 
+        bindkey '^n' autosuggest-accept
+
         preexec() { echo -n -e "\033]0;$1\007" }
 
         PROMPT="%F{red}%?%f %F{green}%m%f:%F{blue}%~%f "

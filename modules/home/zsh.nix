@@ -47,8 +47,8 @@ in
         glo = "git log";
         gad = "git add";
         ls = "exa";
-        ll = "exa -l";
-        la = "exa -la";
+        la = "exa -a";
+        ll = "exa -la --no-filesize --changed --time-style=long-iso --git  --octal-permissions --no-permissions --no-user --ignore-glob=\".git\"";
         mv = "mv -i";
         cp = "cp -i";
       };

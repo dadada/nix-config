@@ -12,6 +12,11 @@ in
     "${nixos-hardware}/lenovo/thinkpad/t14s"
   ];
 
+  nix.package = pkgs.nixUnstable;
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
+
   boot.kernelModules = [ "kvm-amd" ];
 
   virtualisation = {

@@ -1,7 +1,8 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ mkShell
+, deploy
+}:
 
-with (import ./default.nix { inherit pkgs; });
-pkgs.mkShell {
+mkShell {
   buildInputs = [
     deploy
   ];

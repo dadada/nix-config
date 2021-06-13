@@ -6,7 +6,7 @@
 }:
 stdenv.mkDerivation rec {
   name = "dadada-deploy";
-  version = "0.1";
+  version = "0.1.1";
 
   src = ../utils;
 
@@ -28,7 +28,7 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "deploy scripts";
     license = licenses.publicDomain;
-    platforms = platforms.linux;
+    platforms = platforms.unix;
     maintainers = [ "dadada" ];
   };
 }

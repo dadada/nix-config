@@ -1,0 +1,34 @@
+{ pkgs }:
+with pkgs; [
+  android-studio
+  chromium
+  direnv
+  element-desktop
+  evince
+  file
+  fzf
+  git-lfs
+  gitAndTools.hub
+  gnome3.gnome-tweak-tool
+  gnome3.nautilus
+  gnumake
+  gnupg
+  inotify-tools
+  jq
+  kitty
+  gitAndTools.lab
+  languagetool
+  ldns
+  libreoffice
+  lsof
+  mpv
+  openssl
+  pavucontrol
+  pinentry-gnome
+  sqlite
+  sshfs-fuse
+  thunderbird-bin
+  unzip
+  whois
+  xdg_utils
+]

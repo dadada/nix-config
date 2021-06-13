@@ -15,5 +15,5 @@ stdenv.mkDerivation rec {
     cp -r src/* $out/
   '';
   name = "dadada.li";
-  version = "0.1";
+  version = "0.2";
 }

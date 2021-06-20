@@ -13,6 +13,11 @@ in
     ../../modules/profiles/base
   ];
 
+  nix.binaryCachePublicKeys = [
+    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    "gorgon:eEE/PToceRh34UnnoFENERhk89dGw5yXOpJ2CUbfL/Q="
+  ];
+
   dadada = {
     admin.enable = true;
     fileShare.enable = true;

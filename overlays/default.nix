@@ -1,16 +1,18 @@
-{
-  tubslatex = import ./tubslatex.nix;
-  dadadaKeys = self: super: {
-    dadadaKeys = super.callPackage ../pkgs/keys { };
-  };
-  homePage = self: super: {
-    homePage = super.callPackage ../pkgs/homePage { };
-  };
-  dadadaScripts = self: super: {
-    dadadaScripts = super.callPackage ../pkgs/scripts.nix { };
-  };
+let
   python3Packages = import ./python3-packages.nix;
-  recipemd = self: super: {
-    recipemd = super.python3Packages.toPythonApplication super.python3Packages.recipemd;
+in
+{
+  #tubslatex = import ./tubslatex.nix;
+  keys = final: prev: {
+    keys = prev.callPackage ../pkgs/keys { };
+  };
+  homePage = final: prev: {
+    homePage = prev.callPackage ../pkgs/homePage { };
+  };
+  scripts = final: prev: {
+    scipts = prev.callPackage ../pkgs/scripts.nix { };
+  };
+  recipemd = final: prev: {
+    recipemd = prev.python3Packages.toPythonApplication prev.python3Packages.recipemd;
   };
 }

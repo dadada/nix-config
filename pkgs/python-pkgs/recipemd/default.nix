@@ -1,6 +1,6 @@
 { lib
 , buildPythonPackage
-, fetchPypi
+, fetchFromGitHub
 , pytestCheckHook
 , pythonPackages
 , installShellFiles
@@ -14,10 +14,11 @@ buildPythonPackage rec {
 
   disabled = isPy36 || isPy27;
 
-  src = fetchPypi {
-    pname = pname;
-    version = version;
-    sha256 = "142w5zb2gf8s5z72bflpkmks633ic42z97nsgw491mskl6jg7cvq";
+  src = fetchFromGitHub {
+    owner = "tstehr";
+    repo = "recipemd";
+    rev = "v4.0.7";
+    sha256 = "sha256-P65CxTaROfvx9kNSJWa5CiCUHCurTMZx8uUH9W9uK1U=";
   };
 
   propagatedBuildInputs = with pythonPackages; [
@@ -47,7 +48,7 @@ buildPythonPackage rec {
     pythonPackages.pytestcov
   ];
 
-  doCheck = false;
+  doCheck = true;
 
   meta = with lib; {
     description = "Markdown recipe manager, reference implementation of RecipeMD";

@@ -12,7 +12,7 @@ with lib; {
     services.nginx.virtualHosts."dadada.li" = {
       enableACME = true;
       forceSSL = true;
-      root = pkgs.homePage;
+      root = /var/lib/www/dadada.li;
     };
   };
 }

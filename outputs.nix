@@ -17,7 +17,10 @@
   {
     apps.deploy = {
       type = "app";
-      program = "${selfPkgs.deploy}/bin/deploy";
+      program = toString (pkgs.writeScript "deploy" ''
+        #!${pkgs.runtimeShell}
+        nixos-rebuild switch --upgrade --flake ".#$1" --target-host "$1.dadada.li" --build-host localhost --use-remote-sudo
+      '');
     };
     apps.hm-switch = {
       type = "app";

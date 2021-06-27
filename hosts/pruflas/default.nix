@@ -10,7 +10,11 @@ let
   };
 in
 {
-  nixpkgs.overlays = [ this.overlays.sudo ];
+  nix.binaryCachePublicKeys = [
+    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    "gorgon:eEE/PToceRh34UnnoFENERhk89dGw5yXOpJ2CUbfL/Q="
+  ];
+
 
   imports = [ this.profiles.base ];
 

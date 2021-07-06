@@ -4,6 +4,7 @@
 , nixpkgs
 , home-manager
 , nixos-hardware
+, nvd
 , ...
 }:
 (flake-utils.lib.eachSystem ["x86_64-linux"] (system:
@@ -54,7 +55,7 @@
     };
   })) // {
   hmConfigurations = import ./home/configurations.nix {
-    inherit self nixpkgs home-manager;
+    inherit self nixpkgs home-manager nvd;
   };
   hmModules = import ./home/modules;
   nixosConfigurations = import ./nixos/configurations.nix {

@@ -56,6 +56,7 @@ with pkgs; [
   nfs-utils
   niv
   nmap
+  nvd
   openssl
   p7zip
   pass

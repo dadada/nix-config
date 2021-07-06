@@ -15,6 +15,21 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "locked": {
+        "lastModified": 1623875721,
+        "narHash": "sha256-A8BU7bjS5GirpAUv4QA+QnJ4CceLHkcXdRp4xITDB0s=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "f7e004a55b120c02ecb6219596820fcd32ca8772",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -78,12 +93,49 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1625512941,
+        "narHash": "sha256-P2POZzfG+Hp8ktIWwkOs/OMB8jSsQvIPQaLO0swpgZo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "3e0ce8c5d478d06b37a4faa7a4cc8642c6bb97de",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nvd": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1625605432,
+        "narHash": "sha256-nsFkuko8XqfMMIiszRw2AerDUyZ33ohniEbleqMoHs4=",
+        "ref": "init-flake",
+        "rev": "51fab994bcb8898a5e7c6e95608cd64d0a18d6a5",
+        "revCount": 12,
+        "type": "git",
+        "url": "https://gitlab.com/dadada_/nvd.git"
+      },
+      "original": {
+        "ref": "init-flake",
+        "type": "git",
+        "url": "https://gitlab.com/dadada_/nvd.git"
+      }
+    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "nvd": "nvd"
       }
     }
   },

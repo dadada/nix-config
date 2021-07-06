@@ -1,6 +1,7 @@
 { self
 , nixpkgs
 , home-manager
+, nvd
 }:
 let
   hmConfiguration =
@@ -27,8 +28,9 @@ in
 {
   home = hmConfiguration {
     extraModules = [ ./home ];
-    overlays = with self.overlays; [
-      scripts
+    overlays = [
+      self.overlays.scripts
+      (final: prev: { n = nvd; })
     ];
     stateVersion = "20.09";
   };

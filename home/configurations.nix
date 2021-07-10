@@ -1,8 +1,9 @@
 { self
 , nixpkgs
 , home-manager
+, nix-doom-emacs
 , nvd
-}:
+}@inputs:
 let
   hmConfiguration =
     { homeDirectory ? "/home/dadada"

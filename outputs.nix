@@ -62,7 +62,7 @@
     nixosSystem = nixpkgs.lib.nixosSystem;
     inherit self nixpkgs home-manager nixos-hardware;
   };
-  nixosModule = import ./nixos/modules;
+  nixosModules = import ./nixos/modules;
   overlays = import ./overlays;
   pythonPackages = import ./pkgs/python-pkgs;
 

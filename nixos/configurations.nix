@@ -5,7 +5,6 @@
 , nixos-hardware
 }:
 let adapterModule = {
-  imports = [ ./modules ];
   nix.nixPath = [
     "home-manager=${home-manager}"
     "nixpkgs=${nixpkgs}"
@@ -28,7 +27,7 @@ in
 {
   gorgon = nixosSystem {
     system = "x86_64-linux";
-    modules = [
+    modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
       adapterModule
       nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen1
       #home-manager.nixosModules.home-manager
@@ -43,7 +42,7 @@ in
   };
   ifrit = nixosSystem {
     system = "x86_64-linux";
-    modules = [
+    modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
       adapterModule
       ./modules/profiles/server.nix
       ./ifrit/configuration.nix
@@ -52,7 +51,7 @@ in
 
   surgat = nixosSystem {
     system = "x86_64-linux";
-    modules = [
+    modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
       adapterModule
       ./modules/profiles/server.nix
       ./surgat/configuration.nix
@@ -60,7 +59,7 @@ in
   };
   pruflas = nixosSystem {
     system = "x86_64-linux";
-    modules = [
+    modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
       adapterModule
       ./modules/profiles/server.nix
       ./pruflas/configuration.nix

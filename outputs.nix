@@ -3,6 +3,7 @@
 , flake-utils
 , nixpkgs
 , home-manager
+, nix-doom-emacs
 , nixos-hardware
 , nvd
 , ...
@@ -55,7 +56,7 @@
     };
   })) // {
   hmConfigurations = import ./home/configurations.nix {
-    inherit self nixpkgs home-manager nvd;
+    inherit self nixpkgs home-manager nix-doom-emacs nvd;
   };
   hmModules = import ./home/modules inputs;
   nixosConfigurations = import ./nixos/configurations.nix {

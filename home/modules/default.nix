@@ -1,8 +1,9 @@
-{ self, ... }@inputs:
+{ self, nix-doom-emacs, ... }@inputs:
 {
   alacritty = import ./alacritty;
   colors = import ./colors.nix;
   direnv = import ./direnv.nix;
+  emacs = import ./emacs { inherit nix-doom-emacs; };
   fish = import ./fish.nix;
   git = import ./git.nix;
   gpg = import ./gpg.nix;

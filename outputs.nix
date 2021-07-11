@@ -6,7 +6,7 @@
 , nixos-hardware
 , nvd
 , ...
-}:
+}@inputs:
 (flake-utils.lib.eachSystem ["x86_64-linux"] (system:
   let
     pkgs = nixpkgs.legacyPackages.${system};
@@ -57,12 +57,12 @@
   hmConfigurations = import ./home/configurations.nix {
     inherit self nixpkgs home-manager nvd;
   };
-  hmModules = import ./home/modules;
+  hmModules = import ./home/modules inputs;
   nixosConfigurations = import ./nixos/configurations.nix {
     nixosSystem = nixpkgs.lib.nixosSystem;
     inherit self nixpkgs home-manager nixos-hardware;
   };
-  nixosModules = import ./nixos/modules;
+  nixosModules = import ./nixos/modules inputs;
   overlays = import ./overlays;
   pythonPackages = import ./pkgs/python-pkgs;
 

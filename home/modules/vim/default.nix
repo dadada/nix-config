@@ -35,7 +35,7 @@ in
       languagetool
       nixpkgs-fmt
       shellcheck
-      perl530Packages.PerlCritic
+      perlPackages.PerlCritic
     ];
   };
 }

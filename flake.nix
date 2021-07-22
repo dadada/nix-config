@@ -19,7 +19,7 @@
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
     nvd = {
-      url = git+https://gitlab.com/dadada_/nvd.git?ref=init-flake;
+      url = git+https://gitlab.com/khumba/nvd.git;
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

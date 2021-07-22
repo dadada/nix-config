@@ -59,7 +59,7 @@ in
 
   # Enable CUPS to print documents.
   services.printing = {
-    enable = true;
+    enable = false;
     browsing = true;
     drivers = with pkgs; [
       hplip

@@ -30,8 +30,8 @@ in
           "127.0.0.1"
           "::1"
         ];
-        tls-upstream = "yes";
-        tls-cert-bundle = "/etc/ssl/certs/ca-bundle.crt";
+        #tls-upstream = "yes";
+        #tls-cert-bundle = "/etc/ssl/certs/ca-bundle.crt";
         forward-zone = [
           {
             name = ".";

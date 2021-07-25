@@ -57,6 +57,7 @@ with pkgs; [
   niv
   nmap
   nvd
+  obs-studio
   openssl
   p7zip
   pass

@@ -21,7 +21,9 @@
       type = "app";
       program = toString (pkgs.writeScript "deploy" ''
         #!${pkgs.runtimeShell}
-        nixos-rebuild switch --upgrade --flake ".#$1" --target-host "$1.dadada.li" --build-host localhost --use-remote-sudo
+        domain='dadada.li'
+        flake=$(nix flake metadata --json ${./.} | jq -r .url)
+        nixos-rebuild switch --upgrade --flake "''${flake}#$1" --target-host "''${1}.$domain" --build-host localhost --use-remote-sudo
       '');
     };
     apps.hm-switch = {

@@ -21,9 +21,6 @@ in
     post-build-hook = ${signHook}
   '';
 
-  # conflicts with power-management
-  services.tlp.enable = false;
-
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.kernelModules = [ "kvm-amd" ];

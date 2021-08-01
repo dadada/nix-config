@@ -6,6 +6,7 @@
 , nix-doom-emacs
 , nixos-hardware
 , nvd
+, scripts
 , ...
 }@inputs:
 (flake-utils.lib.eachDefaultSystem (system:
@@ -51,14 +52,13 @@
     };
     packages = flake-utils.lib.flattenTree {
       deploy = pkgs.callPackage ./pkgs/deploy.nix { };
-      scripts = pkgs.callPackage ./pkgs/scripts.nix { };
       keys = pkgs.callPackage ./pkgs/keys { };
       homePage = pkgs.callPackage ./pkgs/homePage { };
       recipemd = pkgs.python3Packages.toPythonApplication python3Packages.recipemd;
     };
   })) // {
   hmConfigurations = import ./home/configurations.nix {
-    inherit self nixpkgs home-manager nix-doom-emacs nvd;
+    inherit self nixpkgs home-manager nix-doom-emacs nvd scripts;
   };
   hmModules = import ./home/modules inputs;
   nixosConfigurations = import ./nixos/configurations.nix {

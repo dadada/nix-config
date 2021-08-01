@@ -22,6 +22,10 @@
       url = git+https://gitlab.com/khumba/nvd.git;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    scripts = {
+      url = git+https://git.dadada.li/dadada/scripts.git?ref=main;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { ... } @ args: import ./outputs.nix args;

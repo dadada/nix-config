@@ -3,6 +3,7 @@
 , home-manager
 , nix-doom-emacs
 , nvd
+, scripts
 }@inputs:
 let
   hmConfiguration =
@@ -30,7 +31,7 @@ in
   home = hmConfiguration {
     extraModules = [ ./home ];
     overlays = [
-      self.overlays.scripts
+      (final: prev: { s = scripts; })
       (final: prev: { n = nvd; })
     ];
     stateVersion = "20.09";

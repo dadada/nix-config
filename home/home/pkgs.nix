@@ -10,7 +10,6 @@ with pkgs; [
   aqbanking
   bash
   bluez-tools
-  chromium
   clang
   clang-tools
   php74Packages.composer

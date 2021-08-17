@@ -75,7 +75,10 @@ in
     adminCredentialsFile = "/var/lib/miniflux/admin-credentials";
   };
 
-  environment.systemPackages = [ pkgs.ghostscript ];
+  environment.systemPackages = with pkgs; [
+    chromium
+    ghostscript
+  ];
 
   networking.firewall = {
     enable = true;
@@ -109,6 +112,14 @@ in
     "192.168.42.15" = [ "agares.dadada.li" "agares" ];
     "192.168.42.11" = [ "wohnzimmerpi.dadada.li" "wohnzimmerpi" ];
     "10.1.2.9" = [ "fgprinter.fginfo.tu-bs.de" ];
+  };
+
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
   };
 
   system.stateVersion = "20.03";

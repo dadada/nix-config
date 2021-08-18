@@ -8,11 +8,9 @@
       inputs.nixpkgs.follows = "myNixpkgs";
     };
     flake-utils.url = github:numtide/flake-utils;
-    unstableNixpkgs.url = "github:nixos/nixpkgs?rev=c464dc811babfe316ed4ab7bbc12351122e69dd7";
     home-manager = {
       url = github:nix-community/home-manager;
-      # broken some commit after c464dc811babfe316ed4ab7bbc12351122e69dd7
-      #inputs.nixpkgs.follows = "unstableNixpkgs";
+      inputs.nixpkgs.follows = "myNixpkgs";
     };
     nix-doom-emacs = {
       url = github:vlaci/nix-doom-emacs/develop;

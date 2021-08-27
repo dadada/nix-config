@@ -7,6 +7,7 @@
 , nixos-hardware
 , nvd
 , scripts
+, homePage
 , ...
 }@inputs:
 (flake-utils.lib.eachDefaultSystem (system:

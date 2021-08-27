@@ -1,4 +1,6 @@
-{ ... }@inputs:
+{ homePage
+, ...
+}@inputs:
 {
   admin = import ./admin.nix;
   backup = import ./backup.nix;
@@ -7,7 +9,7 @@
   fileShare = import ./fileShare.nix;
   gitea = import ./gitea.nix;
   headphones = import ./headphones.nix;
-  homepage = import ./homepage.nix;
+  homepage = import ./homepage.nix { inherit homePage; };
   networking = import ./networking.nix;
   share = import ./share.nix;
   steam = import ./steam.nix;

@@ -27,6 +27,10 @@
       url = git+https://git.dadada.li/dadada/scripts.git?ref=main;
       inputs.nixpkgs.follows = "myNixpkgs";
     };
+    homePage = {
+      flake = false;
+      url = github:dadada/dadada.li;
+    };
   };
 
   outputs = { ... } @ args: import ./outputs.nix args;

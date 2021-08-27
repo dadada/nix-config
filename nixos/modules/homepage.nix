@@ -1,6 +1,8 @@
+{ homePage }:
 { config, pkgs, lib, ... }:
 let
   cfg = config.dadada.homePage;
+  homePagePkg = pkgs.callPackage homePage { };
 in
 with lib; {
   options.dadada.homePage = {
@@ -12,7 +14,7 @@ with lib; {
     services.nginx.virtualHosts."dadada.li" = {
       enableACME = true;
       forceSSL = true;
-      root = "/var/lib/www/dadada.li";
+      root = "${homePagePkg}";
     };
   };
 }

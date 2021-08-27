@@ -1,13 +1,13 @@
 # Adapted from Mic92/dotfiles
 { self
 , flake-utils
+, homePage
 , nixpkgs
 , home-manager
 , nix-doom-emacs
 , nixos-hardware
 , nvd
 , scripts
-, homePage
 , ...
 }@inputs:
 (flake-utils.lib.eachDefaultSystem (system:
@@ -54,7 +54,6 @@
     packages = flake-utils.lib.flattenTree {
       deploy = pkgs.callPackage ./pkgs/deploy.nix { };
       keys = pkgs.callPackage ./pkgs/keys { };
-      homePage = pkgs.callPackage ./pkgs/homePage { };
       recipemd = pkgs.python3Packages.toPythonApplication python3Packages.recipemd;
     };
   })) // {
@@ -64,7 +63,7 @@
   hmModules = import ./home/modules inputs;
   nixosConfigurations = import ./nixos/configurations.nix {
     nixosSystem = nixpkgs.lib.nixosSystem;
-    inherit self nixpkgs home-manager nixos-hardware;
+    inherit self nixpkgs home-manager nixos-hardware homePage;
   };
   nixosModules = import ./nixos/modules inputs;
   overlays = import ./overlays;

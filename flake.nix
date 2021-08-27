@@ -28,7 +28,6 @@
       inputs.nixpkgs.follows = "myNixpkgs";
     };
     homePage = {
-      flake = false;
       url = github:dadada/dadada.li;
     };
   };

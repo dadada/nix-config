@@ -15,7 +15,7 @@ in
     recommendedGzipSettings = true;
     recommendedProxySettings = true;
 
-    logError = "/dev/null";
+    #logError = "/dev/null";
     appendHttpConfig = ''
       access_log off;
     '';

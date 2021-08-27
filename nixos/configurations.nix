@@ -2,9 +2,10 @@
 , nixpkgs
 , nixosSystem
 , home-manager
+, homePage
 , nixos-hardware
 }:
-let adapterModule = {
+let adapterModule = system: {
   nix.nixPath = [
     "home-manager=${home-manager}"
     "nixpkgs=${nixpkgs}"
@@ -26,14 +27,16 @@ let adapterModule = {
   ];
   nix.requireSignedBinaryCaches = true;
   nix.useSandbox = true;
-  nixpkgs.overlays = (nixpkgs.lib.attrValues self.overlays);
+  nixpkgs.overlays = (nixpkgs.lib.attrValues self.overlays) ++ [
+    (final: prev: { homePage = homePage.defaultPackage.${system}; })
+  ];
 };
 in
 {
-  gorgon = nixosSystem {
+  gorgon = nixosSystem rec {
     system = "x86_64-linux";
     modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
-      adapterModule
+      (adapterModule system)
       nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen1
       #home-manager.nixosModules.home-manager
       #{
@@ -45,27 +48,27 @@ in
       ./gorgon/configuration.nix
     ];
   };
-  ifrit = nixosSystem {
+  ifrit = nixosSystem rec {
     system = "x86_64-linux";
     modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
-      adapterModule
+      (adapterModule system)
       ./modules/profiles/server.nix
       ./ifrit/configuration.nix
     ];
   };
 
-  surgat = nixosSystem {
+  surgat = nixosSystem rec {
     system = "x86_64-linux";
     modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
-      adapterModule
+      (adapterModule system)
       ./modules/profiles/server.nix
       ./surgat/configuration.nix
     ];
   };
-  pruflas = nixosSystem {
+  pruflas = nixosSystem rec {
     system = "x86_64-linux";
     modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
-      adapterModule
+      (adapterModule system)
       ./modules/profiles/server.nix
       ./pruflas/configuration.nix
     ];

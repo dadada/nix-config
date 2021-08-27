@@ -9,7 +9,7 @@
   fileShare = import ./fileShare.nix;
   gitea = import ./gitea.nix;
   headphones = import ./headphones.nix;
-  homepage = import ./homepage.nix { inherit homePage; };
+  homepage = import ./homepage.nix;
   networking = import ./networking.nix;
   share = import ./share.nix;
   steam = import ./steam.nix;

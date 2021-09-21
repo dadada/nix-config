@@ -70,6 +70,7 @@ with pkgs; [
   python38Packages.managesieve
   ripgrep
   rustup
+  shortwave
   signal-desktop
   slurp
   sqlite

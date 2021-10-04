@@ -70,7 +70,7 @@ in
       paths = "/";
       exclude = backupExcludes;
       repo = "borg@media.dadada.li:/mnt/storage/backup/${config.networking.hostName}";
-      doInit = true;
+      doInit = false;
       environment = {
         BORG_RSH = "ssh -i /var/lib/borgbackup/bs/id_ed25519 -o 'StrictHostKeyChecking accept-new'";
       };

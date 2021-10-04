@@ -10,6 +10,7 @@ with pkgs; [
   aqbanking
   bash
   bluez-tools
+  binutils
   clang
   clang-tools
   php74Packages.composer
@@ -69,6 +70,7 @@ with pkgs; [
   python38Packages.dateutil
   python38Packages.managesieve
   ripgrep
+  rust-analyzer
   rustup
   shortwave
   signal-desktop
@@ -79,6 +81,7 @@ with pkgs; [
   tcpdump
   tdesktop
   thunderbird
+  tor-browser-bundle-bin
   unzip
   usbutils
   virtmanager

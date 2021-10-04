@@ -18,4 +18,8 @@ with lib;
     font = "Lat2-Terminus16";
     keyMap = "us";
   };
+
+  services.journald.extraConfig = ''
+    SystemKeepFree = 2G
+  '';
 }

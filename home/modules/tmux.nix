@@ -13,12 +13,11 @@ in
       terminal = "xterm-256color";
       extraConfig = ''
         set -g automatic-rename on
-        set -g mode-keys vi
+        setw -g mode-keys vi
         set -g mouse on
         set -g set-clipboard external
         set -g set-titles on
         set -g status on
-        set-window-option -g mode-keys vi
       '';
     };
   };

@@ -4,6 +4,8 @@
 , home-manager
 , homePage
 , nixos-hardware
+, nvd
+, scripts
 }:
 let adapterModule = system: {
   nix.nixPath = [
@@ -29,6 +31,8 @@ let adapterModule = system: {
   nix.useSandbox = true;
   nixpkgs.overlays = (nixpkgs.lib.attrValues self.overlays) ++ [
     (final: prev: { homePage = homePage.defaultPackage.${system}; })
+    (final: prev: { s = scripts; })
+    (final: prev: { n = nvd; })
   ];
 };
 in
@@ -38,12 +42,13 @@ in
     modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
       (adapterModule system)
       nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen1
-      #home-manager.nixosModules.home-manager
-      #{
-      #  home-manager.useGlobalPkgs = true;
-      #  home-manager.useUserPackages = true;
-      #  home-manager.users.dadada = self.hmConfigurations.home;
-      #}
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.sharedModules = (nixpkgs.lib.attrValues self.hmModules);
+        home-manager.users.dadada = import ../home/home;
+      }
       ./modules/profiles/laptop.nix
       ./gorgon/configuration.nix
     ];
@@ -63,6 +68,12 @@ in
       (adapterModule system)
       ./modules/profiles/server.nix
       ./surgat/configuration.nix
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.sharedModules = (nixpkgs.lib.attrValues self.hmModules);
+        home-manager.users.dadada = import ../home/work;
+      }
     ];
   };
   pruflas = nixosSystem rec {

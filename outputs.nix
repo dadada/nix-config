@@ -63,7 +63,7 @@
   hmModules = import ./home/modules inputs;
   nixosConfigurations = import ./nixos/configurations.nix {
     nixosSystem = nixpkgs.lib.nixosSystem;
-    inherit self nixpkgs home-manager nixos-hardware homePage;
+    inherit self nixpkgs home-manager nixos-hardware nvd scripts homePage;
   };
   nixosModules = import ./nixos/modules inputs;
   overlays = import ./overlays;

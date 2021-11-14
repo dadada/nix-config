@@ -30,10 +30,6 @@ in
 {
   home = hmConfiguration {
     extraModules = [ ./home ];
-    overlays = [
-      (final: prev: { s = scripts; })
-      (final: prev: { n = nvd; })
-    ];
     stateVersion = "20.09";
   };
 

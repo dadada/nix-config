@@ -17,7 +17,7 @@ in
       settings = {
         scrolling.history = 0;
         font = {
-          size = 10;
+          size = 12;
           normal = {
             family = "Source Code Pro";
             style = "Regular";

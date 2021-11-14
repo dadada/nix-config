@@ -11,18 +11,18 @@ in
 
   config = mkIf cfg.enable {
     nix = {
-      autoOptimiseStore = false;
-      useSandbox = true;
+      autoOptimiseStore = true;
       gc = {
         automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 7d";
+        dates = "daily";
+        options = "--delete-older-than 3d";
       };
     };
 
     system.autoUpgrade = {
       enable = true;
       dates = "daily";
+      flake = "github:dadada/nix-config#nixosConfigurations.${config.networking.hostName}.config.system.build.toplevel";
     };
   };
 }

@@ -120,7 +120,5 @@ in
     ];
   };
 
-  system.autoUpgrade.flake = "github:dadada/nix-config#${hostName}";
-
   system.stateVersion = "20.09";
 }

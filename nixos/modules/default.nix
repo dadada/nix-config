@@ -1,6 +1,4 @@
-{ homePage
-, ...
-}@inputs:
+{ ... }@inputs:
 {
   admin = import ./admin.nix;
   backup = import ./backup.nix;
@@ -11,6 +9,7 @@
   headphones = import ./headphones.nix;
   homepage = import ./homepage.nix;
   networking = import ./networking.nix;
+  nix = import ./nix.nix inputs;
   share = import ./share.nix;
   steam = import ./steam.nix;
   update = import ./update.nix;

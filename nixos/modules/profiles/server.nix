@@ -7,7 +7,7 @@ with lib;
     "dadada" = [ "${pkgs.keys}/dadada.pub" ];
   };
 
-  dadada.autoUpgrade.enable = mkDefault false;
+  dadada.autoUpgrade.enable = mkDefault true;
 
   environment.noXlibs = mkDefault true;
   documentation.enable = mkDefault false;

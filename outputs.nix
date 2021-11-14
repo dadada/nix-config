@@ -39,7 +39,7 @@
         declare -A profiles=(["gorgon"]="home" ["timsch-nb"]="work")
         profile=''${profiles[$HOSTNAME]:-common}
         flake=$(nix flake metadata --json ${./.} | jq -r .url)
-        nix build --show-trace --out-link "$tmpdir/result" "$flake#hmConfigurations.''${profile}.activationPackage" "$@"
+        nix build --out-link "$tmpdir/result" "$flake#hmConfigurations.''${profile}.activationPackage" "$@"
         link=$(realpath $tmpdir/result)
         $link/activate
       '');

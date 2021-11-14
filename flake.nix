@@ -3,10 +3,6 @@
 
   inputs = {
     myNixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
-    emacs-overlay = {
-      url = github:nix-community/emacs-overlay;
-      inputs.nixpkgs.follows = "myNixpkgs";
-    };
     flake-utils.url = github:numtide/flake-utils;
     home-manager = {
       url = github:nix-community/home-manager;
@@ -14,7 +10,6 @@
     };
     nix-doom-emacs = {
       url = github:vlaci/nix-doom-emacs/develop;
-      inputs.emacs-overlay.follows = "emacs-overlay";
       inputs.nixpkgs.follows = "myNixpkgs";
     };
     nixos-hardware.url = github:NixOS/nixos-hardware/master;

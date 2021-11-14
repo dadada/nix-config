@@ -28,9 +28,9 @@ in
       plugins = [
       ];
       initExtra = ''
-        source ~/.nix-profile/share/zsh-git-prompt/zshrc.sh
-        source ~/.nix-profile/share/fzf/key-bindings.zsh
-        source ~/.nix-profile/share/fzf/completion.zsh
+        source ${pkgs.zsh-git-prompt}/share/zsh-git-prompt/zshrc.sh
+        source ${pkgs.fzf}/share/fzf/key-bindings.zsh
+        source ${pkgs.fzf}/share/fzf/completion.zsh
 
         bindkey '^n' autosuggest-accept
 

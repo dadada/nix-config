@@ -66,7 +66,6 @@ with pkgs; [
   pinentry-gnome
   playerctl
   pwgen
-  python27Packages.dbus-python
   python3
   python38Packages.dateutil
   python38Packages.managesieve

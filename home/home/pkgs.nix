@@ -75,6 +75,7 @@ with pkgs; [
   shortwave
   signal-desktop
   slurp
+  spotify
   sqlite
   sshfs-fuse
   steam

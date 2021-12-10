@@ -10,16 +10,16 @@ in
   config = mkIf cfg.enable {
     fonts.fontconfig.enable = true;
     home.packages = [
-      pkgs.source-code-pro
+      pkgs.jetbrains-mono
     ];
     programs.alacritty = {
       enable = true;
       settings = {
         scrolling.history = 0;
         font = {
-          size = 12;
+          size = 11;
           normal = {
-            family = "Source Code Pro";
+            family = "Jetbrains Mono";
             style = "Regular";
           };
           bold = {

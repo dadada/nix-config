@@ -25,6 +25,7 @@ with pkgs; [
   fzf
   gdb
   gimp
+  glow
   gnome.gnome-tweaks
   gnucash
   gnumake

@@ -22,7 +22,7 @@ in
     system.autoUpgrade = {
       enable = true;
       dates = "daily";
-      flake = "github:dadada/nix-config#nixosConfigurations.${config.networking.hostName}.config.system.build.toplevel";
+      flake = "github:dadada/nix-config#${config.networking.hostName}";
     };
   };
 }

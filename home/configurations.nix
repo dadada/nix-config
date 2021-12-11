@@ -23,6 +23,7 @@ let
           };
           overlays = overlays;
         };
+        manual.manpages.enable = false;
       };
       inherit system homeDirectory username stateVersion;
     });

@@ -25,7 +25,9 @@ in
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.sharedModules = (nixpkgs.lib.attrValues self.hmModules);
+        home-manager.sharedModules = (nixpkgs.lib.attrValues self.hmModules) ++ [
+          { manual.manpages.enable = false;}
+        ];
         home-manager.users.dadada = import ../home/home;
       }
       ./modules/profiles/laptop.nix

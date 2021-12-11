@@ -83,7 +83,6 @@ with pkgs; [
   tcpdump
   tdesktop
   thunderbird
-  tor-browser-bundle-bin
   unzip
   usbutils
   virtmanager

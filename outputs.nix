@@ -48,11 +48,8 @@
       type = "app";
       program = "${selfPkgs.recipemd}/bin/recipemd";
     };
-    devShell = pkgs.callPackage ./shell.nix {
-      deploy = selfPkgs.deploy;
-    };
+    devShell = pkgs.callPackage ./shell.nix { };
     packages = flake-utils.lib.flattenTree {
-      deploy = pkgs.callPackage ./pkgs/deploy.nix { };
       recipemd = pkgs.python3Packages.toPythonApplication python3Packages.recipemd;
     };
   })) // {

@@ -53,7 +53,6 @@
     };
     packages = flake-utils.lib.flattenTree {
       deploy = pkgs.callPackage ./pkgs/deploy.nix { };
-      keys = pkgs.callPackage ./pkgs/keys { };
       recipemd = pkgs.python3Packages.toPythonApplication python3Packages.recipemd;
     };
   })) // {
@@ -68,6 +67,7 @@
   nixosModules = import ./nixos/modules inputs;
   overlays = import ./overlays;
   pythonPackages = import ./pkgs/python-pkgs;
+  keys = ./keys;
 
   hydraJobs = (
     nixpkgs.lib.mapAttrs'

@@ -38,7 +38,7 @@ in
   dadada.admin = {
     enable = true;
     users = {
-      "dadada" = [ "${pkgs.keys}/dadada.pub" ];
+      "dadada" = [ ../../keys/dadada.pub ];
     };
   };
 

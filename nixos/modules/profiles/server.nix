@@ -1,10 +1,12 @@
 { config, pkgs, lib, ... }:
 with lib;
-{
+let
+  keys = [ ../../../keys/dadada.pub ];
+in {
   networking.domain = mkDefault "dadada.li";
 
   dadada.admin.users = {
-    "dadada" = [ "${pkgs.keys}/dadada.pub" ];
+    "dadada" = keys;
   };
 
   dadada.autoUpgrade.enable = mkDefault true;

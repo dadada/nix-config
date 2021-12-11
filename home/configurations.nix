@@ -32,11 +32,4 @@ in
     extraModules = [ ./home ];
     stateVersion = "20.09";
   };
-
-  work = hmConfiguration rec {
-    extraModules = [ ./work ];
-    homeDirectory = "/home/${username}";
-    username = "tim.schubert";
-    stateVersion = "20.09";
-  };
 }

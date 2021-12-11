@@ -36,7 +36,7 @@
         tmpdir=$(mktemp -d)
         export PATH=${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.nixFlakes pkgs.jq ]}
         trap "rm -rf $tmpdir" EXIT
-        declare -A profiles=(["gorgon"]="home" ["timsch-nb"]="work")
+        declare -A profiles=(["gorgon"]="home")
         profile=''${profiles[$HOSTNAME]:-common}
         flake=$(nix flake metadata --json ${./.} | jq -r .url)
         nix build --out-link "$tmpdir/result" "$flake#hmConfigurations.''${profile}.activationPackage" "$@"

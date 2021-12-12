@@ -57,6 +57,7 @@ with pkgs; [
   newsflash
   nfs-utils
   niv
+  nix-index
   nmap
   nvd
   obs-studio

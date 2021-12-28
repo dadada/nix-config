@@ -9,7 +9,7 @@
       inputs.nixpkgs.follows = "myNixpkgs";
     };
     nix-doom-emacs = {
-      url = github:vlaci/nix-doom-emacs/develop;
+      url = github:nix-community/nix-doom-emacs/develop;
       inputs.nixpkgs.follows = "myNixpkgs";
     };
     nixos-hardware.url = github:NixOS/nixos-hardware/master;

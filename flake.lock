@@ -3,11 +3,11 @@
     "doom-emacs": {
       "flake": false,
       "locked": {
-        "lastModified": 1626604817,
-        "narHash": "sha256-z+dvjB02cHU+VQ5EMkzqSdX817PZar9AkmmfK27q0vo=",
+        "lastModified": 1639786417,
+        "narHash": "sha256-UgrbF/cNv2qJxK2jwrAsPdgeVTRrjCyU40xeMbyi1sI=",
         "owner": "hlissner",
         "repo": "doom-emacs",
-        "rev": "46732c0adaef147144418f9f284ca6b1183ab96f",
+        "rev": "af7c1d79bd63d78410aafc410d52ee5c1109ec26",
         "type": "github"
       },
       "original": {
@@ -20,11 +20,11 @@
     "doom-snippets": {
       "flake": false,
       "locked": {
-        "lastModified": 1625547004,
-        "narHash": "sha256-V+ytAjB4ZZ+5dJJAu1OY7SbnqrokX5PVBWs0AsgQ8Vs=",
+        "lastModified": 1637750904,
+        "narHash": "sha256-zkKmbl9rros3IzMTX01l9eh1Uzg3E+eYgzuj8+VPBwM=",
         "owner": "hlissner",
         "repo": "doom-snippets",
-        "rev": "5c0eb5bd70f035cefb981c2ce64f4367498bdda6",
+        "rev": "3083b2342f95fa55c1fd3b4a16229c5d867a02b0",
         "type": "github"
       },
       "original": {
@@ -36,11 +36,11 @@
     "emacs-overlay": {
       "flake": false,
       "locked": {
-        "lastModified": 1630603742,
-        "narHash": "sha256-fYX5y18aHZTnYdBizeeW43NOFvCoT3iXk52dLtS43Gs=",
+        "lastModified": 1640341393,
+        "narHash": "sha256-E3gQLE5PjOhE/vVCI/VHl45LJIW0fMEKC7M3WSz89KE=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "9c69c4d0ef9d8ed0c5a54697e359d7f3a51fcbb1",
+        "rev": "085a34df847458952c13b29d94e12c0333828bbc",
         "type": "github"
       },
       "original": {
@@ -146,11 +146,11 @@
     },
     "flake-utils_2": {
       "locked": {
-        "lastModified": 1629481132,
-        "narHash": "sha256-JHgasjPR0/J1J3DRm4KxM4zTyAj4IOJY8vIl75v/kPI=",
+        "lastModified": 1638122382,
+        "narHash": "sha256-sQzZzAbvKEqN9s0bzWuYmRaA03v40gaJ4+iL1LXjaeI=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "997f7efcb746a9c140ce1f13c72263189225f482",
+        "rev": "74f7e4319258e287b0f9cb95426c9853b282730b",
         "type": "github"
       },
       "original": {
@@ -186,6 +186,23 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "format-all": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1581716637,
+        "narHash": "sha256-ul7LCe60W8TIvUmUtZtZRo8489TK9iTPDsLHmzxY57M=",
+        "owner": "lassik",
+        "repo": "emacs-format-all-the-code",
+        "rev": "47d862d40a088ca089c92cd393c6dca4628f87d3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lassik",
+        "repo": "emacs-format-all-the-code",
+        "rev": "47d862d40a088ca089c92cd393c6dca4628f87d3",
         "type": "github"
       }
     },
@@ -271,6 +288,7 @@
         "evil-quick-diff": "evil-quick-diff",
         "explain-pause-mode": "explain-pause-mode",
         "flake-utils": "flake-utils_2",
+        "format-all": "format-all",
         "nix-straight": "nix-straight",
         "nixpkgs": [
           "myNixpkgs"
@@ -282,19 +300,18 @@
         "org-yt": "org-yt",
         "php-extras": "php-extras",
         "revealjs": "revealjs",
-        "rotate-text": "rotate-text",
-        "straight": "straight"
+        "rotate-text": "rotate-text"
       },
       "locked": {
-        "lastModified": 1631192516,
-        "narHash": "sha256-HaS2f8N7uGBz8bGAiC7y9xkWzsrtThpudcoaTsh5OkE=",
-        "owner": "vlaci",
+        "lastModified": 1640655392,
+        "narHash": "sha256-yEQHA0/Po54sGz+72npsKXzQrTte+79H5yJy2obaafg=",
+        "owner": "nix-community",
         "repo": "nix-doom-emacs",
-        "rev": "33064319607745856f488a998ca3db8ffcede865",
+        "rev": "3209f69db760959331e2f8201de17758fbe08015",
         "type": "github"
       },
       "original": {
-        "owner": "vlaci",
+        "owner": "nix-community",
         "ref": "develop",
         "repo": "nix-doom-emacs",
         "type": "github"
@@ -303,15 +320,15 @@
     "nix-straight": {
       "flake": false,
       "locked": {
-        "lastModified": 1628630968,
-        "narHash": "sha256-eh5QpnX3F8/0iKv1BvyU3KyZ/ksLlRegcd5c41pm/L8=",
-        "owner": "vlaci",
+        "lastModified": 1639180741,
+        "narHash": "sha256-3AaUE9Z/Sc5QxK8WtkPzU+9UqcOUaF9klaz8sV8DUu4=",
+        "owner": "nix-community",
         "repo": "nix-straight.el",
-        "rev": "e3f8aaff9ba889c6f2ee6c6d349736d21f21c685",
+        "rev": "866ef703fa96c970624d6d4ad33110a0708fcfef",
         "type": "github"
       },
       "original": {
-        "owner": "vlaci",
+        "owner": "nix-community",
         "repo": "nix-straight.el",
         "type": "github"
       }
@@ -401,11 +418,11 @@
     "org": {
       "flake": false,
       "locked": {
-        "lastModified": 1629714870,
-        "narHash": "sha256-D6gUJtzZMpyJBNNn5EKWDCbDDgIXzxMx54fpcQ3DM2o=",
+        "lastModified": 1640085226,
+        "narHash": "sha256-brwgjUsaANVNbxujNi4E+fAtps0SIYpZZUlA1s7Ve+g=",
         "owner": "emacs-straight",
         "repo": "org-mode",
-        "rev": "a3ba79cd3a120235dae524f49945fbe99df923cf",
+        "rev": "be03334a7e5dae4f04b52a1cd1614024d5473ceb",
         "type": "github"
       },
       "original": {
@@ -417,11 +434,11 @@
     "org-contrib": {
       "flake": false,
       "locked": {
-        "lastModified": 1623339452,
-        "narHash": "sha256-E3pioqkmAKQm5N7YsgJZil0/ozkdRE7//tE9FGbrluM=",
+        "lastModified": 1639727892,
+        "narHash": "sha256-+T6Y87aSAx7kMpigm8d1ODDQIyPBM6a+4qGolXjCEXs=",
         "ref": "master",
-        "rev": "fc81309cf6756607a836f93049a9393c2967c4e0",
-        "revCount": 2599,
+        "rev": "5766ff1088191e4df5fecd55007ba4271e609bcc",
+        "revCount": 2611,
         "type": "git",
         "url": "https://git.sr.ht/~bzg/org-contrib"
       },
@@ -465,11 +482,11 @@
     "revealjs": {
       "flake": false,
       "locked": {
-        "lastModified": 1630050533,
-        "narHash": "sha256-gi+vC71xsKXN06QzwohNhFt07+7g6OqjsThXHwrZ5Q0=",
+        "lastModified": 1640009311,
+        "narHash": "sha256-RXVvHPKA7vkBzzTRGH2LgL5ywvlcBG1wWRdmwoUtewc=",
         "owner": "hakimel",
         "repo": "reveal.js",
-        "rev": "01d8d669bc2b681b595262ccbe27293eec2fcb44",
+        "rev": "38b32c66199a29cf21f60f920c30a4ead150c654",
         "type": "github"
       },
       "original": {
@@ -529,22 +546,6 @@
         "ref": "main",
         "type": "git",
         "url": "https://git.dadada.li/dadada/scripts.git"
-      }
-    },
-    "straight": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1623633709,
-        "narHash": "sha256-taLIYnjs9sD8N8PuGO2F7l+O69u0dNPunwzFVTlXjUM=",
-        "owner": "raxod502",
-        "repo": "straight.el",
-        "rev": "1e27b0590df77a5d478970ca58fd6606971692f5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "raxod502",
-        "repo": "straight.el",
-        "type": "github"
       }
     }
   },

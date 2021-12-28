@@ -12,12 +12,14 @@ in
       enable = true;
       terminal = "xterm-256color";
       extraConfig = ''
-        set -g automatic-rename on
         setw -g mode-keys vi
         set -g mouse on
         set -g set-clipboard external
         set -g set-titles on
         set -g status on
+        set-option -g status-interval 5
+        set-option -g automatic-rename on
+        set-option -g automatic-rename-format '#{b:pane_current_path}'
       '';
     };
   };

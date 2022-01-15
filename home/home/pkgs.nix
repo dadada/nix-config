@@ -25,6 +25,7 @@ with pkgs; [
   fzf
   gdb
   gimp
+  ghidra-bin
   glow
   gnome.gnome-tweaks
   gnucash

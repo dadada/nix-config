@@ -32,7 +32,6 @@ in
         source ${pkgs.fzf}/share/fzf/key-bindings.zsh
         source ${pkgs.fzf}/share/fzf/completion.zsh
 
-        bindkey -v
         bindkey '^n' autosuggest-accept
 
         preexec() { echo -n -e "\033]0;$1\007" }

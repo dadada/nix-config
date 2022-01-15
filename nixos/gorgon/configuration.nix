@@ -90,6 +90,8 @@ in
     ];
   };
 
+  virtualisation.libvirtd.enable = true;
+
   users.users = {
     dadada = {
       isNormalUser = true;

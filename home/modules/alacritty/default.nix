@@ -17,7 +17,7 @@ in
       settings = {
         scrolling.history = 0;
         font = {
-          size = 11;
+          size = 10;
           normal = {
             family = "Jetbrains Mono";
             style = "Regular";

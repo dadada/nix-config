@@ -11,8 +11,8 @@ with pkgs; [
   bash
   bluez-tools
   binutils
-  clang
-  clang-tools
+  #clang
+  #clang-tools
   php74Packages.composer
   darcs
   direnv
@@ -75,7 +75,7 @@ with pkgs; [
   ripgrep
   rust-analyzer
   rustup
-  shortwave
+  #shortwave
   signal-desktop
   slurp
   spotify

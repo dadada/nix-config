@@ -23,24 +23,51 @@ in
 
   config = {
     networking.resolvconf.useLocalResolver = mkIf cfg.useLocalResolver true;
+    networking.networkmanager.dns = mkIf cfg.useLocalResolver "unbound";
+
     services.unbound = mkIf cfg.useLocalResolver {
       enable = true;
       settings = {
-        server.interface = [
-          "127.0.0.1"
-          "::1"
-        ];
-        #tls-upstream = "yes";
-        #tls-cert-bundle = "/etc/ssl/certs/ca-bundle.crt";
+        server = {
+          prefer-ip6 = true;
+
+          prefetch = true;
+          prefetch-key = true;
+          serve-expired = true;
+
+          aggressive-nsec = true;
+          hide-identity = true;
+          hide-version = true;
+
+          use-caps-for-id = true;
+
+          private-address = [
+            "127.0.0.0/8"
+            "10.0.0.0/8"
+            "172.16.0.0/12"
+            "192.168.0.0/16"
+            "169.254.0.0/16"
+            "fd00::/8"
+            "fe80::/10"
+            "::ffff:0:0/96"
+          ];
+          private-domain = [
+            "dadada.li"
+          ];
+          interface = [
+            "127.0.0.1"
+            "::1"
+          ];
+        };
         forward-zone = [
           {
             name = ".";
             forward-tls-upstream = "yes";
             forward-addr = [
-              "2606:4700:4700::1001@853#cloudflare-dns.com"
-              "2606:4700:4700::1111@853#cloudflare-dns.com"
-              "1.1.1.1@853#cloudflare-dns.com"
-              "1.0.0.1@853#cloudflare-dns.com"
+              "2620:fe::fe@853#dns.quad9.net"
+              "2620:fe::9@853#dns.quad9.net"
+              "9.9.9.9@853#dns.quad9.net"
+              "149.112.112.112@853#dns.quad9.net"
             ];
           }
         ];

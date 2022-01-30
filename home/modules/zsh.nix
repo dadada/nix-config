@@ -46,6 +46,7 @@ in
         ga = "git add";
         gc = "git commit";
         gd = "git diff";
+        gdw = "git diff --color-words";
         gf = "git fetch";
         gl = "git log";
         gpu = "git push";

@@ -93,7 +93,4 @@ with pkgs; [
   wireshark
   xdg_utils
   youtube-dl
-  git-lfs
-  gitAndTools.hub
-  gitAndTools.lab
 ]

@@ -9,6 +9,8 @@ in {
     "dadada" = keys;
   };
 
+  dadada.networking.useLocalResolver = true;
+
   dadada.autoUpgrade.enable = mkDefault true;
 
   environment.noXlibs = mkDefault true;

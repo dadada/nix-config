@@ -16,17 +16,11 @@ in
             tab-in-indent = true;
             tabwidth = 4;
           };
-          alias = {
-
-          };
+          alias = { };
           pager = "delta";
         };
-        column = {
-          ui = "never";
-        };
-        checkout = {
-          defaultRemote = "origin";
-        };
+        column.ui = "never";
+        checkout.defaultRemote = "origin";
         delta = {
           navigate = true; # use n and N to move between diff sections
           side-by-side = false;
@@ -37,26 +31,24 @@ in
           algorithm = "histogram";
           colorMoved = "default";
         };
-        interactive = {
-          diffFilter = "delta --color-only";
-        };
-        merge = {
-          conflictstyle = "diff3";
-        };
+        interactive.diffFilter = "delta --color-only";
+        merge.conflictstyle = "diff3";
         status = {
           short = true;
           branch = true;
           showUntrackedFiled = "all";
         };
-        commit = {
-          verbose = true;
-        };
-        log = {
-          date = "iso8601-local";
-        };
+        commit.verbose = true;
+        log.date = "iso8601-local";
+        tag.gpgSign = true;
         pull = {
           prune = true;
+          ff = "only";
+          rebase = "interactive";
         };
+        push.default = "upstream";
+        rebase.abbreviateCommands = true;
+        rerere.enabled = true;
       };
     };
 

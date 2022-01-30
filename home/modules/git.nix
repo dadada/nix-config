@@ -29,6 +29,8 @@ in
         };
         delta = {
           navigate = true; # use n and N to move between diff sections
+          side-by-side = false;
+          line-numbers = true;
         };
         diff = {
           renames = "copies";

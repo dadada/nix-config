@@ -15,9 +15,10 @@ in
     programs.alacritty = {
       enable = true;
       settings = {
+        env.TERM = "xterm-256color";
         scrolling.history = 0;
         font = {
-          size = 10;
+          size = 9;
           normal = {
             family = "Jetbrains Mono";
             style = "Regular";

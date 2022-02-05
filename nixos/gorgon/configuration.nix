@@ -38,7 +38,10 @@ in
     luks.uuid = "3d0e5b93-90ca-412a-b4e0-3e6bfa47d3f4";
     networking = {
       enableBsShare = true;
-      useLocalResolver = true;
+      localResolver = {
+        enable= true;
+        uwu= true;
+      };
       vpnExtension = "3";
     };
     backupClient = {
@@ -114,6 +117,19 @@ in
     "192.168.42.15" = [ "agares.dadada.li" "agares" ];
     "192.168.42.11" = [ "wohnzimmerpi.dadada.li" "wohnzimmerpi" ];
     "10.1.2.9" = [ "fgprinter.fginfo.tu-bs.de" ];
+  };
+
+  networking.wireguard.interfaces.uwupn = {
+    ips = [ "10.11.0.24/32" "fc00:1337:dead:beef::10.11.0.24/128" ];
+    privateKeyFile = "/var/lib/wireguard/uwu";
+    peers = [
+      {
+        publicKey = "tuoiOWqgHz/lrgTcLjX+xIhvxh9jDH6gmDw2ZMvX5T8=";
+        allowedIPs = [ "10.11.0.0/22" "fc00:1337:dead:beef::10.11.0.0/118" ];
+        endpoint = "53c70r.de:51820";
+        persistentKeepalive = 25;
+      }
+    ];
   };
 
   hardware.opengl = {

@@ -6,7 +6,10 @@ in
 {
   options = {
     dadada.networking = {
-      useLocalResolver = mkEnableOption "Enable local caching name server";
+      localResolver = {
+        enable = mkEnableOption "Enable local caching name server";
+        uwu = mkEnableOption "Enable uwupn";
+      };
       wanInterfaces = mkOption {
         type = with types; listOf str;
         description = "WAN network interfaces";
@@ -22,10 +25,10 @@ in
   };
 
   config = {
-    networking.resolvconf.useLocalResolver = mkIf cfg.useLocalResolver true;
-    networking.networkmanager.dns = mkIf cfg.useLocalResolver "unbound";
+    networking.resolvconf.useLocalResolver = mkIf cfg.localResolver.enable true;
+    networking.networkmanager.dns = mkIf cfg.localResolver.enable "unbound";
 
-    services.unbound = mkIf cfg.useLocalResolver {
+    services.unbound = mkIf cfg.localResolver.enable {
       enable = true;
       settings = {
         server = {
@@ -53,7 +56,9 @@ in
           ];
           private-domain = [
             "dadada.li"
+            (mkIf cfg.localResolver.uwu "uwu")
           ];
+          domain-insecure = mkIf cfg.localResolver.uwu "uwu";
           interface = [
             "127.0.0.1"
             "::1"
@@ -70,6 +75,14 @@ in
               "149.112.112.112@853#dns.quad9.net"
             ];
           }
+          (mkIf cfg.localResolver.uwu {
+            name = "uwu.";
+            forward-addr = [
+              "fc00:1337:dead:beef::10.11.0.1"
+              "10.11.0.1"
+            ];
+          }
+          )
         ];
       };
     };

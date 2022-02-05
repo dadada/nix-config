@@ -9,7 +9,7 @@ in {
     "dadada" = keys;
   };
 
-  dadada.networking.useLocalResolver = true;
+  dadada.networking.localResolver.enable = true;
 
   dadada.autoUpgrade.enable = mkDefault true;
 

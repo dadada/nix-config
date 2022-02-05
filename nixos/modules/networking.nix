@@ -9,6 +9,7 @@ in
       localResolver = {
         enable = mkEnableOption "Enable local caching name server";
         uwu = mkEnableOption "Enable uwupn";
+        s0 = mkEnableOption "Enable s0";
       };
       wanInterfaces = mkOption {
         type = with types; listOf str;
@@ -57,8 +58,12 @@ in
           private-domain = [
             "dadada.li"
             (mkIf cfg.localResolver.uwu "uwu")
+            (mkIf cfg.localResolver.s0 "s0")
           ];
-          domain-insecure = mkIf cfg.localResolver.uwu "uwu";
+          domain-insecure = [
+            (mkIf cfg.localResolver.uwu "uwu")
+            (mkIf cfg.localResolver.s0 "s0")
+          ];
           interface = [
             "127.0.0.1"
             "::1"
@@ -80,6 +85,13 @@ in
             forward-addr = [
               "fc00:1337:dead:beef::10.11.0.1"
               "10.11.0.1"
+            ];
+          }
+          )
+          (mkIf cfg.localResolver.s0 {
+            name = "s0.";
+            forward-addr = [
+              "192.168.178.1"
             ];
           }
           )

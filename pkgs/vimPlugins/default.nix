@@ -3,7 +3,7 @@ with lib;
 {
   filetype = pkgs.vimUtils.buildVimPluginFrom2Nix {
     pname = "dadadaVimFiletype";
-    version = "2010-11-06";
+    version = "0.2";
     src = ./filetype;
   };
 

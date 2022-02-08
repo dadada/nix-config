@@ -61,7 +61,10 @@ set t_Co=256
 set background=dark
 colorscheme spacemacs-theme
 
-" Use tabs for indent
+set tabstop=4
+set softtabstop=4
+set softtabstop=4
+set expandtab
 set smarttab
 set smartindent
 set autoindent

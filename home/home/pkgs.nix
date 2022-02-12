@@ -44,7 +44,6 @@ with pkgs; [
   kcachegrind
   keepassxc
   #keys
-  kitty
   ldns
   libreoffice
   libvirt

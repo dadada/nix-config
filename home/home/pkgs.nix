@@ -86,7 +86,6 @@ with pkgs; [
   thunderbird
   unzip
   usbutils
-  virtmanager
   vscodium
   whois
   wireshark

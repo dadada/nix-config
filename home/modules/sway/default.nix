@@ -16,7 +16,6 @@ in
       kanshi
       kitty
       i3status
-      kitty
       bemenu
       xss-lock
       swaylock

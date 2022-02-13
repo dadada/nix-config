@@ -9,7 +9,6 @@ let
     "gpg"
     "gtk"
     "keyring"
-    "sway"
     "syncthing"
     "tmux"
     "xdg"

@@ -1,6 +1,7 @@
 { pkgs }:
 with pkgs; [
   ag
+  androidStudioPackages.stable
   anki
   aspell
   aspellDicts.de

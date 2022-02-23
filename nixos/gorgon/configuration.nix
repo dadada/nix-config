@@ -133,19 +133,6 @@ in
     ];
   };
 
-  #networking.wireguard.interfaces.mullvad = {
-  #  ips = [ "10.68.15.202/32" "fc00:bbbb:bbbb:bb01::5:fc9/128" ];
-  #  privateKeyFile = "/var/lib/wireguard/mullvad";
-  #  peers = [
-  #    {
-  #      publicKey = "BLNHNoGO88LjV/wDBa7CUUwUzPq/fO2UwcGLy56hKy4=";
-  #      allowedIPs = [ "0.0.0.0/0" "::0/0" ];
-  #      endpoint = "193.27.14.98:3152";
-  #      persistentKeepalive = 25;
-  #    }
-  #  ];
-  #};
-
   networking.wg-quick.interfaces.mullvad = {
     address = [ "10.68.15.202/32" "fc00:bbbb:bbbb:bb01::5:fc9/128" ];
     privateKeyFile = "/var/lib/wireguard/mullvad";

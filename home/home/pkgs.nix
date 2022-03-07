@@ -1,6 +1,5 @@
 { pkgs }:
 with pkgs; [
-  ag
   androidStudioPackages.stable
   anki
   aspell
@@ -49,7 +48,7 @@ with pkgs; [
   libreoffice
   libvirt
   lsof
-  manpages
+  man-pages
   mblaze
   mkpasswd
   mpv
@@ -77,6 +76,7 @@ with pkgs; [
   rustup
   #shortwave
   signal-desktop
+  silver-searcher
   slurp
   spotify
   sqlite

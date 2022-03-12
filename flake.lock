@@ -189,6 +189,21 @@
         "type": "github"
       }
     },
+    "flake-utils_5": {
+      "locked": {
+        "lastModified": 1623875721,
+        "narHash": "sha256-A8BU7bjS5GirpAUv4QA+QnJ4CceLHkcXdRp4xITDB0s=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "f7e004a55b120c02ecb6219596820fcd32ca8772",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "format-all": {
       "flake": false,
       "locked": {
@@ -263,11 +278,11 @@
     },
     "myNixpkgs": {
       "locked": {
-        "lastModified": 1646497237,
-        "narHash": "sha256-Ccpot1h/rV8MgcngDp5OrdmLTMaUTbStZTR5/sI7zW0=",
+        "lastModified": 1646939531,
+        "narHash": "sha256-bxOjVqcsccCNm+jSmEh/bm0tqfE3SdjwS+p+FZja3ho=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "062a0c5437b68f950b081bbfc8a699d57a4ee026",
+        "rev": "fcd48a5a0693f016a5c370460d0c2a8243b882dc",
         "type": "github"
       },
       "original": {
@@ -335,11 +350,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1646647249,
-        "narHash": "sha256-G1qFpuv8FOO7Sjx3kPwVi63emtCFZvTBSta8jODOb/U=",
+        "lastModified": 1646825982,
+        "narHash": "sha256-uWvS4UFkdE4Iqk1pXhxkZqPsqI+Z2V9VRmLxGUFejbY=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "86fa91c21f911d7cb0427baed3b177744b82e068",
+        "rev": "816a935bf5aa5f77cb1f03ebfe20ab13b112d0f1",
         "type": "github"
       },
       "original": {
@@ -355,6 +370,17 @@
         "narHash": "sha256-szvgmQcUJM3Kv/wNyIn+wtMrrvsks0bk9JOqI2Ij8Ao=",
         "path": "/nix/store/vy5l0dvdwwhyc988z185f9i7rqbc1n8y-source",
         "rev": "2435ea48c3b295d9cd490535730bb13ab8cfd8a5",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "narHash": "sha256-Ccpot1h/rV8MgcngDp5OrdmLTMaUTbStZTR5/sI7zW0=",
+        "path": "/nix/store/n04lw5nrskzmz7rv17p09qrnjanfkg5d-source",
         "type": "path"
       },
       "original": {
@@ -479,6 +505,26 @@
         "type": "github"
       }
     },
+    "recipemd": {
+      "inputs": {
+        "flake-utils": "flake-utils_4",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1647022391,
+        "narHash": "sha256-TZih8S/GGmmONaEZchFw0sFS6U9pa+BjaGzNUf1ahi4=",
+        "owner": "dadada",
+        "repo": "recipemd",
+        "rev": "ef3ce521ce4fdc4e2cedb92102433c8a0a9d0335",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dadada",
+        "ref": "nix-flake",
+        "repo": "recipemd",
+        "type": "github"
+      }
+    },
     "revealjs": {
       "flake": false,
       "locked": {
@@ -507,6 +553,7 @@
           "myNixpkgs"
         ],
         "nvd": "nvd",
+        "recipemd": "recipemd",
         "scripts": "scripts"
       }
     },
@@ -528,7 +575,7 @@
     },
     "scripts": {
       "inputs": {
-        "flake-utils": "flake-utils_4",
+        "flake-utils": "flake-utils_5",
         "nixpkgs": [
           "myNixpkgs"
         ]

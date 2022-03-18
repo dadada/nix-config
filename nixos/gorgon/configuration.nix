@@ -18,7 +18,6 @@ in
   nix.package = pkgs.nixUnstable;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
-    post-build-hook = ${signHook}
   '';
 
   boot.kernelPackages = pkgs.linuxPackages_5_15;

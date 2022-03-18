@@ -71,6 +71,7 @@ with pkgs; [
   python3
   python38Packages.dateutil
   python38Packages.managesieve
+  recipemd
   ripgrep
   rust-analyzer
   rustup

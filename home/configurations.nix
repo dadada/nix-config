@@ -1,15 +1,11 @@
 { self
 , nixpkgs
 , home-manager
-, nix-doom-emacs
-, nvd
-, scripts
 }@inputs:
 let
   hmConfiguration =
     { homeDirectory ? "/home/dadada"
     , extraModules ? [ ]
-    , overlays ? [ ]
     , system ? "x86_64-linux"
     , username ? "dadada"
     , stateVersion
@@ -21,7 +17,6 @@ let
           config = import ./nixpkgs-config.nix {
             pkgs = nixpkgs;
           };
-          overlays = overlays;
         };
         manual.manpages.enable = false;
       };

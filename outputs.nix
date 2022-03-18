@@ -8,6 +8,7 @@
 , nixos-hardware
 , nvd
 , scripts
+, recipemd
 , ...
 }@inputs:
 (flake-utils.lib.eachDefaultSystem (system:
@@ -44,22 +45,15 @@
         $link/activate
       '');
     };
-    apps.recipemd = {
-      type = "app";
-      program = "${selfPkgs.recipemd}/bin/recipemd";
-    };
     devShell = pkgs.callPackage ./shell.nix { };
-    packages = flake-utils.lib.flattenTree {
-      recipemd = pkgs.python3Packages.toPythonApplication python3Packages.recipemd;
-    };
   })) // {
   hmConfigurations = import ./home/configurations.nix {
-    inherit self nixpkgs home-manager nix-doom-emacs nvd scripts;
+    inherit self nixpkgs home-manager recipemd;
   };
   hmModules = import ./home/modules inputs;
   nixosConfigurations = import ./nixos/configurations.nix {
     nixosSystem = nixpkgs.lib.nixosSystem;
-    inherit self nixpkgs home-manager nixos-hardware nvd scripts homePage;
+    inherit self nixpkgs home-manager nixos-hardware nvd scripts homePage recipemd;
   };
   nixosModules = import ./nixos/modules inputs;
   overlays = import ./overlays;

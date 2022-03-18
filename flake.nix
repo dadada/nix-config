@@ -25,6 +25,9 @@
     homePage = {
       url = github:dadada/dadada.li;
     };
+    recipemd = {
+      url = github:dadada/recipemd/nix-flake;
+    };
   };
 
   outputs = { ... } @ args: import ./outputs.nix args;

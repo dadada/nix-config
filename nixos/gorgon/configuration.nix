@@ -82,6 +82,7 @@ in
   environment.systemPackages = with pkgs; [
     chromium
     ghostscript
+    recipemd
   ];
 
   networking.firewall = {
@@ -133,19 +134,19 @@ in
     ];
   };
 
-  networking.wg-quick.interfaces.mullvad = {
-    address = [ "10.68.15.202/32" "fc00:bbbb:bbbb:bb01::5:fc9/128" ];
-    privateKeyFile = "/var/lib/wireguard/mullvad";
-    peers = [
-      {
-        publicKey = "BLNHNoGO88LjV/wDBa7CUUwUzPq/fO2UwcGLy56hKy4=";
-        allowedIPs = [ "0.0.0.0/0" "::0/0" ];
-        endpoint = "193.27.14.98:3152";
-        persistentKeepalive = 25;
-      }
-    ];
-    postUp = "${pkgs.iproute2}/bin/ip rule add to 193.27.14.98 lookup main";
-  };
+  #networking.wg-quick.interfaces.mullvad = {
+  #  address = [ "10.68.15.202/32" "fc00:bbbb:bbbb:bb01::5:fc9/128" ];
+  #  privateKeyFile = "/var/lib/wireguard/mullvad";
+  #  peers = [
+  #    {
+  #      publicKey = "Ec/wwcosVal9Kjc97ZuTTV7Dy5c0/W5iLet7jrSEm2k=";
+  #      allowedIPs = [ "0.0.0.0/0" "::0/0" ];
+  #      endpoint = "193.27.14.66:51820";
+  #      persistentKeepalive = 25;
+  #    }
+  #  ];
+  #  postUp = "${pkgs.iproute2}/bin/ip rule add to 193.27.14.66 lookup main";
+  #};
 
   hardware.opengl = {
     enable = true;

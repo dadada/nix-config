@@ -32,6 +32,7 @@ with lib;
   virtualisation = {
     libvirtd.enable = mkDefault true;
     docker.enable = mkDefault true;
+    docker.liveRestore = false;
   };
 
   virtualisation.docker.extraOptions = mkDefault "--bip=192.168.1.5/24";

@@ -53,4 +53,13 @@ with lib;
   services.xserver.desktopManager.gnome.enable = mkDefault true;
 
   xdg.mime.enable = mkDefault true;
+
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
 }

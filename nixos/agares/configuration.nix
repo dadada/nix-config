@@ -17,6 +17,8 @@
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sda";
 
+  boot.kernelParams = [ "console=ttyS0,115200" ];
+
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";

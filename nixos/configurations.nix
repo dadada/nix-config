@@ -61,4 +61,13 @@ in
       ./pruflas/configuration.nix
     ];
   };
+
+  agares = nixosSystem rec {
+    system = "x86_64-linux";
+    modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
+      (adapterModule system)
+      ./modules/profiles/server.nix
+      ./agares/configuration.nix
+    ];
+  };
 }

@@ -4,7 +4,6 @@ let
     "ifrit.dadada.li"
     "bs.vpn.dadada.li"
     "media.dadada.li"
-    "media.local"
   ];
   backups = "/mnt/storage/backup";
 in
@@ -15,7 +14,7 @@ in
 
   dadada = {
     admin.enable = true;
-    fileShare.enable = true;
+    fileShare.enable = false;
 
     vpnServer.enable = true;
     vpnServer.peers = {

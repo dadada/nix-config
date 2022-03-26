@@ -105,11 +105,11 @@ in
   };
 
   networking.hosts = {
-    "fd42:dead:beef:0:5054:ff:fefb:7361" = [
+    "fd42:dead:beef:0:5054:ff:fedd:6c2c" = [
       "media.dadada.li"
       "ifrit.dadada.li"
     ];
-    "192.168.42.103" = [
+    "192.168.42.5" = [
       "media.dadada.li"
       "ifrit.dadada.li"
     ];

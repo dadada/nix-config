@@ -36,7 +36,10 @@ in
     users.users = mapAttrs
       (user: keys: (
         {
-          extraGroups = [ "wheel" ];
+          extraGroups = [
+            "wheel"
+            "libvirtd"
+          ];
           isNormalUser = true;
           openssh.authorizedKeys.keyFiles = keys;
         }))

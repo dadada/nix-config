@@ -22,6 +22,9 @@
     "amd_iommu=on"
   ];
 
+  networking.interfaces.enp2s0.useDHCP = false;
+  networking.interfaces.enp3s0.useDHCP = false;
+
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";

@@ -17,7 +17,10 @@
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sda";
 
-  boot.kernelParams = [ "console=ttyS0,115200" ];
+  boot.kernelParams = [
+    "console=ttyS0,115200"
+    "amd_iommu=on"
+  ];
 
   i18n.defaultLocale = "en_US.UTF-8";
   console = {

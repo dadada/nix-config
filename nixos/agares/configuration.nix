@@ -20,6 +20,15 @@
   boot.kernelParams = [
     "console=ttyS0,115200"
     "amd_iommu=on"
+    "iommu=pt"
+  ];
+
+  boot.kernelModules = [
+    "kvm-amd"
+    "vfio"
+    "vfio_iommu_type1"
+    "vfio_pci"
+    "vfio_virqfd"
   ];
 
   networking.interfaces.enp2s0.useDHCP = false;
@@ -41,7 +50,11 @@
 
   virtualisation.libvirtd.enable = true;
 
-  environment.systemPackages = [ pkgs.curl ];
+  environment.systemPackages = with pkgs; [
+    curl
+    flashrom
+    dmidecode
+  ];
 
   system.stateVersion = "22.05";
 }

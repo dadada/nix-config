@@ -56,7 +56,7 @@ in
             "::ffff:0:0/96"
           ];
           private-domain = [
-            "dadada.li"
+            "dyn.dadada.li"
             (mkIf cfg.localResolver.uwu "uwu")
             (mkIf cfg.localResolver.s0 "s0")
           ];
@@ -95,6 +95,13 @@ in
             ];
           }
           )
+          {
+            name = "dyn.dadada.li.";
+            forward-addr = [
+              "fd42:9c3b:f96d:101::1"
+              "192.168.101.1"
+            ];
+          }
         ];
       };
     };

@@ -35,7 +35,7 @@
   networking.interfaces.enp3s0.useDHCP = false;
 
   networking.interfaces.enp1s0.useDHCP = true;
-  networkinng.vlans = {
+  networking.vlans = {
     vpn = {
       id = 12;
       interface = "enp1s0";

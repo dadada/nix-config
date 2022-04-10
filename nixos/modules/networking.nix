@@ -114,7 +114,7 @@ in
     }));
 
     networking.wireguard.interfaces = mkIf (cfg.vpnExtension != null) {
-      bs = {
+      dadada = {
         ips = [ "fd42:9c3b:f96d:200::${cfg.vpnExtension}/64" ];
         listenPort = 51234;
 
@@ -124,7 +124,7 @@ in
           {
             publicKey = "lFB2DWtzp55ajV0Fk/OWdO9JlGvN9QsayYKQQHV3GEs=";
             allowedIPs = [ "fd42:9c3b:f96d::/48" ];
-            endpoint = "bs.vpn.dadada.li:51234";
+            endpoint = "vpn.dadada.li:51234";
             persistentKeepalive = 25;
           }
         ];
@@ -140,22 +140,8 @@ in
     systemd.services.wg-reresolve-dns = mkIf (cfg.vpnExtension != null) {
       serviceConfig.Type = "oneshot";
       script = ''
-        ${pkgs.wireguard-tools}/bin/wg set bs peer lFB2DWtzp55ajV0Fk/OWdO9JlGvN9QsayYKQQHV3GEs= endpoint bs.vpn.dadada.li:51234 persistent-keepalive 25 allowed-ips fd42:9c3b:f96d::/48
+        ${pkgs.wireguard-tools}/bin/wg set dadada peer lFB2DWtzp55ajV0Fk/OWdO9JlGvN9QsayYKQQHV3GEs= endpoint vpn.dadada.li:51234 persistent-keepalive 25 allowed-ips fd42:9c3b:f96d::/48
       '';
-    };
-
-    fileSystems."/mnt/media.dadada.li" = mkIf cfg.enableBsShare {
-      device = "media.dadada.li:/mnt/storage/share";
-      fsType = "nfs";
-      options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
-    };
-
-    networking.firewall = {
-      enable = true;
-      allowedUDPPorts = [
-        51234 # Wireguard
-        5353 # mDNS
-      ];
     };
   };
 }

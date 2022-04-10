@@ -151,6 +151,7 @@ in
 
   networking.useDHCP = false;
   networking.interfaces.ens3.useDHCP = true;
+  networking.interfaces.ens4.useDHCP = true;
 
   fileSystems."/mnt/storage" = {
     device = "/dev/disk/by-uuid/a34e36fc-d7dd-4ceb-93c4-48f9c2727cb7";

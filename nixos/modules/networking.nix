@@ -115,7 +115,7 @@ in
 
     networking.wireguard.interfaces = mkIf (cfg.vpnExtension != null) {
       bs = {
-        ips = [ "fd42:9c3b:f96d::${cfg.vpnExtension}/64" ];
+        ips = [ "fd42:9c3b:f96d:200::${cfg.vpnExtension}/64" ];
         listenPort = 51234;
 
         privateKeyFile = "/var/lib/wireguard/privkey";

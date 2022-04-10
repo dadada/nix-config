@@ -31,21 +31,26 @@
     "vfio_virqfd"
   ];
 
-  networking.interfaces.enp2s0.useDHCP = false;
-  networking.interfaces.enp3s0.useDHCP = false;
-
-  networking.interfaces.enp1s0.useDHCP = true;
   networking.vlans = {
+    lan = {
+      id = 11;
+      interface = "enp1s0";
+    };
     vpn = {
       id = 12;
       interface = "enp1s0";
     };
-    lan = {
+    backup = {
       id = 13;
       interface = "enp1s0";
     };
   };
-  networking.interfaces.vpn.useDHCP = true;
+  networking.interfaces.enp1s0.useDHCP = true;
+  networking.interfaces.enp2s0.useDHCP = false;
+  networking.interfaces.enp3s0.useDHCP = false;
+  networking.interfaces.lan.useDHCP = false;
+  networking.interfaces.vpn.useDHCP = false;
+  networking.interfaces.backup.useDHCP = false;
 
   i18n.defaultLocale = "en_US.UTF-8";
   console = {

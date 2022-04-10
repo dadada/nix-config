@@ -60,16 +60,10 @@ in
       startAt = "monthly";
     };
 
-    networking.hosts = mkIf cfg.bs {
-      "fd42:dead:beef:0:5054:ff:fefb:7361" = [
-        "media.dadada.li"
-      ];
-    };
-
     services.borgbackup.jobs.bs = mkIf cfg.bs {
       paths = "/";
       exclude = backupExcludes;
-      repo = "borg@media.dadada.li:/mnt/storage/backup/${config.networking.hostName}";
+      repo = "borg@backup0.dadada.li:${config.networking.hostName}";
       doInit = false;
       environment = {
         BORG_RSH = "ssh -i /var/lib/borgbackup/bs/id_ed25519 -o 'StrictHostKeyChecking accept-new'";

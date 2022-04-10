@@ -4,8 +4,33 @@ let
     "ifrit.dadada.li"
     "bs.vpn.dadada.li"
     "media.dadada.li"
+    "backup.dadada.li"
   ];
   backups = "/mnt/storage/backup";
+  ddns = hostname: {
+    timers."ddns-${hostname}" = {
+      wantedBy = [ "timers.target" ];
+      partOf = [ "ddns-${hostname}.service" ];
+      timerConfig.OnCalendar = "hourly";
+    };
+    services."ddns-${hostname}" = {
+      serviceConfig.Type = "oneshot";
+      script = ''
+        function url() {
+        echo "https://svc.joker.com/nic/update?username=$1&password=$2&hostname=$3"
+        }
+
+        IFS=':'
+        read -r user password < /var/lib/ddns/credentials
+        unset IFS
+
+        curl_url=$(url "$user" "$password" ${hostname})
+
+        ${pkgs.curl}/bin/curl -4 "$curl_url"
+        ${pkgs.curl}/bin/curl -6 "$curl_url"
+      '';
+    };
+  };
 in
 {
   imports = [
@@ -49,6 +74,7 @@ in
     };
   };
 
+  users.users.borg.home = "/mnt/storage/backup";
   services.borgbackup.repos = {
     "metis" = {
       allowSubRepos = false;
@@ -109,11 +135,6 @@ in
     "::1" = hostAliases;
   };
 
-  networking.nameservers = [
-    "1.1.1.1"
-    "1.0.0.1"
-  ];
-
   # weird issues with crappy plastic router
   networking.interfaces."ens3".tempAddress = "disabled";
 
@@ -143,19 +164,6 @@ in
     allowPing = true;
     allowedTCPPorts = [
       22 # SSH
-      80
-      443 # HTTP(S)
-      111
-      2049 # NFS
-      139
-      445 # SMB
-    ];
-    allowedUDPPorts = [
-      137
-      138
-      111
-      2049 # NFS
-      51234 # Wireguard
     ];
   };
 
@@ -188,30 +196,8 @@ in
   };
 
   environment.systemPackages = [ pkgs.curl ];
-  systemd = {
-    timers.ddns-joker = {
-      wantedBy = [ "timers.target" ];
-      partOf = [ "ddns-joker.service" ];
-      timerConfig.OnCalendar = "hourly";
-    };
-    services.ddns-joker = {
-      serviceConfig.Type = "oneshot";
-      script = ''
-        function url() {
-        echo "https://svc.joker.com/nic/update?username=$1&password=$2&hostname=$3"
-        }
 
-        IFS=':'
-        read -r user password < /var/lib/ddns/credentials
-        unset IFS
-
-        curl_url=$(url "$user" "$password" bs.vpn.dadada.li)
-
-        ${pkgs.curl}/bin/curl -4 "$curl_url"
-        ${pkgs.curl}/bin/curl -6 "$curl_url"
-      '';
-    };
-  };
+  systemd = (ddns "bs.vpn.dadada.li") // (ddns "backup0.dadada.li");
 
   system.stateVersion = "20.03";
 }

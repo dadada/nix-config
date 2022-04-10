@@ -36,12 +36,12 @@ in
     networking.wireguard.interfaces."wg0" = {
       allowedIPsAsRoutes = true;
       privateKeyFile = "/var/lib/wireguard/wg0-key";
-      ips = [ "fd42:dead:beef:1337::0/64" ];
+      ips = [ "fd42:9c3b:f96d:0200::0/64" ];
       listenPort = 51234;
       peers = map
         (peer: (
           {
-            allowedIPs = [ "fd42:dead:beef:1337::${peer.id}/128" ];
+            allowedIPs = [ "fd42:9c3b:f96d:0200::${peer.id}/128" ];
             publicKey = peer.key;
           }))
         (attrValues cfg.peers);

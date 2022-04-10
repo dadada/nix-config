@@ -115,7 +115,7 @@ in
 
     networking.wireguard.interfaces = mkIf (cfg.vpnExtension != null) {
       bs = {
-        ips = [ "fd42:dead:beef:1337::${cfg.vpnExtension}/64" ];
+        ips = [ "fd42:9c3b:f96d::${cfg.vpnExtension}/64" ];
         listenPort = 51234;
 
         privateKeyFile = "/var/lib/wireguard/privkey";
@@ -123,7 +123,7 @@ in
         peers = [
           {
             publicKey = "lFB2DWtzp55ajV0Fk/OWdO9JlGvN9QsayYKQQHV3GEs=";
-            allowedIPs = [ "fd42:dead:beef::/48" ];
+            allowedIPs = [ "fd42:9c3b:f96d::/48" ];
             endpoint = "bs.vpn.dadada.li:51234";
             persistentKeepalive = 25;
           }
@@ -140,7 +140,7 @@ in
     systemd.services.wg-reresolve-dns = mkIf (cfg.vpnExtension != null) {
       serviceConfig.Type = "oneshot";
       script = ''
-        ${pkgs.wireguard-tools}/bin/wg set bs peer lFB2DWtzp55ajV0Fk/OWdO9JlGvN9QsayYKQQHV3GEs= endpoint bs.vpn.dadada.li:51234 persistent-keepalive 25 allowed-ips fd42:dead:beef::/48
+        ${pkgs.wireguard-tools}/bin/wg set bs peer lFB2DWtzp55ajV0Fk/OWdO9JlGvN9QsayYKQQHV3GEs= endpoint bs.vpn.dadada.li:51234 persistent-keepalive 25 allowed-ips fd42:9c3b:f96d::/48
       '';
     };
 

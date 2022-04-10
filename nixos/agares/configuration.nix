@@ -34,6 +34,15 @@
   networking.interfaces.enp2s0.useDHCP = false;
   networking.interfaces.enp3s0.useDHCP = false;
 
+  networking.interfaces.enp1s0.useDHCP = true;
+  networkinng.vlans = {
+    vpn = {
+      id = 12;
+      interface = "enp1s0";
+    };
+  };
+  networking.interfaces.vpn.useDHCP = true;
+
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";

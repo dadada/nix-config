@@ -61,6 +61,7 @@ in
             (mkIf cfg.localResolver.s0 "s0")
           ];
           domain-insecure = [
+            "dyn.dadada.li"
             (mkIf cfg.localResolver.uwu "uwu")
             (mkIf cfg.localResolver.s0 "s0")
           ];

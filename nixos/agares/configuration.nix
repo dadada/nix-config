@@ -40,6 +40,10 @@
       id = 12;
       interface = "enp1s0";
     };
+    lan = {
+      id = 13;
+      interface = "enp1s0";
+    };
   };
   networking.interfaces.vpn.useDHCP = true;
 

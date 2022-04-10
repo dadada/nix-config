@@ -165,6 +165,9 @@ in
     allowedTCPPorts = [
       22 # SSH
     ];
+    allowedUDPPorts = [
+      51234
+    ];
   };
 
   security.acme = {

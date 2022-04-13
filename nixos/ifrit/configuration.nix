@@ -2,35 +2,11 @@
 let
   hostAliases = [
     "ifrit.dadada.li"
-    "bs.vpn.dadada.li"
+    "vpn.dadada.li"
     "media.dadada.li"
-    "backup.dadada.li"
+    "backup0.dadada.li"
   ];
   backups = "/mnt/storage/backup";
-  ddns = hostname: {
-    timers."ddns-${hostname}" = {
-      wantedBy = [ "timers.target" ];
-      partOf = [ "ddns-${hostname}.service" ];
-      timerConfig.OnCalendar = "hourly";
-    };
-    services."ddns-${hostname}" = {
-      serviceConfig.Type = "oneshot";
-      script = ''
-        function url() {
-        echo "https://svc.joker.com/nic/update?username=$1&password=$2&hostname=$3"
-        }
-
-        IFS=':'
-        read -r user password < /var/lib/ddns/credentials
-        unset IFS
-
-        curl_url=$(url "$user" "$password" ${hostname})
-
-        ${pkgs.curl}/bin/curl -4 "$curl_url"
-        ${pkgs.curl}/bin/curl -6 "$curl_url"
-      '';
-    };
-  };
 in
 {
   imports = [
@@ -72,6 +48,10 @@ in
         key = "5EaLm7uC8XzoN8+BaGzgGRUU4q5shM7gQJcs/d7n+Vo=";
       };
     };
+    ddns.domains = [
+      "vpn.dadada.li"
+      "backup0.dadada.li"
+    ];
   };
 
   users.users.borg.home = "/mnt/storage/backup";
@@ -201,8 +181,6 @@ in
   };
 
   environment.systemPackages = [ pkgs.curl ];
-
-  systemd = (ddns "bs.vpn.dadada.li") // (ddns "backup0.dadada.li");
 
   system.stateVersion = "20.03";
 }

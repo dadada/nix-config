@@ -2,6 +2,7 @@
 {
   admin = import ./admin.nix;
   backup = import ./backup.nix;
+  ddns = import ./ddns.nix;
   element = import ./element.nix;
   fido2 = import ./fido2.nix;
   fileShare = import ./fileShare.nix;

@@ -135,9 +135,6 @@ in
     "::1" = hostAliases;
   };
 
-  # weird issues with crappy plastic router
-  networking.interfaces."ens3".tempAddress = "disabled";
-
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
@@ -149,9 +146,13 @@ in
     keyMap = "us";
   };
 
+  # weird issues with crappy plastic router
+  networking.interfaces."ens3".tempAddress = "disabled";
+  networking.interfaces."ens7".tempAddress = "disabled";
+
   networking.useDHCP = false;
   networking.interfaces.ens3.useDHCP = true;
-  networking.interfaces.ens4.useDHCP = true;
+  networking.interfaces.ens7.useDHCP = true;
 
   fileSystems."/mnt/storage" = {
     device = "/dev/disk/by-uuid/a34e36fc-d7dd-4ceb-93c4-48f9c2727cb7";

@@ -74,6 +74,9 @@ in
       };
       compression = "auto,lz4";
       startAt = "daily";
+      environment = {
+        BORG_RELOCATED_REPO_ACCESS_IS_OK = "yes";
+      };
     };
   };
 }

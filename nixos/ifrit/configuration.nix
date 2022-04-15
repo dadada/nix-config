@@ -54,7 +54,7 @@ in
     ];
   };
 
-  users.users.borg.home = "/mnt/storage/backup";
+  users.users.borg.home = backups;
   services.borgbackup.repos = {
     "metis" = {
       allowSubRepos = false;

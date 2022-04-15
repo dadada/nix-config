@@ -63,7 +63,7 @@ in
     services.borgbackup.jobs.bs = mkIf cfg.bs {
       paths = "/";
       exclude = backupExcludes;
-      repo = "borg@backup0.dadada.li:${config.networking.hostName}";
+      repo = "borg@backup0.dadada.li:/mnt/storage/backup/${config.networking.hostName}";
       doInit = false;
       environment = {
         BORG_RSH = "ssh -i /var/lib/borgbackup/bs/id_ed25519 -o 'StrictHostKeyChecking accept-new'";

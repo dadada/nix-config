@@ -50,7 +50,7 @@ in
           wg set wg0 fwmark 51234
           ip rule add table 2468
           ip route add default dev ens3 table 2468
-          ip route add fwmark 51234 table 2468
+          ip rule add fwmark 51234 table 2468
         '';
       };
     };

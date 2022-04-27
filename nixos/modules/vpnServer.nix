@@ -37,23 +37,26 @@ in
       interfaces."wg0" = {
         allowedIPsAsRoutes = true;
         privateKeyFile = "/var/lib/wireguard/wg0-key";
-        ips = [ "fd42:9c3b:f96d:0200::0/64" ];
+        ips = [ "fd42:9c3b:f96d:0201::0/64" ];
         listenPort = 51234;
         peers = map
           (peer: (
             {
-              allowedIPs = [ "fd42:9c3b:f96d:0200::${peer.id}/128" ];
+              allowedIPs = [ "fd42:9c3b:f96d:0201::${peer.id}/128" ];
               publicKey = peer.key;
             }))
           (attrValues cfg.peers);
         postSetup = ''
-          set -x
           wg set wg0 fwmark 51234
-          ip -6 rule add table 2468
-          ip -6 route add table 2468 default dev ens3
+          ip -6 route add table 2468 fd42:9c3b:f96d::/48 dev ens3
+          ip -6 route add table 2468 fd42:9c3b:f96d:201::/64 dev wg0
           ip -6 rule add fwmark 51234 table 2468
         '';
       };
+    };
+    boot.kernel.sysctl = {
+      # Enable forwarding for VPN
+      "net.ipv6.conf.all.forwarding" = true;
     };
   };
 }

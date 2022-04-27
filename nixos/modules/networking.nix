@@ -56,12 +56,12 @@ in
             "::ffff:0:0/96"
           ];
           private-domain = [
-            "dyn.dadada.li"
+            "dadada.li"
             (mkIf cfg.localResolver.uwu "uwu")
             (mkIf cfg.localResolver.s0 "s0")
           ];
           domain-insecure = [
-            "dyn.dadada.li"
+            "dadada.li"
             (mkIf cfg.localResolver.uwu "uwu")
             (mkIf cfg.localResolver.s0 "s0")
           ];
@@ -97,10 +97,9 @@ in
           }
           )
           {
-            name = "dyn.dadada.li.";
+            name = "dadada.li.";
             forward-addr = [
-              "fd42:9c3b:f96d:101::1"
-              "192.168.101.1"
+              "fd42:9c3b:f96d:201::1"
             ];
           }
         ];
@@ -115,7 +114,7 @@ in
 
     networking.wireguard.interfaces = mkIf (cfg.vpnExtension != null) {
       dadada = {
-        ips = [ "fd42:9c3b:f96d:200::${cfg.vpnExtension}/64" ];
+        ips = [ "fd42:9c3b:f96d:201::${cfg.vpnExtension}/64" ];
         listenPort = 51234;
 
         privateKeyFile = "/var/lib/wireguard/privkey";

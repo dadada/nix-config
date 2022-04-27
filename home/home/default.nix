@@ -2,7 +2,7 @@
 let
   useFeatures = [
     "alacritty"
-    "emacs"
+    #"emacs"
     "vim"
     "direnv"
     "git"

@@ -19,10 +19,6 @@ in
 
     vpnServer.enable = true;
     vpnServer.peers = {
-      "metis" = {
-        id = "1";
-        key = "u+HCYDbK0zwbIEfGf+LVQErlJ0vchf5ZYj0N93NB5ns=";
-      };
       "morax" = {
         id = "2";
         key = "Lq5QLGoI3r3BXEJ72dWH9UTmY/8uaYRPLQB5WWHqJUE=";
@@ -38,14 +34,6 @@ in
       "pruflas" = {
         id = "5";
         key = "o8B8rTA+u5XOJK4JI+TRCFjVJn/3T7UofLqFRIPoNQk=";
-      };
-      "fginfo" = {
-        id = "6";
-        key = "zadidMDiALJUHdhMrGqAa5RGjPN/x5XJ8aR5elnaeUc=";
-      };
-      "fginfo-git" = {
-        id = "7";
-        key = "5EaLm7uC8XzoN8+BaGzgGRUU4q5shM7gQJcs/d7n+Vo=";
       };
     };
     ddns.domains = [
@@ -133,11 +121,6 @@ in
   networking.useDHCP = false;
   networking.interfaces.ens3.useDHCP = true;
   networking.interfaces.ens7.useDHCP = false;
-
-  boot.kernel.sysctl = {
-    # Enable forwarding for VPN
-    "net.ipv6.conf.ens3.forwarding" = true;
-  };
 
   boot.kernelParams = [
     "console=ttyS0,115200"

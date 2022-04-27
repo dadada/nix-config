@@ -139,6 +139,10 @@ in
     "net.ipv6.conf.ens3.forwarding" = true;
   };
 
+  boot.kernelParams = [
+    "console=ttyS0,115200"
+  ];
+
   fileSystems."/mnt/storage" = {
     device = "/dev/disk/by-uuid/a34e36fc-d7dd-4ceb-93c4-48f9c2727cb7";
     mountPoint = "/mnt/storage";

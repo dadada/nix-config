@@ -134,6 +134,11 @@ in
   networking.interfaces.ens3.useDHCP = true;
   networking.interfaces.ens7.useDHCP = false;
 
+  boot.kernel.sysctl = {
+    # Enable forwarding for VPN
+    "net.ipv6.conf.ens3.forwarding" = true;
+  };
+
   fileSystems."/mnt/storage" = {
     device = "/dev/disk/by-uuid/a34e36fc-d7dd-4ceb-93c4-48f9c2727cb7";
     mountPoint = "/mnt/storage";

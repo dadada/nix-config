@@ -49,9 +49,9 @@ in
         postSetup = ''
           set -x
           wg set wg0 fwmark 51234
-          ip rule add table 2468
-          ip route add default dev ens3 table 2468
-          ip rule add fwmark 51234 table 2468
+          ip -6 rule add table 2468
+          ip -6 route add table 2468 default dev ens3
+          ip -6 rule add fwmark 51234 table 2468
         '';
       };
     };

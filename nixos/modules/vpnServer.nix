@@ -47,6 +47,7 @@ in
             }))
           (attrValues cfg.peers);
         postSetup = ''
+          set -x
           wg set wg0 fwmark 51234
           ip rule add table 2468
           ip route add default dev ens3 table 2468

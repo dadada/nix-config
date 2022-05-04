@@ -31,6 +31,7 @@ in
 
     services.unbound = mkIf cfg.localResolver.enable {
       enable = true;
+      localControlSocketPath = "/run/unbound/unbound.ctl";
       settings = {
         server = {
           prefer-ip6 = true;

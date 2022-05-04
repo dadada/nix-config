@@ -98,7 +98,7 @@ in
           }
           )
           {
-            name = "dadada.li.";
+            name = "dyn.dadada.li.";
             forward-addr = [
               "fd42:9c3b:f96d:201::1"
             ];

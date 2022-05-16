@@ -39,6 +39,7 @@ with pkgs; [
   irssi
   jameica
   jetbrains.idea-community
+  josm
   jupyter
   jq
   kcachegrind

@@ -9,6 +9,7 @@
 , recipemd
 }:
 let adapterModule = system: {
+  nixpkgs.config.allowUnfreePredicate = (pkg: true);
   nixpkgs.overlays = (nixpkgs.lib.attrValues self.overlays) ++ [
     (final: prev: { homePage = homePage.defaultPackage.${system}; })
     (final: prev: { s = scripts; })

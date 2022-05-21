@@ -15,9 +15,6 @@
   let
     pkgs = nixpkgs.legacyPackages.${system};
     selfPkgs = self.packages.${system};
-    pythonPackages = import ./pkgs/python-pkgs;
-    python3Packages = pythonPackages { callPackage = pkgs.python3Packages.callPackage; };
-    #lib = import ./lib;
   in
   {
     apps.deploy = {
@@ -48,7 +45,7 @@
     devShell = pkgs.callPackage ./shell.nix { };
   })) // {
   hmConfigurations = import ./home/configurations.nix {
-    inherit self nixpkgs home-manager recipemd;
+    inherit self nixpkgs home-manager;
   };
   hmModules = import ./home/modules inputs;
   nixosConfigurations = import ./nixos/configurations.nix {
@@ -57,7 +54,6 @@
   };
   nixosModules = import ./nixos/modules inputs;
   overlays = import ./overlays;
-  pythonPackages = import ./pkgs/python-pkgs;
   keys = ./keys;
 
   hydraJobs = (

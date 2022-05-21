@@ -1,4 +1,3 @@
 { callPackage }:
 {
-  recipemd = callPackage ./recipemd { };
 }

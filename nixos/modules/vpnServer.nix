@@ -56,7 +56,8 @@ in
     };
     boot.kernel.sysctl = {
       # Enable forwarding for VPN
-      "net.ipv6.conf.all.forwarding" = true;
+      "net.ipv6.conf.wg0.forwarding" = true;
+      "net.ipv6.conf.ens3.forwarding" = true;
     };
   };
 }

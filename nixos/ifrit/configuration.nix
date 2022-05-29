@@ -2,7 +2,6 @@
 let
   hostAliases = [
     "ifrit.dadada.li"
-    "vpn.dadada.li"
     "media.dadada.li"
     "backup0.dadada.li"
   ];
@@ -15,29 +14,7 @@ in
 
   dadada = {
     admin.enable = true;
-    fileShare.enable = false;
-
-    vpnServer.enable = true;
-    vpnServer.peers = {
-      "morax" = {
-        id = "2";
-        key = "Lq5QLGoI3r3BXEJ72dWH9UTmY/8uaYRPLQB5WWHqJUE=";
-      };
-      "gorgon" = {
-        id = "3";
-        key = "0eWP1hzkyoXlrjPSOq+6Y1u8tnFH+SejBJs8f8lf+iU=";
-      };
-      "surgat" = {
-        id = "4";
-        key = "+paiOqOITdLy3oqoI2DhOj4k8gncAcjFLkJrxJl0iBE=";
-      };
-      "pruflas" = {
-        id = "5";
-        key = "o8B8rTA+u5XOJK4JI+TRCFjVJn/3T7UofLqFRIPoNQk=";
-      };
-    };
     ddns.domains = [
-      "vpn.dadada.li"
       "backup0.dadada.li"
     ];
   };
@@ -96,7 +73,6 @@ in
   };
 
   networking.hostName = "ifrit";
-  networking.domain = "dadada.li";
 
   networking.hosts = {
     "127.0.0.1" = hostAliases;
@@ -108,19 +84,11 @@ in
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sda";
 
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-  };
-
   # weird issues with crappy plastic router
   networking.interfaces."ens3".tempAddress = "disabled";
-  networking.interfaces."ens7".tempAddress = "disabled";
 
   networking.useDHCP = false;
   networking.interfaces.ens3.useDHCP = true;
-  networking.interfaces.ens7.useDHCP = false;
 
   boot.kernelParams = [
     "console=ttyS0,115200"
@@ -144,32 +112,8 @@ in
     ];
   };
 
-  security.acme = {
-    email = "d553a78d-0349-48db-9c20-5b27af3a1dfc@dadada.li";
-    acceptTerms = true;
-    #  certs."webchat.dadada.li" = {
-    #    credentialsFile = "/var/lib/lego/acme-joker.env";
-    #    dnsProvider = "joker";
-    #    postRun = "systemctl reload nginx.service";
-    #  };
-    #  certs."weechat.dadada.li" = {
-    #    credentialsFile = "/var/lib/lego/acme-joker.env";
-    #    dnsProvider = "joker";
-    #    postRun = "systemctl reload nginx.service";
-    #  };
-  };
-
   users.users."mist" = {
     isNormalUser = true;
-  };
-
-  services.avahi = {
-    enable = false;
-    publish = {
-      enable = true;
-      addresses = true;
-      workstation = false;
-    };
   };
 
   environment.systemPackages = [ pkgs.curl ];

@@ -2,6 +2,7 @@
 with lib;
 let
   cfg = config.dadada.networking;
+  vpnPubKey = "x/y6I59buVzv9Lfzl+b17mGWbzxU+3Ke9mQNa1DLsDI=";
 in
 {
   options = {
@@ -122,7 +123,7 @@ in
 
         peers = [
           {
-            publicKey = "lFB2DWtzp55ajV0Fk/OWdO9JlGvN9QsayYKQQHV3GEs=";
+            publicKey = vpnPubKey;
             allowedIPs = [ "fd42:9c3b:f96d::/48" ];
             endpoint = "vpn.dadada.li:51234";
             persistentKeepalive = 25;
@@ -140,7 +141,7 @@ in
     systemd.services.wg-reresolve-dns = mkIf (cfg.vpnExtension != null) {
       serviceConfig.Type = "oneshot";
       script = ''
-        ${pkgs.wireguard-tools}/bin/wg set dadada peer lFB2DWtzp55ajV0Fk/OWdO9JlGvN9QsayYKQQHV3GEs= endpoint vpn.dadada.li:51234 persistent-keepalive 25 allowed-ips fd42:9c3b:f96d::/48
+        ${pkgs.wireguard-tools}/bin/wg set dadada peer ${vpnPubKey} endpoint vpn.dadada.li:51234 persistent-keepalive 25 allowed-ips fd42:9c3b:f96d::/48
       '';
     };
   };

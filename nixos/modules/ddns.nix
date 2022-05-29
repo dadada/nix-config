@@ -24,7 +24,7 @@ let
 
         curl_url=$(url "$user" "$password" ${hostname})
 
-        ${pkgs.curl}/bin/curl -4 "$curl_url"
+        #${pkgs.curl}/bin/curl -4 "$curl_url"
         ${pkgs.curl}/bin/curl -6 "$curl_url"
       '';
     }));

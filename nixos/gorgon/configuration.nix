@@ -105,18 +105,6 @@ in
   };
 
   networking.hosts = {
-    "fd42:dead:beef:0:5054:ff:fedd:6c2c" = [
-      "media.dadada.li"
-      "ifrit.dadada.li"
-    ];
-    "192.168.42.5" = [
-      "media.dadada.li"
-      "ifrit.dadada.li"
-    ];
-    "fd42:dead:beef::5054:ff:fe8b:58df" = [ "iot.dadada.li" ];
-    "fd42:dead:beef::20d:b9ff:fe4c:c9ac" = [ "agares.dadada.li" ];
-    "192.168.42.15" = [ "agares.dadada.li" "agares" ];
-    "192.168.42.11" = [ "wohnzimmerpi.dadada.li" "wohnzimmerpi" ];
     "10.1.2.9" = [ "fgprinter.fginfo.tu-bs.de" ];
   };
 

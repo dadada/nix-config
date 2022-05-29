@@ -36,10 +36,6 @@
       id = 11;
       interface = "enp1s0";
     };
-    vpn = {
-      id = 12;
-      interface = "enp1s0";
-    };
     backup = {
       id = 13;
       interface = "enp1s0";
@@ -49,9 +45,6 @@
   networking.bridges = {
     "br-lan" = {
       interfaces = [ "lan" ];
-    };
-    "br-vpn" = {
-      interfaces = [ "vpn" ];
     };
     "br-backup" = {
       interfaces = [ "backup" ];

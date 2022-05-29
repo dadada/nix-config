@@ -15,7 +15,7 @@ let
       serviceConfig.Type = "oneshot";
       script = ''
         function url() {
-        echo "https://svc.joker.com/nic/update?username=$1&password=$2&hostname=$3"
+          echo "https://svc.joker.com/nic/update?username=$1&password=$2&hostname=$3"
         }
 
         IFS=':'
@@ -24,7 +24,7 @@ let
 
         curl_url=$(url "$user" "$password" ${hostname})
 
-        #${pkgs.curl}/bin/curl -4 "$curl_url"
+        ${pkgs.curl}/bin/curl -4 "$curl_url"
         ${pkgs.curl}/bin/curl -6 "$curl_url"
       '';
     }));

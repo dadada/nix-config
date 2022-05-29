@@ -46,15 +46,6 @@ in
     ];
   };
 
-  mag = nixosSystem rec {
-    system = "x86_64-linux";
-    modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
-      (adapterModule system)
-      ./modules/profiles/server.nix
-      ./mag/configuration.nix
-    ];
-  };
-
   surgat = nixosSystem rec {
     system = "x86_64-linux";
     modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [

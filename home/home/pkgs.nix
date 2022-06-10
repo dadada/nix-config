@@ -93,4 +93,5 @@ with pkgs; [
   wireshark
   xdg_utils
   youtube-dl
+  zotero
 ]

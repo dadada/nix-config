@@ -36,6 +36,7 @@ in
       nixpkgs-fmt
       shellcheck
       perlPackages.PerlCritic
+      texlab
     ];
   };
 }

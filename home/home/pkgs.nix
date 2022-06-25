@@ -68,6 +68,7 @@ with pkgs; [
   pavucontrol
   pinentry-gnome
   playerctl
+  prusa-slicer
   pwgen
   python3
   python38Packages.dateutil

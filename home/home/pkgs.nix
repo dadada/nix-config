@@ -61,6 +61,7 @@ with pkgs; [
   nmap
   nvd
   obs-studio
+  openscad
   openssl
   p7zip
   pass

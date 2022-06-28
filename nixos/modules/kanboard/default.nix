@@ -21,6 +21,10 @@ in {
     users.users.kanboard.group = "kanboard";
     users.groups.kanboard.members = ["kanboard"];
 
+    systemd.tmpfiles.rules = [
+      "d /var/lib/kanboard/data 0750 kanboard nginx - -"
+    ];
+
     services.nginx = {
       enable = true;
       virtualHosts."kanboard.dadada.li" = {

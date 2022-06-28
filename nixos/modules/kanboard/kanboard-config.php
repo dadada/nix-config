@@ -7,7 +7,7 @@
 /*******************************************************************/
 
 // Data folder (must be writeable by the web server user and absolute)
-define('DATA_DIR', __DIR__.DIRECTORY_SEPARATOR.'data');
+define('DATA_DIR', '/var/lib/kanboard/data');
 
 // Enable/Disable debug
 define('DEBUG', false);

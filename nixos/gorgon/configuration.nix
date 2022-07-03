@@ -20,7 +20,7 @@ in
     experimental-features = nix-command flakes
   '';
 
-  boot.kernelPackages = pkgs.linuxPackages_5_15;
+  #boot.kernelPackages = pkgs.linuxPackages_5_15;
 
   boot.kernelModules = [ "kvm-amd" ];
 

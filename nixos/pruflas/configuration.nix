@@ -127,8 +127,10 @@ in
   users.users."media" = {
     isNormalUser = true;
     description = "Media playback user";
-    extraGroups = [ "users" "lp" "video" ];
+    extraGroups = [ "users" "video" ];
   };
+
+  services.printing.enable = false;
 
   system.stateVersion = "20.09";
 }

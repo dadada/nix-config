@@ -107,8 +107,8 @@ in
   # Desktop things for media playback
 
   services.xserver.enable = mkDefault true;
-  services.xserver.displayManager.gdm.enable = mkDefault true;
-  services.xserver.desktopManager.gnome.enable = mkDefault true;
+  services.xserver.displayManager.lightdm.enable = mkDefault true;
+  services.xserver.desktopManager.lxqt.enable = mkDefault true;
 
   xdg.mime.enable = mkDefault true;
   services.avahi.enable = true;

@@ -104,5 +104,31 @@ in
     ];
   };
 
+  # Desktop things for media playback
+
+  services.xserver.enable = mkDefault true;
+  services.xserver.displayManager.gdm.enable = mkDefault true;
+  services.xserver.desktopManager.gnome.enable = mkDefault true;
+
+  xdg.mime.enable = mkDefault true;
+  services.avahi.enable = true;
+
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+  hardware.pulseaudio.enable = false;
+
+  environment.systemPackages = [ pkgs.spotify pkgs.mpv ];
+
+  users.users."media" = {
+    isNormalUser = true;
+    description = "Media playback user";
+    extraGroups = [ "users" "lp" "video" ];
+  };
+
   system.stateVersion = "20.09";
 }

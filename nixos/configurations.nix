@@ -58,7 +58,7 @@ in
     system = "x86_64-linux";
     modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
       (adapterModule system)
-      ./modules/profiles/server.nix
+      ./modules/profiles/laptop.nix
       ./pruflas/configuration.nix
     ];
   };

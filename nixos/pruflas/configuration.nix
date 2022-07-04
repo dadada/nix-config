@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
 with lib;
-{
+let
+  keys = [ ../../keys/dadada.pub ];
+in {
   imports = [ ./hardware-configuration.nix ];
 
   networking.hostName = "pruflas";
@@ -67,6 +69,25 @@ with lib;
     description = "Media playback user";
     extraGroups = [ "users" "video" ];
   };
+
+  networking.domain = "dadada.li";
+
+  dadada.admin.users = {
+    "dadada" = keys;
+  };
+
+  users.mutableUsers = true;
+
+  dadada.networking.localResolver.enable = true;
+
+  dadada.autoUpgrade.enable = mkDefault true;
+
+  documentation.enable = false;
+  documentation.nixos.enable = false;
+
+  services.journald.extraConfig = ''
+    SystemKeepFree = 2G
+  '';
 
   system.stateVersion = "20.09";
 }

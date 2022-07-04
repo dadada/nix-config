@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
 with lib;
 {
+  imports = [ ./hardware-configuration.nix ];
+
   networking.hostName = "pruflas";
 
   services.logind.lidSwitch = "ignore";

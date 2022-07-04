@@ -45,7 +45,6 @@ in
 
   dadada.admin.enable = true;
 
-  dadada.networking.vpnExtension = "5";
   dadada.backupClient = {
     enable = true;
     bs = true;
@@ -69,11 +68,6 @@ in
     ];
   };
 
-  security.acme = {
-    email = "d553a78d-0349-48db-9c20-5b27af3a1dfc@dadada.li";
-    acceptTerms = true;
-  };
-
   boot.kernelModules = [ "kvm-intel" ];
 
   # Use the systemd-boot EFI boot loader.
@@ -87,39 +81,21 @@ in
     }
   ];
 
-
-  networking.wireguard.interfaces."hydra" = {
-    ips = [ "10.3.3.3/24" ];
-    listenPort = 51235;
-
-    privateKeyFile = "/var/lib/wireguard/hydra";
-
-    peers = [
-      {
-        publicKey = "KzL+PKlv4LktIqqTqC9Esw8dkSZN2qSn/vq76UHbOlY=";
-        allowedIPs = [ "10.3.3.1/32" ];
-        endpoint = "surgat.dadada.li:51235";
-        persistentKeepalive = 25;
-      }
-    ];
-  };
-
   # Desktop things for media playback
 
-  services.xserver.enable = mkDefault true;
-  services.xserver.displayManager.lightdm.enable = mkDefault true;
-  services.xserver.desktopManager.lxqt.enable = mkDefault true;
-
-  xdg.mime.enable = mkDefault true;
-  services.avahi.enable = true;
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   security.rtkit.enable = true;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
   hardware.pulseaudio.enable = false;
 
   environment.systemPackages = [ pkgs.spotify pkgs.mpv ];
@@ -129,8 +105,6 @@ in
     description = "Media playback user";
     extraGroups = [ "users" "video" ];
   };
-
-  services.printing.enable = false;
 
   system.stateVersion = "20.09";
 }

@@ -1,47 +1,9 @@
 { config, pkgs, lib, ... }:
 with lib;
-let
-  hostName = "pruflas";
-in
 {
-  imports = [ ./hardware-configuration.nix ];
-
-  networking.hostName = hostName;
-  networking.hosts = {
-    "10.3.3.3" = [ "hydra.dadada.li" ];
-  };
+  networking.hostName = "pruflas";
 
   services.logind.lidSwitch = "ignore";
-
-  services.hydra = {
-    enable = true;
-    package = pkgs.hydra-unstable;
-    hydraURL = "https://hydra.dadada.li";
-    notificationSender = "hydra@localhost";
-    buildMachinesFiles = [ ];
-    useSubstitutes = true;
-    listenHost = "hydra.dadada.li";
-    port = 3000;
-  };
-
-  nix.buildMachines = [
-    {
-      hostName = "localhost";
-      system = "x86_64-linux";
-      supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
-      maxJobs = 8;
-    }
-  ];
-
-  services.nginx = {
-    recommendedTlsSettings = true;
-    recommendedOptimisation = true;
-    recommendedGzipSettings = true;
-    logError = "/dev/null";
-    appendHttpConfig = ''
-      access_log off;
-    '';
-  };
 
   dadada.admin.enable = true;
 
@@ -67,8 +29,6 @@ in
       51235 # Wireguard
     ];
   };
-
-  boot.kernelModules = [ "kvm-intel" ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

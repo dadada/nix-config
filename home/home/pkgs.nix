@@ -37,7 +37,7 @@ with pkgs; [
   inotify-tools
   irssi
   jameica
-  jetbrains.idea-community
+  jetbrains.phpstorm
   josm
   jupyter
   jq

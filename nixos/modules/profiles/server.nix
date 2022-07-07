@@ -4,6 +4,7 @@ let
   keys = [ ../../../keys/dadada.pub ];
 in {
   networking.domain = mkDefault "dadada.li";
+  networking.tempAddresses = "disabled";
 
   dadada.admin.users = {
     "dadada" = keys;

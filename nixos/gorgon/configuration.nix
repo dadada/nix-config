@@ -15,12 +15,12 @@ in
     ./hardware-configuration.nix
   ];
 
-  nix.package = pkgs.nixUnstable;
   nix.extraOptions = ''
-    experimental-features = nix-command flakes
+      experimental-features = nix-command flakes
+      # Prevent garbage collection for nix shell and direnv
+      keep-outputs = true
+      keep-derivations = true
   '';
-
-  #boot.kernelPackages = pkgs.linuxPackages_5_15;
 
   boot.kernelModules = [ "kvm-amd" ];
 

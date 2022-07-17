@@ -24,14 +24,30 @@ in
   {
     options = {
       dadada.backupClient = {
-        enable = mkEnableOption "Enable backup client";
-        gs = mkEnableOption "Enable backup to GS location";
-        bs = mkEnableOption "Enable backup to BS location";
+        gs = {
+          enable = mkEnableOption "Enable backup to GS location";
+          passphrasePath = mkOption {
+            type = with types; nullOr str;
+            description = ''
+              The path to the passphrase file.
+            '';
+            default = "/var/lib/borgbackup/gs/passphrase";
+          };
+        };
+        bs = {
+          enable = mkEnableOption "Enable backup to BS location";
+          passphrasePath = mkOption {
+            type = with types; nullOr str;
+            description = ''
+              The path to the passphrase file.
+            '';
+            default = "/var/lib/borgbackup/bs/passphrase";
+          };
+        };
       };
     };
 
-  config = mkIf cfg.enable {
-
+  config = mkIf cfg.gs.enable {
     fileSystems = mkIf cfg.gs {
       "/backup" = {
         device = "/dev/disk/by-uuid/0fdab735-cc3e-493a-b4ec-cbf6a77d48d5";
@@ -47,7 +63,7 @@ in
       doInit = false;
       encryption = {
         mode = "repokey";
-        passCommand = "cat /var/lib/borgbackup/gs/passphrase";
+        passCommand = "cat ${cfg.gs.passphrasePath}";
       };
       compression = "auto,lz4";
       prune.keep = {
@@ -58,7 +74,7 @@ in
         yearly = -1; # Keep at least one archive for each year
       };
       startAt = "monthly";
-    };
+    } // mkIf cfg.bs.enable {
 
     services.borgbackup.jobs.bs = mkIf cfg.bs {
       paths = "/";
@@ -70,7 +86,7 @@ in
       };
       encryption = {
         mode = "repokey";
-        passCommand = "cat /var/lib/borgbackup/bs/passphrase";
+        passCommand = "cat ${cfg.bs.passphrasePath}";
       };
       compression = "auto,lz4";
       startAt = "daily";
@@ -78,5 +94,6 @@ in
         BORG_RELOCATED_REPO_ACCESS_IS_OK = "yes";
       };
     };
+  };
   };
 }

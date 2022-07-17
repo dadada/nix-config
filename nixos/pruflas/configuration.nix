@@ -42,8 +42,7 @@ in {
   dadada.admin.enable = true;
 
   dadada.backupClient = {
-    enable = true;
-    bs = true;
+    bs.enable = true;
   };
 
   networking.useDHCP = false;

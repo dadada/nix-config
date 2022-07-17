@@ -46,9 +46,8 @@ in
       vpnExtension = "3";
     };
     backupClient = {
-      enable = true;
-      bs = true;
-      gs = false;
+      bs.enable = true;
+      gs.enable = false;
     };
   };
 

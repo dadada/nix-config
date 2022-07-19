@@ -37,11 +37,18 @@ in
         bs = {
           enable = mkEnableOption "Enable backup to BS location";
           passphrasePath = mkOption {
-            type = with types; nullOr str;
+            type = types.str;
             description = ''
               The path to the passphrase file.
             '';
             default = "/var/lib/borgbackup/bs/passphrase";
+          };
+          sshIdentityFile = mkOption {
+            type = types.str;
+            description = ''
+              Path to the SSH key that is used to transmit the backup.
+            '';
+            default = "/var/lib/borgbackup/bs/id_ed25519";
           };
         };
       };
@@ -56,7 +63,7 @@ in
       };
     };
 
-    services.borgbackup.jobs.gs = mkIf cfg.gs {
+    services.borgbackup.jobs.gs = {
       paths = "/";
       exclude = backupExcludes;
       repo = "/backup/${config.networking.hostName}";
@@ -76,13 +83,13 @@ in
       startAt = "monthly";
     } // mkIf cfg.bs.enable {
 
-    services.borgbackup.jobs.bs = mkIf cfg.bs {
+    services.borgbackup.jobs.bs = {
       paths = "/";
       exclude = backupExcludes;
       repo = "borg@backup0.dadada.li:/mnt/storage/backup/${config.networking.hostName}";
       doInit = false;
       environment = {
-        BORG_RSH = "ssh -i /var/lib/borgbackup/bs/id_ed25519 -o 'StrictHostKeyChecking accept-new' -o 'TCPKeepAlive=yes'";
+        BORG_RSH = "ssh -i ${cfg.bs.sshIdentityFile} -o 'StrictHostKeyChecking accept-new' -o 'TCPKeepAlive=yes'";
       };
       encryption = {
         mode = "repokey";

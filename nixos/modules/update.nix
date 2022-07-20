@@ -17,6 +17,22 @@ in
         dates = "daily";
         options = "--delete-older-than 3d";
       };
+
+      extraOptions = ''
+        experimental-features = nix-command flakes
+      '';
+
+      registry."dadada" = {
+        from = {
+          type = "indirect";
+          id = "dadada";
+        };
+        to = {
+          type = "github";
+          owner = "dadada";
+          repo = "nix-config";
+        };
+      };
     };
 
     system.autoUpgrade = {

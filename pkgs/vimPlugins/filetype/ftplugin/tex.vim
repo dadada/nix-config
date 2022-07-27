@@ -1,3 +1,6 @@
+setlocal tabstop=2
+setlocal shiftwidth=2
+setlocal expandtab
 setlocal textwidth=79
 
 let b:ale_linters = {'tex': ['texlab']}

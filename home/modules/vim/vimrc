@@ -152,6 +152,6 @@ packloadall
 silent! helptags ALL
 
 set omnifunc=ale#completion#OmniFunc
-
+"
+" autocmd BufWritePost <buffer> RunBuf make
 command! -nargs=1 RunBuf execute ':let job = job_start("<args>", {"out_io": "buffer", "out_name": "<args>"})'
-autocmd BufWritePost <buffer> RunBuf make

@@ -45,6 +45,8 @@ in
         }))
       cfg.users;
 
+    nix.trustedUsers = builtins.attrNames cfg.users;
+
     users.mutableUsers = mkDefault false;
 
     networking.firewall.allowedTCPPorts = [ 22 ];

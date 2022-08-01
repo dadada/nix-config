@@ -3,11 +3,11 @@
     "doom-emacs": {
       "flake": false,
       "locked": {
-        "lastModified": 1657393840,
-        "narHash": "sha256-ISaIbqCNKKz9DhrTVKvDS40CzZiqICb2eDepGUdwYQA=",
+        "lastModified": 1659040172,
+        "narHash": "sha256-cl9CWknGL+PadiFSXTKlf07JQ15b4hkHETQs7z/Ksm0=",
         "owner": "doomemacs",
         "repo": "doomemacs",
-        "rev": "33c5f3721a704c72e49efc5960be3785d1a80b81",
+        "rev": "35a89bdfa6064e507f8848b1d162433fe92ca829",
         "type": "github"
       },
       "original": {
@@ -36,11 +36,11 @@
     "emacs-overlay": {
       "flake": false,
       "locked": {
-        "lastModified": 1658430126,
-        "narHash": "sha256-W5zw1NI7c47qT/FCkNAVmahA5On5UUs1pabAL6Tb2iI=",
+        "lastModified": 1659086644,
+        "narHash": "sha256-VGK2BgT8JHK6m8cJZeNrApZkfEg6ArQVvnHdY8d6CJ0=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "6c868dbad387da912e2a47f63a913c8a62555127",
+        "rev": "30a3d95bb4d9812e26822260b6ac45efde0d7700",
         "type": "github"
       },
       "original": {
@@ -311,11 +311,11 @@
     },
     "myNixpkgs": {
       "locked": {
-        "lastModified": 1658777571,
-        "narHash": "sha256-gJMDUeaRhi47NxtrfFMIejlV5N3Ra2669w16Ndz2Jo0=",
+        "lastModified": 1659253578,
+        "narHash": "sha256-9xjr2VFCQEpgCKdfZjOhiaLZ/XozLp+Y3UmUn44wYZg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f0fa012b649a47e408291e96a15672a4fe925d65",
+        "rev": "ede02b4ccb13557b95058d66146640a2b0bb198f",
         "type": "github"
       },
       "original": {
@@ -356,11 +356,11 @@
         "ws-butler": "ws-butler"
       },
       "locked": {
-        "lastModified": 1658470797,
-        "narHash": "sha256-ovk7xcjGqoXgc7fV4m0tlKhiuAglON4TKmt//Bd0fLE=",
+        "lastModified": 1659104643,
+        "narHash": "sha256-0Fujv7GldKanXkIORm1mDgcktv94DsfLYWd/5yqMk6U=",
         "owner": "nix-community",
         "repo": "nix-doom-emacs",
-        "rev": "f7fd8620be427c6489f496645513d536e380c50c",
+        "rev": "72290846feecd198d3f63181c166ddaa50a2cb70",
         "type": "github"
       },
       "original": {
@@ -387,11 +387,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1658401027,
-        "narHash": "sha256-z/sDfzsFOoWNO9nZGfxDCNjHqXvSVZLDBDSgzr9qDXE=",
+        "lastModified": 1659256765,
+        "narHash": "sha256-RE4l6J+ApJ1vd4QFDhbEasv0M/deTxSK5IsIBYXuHmE=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "83009edccc2e24afe3d0165ed98b60ff7471a5f8",
+        "rev": "727a099e871ff10ae09a1ebd056a5ba4b9dbe50f",
         "type": "github"
       },
       "original": {
@@ -481,11 +481,11 @@
     "org": {
       "flake": false,
       "locked": {
-        "lastModified": 1658412564,
-        "narHash": "sha256-JHiUjc4OAfPtNTWikVYEIkJkba9qV4N3QbtcJpjk4cM=",
+        "lastModified": 1659011362,
+        "narHash": "sha256-XTh7hmnd04GxBTiIKBaZnyMjtVaWUDIFHuh/8QHWGT0=",
         "owner": "emacs-straight",
         "repo": "org-mode",
-        "rev": "99681ce38937ba993a0407cee4fd6a7f869211bf",
+        "rev": "d37c0ee5fa7dc4be4bbe3aa9b6f4e79d4b1e638d",
         "type": "github"
       },
       "original": {
@@ -497,11 +497,11 @@
     "org-contrib": {
       "flake": false,
       "locked": {
-        "lastModified": 1652646857,
-        "narHash": "sha256-IWIShWyVnbwXqGLQaDNvJ0KoepxhIrXWTjPyGPEkQ14=",
+        "lastModified": 1659039737,
+        "narHash": "sha256-ig8pVl790DopN6ZrCTIrvojt5/0Y+aOsjE87pqIVz8M=",
         "owner": "emacsmirror",
         "repo": "org-contrib",
-        "rev": "c1e0980fd7a57ca2042fd78acfb1dfb5c3bc03fa",
+        "rev": "39e2abc5629c1be6186bb6489ec4f76524edf82a",
         "type": "github"
       },
       "original": {
@@ -651,11 +651,11 @@
     "ts-fold": {
       "flake": false,
       "locked": {
-        "lastModified": 1658223568,
-        "narHash": "sha256-HxUAg+MUbH8nNhKtRzZDeN/a/sCQHSpDRCK2nvvHp8g=",
+        "lastModified": 1659096966,
+        "narHash": "sha256-zuKJGMFSmYyWsRZbfGfml4/kqJVQYtDZFNLZIyQzRH4=",
         "owner": "jcs-elpa",
         "repo": "ts-fold",
-        "rev": "ea554f10e79ed9846662b1639adc4b86783ecfc6",
+        "rev": "401aad7380c8395e948c7bc8780479ccb0a26b82",
         "type": "github"
       },
       "original": {

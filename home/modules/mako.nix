@@ -1,9 +1,13 @@
-{ config, lib, pkgs, colors, ... }:
-with lib;
-let
-  cfg = config.dadada.home.mako;
-in
 {
+  config,
+  lib,
+  pkgs,
+  colors,
+  ...
+}:
+with lib; let
+  cfg = config.dadada.home.mako;
+in {
   options.dadada.home.mako = {
     enable = mkEnableOption "Enable mako config";
   };

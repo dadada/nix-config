@@ -1,6 +1,10 @@
-{ config, pkgs, lib, ... }:
-with lib;
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; {
   networking.domain = mkDefault "dadada.li";
   networking.tempAddresses = "disabled";
 

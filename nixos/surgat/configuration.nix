@@ -1,8 +1,11 @@
-{ config, pkgs, lib, ... }:
-let
-  hostName = "surgat";
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  hostName = "surgat";
+in {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -72,10 +75,12 @@ in
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sda";
 
-  networking.interfaces."ens3".ipv6.addresses = [{
-    address = "2a01:4f8:c17:1d70::";
-    prefixLength = 64;
-  }];
+  networking.interfaces."ens3".ipv6.addresses = [
+    {
+      address = "2a01:4f8:c17:1d70::";
+      prefixLength = 64;
+    }
+  ];
 
   networking.defaultGateway6 = {
     address = "fe80::1";
@@ -98,7 +103,7 @@ in
   ];
 
   networking.wireguard.interfaces."hydra" = {
-    ips = [ "10.3.3.1/24" ];
+    ips = ["10.3.3.1/24"];
     listenPort = 51235;
 
     privateKeyFile = "/var/lib/wireguard/hydra";
@@ -106,7 +111,7 @@ in
     peers = [
       {
         publicKey = "CTKwL6+SJIqKXr1DIHejMDgjoxlWPaT78Pz3+JqcNlw=";
-        allowedIPs = [ "10.3.3.3/32" ];
+        allowedIPs = ["10.3.3.3/32"];
         persistentKeepalive = 25;
       }
     ];

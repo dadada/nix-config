@@ -1,9 +1,12 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
-  cfg = config.dadada.home.fish;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.dadada.home.fish;
+in {
   options.dadada.home.fish = {
     enable = mkEnableOption "Enable fish config";
   };
@@ -11,15 +14,17 @@ in
   config = mkIf cfg.enable {
     programs.fish = {
       enable = true;
-      plugins = with pkgs; [{
-        name = "fzf";
-        src = pkgs.fetchFromGitHub {
-          owner = "jethrokuan";
-          repo = "fzf";
-          rev = "c3defd4a922e97120503b45e26efa775bc672b50";
-          sha256 = "1k5b0nva0mbqc9830qhbcwxsi8d9b2p4ws1fq0bw9nkf2ripyp4p";
-        };
-      }];
+      plugins = with pkgs; [
+        {
+          name = "fzf";
+          src = pkgs.fetchFromGitHub {
+            owner = "jethrokuan";
+            repo = "fzf";
+            rev = "c3defd4a922e97120503b45e26efa775bc672b50";
+            sha256 = "1k5b0nva0mbqc9830qhbcwxsi8d9b2p4ws1fq0bw9nkf2ripyp4p";
+          };
+        }
+      ];
       interactiveShellInit = ''
         # fish git prompt
         set __fish_git_prompt_show_informative_status 'yes'
@@ -75,6 +80,6 @@ in
       };
     };
 
-    home.packages = [ pkgs.exa ];
+    home.packages = [pkgs.exa];
   };
 }

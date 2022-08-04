@@ -1,9 +1,12 @@
-{ pkgs, lib, config, ... }:
-with lib;
-let
-  cfg = config.dadada.home.alacritty;
-in
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.dadada.home.alacritty;
+in {
   options.dadada.home.alacritty = {
     enable = mkEnableOption "Enable alacritty config";
   };
@@ -78,12 +81,30 @@ in
           };
 
           indexed_colors = [
-            { index = 16; color = "0xffa500"; }
-            { index = 17; color = "0xb03060"; }
-            { index = 18; color = "0x282828"; }
-            { index = 19; color = "0x444155"; }
-            { index = 20; color = "0xb8b8b8"; }
-            { index = 21; color = "0xe8e8e8"; }
+            {
+              index = 16;
+              color = "0xffa500";
+            }
+            {
+              index = 17;
+              color = "0xb03060";
+            }
+            {
+              index = 18;
+              color = "0x282828";
+            }
+            {
+              index = 19;
+              color = "0x444155";
+            }
+            {
+              index = 20;
+              color = "0xb8b8b8";
+            }
+            {
+              index = 21;
+              color = "0xe8e8e8";
+            }
           ];
         };
       };

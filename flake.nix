@@ -30,5 +30,5 @@
     };
   };
 
-  outputs = { ... } @ args: import ./outputs.nix args;
+  outputs = {...} @ args: import ./outputs.nix args;
 }

@@ -1,10 +1,13 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.dadada.networking;
   vpnPubKey = "x/y6I59buVzv9Lfzl+b17mGWbzxU+3Ke9mQNa1DLsDI=";
-in
-{
+in {
   options = {
     dadada.networking = {
       localResolver = {
@@ -15,7 +18,7 @@ in
       wanInterfaces = mkOption {
         type = with types; listOf str;
         description = "WAN network interfaces";
-        default = [ ];
+        default = [];
       };
       vpnExtension = mkOption {
         type = with types; nullOr str;
@@ -83,20 +86,22 @@ in
               "149.112.112.112@853#dns.quad9.net"
             ];
           }
-          (mkIf cfg.localResolver.uwu {
-            name = "uwu.";
-            forward-addr = [
-              "fc00:1337:dead:beef::10.11.0.1"
-              "10.11.0.1"
-            ];
-          }
+          (
+            mkIf cfg.localResolver.uwu {
+              name = "uwu.";
+              forward-addr = [
+                "fc00:1337:dead:beef::10.11.0.1"
+                "10.11.0.1"
+              ];
+            }
           )
-          (mkIf cfg.localResolver.s0 {
-            name = "s0.";
-            forward-addr = [
-              "192.168.178.1"
-            ];
-          }
+          (
+            mkIf cfg.localResolver.s0 {
+              name = "s0.";
+              forward-addr = [
+                "192.168.178.1"
+              ];
+            }
           )
           {
             name = "dyn.dadada.li.";
@@ -110,13 +115,14 @@ in
 
     networking.useDHCP = false;
 
-    networking.interfaces = listToAttrs (forEach cfg.wanInterfaces (i: nameValuePair i {
-      useDHCP = true;
-    }));
+    networking.interfaces = listToAttrs (forEach cfg.wanInterfaces (i:
+      nameValuePair i {
+        useDHCP = true;
+      }));
 
     networking.wireguard.interfaces = mkIf (cfg.vpnExtension != null) {
       dadada = {
-        ips = [ "fd42:9c3b:f96d:201::${cfg.vpnExtension}/64" ];
+        ips = ["fd42:9c3b:f96d:201::${cfg.vpnExtension}/64"];
         listenPort = 51234;
 
         privateKeyFile = "/var/lib/wireguard/privkey";
@@ -124,7 +130,7 @@ in
         peers = [
           {
             publicKey = vpnPubKey;
-            allowedIPs = [ "fd42:9c3b:f96d::/48" ];
+            allowedIPs = ["fd42:9c3b:f96d::/48"];
             endpoint = "vpn.dadada.li:51234";
             persistentKeepalive = 25;
           }
@@ -134,8 +140,8 @@ in
 
     # https://lists.zx2c4.com/pipermail/wireguard/2017-November/002028.html
     systemd.timers.wg-reresolve-dns = mkIf (cfg.vpnExtension != null) {
-      wantedBy = [ "timers.target" ];
-      partOf = [ "wg-reresolve-dns.service" ];
+      wantedBy = ["timers.target"];
+      partOf = ["wg-reresolve-dns.service"];
       timerConfig.OnCalendar = "hourly";
     };
     systemd.services.wg-reresolve-dns = mkIf (cfg.vpnExtension != null) {

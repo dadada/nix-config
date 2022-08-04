@@ -1,14 +1,13 @@
-{ config
-, lib
-, pkgs
-, colors ? ../../lib/colors.nix
-, ...
-}:
-with lib;
-let
-  cfg = config.dadada.home.termite;
-in
 {
+  config,
+  lib,
+  pkgs,
+  colors ? ../../lib/colors.nix,
+  ...
+}:
+with lib; let
+  cfg = config.dadada.home.termite;
+in {
   options.dadada.home.termite = {
     enable = mkEnableOption "Enable termite config";
   };

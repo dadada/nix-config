@@ -1,9 +1,12 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
-  cfg = config.dadada.steam;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.dadada.steam;
+in {
   options = {
     dadada.steam = {
       enable = mkEnableOption "Enable Steam config";
@@ -15,7 +18,7 @@ in
     hardware.opengl = {
       enable = true;
       driSupport32Bit = true;
-      extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
+      extraPackages32 = with pkgs.pkgsi686Linux; [libva];
     };
 
     hardware.pulseaudio.support32Bit = true;

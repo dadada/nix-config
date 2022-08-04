@@ -1,9 +1,14 @@
-{ self
-, home-manager
-, nixpkgs
-, ...
+{
+  self,
+  home-manager,
+  nixpkgs,
+  ...
+}: {
+  config,
+  pkgs,
+  lib,
+  ...
 }:
-{ config, pkgs, lib, ... }:
 # Global settings for nix daemon
 {
   nix.nixPath = [

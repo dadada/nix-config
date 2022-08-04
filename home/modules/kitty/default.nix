@@ -1,9 +1,12 @@
-{ pkgs, lib, config, ... }:
-with lib;
-let
-  cfg = config.dadada.home.kitty;
-in
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.dadada.home.kitty;
+in {
   options.dadada.home.kitty = {
     enable = mkEnableOption "Enable kitty config";
   };
@@ -12,6 +15,6 @@ in
       enable = true;
       extraConfig = builtins.readFile ./config;
     };
-    home.packages = [ pkgs.source-code-pro ];
+    home.packages = [pkgs.source-code-pro];
   };
 }

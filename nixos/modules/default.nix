@@ -1,5 +1,4 @@
-{ ... }@inputs:
-{
+{...} @ inputs: {
   admin = import ./admin.nix;
   backup = import ./backup.nix;
   ddns = import ./ddns.nix;

@@ -1,6 +1,11 @@
-{ config, pkgs, lib, ... }:
-let
-  signHook = pkgs.writeShellScript "/etc/nix/sign-cache.sh"
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  signHook =
+    pkgs.writeShellScript "/etc/nix/sign-cache.sh"
     ''
       set -eu
       set -f # disable globbing
@@ -9,20 +14,19 @@ let
       echo "Signing paths" $OUT_PATHS
       nix store sign --key-file /etc/nix/key.private $OUT_PATHS
     '';
-in
-{
+in {
   imports = [
     ./hardware-configuration.nix
   ];
 
   nix.extraOptions = ''
-      experimental-features = nix-command flakes
-      # Prevent garbage collection for nix shell and direnv
-      keep-outputs = true
-      keep-derivations = true
+    experimental-features = nix-command flakes
+    # Prevent garbage collection for nix shell and direnv
+    keep-outputs = true
+    keep-derivations = true
   '';
 
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = ["kvm-amd"];
 
   networking.hostName = "gorgon";
 
@@ -39,9 +43,9 @@ in
     networking = {
       enableBsShare = true;
       localResolver = {
-        enable= true;
-        uwu= true;
-        s0= true;
+        enable = true;
+        uwu = true;
+        s0 = true;
       };
       vpnExtension = "3";
     };
@@ -99,23 +103,23 @@ in
   users.users = {
     dadada = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "kvm" "video" "scanner" "lp" "docker" ];
+      extraGroups = ["wheel" "networkmanager" "libvirtd" "adbusers" "kvm" "video" "scanner" "lp" "docker"];
       shell = "/run/current-system/sw/bin/zsh";
     };
   };
 
   networking.hosts = {
-    "10.1.2.9" = [ "fgprinter.fginfo.tu-bs.de" ];
-    "127.0.0.2" = [ "kanboard.dadada.li" ];
+    "10.1.2.9" = ["fgprinter.fginfo.tu-bs.de"];
+    "127.0.0.2" = ["kanboard.dadada.li"];
   };
 
   networking.wireguard.interfaces.uwupn = {
-    ips = [ "10.11.0.24/32" "fc00:1337:dead:beef::10.11.0.24/128" ];
+    ips = ["10.11.0.24/32" "fc00:1337:dead:beef::10.11.0.24/128"];
     privateKeyFile = "/var/lib/wireguard/uwu";
     peers = [
       {
         publicKey = "tuoiOWqgHz/lrgTcLjX+xIhvxh9jDH6gmDw2ZMvX5T8=";
-        allowedIPs = [ "10.11.0.0/22" "fc00:1337:dead:beef::10.11.0.0/118" "192.168.178.0/23" ];
+        allowedIPs = ["10.11.0.0/22" "fc00:1337:dead:beef::10.11.0.0/118" "192.168.178.0/23"];
         endpoint = "53c70r.de:51820";
         persistentKeepalive = 25;
       }

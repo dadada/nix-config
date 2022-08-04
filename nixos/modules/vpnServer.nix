@@ -1,9 +1,12 @@
-{ config, pkgs, lib, ... }:
-
-with lib;
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.dadada.vpnServer;
-  wgPeer = { name, ... }: {
+  wgPeer = {name, ...}: {
     options = {
       name = mkOption {
         internal = true;
@@ -21,14 +24,13 @@ let
       };
     };
   };
-in
-{
+in {
   options.dadada.vpnServer = {
     enable = mkEnableOption "Enable wireguard gateway";
     peers = mkOption {
       description = "Set of extensions and public keys of peers";
       type = with types; attrsOf (submodule wgPeer);
-      default = { };
+      default = {};
     };
   };
   config = mkIf cfg.enable {
@@ -37,14 +39,14 @@ in
       interfaces."wg0" = {
         allowedIPsAsRoutes = true;
         privateKeyFile = "/var/lib/wireguard/wg0-key";
-        ips = [ "fd42:9c3b:f96d:0201::0/64" ];
+        ips = ["fd42:9c3b:f96d:0201::0/64"];
         listenPort = 51234;
-        peers = map
-          (peer: (
-            {
-              allowedIPs = [ "fd42:9c3b:f96d:0201::${peer.id}/128" ];
-              publicKey = peer.key;
-            }))
+        peers =
+          map
+          (peer: {
+            allowedIPs = ["fd42:9c3b:f96d:0201::${peer.id}/128"];
+            publicKey = peer.key;
+          })
           (attrValues cfg.peers);
         postSetup = ''
           wg set wg0 fwmark 51234

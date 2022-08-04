@@ -1,10 +1,12 @@
-{ config, pkgs, lib, ... }:
-
-with lib;
-let
-  cfg = config.dadada.share;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.dadada.share;
+in {
   options.dadada.share = {
     enable = mkEnableOption "Enable file share";
   };

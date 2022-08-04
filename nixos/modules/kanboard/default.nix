@@ -1,6 +1,10 @@
 # Source https://github.com/NixOS/nixpkgs/issues/113384
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.dadada.kanboard;
 in {
   options = {
@@ -32,27 +36,30 @@ in {
           name = "kanboard-configured";
           paths = [
             (pkgs.runCommand "kanboard-over" {meta.priority = 0;} ''
-            mkdir -p $out
-            for f in index.php jsonrpc.php ; do
-            echo "<?php require('$out/config.php');" > $out/$f
-            tail -n+2 ${pkgs.kanboard}/share/kanboard/$f \
-            | sed 's^__DIR__^"${pkgs.kanboard}/share/kanboard"^' >> $out/$f
-            done
-            ln -s /var/lib/kanboard $out/data
-            ln -s ${./kanboard-config.php} $out/config.php
+              mkdir -p $out
+              for f in index.php jsonrpc.php ; do
+              echo "<?php require('$out/config.php');" > $out/$f
+              tail -n+2 ${pkgs.kanboard}/share/kanboard/$f \
+              | sed 's^__DIR__^"${pkgs.kanboard}/share/kanboard"^' >> $out/$f
+              done
+              ln -s /var/lib/kanboard $out/data
+              ln -s ${./kanboard-config.php} $out/config.php
             '')
-            { outPath = "${pkgs.kanboard}/share/kanboard"; meta.priority = 10; }
-            ];
+            {
+              outPath = "${pkgs.kanboard}/share/kanboard";
+              meta.priority = 10;
+            }
+          ];
+        };
+        locations = {
+          "/".index = "index.php";
+          "~ \\.php$" = {
+            tryFiles = "$uri =404";
+            extraConfig = ''
+              fastcgi_pass unix:${config.services.phpfpm.pools.kanboard.socket};
+            '';
           };
-          locations = {
-            "/".index = "index.php";
-            "~ \\.php$" = {
-              tryFiles = "$uri =404";
-              extraConfig = ''
-                fastcgi_pass unix:${config.services.phpfpm.pools.kanboard.socket};
-              '';
-            };
-          };
+        };
       };
     };
   };

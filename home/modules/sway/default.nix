@@ -1,9 +1,13 @@
-{ config, pkgs, lib, colors, ... }:
-with lib;
-let
-  cfg = config.dadada.home.sway;
-in
 {
+  config,
+  pkgs,
+  lib,
+  colors,
+  ...
+}:
+with lib; let
+  cfg = config.dadada.home.sway;
+in {
   options.dadada.home.sway = {
     enable = mkEnableOption "Enable Sway config";
   };
@@ -26,7 +30,7 @@ in
     wayland.windowManager.sway = {
       enable = true;
       config = null;
-      extraConfig = (builtins.readFile ./config);
+      extraConfig = builtins.readFile ./config;
       extraSessionCommands = ''
           export SDL_VIDEODRIVER=wayland
         # needs qt5.qtwayland in systemPackages

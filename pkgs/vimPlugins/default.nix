@@ -1,6 +1,10 @@
-{ pkgs, lib, fetchFromGitHub, ... }:
-with lib;
 {
+  pkgs,
+  lib,
+  fetchFromGitHub,
+  ...
+}:
+with lib; {
   filetype = pkgs.vimUtils.buildVimPluginFrom2Nix {
     pname = "dadadaVimFiletype";
     version = "0.2";

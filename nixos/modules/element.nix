@@ -1,8 +1,11 @@
-{ config, pkgs, lib, ... }:
-let
-  cfg = config.dadada.element;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.dadada.element;
+in {
   options.dadada.element = {
     enable = lib.mkEnableOption "Enable element webapp";
   };

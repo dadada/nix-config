@@ -1,6 +1,4 @@
-{ mkShell
-}:
-
+{mkShell}:
 mkShell {
   buildInputs = [
   ];

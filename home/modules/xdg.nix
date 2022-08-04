@@ -1,6 +1,10 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   apps = {
     "x-scheme-handler/mailto" = "userapp-Thunderbird-PB7NI0.desktop";
     "message/rfc822" = "userapp-Thunderbird-PB7NI0.desktop";
@@ -19,8 +23,7 @@ let
     "application/pdf" = "org.pwmt.zathura.desktop";
   };
   cfg = config.dadada.home.xdg;
-in
-{
+in {
   options.dadada.home.xdg = {
     enable = mkEnableOption "Enable XDG config";
   };

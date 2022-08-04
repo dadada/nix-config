@@ -1,6 +1,9 @@
-{ config, lib, ... }:
-with lib;
 {
+  config,
+  lib,
+  ...
+}:
+with lib; {
   options.dadada.home.colors = mkOption {
     type = types.attrs;
     description = "Color scheme";

@@ -1,9 +1,12 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
-  cfg = config.dadada.home.syncthing;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.dadada.home.syncthing;
+in {
   options.dadada.home.syncthing = {
     enable = mkEnableOption "Enable Syncthing config";
   };

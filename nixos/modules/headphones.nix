@@ -1,9 +1,12 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
-  cfg = config.dadada.headphones;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.dadada.headphones;
+in {
   options = {
     dadada.headphones = {
       enable = mkEnableOption "Enable bluetooth headphones with more audio codecs.";
@@ -14,7 +17,7 @@ in
       bluetooth.enable = true;
       pulseaudio = {
         enable = true;
-        extraModules = [ pkgs.pulseaudio-modules-bt ];
+        extraModules = [pkgs.pulseaudio-modules-bt];
         extraConfig = ''
           set-source-volume 1 10000
         '';

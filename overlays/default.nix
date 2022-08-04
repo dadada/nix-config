@@ -1,7 +1,6 @@
 let
   python3Packages = import ./python3-packages.nix;
-in
-{
+in {
   kanboard = final: prev: {
     kanboard = prev.kanboard.overrideAttrs (oldAttrs: {
       src = prev.fetchFromGitHub {

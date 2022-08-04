@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.dadada.home.gpg;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.dadada.home.gpg;
+in {
   options.dadada.home.gpg = {
     enable = mkEnableOption "Enable GnuPG config";
   };
@@ -29,7 +31,7 @@ in
     };
 
     programs.git.extraConfig = {
-      commit = { gpgSign = true; };
+      commit = {gpgSign = true;};
     };
   };
 }

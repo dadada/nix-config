@@ -1,10 +1,13 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   luks = config.dadada.luks;
   fido2 = config.dadada.fido2;
-in
-{
+in {
   options = {
     dadada.luks = {
       uuid = mkOption {
@@ -52,5 +55,4 @@ in
       cue = true;
     };
   };
-
 }

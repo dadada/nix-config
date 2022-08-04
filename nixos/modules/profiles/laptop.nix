@@ -1,6 +1,10 @@
-{ config, pkgs, lib, ... }:
-with lib;
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; {
   networking.domain = mkDefault "dadada.li";
 
   services.fwupd.enable = mkDefault true;
@@ -25,7 +29,7 @@ with lib;
     vteIntegration = true;
     syntaxHighlighting = {
       enable = true;
-      highlighters = [ "main" "brackets" "pattern" "root" "line" ];
+      highlighters = ["main" "brackets" "pattern" "root" "line"];
     };
   };
 

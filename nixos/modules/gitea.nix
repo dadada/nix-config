@@ -1,9 +1,12 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   redisSocket = "127.0.0.1:6379";
   cfg = config.dadada.gitea;
-in
-{
+in {
   options.dadada.gitea = {
     enable = lib.mkEnableOption "Enable gitea";
   };

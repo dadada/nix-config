@@ -1,9 +1,12 @@
-{ config, pkgs, lib, ... }:
-
-with lib;
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.dadada.admin;
-  extraGroups = [ "wheel" "libvirtd" ];
+  extraGroups = ["wheel" "libvirtd"];
 
   shells = {
     "bash" = pkgs.bashInteractive;
@@ -13,11 +16,15 @@ let
 
   shellNames = builtins.attrNames shells;
 
-  adminOpts = { name, config, ... }: {
+  adminOpts = {
+    name,
+    config,
+    ...
+  }: {
     options = {
       keys = mkOption {
         type = types.listOf types.str;
-        default = [ ];
+        default = [];
         apply = x: assert (builtins.length x > 0 || abort "Please specify at least one key to be able to log in"); x;
         description = ''
           The keys that should be able to access the account.
@@ -35,15 +42,14 @@ let
       };
     };
   };
-in
-{
+in {
   options = {
     dadada.admin = {
       enable = mkEnableOption "Enable admin access";
 
       users = mkOption {
         type = with types; attrsOf (submodule adminOpts);
-        default = { };
+        default = {};
         description = ''
           Admin users with root access machine.
         '';
@@ -68,14 +74,14 @@ in
     security.sudo.wheelNeedsPassword = false;
     services.openssh.openFirewall = true;
 
-    users.users = mapAttrs
-    (user: keys: (
-      {
+    users.users =
+      mapAttrs
+      (user: keys: {
         shell = shells."${keys.shell}";
         extraGroups = extraGroups;
         isNormalUser = true;
         openssh.authorizedKeys.keys = keys.keys;
-      }))
+      })
       cfg.users;
 
     nix.trustedUsers = builtins.attrNames cfg.users;
@@ -90,7 +96,7 @@ in
     services.tor.relay.onionServices = {
       "rat" = mkIf cfg.rat.enable {
         name = "rat";
-        map = [{ port = 22; }];
+        map = [{port = 22;}];
       };
     };
   };

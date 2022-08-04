@@ -1,17 +1,11 @@
 { config, pkgs, lib, ... }:
 with lib;
-let
-  keys = [ ../../../keys/dadada.pub ];
-in {
+{
   networking.domain = mkDefault "dadada.li";
   networking.tempAddresses = "disabled";
 
-  dadada.admin.users = {
-    "dadada" = keys;
-  };
-
+  dadada.admin.enable = true;
   dadada.networking.localResolver.enable = true;
-
   dadada.autoUpgrade.enable = mkDefault true;
 
   environment.noXlibs = mkDefault true;

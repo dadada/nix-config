@@ -58,12 +58,11 @@
   hmModules = import ./home/modules inputs;
   nixosConfigurations = import ./nixos/configurations.nix {
     nixosSystem = nixpkgs.lib.nixosSystem;
+    admins = import ./admins.nix;
     inherit self nixpkgs home-manager nixos-hardware nvd scripts homePage recipemd;
   };
   nixosModules = import ./nixos/modules inputs;
   overlays = import ./overlays;
-  keys = ./keys;
-
   hydraJobs = (
     nixpkgs.lib.mapAttrs'
       (name: config: nixpkgs.lib.nameValuePair name config.config.system.build.toplevel)

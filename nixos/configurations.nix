@@ -1,4 +1,5 @@
 { self
+, admins
 , nixpkgs
 , nixosSystem
 , home-manager
@@ -8,15 +9,20 @@
 , scripts
 , recipemd
 }:
-let adapterModule = system: {
-  nixpkgs.config.allowUnfreePredicate = (pkg: true);
-  nixpkgs.overlays = (nixpkgs.lib.attrValues self.overlays) ++ [
-    (final: prev: { homePage = homePage.defaultPackage.${system}; })
-    (final: prev: { s = scripts; })
-    (final: prev: { n = nvd; })
-    (final: prev: { recipemd = recipemd.defaultPackage.${system}; })
-  ];
-};
+let
+  adapterModule = system: {
+    nixpkgs.config.allowUnfreePredicate = (pkg: true);
+    nixpkgs.overlays = (nixpkgs.lib.attrValues self.overlays) ++ [
+      (final: prev: { homePage = homePage.defaultPackage.${system}; })
+      (final: prev: { s = scripts; })
+      (final: prev: { n = nvd; })
+      (final: prev: { recipemd = recipemd.defaultPackage.${system}; })
+    ];
+  };
+  lib = nixpkgs.lib;
+  adminConfig = users: {
+    dadada.admin.users = lib.getAttrs users admins;
+  };
 in
 {
   gorgon = nixosSystem rec {
@@ -40,6 +46,7 @@ in
   ifrit = nixosSystem rec {
     system = "x86_64-linux";
     modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
+      (adminConfig [ "dadada" ])
       (adapterModule system)
       ./modules/profiles/server.nix
       ./ifrit/configuration.nix
@@ -49,6 +56,7 @@ in
   surgat = nixosSystem rec {
     system = "x86_64-linux";
     modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
+      (adminConfig [ "dadada" ])
       (adapterModule system)
       ./modules/profiles/server.nix
       ./surgat/configuration.nix
@@ -57,6 +65,7 @@ in
   pruflas = nixosSystem rec {
     system = "x86_64-linux";
     modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
+      (adminConfig [ "dadada" ])
       (adapterModule system)
       ./modules/profiles/laptop.nix
       ./pruflas/configuration.nix
@@ -66,6 +75,7 @@ in
   agares = nixosSystem rec {
     system = "x86_64-linux";
     modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [
+      (adminConfig [ "dadada" ])
       (adapterModule system)
       ./modules/profiles/server.nix
       ./agares/configuration.nix

@@ -3,6 +3,38 @@
 with lib;
 let
   cfg = config.dadada.admin;
+  extraGroups = [ "wheel" "libvirtd" ];
+
+  shells = {
+    "bash" = pkgs.bashInteractive;
+    "zsh" = pkgs.zsh;
+    "fish" = pkgs.fish;
+  };
+
+  shellNames = builtins.attrNames shells;
+
+  adminOpts = { name, config, ... }: {
+    options = {
+      keys = mkOption {
+        type = types.listOf types.str;
+        default = [ ];
+        apply = x: assert (builtins.length x > 0 || abort "Please specify at least one key to be able to log in"); x;
+        description = ''
+          The keys that should be able to access the account.
+        '';
+      };
+      shell = mkOption {
+        type = types.nullOr types.str;
+        apply = x: assert (builtins.elem x shellNames || abort "Please specify one of ${builtins.toString shellNames}"); x;
+        default = "zsh";
+        defaultText = literalExpression "zsh";
+        example = literalExpression "bash";
+        description = ''
+          One of ${builtins.toString shellNames}
+        '';
+      };
+    };
+  };
 in
 {
   options = {
@@ -10,12 +42,12 @@ in
       enable = mkEnableOption "Enable admin access";
 
       users = mkOption {
-        type = with types; attrsOf (listOf path);
-        default = [ ];
+        type = with types; attrsOf (submodule adminOpts);
+        default = { };
         description = ''
-          List of admin users with root access to all the machine.
+          Admin users with root access machine.
         '';
-        example = literalExample "\"user1\" = [ /path/to/key1 /path/to/key2 ]";
+        example = literalExample "\"user1\" = { shell = pkgs.bashInteractive; keys = [ 'ssh-rsa 123456789' ]; }";
       };
 
       rat = mkOption {
@@ -29,27 +61,26 @@ in
   };
 
   config = mkIf cfg.enable {
+    programs.zsh.enable = mkDefault true;
+
     services.sshd.enable = true;
     services.openssh.passwordAuthentication = false;
     security.sudo.wheelNeedsPassword = false;
+    services.openssh.openFirewall = true;
 
     users.users = mapAttrs
-      (user: keys: (
-        {
-          extraGroups = [
-            "wheel"
-            "libvirtd"
-          ];
-          isNormalUser = true;
-          openssh.authorizedKeys.keyFiles = keys;
-        }))
+    (user: keys: (
+      {
+        shell = shells."${keys.shell}";
+        extraGroups = extraGroups;
+        isNormalUser = true;
+        openssh.authorizedKeys.keys = keys.keys;
+      }))
       cfg.users;
 
     nix.trustedUsers = builtins.attrNames cfg.users;
 
     users.mutableUsers = mkDefault false;
-
-    networking.firewall.allowedTCPPorts = [ 22 ];
 
     environment.systemPackages = with pkgs; [
       vim

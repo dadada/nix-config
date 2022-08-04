@@ -1,8 +1,6 @@
 { config, pkgs, lib, ... }:
 with lib;
-let
-  keys = [ ../../keys/dadada.pub ];
-in {
+{
   imports = [ ./hardware-configuration.nix ];
 
   networking.hostName = "pruflas";
@@ -102,10 +100,6 @@ in {
   };
 
   networking.domain = "dadada.li";
-
-  dadada.admin.users = {
-    "dadada" = keys;
-  };
 
   users.mutableUsers = true;
 

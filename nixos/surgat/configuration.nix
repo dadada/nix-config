@@ -35,13 +35,6 @@ in
     };
   };
 
-  dadada.admin = {
-    enable = true;
-    users = {
-      "dadada" = [ ../../keys/dadada.pub ];
-    };
-  };
-
   dadada.element.enable = true;
   dadada.gitea.enable = true;
   dadada.networking.vpnExtension = "4";

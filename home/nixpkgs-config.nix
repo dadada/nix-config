@@ -1,4 +1,4 @@
-{pkgs}: {
+{ pkgs }: {
   allowUnfree = true;
   allowUnfreePredicate = pkg: true;
   allowBroken = false;

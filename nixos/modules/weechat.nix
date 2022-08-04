@@ -1,12 +1,12 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib; let
   cfg = config.dadada.weechat;
-in {
+in
+{
   options.dadada.weechat = {
     enable = mkEnableOption "Enable weechat relay";
   };

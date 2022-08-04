@@ -1,12 +1,13 @@
 # Source https://github.com/NixOS/nixpkgs/issues/113384
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   cfg = config.dadada.kanboard;
-in {
+in
+{
   options = {
     dadada.kanboard.enable = lib.mkEnableOption "Enable Kanboard";
   };
@@ -23,7 +24,7 @@ in {
     };
     users.users.kanboard.isSystemUser = true;
     users.users.kanboard.group = "kanboard";
-    users.groups.kanboard.members = ["kanboard"];
+    users.groups.kanboard.members = [ "kanboard" ];
 
     systemd.tmpfiles.rules = [
       "d /var/lib/kanboard/data 0750 kanboard nginx - -"
@@ -35,7 +36,7 @@ in {
         root = pkgs.buildEnv {
           name = "kanboard-configured";
           paths = [
-            (pkgs.runCommand "kanboard-over" {meta.priority = 0;} ''
+            (pkgs.runCommand "kanboard-over" { meta.priority = 0; } ''
               mkdir -p $out
               for f in index.php jsonrpc.php ; do
               echo "<?php require('$out/config.php');" > $out/$f

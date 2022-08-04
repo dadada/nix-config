@@ -1,17 +1,17 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib; let
   cfg = config.dadada.home.session;
-in {
+in
+{
   options.dadada.home.session = {
     enable = mkEnableOption "Enable session variable management";
     sessionVars = mkOption {
       description = "Session variables";
       type = types.attrs;
-      default = {};
+      default = { };
       example = ''
         EDITOR = "vim";
         PAGER = "less";

@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib; {
   networking.domain = mkDefault "dadada.li";
@@ -29,7 +28,7 @@ with lib; {
     vteIntegration = true;
     syntaxHighlighting = {
       enable = true;
-      highlighters = ["main" "brackets" "pattern" "root" "line"];
+      highlighters = [ "main" "brackets" "pattern" "root" "line" ];
     };
   };
 

@@ -1,13 +1,13 @@
-{
-  config,
-  pkgs,
-  lib,
-  colors,
-  ...
+{ config
+, pkgs
+, lib
+, colors
+, ...
 }:
 with lib; let
   cfg = config.dadada.home.sway;
-in {
+in
+{
   options.dadada.home.sway = {
     enable = mkEnableOption "Enable Sway config";
   };

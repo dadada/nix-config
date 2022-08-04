@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }: {
   imports = [
     ./hardware-configuration.nix
@@ -48,10 +47,10 @@
 
   networking.bridges = {
     "br-lan" = {
-      interfaces = ["lan"];
+      interfaces = [ "lan" ];
     };
     "br-backup" = {
-      interfaces = ["backup"];
+      interfaces = [ "backup" ];
     };
   };
 

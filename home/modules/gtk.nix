@@ -1,12 +1,12 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 with lib; let
   cfg = config.dadada.home.gtk;
-in {
+in
+{
   options.dadada.home.gtk = {
     enable = mkEnableOption "Enable GTK config";
   };

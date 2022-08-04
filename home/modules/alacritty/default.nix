@@ -1,12 +1,12 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib; let
   cfg = config.dadada.home.alacritty;
-in {
+in
+{
   options.dadada.home.alacritty = {
     enable = mkEnableOption "Enable alacritty config";
   };

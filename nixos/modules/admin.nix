@@ -1,12 +1,11 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib; let
   cfg = config.dadada.admin;
-  extraGroups = ["wheel" "libvirtd"];
+  extraGroups = [ "wheel" "libvirtd" ];
 
   shells = {
     "bash" = pkgs.bashInteractive;
@@ -16,40 +15,41 @@ with lib; let
 
   shellNames = builtins.attrNames shells;
 
-  adminOpts = {
-    name,
-    config,
-    ...
-  }: {
-    options = {
-      keys = mkOption {
-        type = types.listOf types.str;
-        default = [];
-        apply = x: assert (builtins.length x > 0 || abort "Please specify at least one key to be able to log in"); x;
-        description = ''
-          The keys that should be able to access the account.
-        '';
-      };
-      shell = mkOption {
-        type = types.nullOr types.str;
-        apply = x: assert (builtins.elem x shellNames || abort "Please specify one of ${builtins.toString shellNames}"); x;
-        default = "zsh";
-        defaultText = literalExpression "zsh";
-        example = literalExpression "bash";
-        description = ''
-          One of ${builtins.toString shellNames}
-        '';
+  adminOpts =
+    { name
+    , config
+    , ...
+    }: {
+      options = {
+        keys = mkOption {
+          type = types.listOf types.str;
+          default = [ ];
+          apply = x: assert (builtins.length x > 0 || abort "Please specify at least one key to be able to log in"); x;
+          description = ''
+            The keys that should be able to access the account.
+          '';
+        };
+        shell = mkOption {
+          type = types.nullOr types.str;
+          apply = x: assert (builtins.elem x shellNames || abort "Please specify one of ${builtins.toString shellNames}"); x;
+          default = "zsh";
+          defaultText = literalExpression "zsh";
+          example = literalExpression "bash";
+          description = ''
+            One of ${builtins.toString shellNames}
+          '';
+        };
       };
     };
-  };
-in {
+in
+{
   options = {
     dadada.admin = {
       enable = mkEnableOption "Enable admin access";
 
       users = mkOption {
         type = with types; attrsOf (submodule adminOpts);
-        default = {};
+        default = { };
         description = ''
           Admin users with root access machine.
         '';
@@ -76,13 +76,13 @@ in {
 
     users.users =
       mapAttrs
-      (user: keys: {
-        shell = shells."${keys.shell}";
-        extraGroups = extraGroups;
-        isNormalUser = true;
-        openssh.authorizedKeys.keys = keys.keys;
-      })
-      cfg.users;
+        (user: keys: {
+          shell = shells."${keys.shell}";
+          extraGroups = extraGroups;
+          isNormalUser = true;
+          openssh.authorizedKeys.keys = keys.keys;
+        })
+        cfg.users;
 
     nix.trustedUsers = builtins.attrNames cfg.users;
 
@@ -96,7 +96,7 @@ in {
     services.tor.relay.onionServices = {
       "rat" = mkIf cfg.rat.enable {
         name = "rat";
-        map = [{port = 22;}];
+        map = [{ port = 22; }];
       };
     };
   };

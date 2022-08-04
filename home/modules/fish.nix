@@ -1,12 +1,12 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib; let
   cfg = config.dadada.home.fish;
-in {
+in
+{
   options.dadada.home.fish = {
     enable = mkEnableOption "Enable fish config";
   };
@@ -80,6 +80,6 @@ in {
       };
     };
 
-    home.packages = [pkgs.exa];
+    home.packages = [ pkgs.exa ];
   };
 }

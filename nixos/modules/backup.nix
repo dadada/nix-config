@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib; let
   backupExcludes = [
@@ -24,7 +23,8 @@ with lib; let
     "/var/tmp"
   ];
   cfg = config.dadada.backupClient;
-in {
+in
+{
   options = {
     dadada.backupClient = {
       gs = {
@@ -62,7 +62,7 @@ in {
       "/backup" = {
         device = "/dev/disk/by-uuid/0fdab735-cc3e-493a-b4ec-cbf6a77d48d5";
         fsType = "ext4";
-        options = ["x-systemd.automount" "noauto" "x-systemd.idle-timeout=600"];
+        options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
       };
     };
 

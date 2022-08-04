@@ -1,12 +1,12 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib; let
   cfg = config.dadada.home.zsh;
-in {
+in
+{
   options.dadada.home.zsh = {
     enable = mkEnableOption "Enable ZSH config";
   };

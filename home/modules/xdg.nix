@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib; let
   apps = {
@@ -23,7 +22,8 @@ with lib; let
     "application/pdf" = "org.pwmt.zathura.desktop";
   };
   cfg = config.dadada.home.xdg;
-in {
+in
+{
   options.dadada.home.xdg = {
     enable = mkEnableOption "Enable XDG config";
   };

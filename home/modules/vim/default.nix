@@ -1,13 +1,13 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib; let
   cfg = config.dadada.home.vim;
-  vimPlugins = pkgs.callPackage ../../../pkgs/vimPlugins {};
-in {
+  vimPlugins = pkgs.callPackage ../../../pkgs/vimPlugins { };
+in
+{
   options.dadada.home.vim = {
     enable = mkEnableOption "Enable VIM config";
   };

@@ -1,9 +1,9 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{ config
+, pkgs
+, lib
+, ...
+}:
+let
   useFeatures = [
     "alacritty"
     #"emacs"
@@ -18,7 +18,8 @@
     "xdg"
     "zsh"
   ];
-in {
+in
+{
   programs.git = {
     signing = {
       key = "D68C84695C087E0F733A28D0EEB8D1CE62C4DFEA";
@@ -31,7 +32,7 @@ in {
   programs.gpg.settings.default-key = "99658A3EB5CD7C13";
 
   dadada.home =
-    lib.attrsets.genAttrs useFeatures (useFeatures: {enable = true;})
+    lib.attrsets.genAttrs useFeatures (useFeatures: { enable = true; })
     // {
       session = {
         enable = true;
@@ -49,8 +50,8 @@ in {
   systemd.user.services."languagetool-http-server" = {
     Unit = {
       Description = "Languagetool HTTP server";
-      PartOf = ["graphical-session-pre.target"];
-      After = ["graphical-session.target"];
+      PartOf = [ "graphical-session-pre.target" ];
+      After = [ "graphical-session.target" ];
     };
 
     Service = {
@@ -59,11 +60,11 @@ in {
       Restart = "always";
     };
 
-    Install = {WantedBy = ["graphical-session.target"];};
+    Install = { WantedBy = [ "graphical-session.target" ]; };
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.packages = import ./pkgs.nix {pkgs = pkgs;};
+  home.packages = import ./pkgs.nix { pkgs = pkgs; };
 }

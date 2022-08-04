@@ -1,12 +1,12 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 with lib; let
   cfg = config.dadada.home.git;
-in {
+in
+{
   options.dadada.home.git = {
     enable = mkEnableOption "Enable git config";
   };
@@ -19,7 +19,7 @@ in {
             tab-in-indent = true;
             tabwidth = 4;
           };
-          alias = {};
+          alias = { };
           pager = "delta";
         };
         column.ui = "never";

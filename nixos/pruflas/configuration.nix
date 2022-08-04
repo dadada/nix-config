@@ -1,11 +1,10 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib; {
-  imports = [./hardware-configuration.nix];
+  imports = [ ./hardware-configuration.nix ];
 
   networking.hostName = "pruflas";
 
@@ -16,7 +15,7 @@ with lib; {
     package = pkgs.hydra-unstable;
     hydraURL = "https://hydra.dadada.li";
     notificationSender = "hydra@localhost";
-    buildMachinesFiles = [];
+    buildMachinesFiles = [ ];
     useSubstitutes = true;
     listenHost = "hydra.dadada.li";
     port = 3000;
@@ -26,7 +25,7 @@ with lib; {
     {
       hostName = "localhost";
       system = "x86_64-linux";
-      supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+      supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
       maxJobs = 8;
     }
   ];
@@ -65,7 +64,7 @@ with lib; {
     ];
   };
 
-  boot.kernelModules = ["kvm-intel"];
+  boot.kernelModules = [ "kvm-intel" ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -95,12 +94,12 @@ with lib; {
 
   hardware.pulseaudio.enable = false;
 
-  environment.systemPackages = [pkgs.spotify pkgs.mpv];
+  environment.systemPackages = [ pkgs.spotify pkgs.mpv ];
 
   users.users."media" = {
     isNormalUser = true;
     description = "Media playback user";
-    extraGroups = ["users" "video"];
+    extraGroups = [ "users" "video" ];
   };
 
   networking.domain = "dadada.li";

@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }: {
   programs.zsh = {
     enable = true;
@@ -12,7 +11,7 @@
     vteIntegration = true;
     syntaxHighlighting = {
       enable = true;
-      highlighters = ["main" "brackets" "pattern" "root" "line"];
+      highlighters = [ "main" "brackets" "pattern" "root" "line" ];
     };
   };
 }

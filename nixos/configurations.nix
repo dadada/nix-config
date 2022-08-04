@@ -1,31 +1,33 @@
-{
-  self,
-  admins,
-  nixpkgs,
-  nixosSystem,
-  home-manager,
-  homePage,
-  nixos-hardware,
-  nvd,
-  scripts,
-  recipemd,
-}: let
+{ self
+, admins
+, nixpkgs
+, nixosSystem
+, home-manager
+, homePage
+, nixos-hardware
+, nvd
+, scripts
+, recipemd
+,
+}:
+let
   adapterModule = system: {
     nixpkgs.config.allowUnfreePredicate = pkg: true;
     nixpkgs.overlays =
       (nixpkgs.lib.attrValues self.overlays)
       ++ [
-        (final: prev: {homePage = homePage.defaultPackage.${system};})
-        (final: prev: {s = scripts;})
-        (final: prev: {n = nvd;})
-        (final: prev: {recipemd = recipemd.defaultPackage.${system};})
+        (final: prev: { homePage = homePage.defaultPackage.${system}; })
+        (final: prev: { s = scripts; })
+        (final: prev: { n = nvd; })
+        (final: prev: { recipemd = recipemd.defaultPackage.${system}; })
       ];
   };
   lib = nixpkgs.lib;
   adminConfig = users: {
     dadada.admin.users = lib.getAttrs users admins;
   };
-in {
+in
+{
   gorgon = nixosSystem rec {
     system = "x86_64-linux";
     modules =
@@ -40,7 +42,7 @@ in {
           home-manager.sharedModules =
             (nixpkgs.lib.attrValues self.hmModules)
             ++ [
-              {manual.manpages.enable = false;}
+              { manual.manpages.enable = false; }
             ];
           home-manager.users.dadada = import ../home/home;
         }
@@ -53,7 +55,7 @@ in {
     modules =
       (nixpkgs.lib.attrValues self.nixosModules)
       ++ [
-        (adminConfig ["dadada"])
+        (adminConfig [ "dadada" ])
         (adapterModule system)
         ./modules/profiles/server.nix
         ./ifrit/configuration.nix
@@ -65,7 +67,7 @@ in {
     modules =
       (nixpkgs.lib.attrValues self.nixosModules)
       ++ [
-        (adminConfig ["dadada"])
+        (adminConfig [ "dadada" ])
         (adapterModule system)
         ./modules/profiles/server.nix
         ./surgat/configuration.nix
@@ -76,7 +78,7 @@ in {
     modules =
       (nixpkgs.lib.attrValues self.nixosModules)
       ++ [
-        (adminConfig ["dadada"])
+        (adminConfig [ "dadada" ])
         (adapterModule system)
         ./modules/profiles/laptop.nix
         ./pruflas/configuration.nix
@@ -88,7 +90,7 @@ in {
     modules =
       (nixpkgs.lib.attrValues self.nixosModules)
       ++ [
-        (adminConfig ["dadada"])
+        (adminConfig [ "dadada" ])
         (adapterModule system)
         ./modules/profiles/server.nix
         ./agares/configuration.nix

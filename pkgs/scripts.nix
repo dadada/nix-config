@@ -1,7 +1,7 @@
-{
-  pkgs,
-  stdenv,
-  lib,
+{ pkgs
+, stdenv
+, lib
+,
 }: (import
   (pkgs.fetchgit {
     url = "https://git.dadada.li/dadada/scripts.git";

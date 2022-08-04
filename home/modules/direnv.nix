@@ -1,12 +1,12 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib; let
   cfg = config.dadada.home.direnv;
-in {
+in
+{
   options.dadada.home.direnv = {
     enable = mkEnableOption "Enable direnv config";
   };

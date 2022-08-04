@@ -1,11 +1,11 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib; let
   cfg = config.dadada.home.tmux;
-in {
+in
+{
   options.dadada.home.tmux = {
     enable = mkEnableOption "Enable tmux config";
   };

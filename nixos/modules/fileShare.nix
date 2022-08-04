@@ -1,14 +1,14 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib; let
   cfg = config.dadada.fileShare;
   sharePath = "/mnt/storage/share";
   ipv6 = "fd42:dead:beef::/48";
   ipv4 = "192.168.42.0/24";
-in {
+in
+{
   options.dadada.fileShare = {
     enable = mkEnableOption "Enable file share server";
   };

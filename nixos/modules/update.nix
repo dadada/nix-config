@@ -1,12 +1,12 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib; let
   cfg = config.dadada.autoUpgrade;
-in {
+in
+{
   options.dadada.autoUpgrade = {
     enable = mkEnableOption "Enable automatic upgrades";
   };

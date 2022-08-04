@@ -1,11 +1,12 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{ config
+, pkgs
+, lib
+, ...
+}:
+let
   hostName = "surgat";
-in {
+in
+{
   imports = [
     ./hardware-configuration.nix
   ];
@@ -103,7 +104,7 @@ in {
   ];
 
   networking.wireguard.interfaces."hydra" = {
-    ips = ["10.3.3.1/24"];
+    ips = [ "10.3.3.1/24" ];
     listenPort = 51235;
 
     privateKeyFile = "/var/lib/wireguard/hydra";
@@ -111,7 +112,7 @@ in {
     peers = [
       {
         publicKey = "CTKwL6+SJIqKXr1DIHejMDgjoxlWPaT78Pz3+JqcNlw=";
-        allowedIPs = ["10.3.3.3/32"];
+        allowedIPs = [ "10.3.3.3/32" ];
         persistentKeepalive = 25;
       }
     ];

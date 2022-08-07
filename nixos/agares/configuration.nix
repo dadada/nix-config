@@ -7,6 +7,9 @@
     ./hardware-configuration.nix
   ];
 
+  # to be able to use qemu from substituter
+  environment.noXlibs = false;
+
   dadada = {
     admin.enable = true;
     networking.localResolver.enable = true;

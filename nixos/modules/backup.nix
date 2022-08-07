@@ -19,6 +19,7 @@ with lib; let
     "/sys"
     "/tmp"
     "/var/cache"
+    "/var/lib/machines"
     "/var/log"
     "/var/tmp"
   ];

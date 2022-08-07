@@ -1,9 +1,16 @@
 { config
+, admins
 , pkgs
 , lib
 , ...
 }:
 with lib; {
+  imports = [
+    ./backup.nix
+  ];
+
+  dadada.admin.users = admins;
+
   networking.domain = mkDefault "dadada.li";
   networking.tempAddresses = "disabled";
 

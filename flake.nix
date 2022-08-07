@@ -28,6 +28,10 @@
     recipemd = {
       url = github:dadada/recipemd/nix-flake;
     };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "myNixpkgs";
+    };
   };
 
   outputs = { ... } @ args: import ./outputs.nix args;

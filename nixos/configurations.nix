@@ -1,5 +1,7 @@
+# TODO refactor adapterModule and redundant module config
 { self
 , admins
+, agenixModule
 , nixpkgs
 , nixosSystem
 , home-manager
@@ -8,6 +10,7 @@
 , nvd
 , scripts
 , recipemd
+, secretsPath
 ,
 }:
 let
@@ -23,17 +26,16 @@ let
       ];
   };
   lib = nixpkgs.lib;
-  adminConfig = users: {
-    dadada.admin.users = lib.getAttrs users admins;
-  };
 in
 {
   gorgon = nixosSystem rec {
     system = "x86_64-linux";
+    specialArgs = { inherit admins secretsPath; };
     modules =
       (nixpkgs.lib.attrValues self.nixosModules)
       ++ [
         (adapterModule system)
+        agenixModule
         nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen1
         home-manager.nixosModules.home-manager
         {
@@ -52,34 +54,38 @@ in
   };
   ifrit = nixosSystem rec {
     system = "x86_64-linux";
+    specialArgs = { inherit admins secretsPath; };
     modules =
       (nixpkgs.lib.attrValues self.nixosModules)
       ++ [
-        (adminConfig [ "dadada" ])
+        agenixModule
         (adapterModule system)
         ./modules/profiles/server.nix
         ./ifrit/configuration.nix
+        ./ifrit/hardware-configuration.nix
       ];
   };
 
   surgat = nixosSystem rec {
     system = "x86_64-linux";
+    specialArgs = { inherit admins secretsPath; };
     modules =
       (nixpkgs.lib.attrValues self.nixosModules)
       ++ [
-        (adminConfig [ "dadada" ])
         (adapterModule system)
+        agenixModule
         ./modules/profiles/server.nix
         ./surgat/configuration.nix
       ];
   };
   pruflas = nixosSystem rec {
     system = "x86_64-linux";
+    specialArgs = { inherit admins secretsPath; };
     modules =
       (nixpkgs.lib.attrValues self.nixosModules)
       ++ [
-        (adminConfig [ "dadada" ])
         (adapterModule system)
+        agenixModule
         ./modules/profiles/laptop.nix
         ./pruflas/configuration.nix
       ];
@@ -87,11 +93,12 @@ in
 
   agares = nixosSystem rec {
     system = "x86_64-linux";
+    specialArgs = { inherit admins secretsPath; };
     modules =
       (nixpkgs.lib.attrValues self.nixosModules)
       ++ [
-        (adminConfig [ "dadada" ])
         (adapterModule system)
+        agenixModule
         ./modules/profiles/server.nix
         ./agares/configuration.nix
       ];

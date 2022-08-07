@@ -4,9 +4,15 @@
 , ...
 }:
 with lib; {
+  imports = [
+    ./backup.nix
+  ];
+
   networking.domain = mkDefault "dadada.li";
 
   services.fwupd.enable = mkDefault true;
+
+  age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
   fonts.fonts = mkDefault (with pkgs; [
     source-code-pro

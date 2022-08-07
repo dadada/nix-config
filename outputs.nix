@@ -9,13 +9,18 @@
 , nvd
 , scripts
 , recipemd
+, agenix
 , ...
 } @ inputs:
+let
+  secretsPath = ./secrets;
+in
 (flake-utils.lib.eachDefaultSystem (system:
   let
     pkgs = nixpkgs.legacyPackages.${system};
     selfPkgs = self.packages.${system};
     formatter = self.formatter.${system};
+    agenix-bin = agenix.packages."${system}".agenix;
   in
   {
     apps.nixos-switch = {
@@ -51,7 +56,7 @@
         $link/activate
       '');
     };
-    devShell = pkgs.callPackage ./shell.nix { };
+    devShell = pkgs.callPackage ./shell.nix { inherit agenix-bin; };
     formatter = nixpkgs.legacyPackages."${system}".nixpkgs-fmt;
     checks = {
       format = pkgs.runCommand "check-format" { buildInputs = [ formatter ]; } "${formatter}/bin/nixpkgs-fmt --check ${./.} && touch $out";
@@ -63,9 +68,10 @@
   };
   hmModules = import ./home/modules inputs;
   nixosConfigurations = import ./nixos/configurations.nix {
+    agenixModule = agenix.nixosModule;
     nixosSystem = nixpkgs.lib.nixosSystem;
     admins = import ./admins.nix;
-    inherit self nixpkgs home-manager nixos-hardware nvd scripts homePage recipemd;
+    inherit self secretsPath nixpkgs home-manager nixos-hardware nvd scripts homePage recipemd;
   };
   nixosModules = import ./nixos/modules inputs;
   overlays = import ./overlays;

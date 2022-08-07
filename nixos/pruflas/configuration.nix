@@ -103,6 +103,7 @@ with lib; {
   };
 
   networking.domain = "dadada.li";
+  networking.tempAddresses = "disabled";
 
   users.mutableUsers = true;
 

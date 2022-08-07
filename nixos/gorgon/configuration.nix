@@ -1,6 +1,7 @@
 { config
 , pkgs
 , lib
+, secretsPath
 , ...
 }:
 let
@@ -49,10 +50,6 @@ in
         s0 = true;
       };
       vpnExtension = "3";
-    };
-    backupClient = {
-      bs.enable = true;
-      gs.enable = false;
     };
   };
 

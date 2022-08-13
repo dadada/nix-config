@@ -65,7 +65,7 @@ with pkgs; [
   josm
   jq
   jq
-  jupyter
+  #jupyter
   kcachegrind
   keepassxc
   kubetail

@@ -56,7 +56,17 @@ in
         $link/activate
       '');
     };
-    devShell = pkgs.callPackage ./shell.nix { inherit agenix-bin; };
+
+    devShell = pkgs.callPackage
+      ({}:
+        pkgs.mkShell {
+          buildInputs = [
+            agenix-bin
+          ];
+        }
+      )
+      { };
+
     formatter = nixpkgs.legacyPackages."${system}".nixpkgs-fmt;
     checks = {
       format = pkgs.runCommand "check-format" { buildInputs = [ formatter ]; } "${formatter}/bin/nixpkgs-fmt --check ${./.} && touch $out";

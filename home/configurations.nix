@@ -1,7 +1,7 @@
 { self
 , nixpkgs
 , home-manager
-,
+, ...
 } @ inputs:
 let
   hmConfiguration =

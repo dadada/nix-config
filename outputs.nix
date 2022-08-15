@@ -12,89 +12,36 @@
 , agenix
 , ...
 } @ inputs:
-let
-  secretsPath = ./secrets;
-in
 (flake-utils.lib.eachDefaultSystem (system:
   let
     pkgs = nixpkgs.legacyPackages.${system};
     selfPkgs = self.packages.${system};
     formatter = self.formatter.${system};
-    agenix-bin = agenix.packages."${system}".agenix;
+    agenix-bin = agenix.defaultPackage."${system}";
   in
   {
-    apps.nixos-switch = {
-      type = "app";
-      program = toString (pkgs.writeScript "deploy" ''
-        #!${pkgs.runtimeShell}
-        flake=$(nix flake metadata --json ${./.} | jq -r .url)
-        nixos-rebuild switch --flake ".#$1" --use-remote-sudo
-      '');
-    };
-    apps.deploy = {
-      type = "app";
-      program = toString (pkgs.writeScript "deploy" ''
-        #!${pkgs.runtimeShell}
-        domain='dadada.li'
-        flake=$(nix flake metadata --json ${./.} | jq -r .url)
-        nixos-rebuild switch --upgrade --flake "''${flake}#$1" --target-host "''${1}.$domain" --build-host localhost --use-remote-sudo
-      '');
-    };
-    apps.hm-switch = {
-      type = "app";
-      program = toString (pkgs.writeScript "hm-switch" ''
-        #!${pkgs.runtimeShell}
-        set -eu -o pipefail -x
-        tmpdir=$(mktemp -d)
-        export PATH=${pkgs.lib.makeBinPath [pkgs.coreutils pkgs.nixFlakes pkgs.jq]}
-        trap "rm -rf $tmpdir" EXIT
-        declare -A profiles=(["gorgon"]="home")
-        profile=''${profiles[$HOSTNAME]:-common}
-        flake=$(nix flake metadata --json ${./.} | jq -r .url)
-        nix build --out-link "$tmpdir/result" "$flake#hmConfigurations.''${profile}.activationPackage" "$@"
-        link=$(realpath $tmpdir/result)
-        $link/activate
-      '');
-    };
+    apps = import ./apps.nix { inherit pkgs; };
 
-    devShell = pkgs.callPackage
-      ({}:
-        pkgs.mkShell {
-          buildInputs = [
-            agenix-bin
-          ];
-        }
-      )
-      { };
+    devShells.default = pkgs.callPackage ./dev-shell.nix { inherit pkgs agenix-bin; };
 
     formatter = nixpkgs.legacyPackages."${system}".nixpkgs-fmt;
-    checks = {
-      format = pkgs.runCommand "check-format" { buildInputs = [ formatter ]; } "${formatter}/bin/nixpkgs-fmt --check ${./.} && touch $out";
-    };
+
+    checks = import ./checks.nix { inherit formatter pkgs; };
   }))
   // {
-  hmConfigurations = import ./home/configurations.nix {
-    inherit self nixpkgs home-manager;
-  };
+
+  hmConfigurations = import ./home/configurations.nix inputs;
+
   hmModules = import ./home/modules inputs;
-  nixosConfigurations = import ./nixos/configurations.nix {
-    agenixModule = agenix.nixosModule;
-    nixosSystem = nixpkgs.lib.nixosSystem;
+
+  nixosConfigurations = import ./nixos/configurations.nix (inputs // {
     admins = import ./admins.nix;
-    inherit self secretsPath nixpkgs home-manager nixos-hardware nvd scripts homePage recipemd;
-  };
+    secretsPath = ./secrets;
+  });
+
   nixosModules = import ./nixos/modules inputs;
+
   overlays = import ./overlays;
-  hydraJobs =
-    (
-      nixpkgs.lib.mapAttrs'
-        (name: config: nixpkgs.lib.nameValuePair name config.config.system.build.toplevel)
-        self.nixosConfigurations
-    )
-    // (
-      nixpkgs.lib.mapAttrs'
-        (name: config: nixpkgs.lib.nameValuePair name config.activation-script)
-        self.hmConfigurations
-    )
-    // (let tests = import ./tests; in flake-utils.lib.eachDefaultSystem tests);
+
+  hydraJobs = import ./hydra-jobs.nix inputs;
 }

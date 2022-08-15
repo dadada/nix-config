@@ -1,9 +1,8 @@
 # TODO refactor adapterModule and redundant module config
 { self
 , admins
-, agenixModule
+, agenix
 , nixpkgs
-, nixosSystem
 , home-manager
 , homePage
 , nixos-hardware
@@ -11,9 +10,11 @@
 , scripts
 , recipemd
 , secretsPath
-,
+, ...
 }:
 let
+  nixosSystem = nixpkgs.lib.nixosSystem;
+  agenixModule = agenix.nixosModule;
   adapterModule = system: {
     nixpkgs.config.allowUnfreePredicate = pkg: true;
     nixpkgs.overlays =

@@ -8,7 +8,8 @@
       nixos-rebuild switch --flake ".#$1" --use-remote-sudo
     '');
   };
-  apps.deploy = {
+
+  deploy = {
     type = "app";
     program = toString (pkgs.writeScript "deploy" ''
       #!${pkgs.runtimeShell}
@@ -17,6 +18,7 @@
       nixos-rebuild switch --upgrade --flake "''${flake}#$1" --target-host "''${1}.$domain" --build-host localhost --use-remote-sudo
     '');
   };
+
   hm-switch = {
     type = "app";
     program = toString (pkgs.writeScript "hm-switch" ''

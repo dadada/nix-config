@@ -15,7 +15,11 @@
       #!${pkgs.runtimeShell}
       domain='dadada.li'
       flake=$(nix flake metadata --json ${./.} | jq -r .url)
-      nixos-rebuild switch --upgrade --flake "''${flake}#$1" --target-host "''${1}.$domain" --build-host localhost --use-remote-sudo
+      for host in "$@"
+      do
+        echo "=== Deploying ''${host} ==="
+        nixos-rebuild switch --upgrade --flake "''${flake}#$host" --target-host "''${host}.$domain" --build-host localhost --use-remote-sudo
+      done
     '');
   };
 

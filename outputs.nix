@@ -1,5 +1,6 @@
 # Adapted from Mic92/dotfiles
 { self
+, deploy-rs
 , flake-utils
 , homePage
 , nixpkgs
@@ -17,16 +18,14 @@
     pkgs = nixpkgs.legacyPackages.${system};
     selfPkgs = self.packages.${system};
     formatter = self.formatter.${system};
-    agenix-bin = agenix.defaultPackage."${system}";
   in
   {
     apps = import ./apps.nix { inherit pkgs; };
 
-    devShells.default = pkgs.callPackage ./dev-shell.nix { inherit pkgs agenix-bin; };
+    devShells.default = pkgs.callPackage ./dev-shell.nix inputs // { inherit pkgs system; };
 
     formatter = nixpkgs.legacyPackages."${system}".nixpkgs-fmt;
 
-    checks = import ./checks.nix { inherit formatter pkgs; };
   }))
   // {
 
@@ -44,4 +43,8 @@
   overlays = import ./overlays;
 
   hydraJobs = import ./hydra-jobs.nix inputs;
+
+  deploy = import ./deploy.nix inputs;
+
+  checks = import ./checks.nix inputs;
 }

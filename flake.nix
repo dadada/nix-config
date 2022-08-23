@@ -32,6 +32,10 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "myNixpkgs";
     };
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "myNixpkgs";
+    };
   };
 
   outputs = { ... } @ args: import ./outputs.nix args;

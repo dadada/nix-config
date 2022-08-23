@@ -1,6 +1,7 @@
-{ pkgs, agenix-bin, ... }:
+{ pkgs, agenix, deploy-rs, system, ... }:
 pkgs.mkShell {
   buildInputs = [
-    agenix-bin
+    agenix.defaultPackage."${system}"
+    deploy-rs.defaultPackage."${system}"
   ];
 }

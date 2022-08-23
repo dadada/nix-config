@@ -17,7 +17,9 @@ let
   };
 in
 {
-  nodes.ifrit = daNode "ifrit";
-  nodes.pruflas = daNode "pruflas";
+  nodes = builtins.mapAttrs (hostname: fun: fun hostname) {
+    ifrit = daNode;
+    pruflas = daNode;
+  };
 }
 

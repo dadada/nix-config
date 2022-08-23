@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{ pkgs
+, deploy-rs
+, system
+, ...
+}:
 {
   nixos-switch = {
     type = "app";
@@ -14,7 +18,7 @@
     program = toString (pkgs.writeScript "self-deploy" ''
       #!${pkgs.runtimeShell}
       flake=$(nix flake metadata --json ${./.} | jq -r .url)
-      deploy ''${flake}
+      ${deploy-rs.apps."${system}".deploy-rs.program} ''${flake}
     '');
   };
 }

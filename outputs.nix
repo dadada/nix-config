@@ -20,7 +20,7 @@
     formatter = self.formatter.${system};
   in
   {
-    apps = import ./apps.nix { inherit pkgs; };
+    apps = import ./apps.nix (inputs // { inherit pkgs system; });
 
     devShells.default = pkgs.callPackage ./dev-shell.nix inputs // { inherit pkgs system; };
 

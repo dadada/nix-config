@@ -18,8 +18,10 @@ let
 in
 {
   nodes = builtins.mapAttrs (hostname: fun: fun hostname) {
+    agares = daNode;
     ifrit = daNode;
     pruflas = daNode;
+    surgat = daNode;
   };
 }
 

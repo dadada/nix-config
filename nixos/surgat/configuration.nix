@@ -41,7 +41,6 @@ in
 
   dadada.element.enable = true;
   dadada.gitea.enable = true;
-  dadada.networking.vpnExtension = "4";
   dadada.weechat.enable = true;
   dadada.homePage.enable = true;
   dadada.share.enable = true;

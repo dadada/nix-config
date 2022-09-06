@@ -25,7 +25,6 @@
     devShells.default = pkgs.callPackage ./dev-shell.nix inputs // { inherit pkgs system; };
 
     formatter = nixpkgs.legacyPackages."${system}".nixpkgs-fmt;
-
   }))
   // {
 

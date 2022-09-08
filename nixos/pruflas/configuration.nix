@@ -100,6 +100,8 @@ with lib; {
   networking.domain = "dadada.li";
   networking.tempAddresses = "disabled";
 
+  networking.networkmanager.enable = false;
+
   users.mutableUsers = true;
 
   dadada.networking.localResolver.enable = true;

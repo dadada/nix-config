@@ -14,7 +14,7 @@
     {
       device = "/dev/disk/by-uuid/767a84ad-4157-4e9f-a3db-145449edd3bc";
       fsType = "btrfs";
-      options = [ "subvol=root" ];
+      options = [ "subvol=root" "compress=zstd" ];
     };
 
   fileSystems."/boot" =
@@ -27,16 +27,22 @@
     {
       device = "/dev/disk/by-uuid/767a84ad-4157-4e9f-a3db-145449edd3bc";
       fsType = "btrfs";
-      options = [ "subvol=home" ];
+      options = [ "subvol=home" "compress=zstd" ];
     };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/767a84ad-4157-4e9f-a3db-145449edd3bc";
     fsType = "btrfs";
-    options = [ "subvol=nix" ];
+    options = [ "subvol=nix" "compress=zstd" ];
   };
 
-  swapDevices = [ ];
+  fileSystems."/swap" = {
+    device = "/dev/disk/by-uuid/767a84ad-4157-4e9f-a3db-145449edd3bc";
+    fsType = "btrfs";
+    options = [ "subvol=swap" "noatime" ];
+  };
+
+  swapDevices = [ { device = "/swap/swapfile"; } ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 

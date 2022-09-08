@@ -72,13 +72,6 @@ with lib; {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  swapDevices = [
-    {
-      device = "/var/swapfile";
-      size = 32768;
-    }
-  ];
-
   # Desktop things for media playback
 
   services.xserver.enable = true;

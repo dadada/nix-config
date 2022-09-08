@@ -42,7 +42,7 @@
     options = [ "subvol=swap" "noatime" ];
   };
 
-  swapDevices = [ { device = "/swap/swapfile"; } ];
+  swapDevices = [{ device = "/swap/swapfile"; }];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 

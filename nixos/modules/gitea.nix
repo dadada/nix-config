@@ -52,9 +52,10 @@ in
     };
 
     services.redis = {
-      enable = true;
+      servers."gitea" = {
+        enable = true;
+      };
       vmOverCommit = true;
-      #unixSocket = redisSocket;
     };
 
     services.nginx.virtualHosts."git.${config.networking.domain}" = {

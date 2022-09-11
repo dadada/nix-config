@@ -4,7 +4,6 @@
 , nixpkgs
 , ...
 }:
-#builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib //
 (flake-utils.lib.eachDefaultSystem (system:
   let
     pkgs = nixpkgs.legacyPackages.${system};

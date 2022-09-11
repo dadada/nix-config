@@ -39,7 +39,7 @@
 
   nixosModules = import ./nixos/modules inputs;
 
-  overlays = import ./overlays;
+  overlays = import ./overlays.nix;
 
   hydraJobs = import ./hydra-jobs.nix inputs;
 

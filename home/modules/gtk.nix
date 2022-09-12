@@ -13,7 +13,7 @@ in
   config = mkIf cfg.enable {
     gtk = {
       enable = true;
-      theme.name = "Adwaita";
+      theme.name = "Adwaita-dark";
     };
   };
 }

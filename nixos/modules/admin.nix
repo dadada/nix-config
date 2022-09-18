@@ -49,7 +49,7 @@ in
 
       users = mkOption {
         type = with types; attrsOf (submodule adminOpts);
-        default = { };
+        default = import ../../admins.nix;
         description = ''
           Admin users with root access machine.
         '';
@@ -67,6 +67,13 @@ in
   };
 
   config = mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = cfg.users != [ ];
+        message = "Must provide at least one admin, if the admin module is enabled.";
+      }
+    ];
+
     programs.zsh.enable = mkDefault true;
 
     services.sshd.enable = true;

@@ -1,4 +1,4 @@
-{ ... } @ inputs: {
+{
   admin = import ./admin.nix;
   backup = import ./backup.nix;
   borgServer = import ./borg-server.nix;
@@ -11,7 +11,10 @@
   homepage = import ./homepage.nix;
   kanboard = import ./kanboard;
   networking = import ./networking.nix;
-  nix = import ./nix.nix inputs;
+  nix = import ./nix.nix;
+  nixpkgs = import ./nixpkgs.nix;
+  packages = import ./packages.nix;
+  secrets = import ./secrets.nix;
   share = import ./share.nix;
   steam = import ./steam.nix;
   update = import ./update.nix;

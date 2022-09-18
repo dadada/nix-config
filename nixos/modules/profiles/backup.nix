@@ -1,4 +1,7 @@
-{ config, secretsPath, ... }:
+{ config, ... }:
+let
+  secretsPath = config.dadada.secrets.path;
+in
 {
   dadada.backupClient.bs = {
     enable = true;

@@ -30,14 +30,11 @@
 
   hmConfigurations = import ./home/configurations.nix inputs;
 
-  hmModules = import ./home/modules inputs;
+  hmModules = import ./home/modules;
 
-  nixosConfigurations = import ./nixos/configurations.nix (inputs // {
-    admins = import ./admins.nix;
-    secretsPath = ./secrets;
-  });
+  nixosConfigurations = import ./nixos/configurations.nix inputs;
 
-  nixosModules = import ./nixos/modules inputs;
+  nixosModules = import ./nixos/modules;
 
   overlays = import ./overlays.nix;
 

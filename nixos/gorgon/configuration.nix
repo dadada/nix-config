@@ -83,7 +83,7 @@ in
   environment.systemPackages = with pkgs; [
     chromium
     ghostscript
-    recipemd
+    config.dadada.pkgs.recipemd
   ];
 
   networking.firewall = {

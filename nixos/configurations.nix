@@ -1,6 +1,4 @@
-# TODO refactor adapterModule and redundant module config
 { self
-, admins
 , agenix
 , nixpkgs
 , home-manager
@@ -9,99 +7,79 @@
 , nvd
 , scripts
 , recipemd
-, secretsPath
 , ...
-}:
+}@inputs:
 let
-  nixosSystem = nixpkgs.lib.nixosSystem;
-  agenixModule = agenix.nixosModule;
-  adapterModule = system: {
-    nixpkgs.config.allowUnfreePredicate = pkg: true;
-    nixpkgs.overlays =
-      (nixpkgs.lib.attrValues self.overlays)
-      ++ [
-        (final: prev: { homePage = homePage.defaultPackage.${system}; })
-        (final: prev: { s = scripts; })
-        (final: prev: { n = nvd; })
-        (final: prev: { recipemd = recipemd.defaultPackage.${system}; })
-      ];
+  getDefaultPkgs = system: flakes: nixpkgs.lib.mapAttrs (_: value: nixpkgs.lib.getAttr system value.defaultPackage) flakes;
+
+  nixosSystem = { system ? "x86_64-linux", extraModules ? [ ] }: nixpkgs.lib.nixosSystem {
+    inherit system;
+
+    modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [ agenix.nixosModule ] ++ extraModules;
   };
-  lib = nixpkgs.lib;
 in
 {
   gorgon = nixosSystem rec {
     system = "x86_64-linux";
-    specialArgs = { inherit admins secretsPath; };
-    modules =
-      (nixpkgs.lib.attrValues self.nixosModules)
-      ++ [
-        (adapterModule system)
-        agenixModule
-        nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen1
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.sharedModules =
-            (nixpkgs.lib.attrValues self.hmModules)
-            ++ [
-              { manual.manpages.enable = false; }
-            ];
-          home-manager.users.dadada = import ../home/home;
-        }
-        ./modules/profiles/laptop.nix
-        ./gorgon/configuration.nix
-      ];
+
+    extraModules = [
+      {
+        nixpkgs.overlays = nixpkgs.lib.attrValues self.overlays;
+        dadada.pkgs = getDefaultPkgs system {
+          inherit scripts nvd recipemd;
+        };
+
+        # Add flakes to registry and nix path.
+        dadada.inputs = inputs // { dadada = self; };
+      }
+
+      nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen1
+
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.sharedModules = (nixpkgs.lib.attrValues self.hmModules) ++ [
+          { manual.manpages.enable = false; }
+        ];
+        home-manager.users.dadada = import ../home/home;
+      }
+
+      ./modules/profiles/laptop.nix
+      ./gorgon/configuration.nix
+    ];
   };
-  ifrit = nixosSystem rec {
-    system = "x86_64-linux";
-    specialArgs = { inherit admins secretsPath; };
-    modules =
-      (nixpkgs.lib.attrValues self.nixosModules)
-      ++ [
-        agenixModule
-        (adapterModule system)
-        ./modules/profiles/server.nix
-        ./ifrit/configuration.nix
-        ./ifrit/hardware-configuration.nix
-      ];
+
+  ifrit = nixosSystem {
+    extraModules = [
+      ./modules/profiles/server.nix
+      ./ifrit/configuration.nix
+      ./ifrit/hardware-configuration.nix
+    ];
   };
 
   surgat = nixosSystem rec {
     system = "x86_64-linux";
-    specialArgs = { inherit admins secretsPath; };
-    modules =
-      (nixpkgs.lib.attrValues self.nixosModules)
-      ++ [
-        (adapterModule system)
-        agenixModule
-        ./modules/profiles/server.nix
-        ./surgat/configuration.nix
-      ];
-  };
-  pruflas = nixosSystem rec {
-    system = "x86_64-linux";
-    specialArgs = { inherit admins secretsPath; };
-    modules =
-      (nixpkgs.lib.attrValues self.nixosModules)
-      ++ [
-        (adapterModule system)
-        agenixModule
-        ./modules/profiles/laptop.nix
-        ./pruflas/configuration.nix
-      ];
+    extraModules = [
+      {
+        dadada.homePage.package = homePage.defaultPackage.${system};
+      }
+      ./modules/profiles/server.nix
+      ./surgat/configuration.nix
+    ];
   };
 
-  agares = nixosSystem rec {
-    system = "x86_64-linux";
-    specialArgs = { inherit admins secretsPath; };
-    modules =
-      (nixpkgs.lib.attrValues self.nixosModules)
-      ++ [
-        (adapterModule system)
-        agenixModule
-        ./modules/profiles/server.nix
-        ./agares/configuration.nix
-      ];
+  pruflas = nixosSystem {
+    extraModules = [
+      ./modules/profiles/laptop.nix
+      ./pruflas/configuration.nix
+    ];
+  };
+
+  agares = nixosSystem {
+    extraModules = [
+      ./modules/profiles/server.nix
+      ./agares/configuration.nix
+    ];
   };
 }

@@ -1,7 +1,6 @@
 { config
 , pkgs
 , lib
-, admins
 , ...
 }:
 with lib; {
@@ -42,7 +41,6 @@ with lib; {
   };
 
   dadada.admin.enable = true;
-  dadada.admin.users = admins;
 
   dadada.backupClient = {
     bs.enable = true;

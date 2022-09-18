@@ -1,6 +1,7 @@
 { self
 , nixpkgs
 , home-manager
+, nix-doom-emacs
 , ...
 } @ inputs:
 let
@@ -10,15 +11,16 @@ let
     , system ? "x86_64-linux"
     , username ? "dadada"
     , stateVersion
-    ,
     }: (home-manager.lib.homeManagerConfiguration {
       configuration = { ... }: {
         imports = (nixpkgs.lib.attrValues self.hmModules) ++ extraModules;
+
         nixpkgs = {
           config = import ./nixpkgs-config.nix {
             pkgs = nixpkgs;
           };
         };
+
         manual.manpages.enable = false;
       };
       inherit system homeDirectory username stateVersion;
@@ -26,7 +28,7 @@ let
 in
 {
   home = hmConfiguration {
-    extraModules = [ ./home ];
+    extraModules = [ ./home nix-doom-emacs.hmModule ];
     stateVersion = "20.09";
   };
 }

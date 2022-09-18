@@ -9,6 +9,10 @@ in
 with lib; {
   options.dadada.homePage = {
     enable = mkEnableOption "Enable home page";
+    package = mkOption {
+      type = lib.types.package;
+      description = "Package containing the homepage";
+    };
   };
   config = mkIf cfg.enable {
     services.nginx.enable = true;
@@ -16,7 +20,7 @@ with lib; {
     services.nginx.virtualHosts."dadada.li" = {
       enableACME = true;
       forceSSL = true;
-      root = "${pkgs.homePage}";
+      root = "${cfg.package}";
     };
   };
 }

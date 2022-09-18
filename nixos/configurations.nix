@@ -78,7 +78,6 @@ in
 
   agares = nixosSystem {
     extraModules = [
-      ./modules/profiles/server.nix
       ./agares/configuration.nix
     ];
   };

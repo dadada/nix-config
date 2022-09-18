@@ -4,6 +4,7 @@
 , ...
 }: {
   imports = [
+    ../modules/profiles/server.nix
     ./hardware-configuration.nix
   ];
 

@@ -93,6 +93,8 @@ with lib; {
     isNormalUser = true;
     description = "Media playback user";
     extraGroups = [ "users" "video" ];
+    # allow anyone with physical access to log in
+    password = "media";
   };
 
   networking.domain = "dadada.li";

@@ -3,7 +3,13 @@
 , lib
 , ...
 }:
-with lib; {
+with lib;
+let
+  secretsPath = config.dadada.secrets.path;
+  wg0PrivKey = "${config.networking.hostName}-wg0-key";
+  wg0PresharedKey = "${config.networking.hostName}-wg0-preshared-key";
+in
+{
   imports = [ ./hardware-configuration.nix ];
 
   networking.hostName = "pruflas";
@@ -44,6 +50,27 @@ with lib; {
 
   dadada.backupClient = {
     bs.enable = true;
+  };
+
+  age.secrets.${wg0PrivKey}.file = "${secretsPath}/${wg0PrivKey}.age";
+  age.secrets.${wg0PresharedKey}.file = "${secretsPath}/${wg0PresharedKey}.age";
+
+  networking.wireguard = {
+    enable = true;
+    interfaces.uwupn = {
+      allowedIPsAsRoutes = true;
+      privateKeyFile = config.age.secrets.${wg0PrivKey}.path;
+      ips = [ "10.11.0.39/32" "fc00:1337:dead:beef::10.11.0.39/128" ];
+      peers = [
+        {
+          publicKey = "tuoiOWqgHz/lrgTcLjX+xIhvxh9jDH6gmDw2ZMvX5T8=";
+          allowedIPs = [ "10.11.0.0/22" "fc00:1337:dead:beef::10.11.0.0/118" "192.168.178.0/23" ];
+          endpoint = "53c70r.de:51820";
+          persistentKeepalive = 25;
+          presharedKeyFile = config.age.secrets.${wg0PresharedKey}.path;
+        }
+      ];
+    };
   };
 
   networking.useDHCP = false;
@@ -105,6 +132,8 @@ with lib; {
   users.mutableUsers = true;
 
   dadada.networking.localResolver.enable = true;
+  dadada.networking.localResolver.uwu = true;
+  dadada.networking.localResolver.s0 = true;
 
   dadada.autoUpgrade.enable = mkDefault true;
 

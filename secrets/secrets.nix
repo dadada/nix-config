@@ -12,7 +12,10 @@ let
     "${hostName}-backup-ssh-key.age".publicKeys = [ systems.${hostName} dadada ];
   };
 in
-{ } //
+{
+  "pruflas-wg0-key.age".publicKeys = [ systems.pruflas dadada ];
+  "pruflas-wg0-preshared-key.age".publicKeys = [ systems.pruflas dadada ];
+} //
 backupSecrets "gorgon" //
 backupSecrets "ifrit" //
 backupSecrets "pruflas" //

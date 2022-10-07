@@ -44,7 +44,19 @@ in
     appendHttpConfig = ''
       access_log off;
     '';
+
+    virtualHosts."pruflas.uwu" = {
+      enableACME = false;
+      forceSSL = false;
+      root = "/var/www/pruflas.uwu";
+      index = "index.html";
+      locations."/".tryFiles = "$uri $uri/ = 404";
+    };
   };
+
+  systemd.tmpfiles.rules = [
+    "d /var/www/pruflas.uwu 0551 nginx nginx - -"
+  ];
 
   dadada.admin.enable = true;
 

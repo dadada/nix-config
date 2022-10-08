@@ -37,6 +37,10 @@ in
     }
   ];
 
+  nix.extraOptions = ''
+    allowed-uris = https://github.com/NixOS https://github.com/nix-community https://github.com/dadada https://git.dadada.li/ github.com/ryantm/agenix github.com/serokell/deploy-rs https://gitlab.com/khumba/nvd.git
+  '';
+
   services.nginx = {
     enable = true;
     recommendedTlsSettings = true;

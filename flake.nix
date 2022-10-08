@@ -29,11 +29,11 @@
       url = github:dadada/recipemd/nix-flake;
     };
     agenix = {
-      url = "github:ryantm/agenix";
+      url = github:ryantm/agenix;
       inputs.nixpkgs.follows = "myNixpkgs";
     };
     deploy-rs = {
-      url = "github:serokell/deploy-rs";
+      url = github:serokell/deploy-rs;
       inputs.nixpkgs.follows = "myNixpkgs";
     };
   };

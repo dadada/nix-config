@@ -38,6 +38,7 @@ in
   ];
 
   services.nginx = {
+    enable = true;
     recommendedTlsSettings = true;
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
@@ -50,8 +51,10 @@ in
       enableACME = false;
       forceSSL = false;
       root = "/var/www/pruflas.uwu";
-      index = "index.html";
-      locations."/".tryFiles = "$uri $uri/ = 404";
+      locations."/" = {
+        tryFiles = "$uri $uri/ = 404";
+        index = "index.html";
+      };
     };
   };
 
@@ -109,7 +112,7 @@ in
     allowPing = true;
     allowedTCPPorts = [
       22 # SSH
-      80
+      80 # HTTP
       443 # HTTPS
       3000 # Hydra
     ];

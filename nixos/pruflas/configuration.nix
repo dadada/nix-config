@@ -20,6 +20,7 @@ in
 
   age.secrets.${hydraGitHubAuth} = {
     file = "${secretsPath}/${hydraGitHubAuth}.age";
+    mode = "440";
     owner = "hydra-www";
     group = "hydra";
   };

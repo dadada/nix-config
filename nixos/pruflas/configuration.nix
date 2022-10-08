@@ -24,8 +24,8 @@ in
     notificationSender = "hydra@localhost";
     buildMachinesFiles = [ ];
     useSubstitutes = true;
-    listenHost = "hydra.dadada.li";
     port = 3000;
+    listenHost = "10.3.3.3";
   };
 
   nix.buildMachines = [

@@ -4,7 +4,6 @@
 , ...
 }:
 let
-  redisSocket = "127.0.0.1:6379";
   cfg = config.dadada.gitea;
 in
 {
@@ -46,14 +45,15 @@ in
         cache = {
           ENABLE = true;
           ADAPTER = "redis";
-          HOST = "network=tcp,addr=${redisSocket},db=0,pool_size=100,idle_timeout=180";
+          HOST = "network=unix,addr=${config.services.redis.servers.gitea.unixSocket},db=0,pool_size=100,idle_timeout=180";
         };
       };
     };
 
     services.redis = {
-      servers."gitea" = {
+      servers.gitea = {
         enable = true;
+        user = config.services.gitea.user;
       };
       vmOverCommit = true;
     };

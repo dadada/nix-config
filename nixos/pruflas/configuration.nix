@@ -7,6 +7,7 @@ with lib;
 let
   secretsPath = config.dadada.secrets.path;
   wg0PrivKey = "${config.networking.hostName}-wg0-key";
+  wgHydraPrivKey = "${config.networking.hostName}-wg-hydra-key";
   wg0PresharedKey = "${config.networking.hostName}-wg0-preshared-key";
 in
 {
@@ -67,6 +68,8 @@ in
   age.secrets.${wg0PrivKey}.file = "${secretsPath}/${wg0PrivKey}.age";
   age.secrets.${wg0PresharedKey}.file = "${secretsPath}/${wg0PresharedKey}.age";
 
+  age.secrets.${wgHydraPrivKey}.file = "${secretsPath}/${wgHydraPrivKey}.age";
+
   networking.wireguard = {
     enable = true;
     interfaces.uwupn = {
@@ -80,6 +83,19 @@ in
           endpoint = "53c70r.de:51820";
           persistentKeepalive = 25;
           presharedKeyFile = config.age.secrets.${wg0PresharedKey}.path;
+        }
+      ];
+    };
+    interfaces.hydra = {
+      allowedIPsAsRoutes = true;
+      privateKeyFile = config.age.secrets.${wgHydraPrivKey}.path;
+      ips = [ "10.3.3.3/32" ];
+      peers = [
+        {
+          publicKey = "KzL+PKlv4LktIqqTqC9Esw8dkSZN2qSn/vq76UHbOlY=";
+          allowedIPs = [ "10.3.3.1/32" ];
+          endpoint = "hydra.dadada.li:51235";
+          persistentKeepalive = 25;
         }
       ];
     };

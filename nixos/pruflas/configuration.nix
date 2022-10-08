@@ -9,6 +9,7 @@ let
   wg0PrivKey = "${config.networking.hostName}-wg0-key";
   wgHydraPrivKey = "${config.networking.hostName}-wg-hydra-key";
   wg0PresharedKey = "${config.networking.hostName}-wg0-preshared-key";
+  hydraGitHubAuth = "hydra-github-authorization";
 in
 {
   imports = [ ./hardware-configuration.nix ];
@@ -16,6 +17,8 @@ in
   networking.hostName = "pruflas";
 
   services.logind.lidSwitch = "ignore";
+
+  age.secrets.${hydraGitHubAuth}.file = "${secretsPath}/${hydraGitHubAuth}.age";
 
   services.hydra = {
     enable = true;
@@ -26,6 +29,16 @@ in
     useSubstitutes = true;
     port = 3000;
     listenHost = "10.3.3.3";
+    extraConfig = ''
+      Include ${config.age.secrets."${hydraGitHubAuth}".path}
+
+      <githubstatus>
+        jobs = nix-config:nix-config.*
+        inputs = nix-config
+        excludeBuildFromContext = 1
+        useShortContext = 1
+      </githubstatus>
+    '';
   };
 
   nix.buildMachines = [

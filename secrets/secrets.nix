@@ -16,6 +16,7 @@ in
   "pruflas-wg0-key.age".publicKeys = [ systems.pruflas dadada ];
   "pruflas-wg0-preshared-key.age".publicKeys = [ systems.pruflas dadada ];
   "pruflas-wg-hydra-key.age".publicKeys = [ systems.pruflas dadada ];
+  "hydra-github-authorization.age".publicKeys = [ systems.pruflas dadada ];
 } //
 backupSecrets "gorgon" //
 backupSecrets "ifrit" //

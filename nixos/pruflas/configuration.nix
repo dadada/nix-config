@@ -18,7 +18,11 @@ in
 
   services.logind.lidSwitch = "ignore";
 
-  age.secrets.${hydraGitHubAuth}.file = "${secretsPath}/${hydraGitHubAuth}.age";
+  age.secrets.${hydraGitHubAuth} = {
+    file = "${secretsPath}/${hydraGitHubAuth}.age";
+    owner = "hydra-www";
+    group = "hydra";
+  };
 
   services.hydra = {
     enable = true;

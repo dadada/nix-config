@@ -10,7 +10,7 @@
         "emailoverride": "",
         "keepnr": 3,
         "inputs": {
-                "nixpkgs":{"emailresponsible":false,"type":"git","value":"git://github.com/NixOS/nixpkgs.git nixpkgs-22.05"},
-                "src":{"emailresponsible":false,"type":"git","value":"git://github.com/dadada/nix-config.git main"}
+                "nixpkgs":{"emailresponsible":false,"type":"git","value":"https://github.com/NixOS/nixpkgs.git nixpkgs-22.05"},
+                "src":{"emailresponsible":false,"type":"git","value":"https://github.com/dadada/nix-config.git main"}
         }
 }

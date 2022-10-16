@@ -1,5 +1,4 @@
 {
-    "main": {
         "enabled": 1,
         "hidden": false,
         "description": "nix-config",
@@ -11,5 +10,4 @@
         "keepnr": 3,
         "type": "flake",
         "inputs": {"nixpkgs":{"emailresponsible":false,"type":"git","value":"git://github.com/NixOS/nixpkgs.git nixpkgs-22.05"},"src":{"emailresponsible":false,"type":"git","value":"git://github.com/dadada/nix-config.git main"}}
-    }
 }

@@ -25,6 +25,23 @@
     devShells.default = pkgs.callPackage ./dev-shell.nix inputs // { inherit pkgs system; };
 
     formatter = nixpkgs.legacyPackages."${system}".nixpkgs-fmt;
+
+    jobsets = (import ./jobsets.nix {
+      inherit pkgs;
+      projectName = "nix-config";
+      declInput = {
+        src = {
+          type = "git";
+          value = "git://github.com/dadada/nix-config.git main";
+          emailresponsible = false;
+        };
+        nixpkgs = {
+          type = "git";
+          value = "git://github.com/NixOS/nixpkgs.git nixpkgs-22.05";
+          emailresponsible = false;
+        };
+      };
+    });
   }))
   // {
 

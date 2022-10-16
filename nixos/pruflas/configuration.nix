@@ -38,7 +38,7 @@ in
       Include ${config.age.secrets."${hydraGitHubAuth}".path}
 
       <githubstatus>
-        jobs = nix-config:nix-config.*
+        jobs = nix-config:main.*
         inputs = nix-config
         excludeBuildFromContext = 1
         useShortContext = 1

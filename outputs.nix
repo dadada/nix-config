@@ -42,6 +42,8 @@
         };
       };
     });
+
+    packages = import ./pkgs (inputs // { inherit pkgs; });
   }))
   // {
 

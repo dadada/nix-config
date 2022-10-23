@@ -84,6 +84,7 @@ in
     chromium
     ghostscript
     config.dadada.pkgs.recipemd
+    config.dadada.pkgs.map
   ];
 
   networking.firewall = {

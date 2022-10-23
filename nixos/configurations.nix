@@ -25,9 +25,9 @@ in
     extraModules = [
       {
         nixpkgs.overlays = nixpkgs.lib.attrValues self.overlays;
-        dadada.pkgs = getDefaultPkgs system {
+        dadada.pkgs = (getDefaultPkgs system {
           inherit scripts nvd recipemd;
-        };
+        }) // self.packages.${system};
 
         # Add flakes to registry and nix path.
         dadada.inputs = inputs // { dadada = self; };

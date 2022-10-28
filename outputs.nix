@@ -31,7 +31,7 @@
             devshell.overlay
           ];
         };
-        extraModules = [ "${devshell}/extra/git.nix" ];
+        extraModules = [ "${devshell}/extra/git/hooks.nix" ];
       in
       import ./devshell.nix { inherit pkgs extraModules; };
 

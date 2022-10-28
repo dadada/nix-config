@@ -47,4 +47,8 @@
       command = "nix flake check";
     }
   ];
+
+  git.hooks = {
+    pre-push = "nix flake check";
+  };
 })

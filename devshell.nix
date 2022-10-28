@@ -1,5 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, extraModules, ... }:
 (pkgs.devshell.mkShell {
+  imports = extraModules;
+
   name = "dadada/nix-config";
 
   packages = with pkgs; [
@@ -49,6 +51,6 @@
   ];
 
   git.hooks = {
-    pre-push = "nix flake check";
+    pre-push.text = "nix flake check";
   };
 })

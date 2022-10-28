@@ -31,8 +31,9 @@
             devshell.overlay
           ];
         };
+        extraModules = [ "${devshell}/extra/git.nix" ];
       in
-      import ./devshell.nix { inherit pkgs; };
+      import ./devshell.nix { inherit pkgs extraModules; };
 
     formatter = nixpkgs.legacyPackages."${system}".nixpkgs-fmt;
 

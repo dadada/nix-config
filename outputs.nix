@@ -11,6 +11,7 @@
 , scripts
 , recipemd
 , agenix
+, devshell
 , ...
 } @ inputs:
 (flake-utils.lib.eachDefaultSystem (system:
@@ -20,9 +21,18 @@
     formatter = self.formatter.${system};
   in
   {
-    apps = import ./apps.nix (inputs // { inherit pkgs system; });
-
-    devShells.default = pkgs.callPackage ./dev-shell.nix inputs // { inherit pkgs system; };
+    devShells.default =
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [
+            agenix.overlay
+            (final: prev: { deploy-rs = deploy-rs.defaultPackage.${system}; })
+            devshell.overlay
+          ];
+        };
+      in
+      import ./devshell.nix { inherit pkgs; };
 
     formatter = nixpkgs.legacyPackages."${system}".nixpkgs-fmt;
 

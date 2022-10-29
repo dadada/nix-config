@@ -41,6 +41,7 @@ in
 
   dadada.element.enable = true;
   dadada.gitea.enable = true;
+  dadada.miniflux.enable = true;
   dadada.weechat.enable = true;
   dadada.homePage.enable = true;
   dadada.share.enable = true;
@@ -63,11 +64,6 @@ in
       51234 # Wireguard
       51235 # Wireguard
     ];
-  };
-
-  security.acme = {
-    defaults.email = "d553a78d-0349-48db-9c20-5b27af3a1dfc@dadada.li";
-    acceptTerms = true;
   };
 
   # Use the GRUB 2 boot loader.

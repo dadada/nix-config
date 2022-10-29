@@ -10,6 +10,7 @@
   headphones = import ./headphones.nix;
   homepage = import ./homepage.nix;
   kanboard = import ./kanboard;
+  miniflux = import ./miniflux.nix;
   networking = import ./networking.nix;
   nix = import ./nix.nix;
   nixpkgs = import ./nixpkgs.nix;

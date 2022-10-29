@@ -6,6 +6,7 @@
 with lib; {
   imports = [
     ./backup.nix
+    ./base.nix
   ];
 
   networking.domain = mkDefault "dadada.li";

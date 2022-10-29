@@ -71,15 +71,6 @@ in
     ];
   };
 
-  services.miniflux = {
-    enable = true;
-    config = {
-      CLEANUP_FREQUENCY = "48";
-      LISTEN_ADDR = "localhost:8080";
-    };
-    adminCredentialsFile = "/var/lib/miniflux/admin-credentials";
-  };
-
   environment.systemPackages = with pkgs; [
     chromium
     ghostscript

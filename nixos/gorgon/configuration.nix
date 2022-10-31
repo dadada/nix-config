@@ -51,6 +51,7 @@ in
       };
       vpnExtension = "3";
     };
+    sway.enable = true;
   };
 
   boot.kernel.sysctl = {

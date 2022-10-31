@@ -18,6 +18,7 @@
   secrets = import ./secrets.nix;
   share = import ./share.nix;
   steam = import ./steam.nix;
+  sway = import ./sway.nix;
   update = import ./update.nix;
   vpnServer = import ./vpnServer.nix;
   weechat = import ./weechat.nix;

@@ -31,9 +31,6 @@ in
 
   programs.gpg.settings.default-key = "99658A3EB5CD7C13";
 
-  # Sway is configured in .#nixosModules.dadada.sway
-  home.file.".config/sway/config" = ../modules/sway/config;
-
   dadada.home =
     lib.attrsets.genAttrs useFeatures (useFeatures: { enable = true; })
     // {

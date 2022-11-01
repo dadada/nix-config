@@ -1,7 +1,8 @@
 { config, pkgs, lib, ... }:
 let
   cfg = config.dadada.home.helix;
-in {
+in
+{
   options.dadada.home.helix.enable = lib.mkEnableOption "Enable helix editor";
 
   config = lib.mkIf cfg.enable {

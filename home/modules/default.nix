@@ -10,6 +10,7 @@
   git = import ./git.nix;
   gpg = import ./gpg.nix;
   gtk = import ./gtk.nix;
+  helix = import ./helix;
   keyring = import ./keyring.nix;
   kitty = import ./kitty;
   mako = import ./mako.nix;

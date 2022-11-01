@@ -17,6 +17,7 @@ let
     "tmux"
     "xdg"
     "zsh"
+    "helix"
   ];
 in
 {

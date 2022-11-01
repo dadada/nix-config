@@ -51,6 +51,6 @@
   ];
 
   git.hooks = {
-    pre-push.text = "nix flake check";
+    pre-commit.text = "nix flake check";
   };
 })

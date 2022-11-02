@@ -3,10 +3,17 @@ let
   cfg = config.dadada.home.helix;
 in
 {
-  options.dadada.home.helix.enable = lib.mkEnableOption "Enable helix editor";
+  options.dadada.home.helix = {
+    enable = lib.mkEnableOption "Enable helix editor";
+    package = lib.mkOption {
+      type = lib.types.package;
+      description = "Helix editor package to use";
+      default = pkgs.helix;
+    };
+  };
 
   config = lib.mkIf cfg.enable {
     home.file.".config/helix".source = ./config;
-    home.packages = [ pkgs.helix ];
+    home.packages = [ cfg.package ];
   };
 }

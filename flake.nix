@@ -40,6 +40,7 @@
       url = github:numtide/devshell;
       inputs.nixpkgs.follows = "myNixpkgs";
     };
+    helix.url = github:helix-editor/helix/22.08.1;
   };
 
   outputs = { ... } @ args: import ./outputs.nix args;

@@ -2,6 +2,7 @@
 , nixpkgs
 , home-manager
 , nix-doom-emacs
+, helix
 , ...
 } @ inputs:
 let

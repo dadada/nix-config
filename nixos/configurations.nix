@@ -41,7 +41,7 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.sharedModules = (nixpkgs.lib.attrValues self.hmModules) ++ [
-          { dadada.home.helix.package = builtins.trace helix.packages.${system} helix.packages.${system}.helix; }
+          { dadada.home.helix.package = helix.packages.${system}.helix; }
           { manual.manpages.enable = false; }
         ];
         home-manager.users.dadada = import ../home/home;

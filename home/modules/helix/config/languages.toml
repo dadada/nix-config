@@ -1,6 +1,0 @@
-[[language]]
-name = "rust"
-
-[[language]]
-name = "nix"
-formatter = "nixpkgs-fmt"

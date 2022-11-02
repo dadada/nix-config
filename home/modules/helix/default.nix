@@ -14,6 +14,9 @@ in
 
   config = lib.mkIf cfg.enable {
     home.file.".config/helix".source = ./config;
-    home.packages = [ cfg.package ];
+    home.packages = [
+      cfg.package
+      pkgs.rnix-lsp
+    ];
   };
 }

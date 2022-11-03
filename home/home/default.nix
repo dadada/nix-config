@@ -38,7 +38,7 @@ in
       session = {
         enable = true;
         sessionVars = {
-          EDITOR = "vim";
+          EDITOR = "hx";
           PAGER = "less";
           MAILDIR = "\$HOME/.var/mail";
           MBLAZE = "\$HOME/.config/mblaze";

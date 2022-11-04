@@ -2,3 +2,6 @@
 line-number = "relative"
 mouse = true
 auto-completion = true
+
+[keys.normal]
+C-q = [ "goto_prev_paragraph", "goto_next_paragraph", ":reflow 80" ]

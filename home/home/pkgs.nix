@@ -32,6 +32,7 @@ with pkgs; [
   fzf
   fzf
   gdb
+  gh
   ghidra-bin
   gimp
   glow

@@ -1,3 +1,5 @@
+theme = "acme"
+
 [editor]
 line-number = "relative"
 mouse = true

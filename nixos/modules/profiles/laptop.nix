@@ -53,7 +53,7 @@ with lib; {
 
   services.fstrim.enable = mkDefault true;
 
-  services.avahi.enable = false;
+  services.avahi.enable = mkDefault false;
 
   networking.networkmanager.enable = mkDefault true;
   networking.firewall.enable = mkDefault true;

@@ -60,6 +60,8 @@ in
 
   programs.adb.enable = true;
 
+  services.avahi.enable = true;
+
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;

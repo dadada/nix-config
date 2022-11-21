@@ -28,7 +28,7 @@ in
           navigate = true; # use n and N to move between diff sections
           side-by-side = false;
           line-numbers = true;
-          light = true;
+          light = false;
         };
         diff = {
           renames = "copies";

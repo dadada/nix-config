@@ -1,15 +1,26 @@
-name: "nix flake check"
+name: Continuous Integration
+
 on:
   pull_request:
   push:
+    branches: [main]
+
 jobs:
-  tests:
+  checks:
+    name: Checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: cachix/install-nix-action@v18
+      - uses: actions/checkout@v2
+      - uses: cachix/install-nix-action@v15
         with:
-          install_url: https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20210604_8e6ee1b/install
+          nix_path: nixpkgs=channel:nixos-stable
           extra_nix_config: |
             experimental-features = nix-command flakes
-      - run: nix flake check --no-build
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            system-features = nixos-test benchmark big-parallel kvm
+      - uses: cachix/cachix-action@v11
+        with:
+          name: nix-config
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: Checks
+        run: nix flake check

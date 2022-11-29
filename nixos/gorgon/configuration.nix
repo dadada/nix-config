@@ -79,6 +79,7 @@ in
     ghostscript
     config.dadada.pkgs.recipemd
     config.dadada.pkgs.map
+    cachix
   ];
 
   networking.firewall = {

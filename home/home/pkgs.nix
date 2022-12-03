@@ -97,7 +97,6 @@ with pkgs; [
   pandoc # document converter and templater
   pass
   pavucontrol
-  php74Packages.composer
   pinentry-gnome
   playerctl
   procs # ps in rust

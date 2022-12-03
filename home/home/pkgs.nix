@@ -61,8 +61,6 @@ with pkgs; [
   irssi
   jameica
   jc # convert output to json
-  jetbrains.idea-community
-  jetbrains.phpstorm
   josm
   jq
   jq

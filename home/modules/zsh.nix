@@ -19,7 +19,7 @@ in
       enableVteIntegration = true;
       autocd = true;
       sessionVariables = {
-        EDITOR = "vim";
+        EDITOR = "hx";
       };
       history = {
         extended = true;

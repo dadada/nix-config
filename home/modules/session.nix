@@ -13,7 +13,7 @@ in
       type = types.attrs;
       default = { };
       example = ''
-        EDITOR = "vim";
+        EDITOR = "hx";
         PAGER = "less";
       '';
     };

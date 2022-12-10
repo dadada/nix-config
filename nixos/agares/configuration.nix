@@ -11,6 +11,9 @@
   # to be able to use qemu from substituter
   environment.noXlibs = false;
 
+  # libvirtd
+  security.polkit.enable = true;
+
   dadada = {
     admin.enable = true;
     networking.localResolver.enable = true;

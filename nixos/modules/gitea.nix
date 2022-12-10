@@ -17,7 +17,6 @@ in
       rootUrl = "https://git.dadada.li/";
       log.level = "Error";
       domain = config.networking.domain;
-      ssh.enable = true;
       cookieSecure = true;
       enableUnixSocket = true;
       database = {
@@ -28,6 +27,7 @@ in
         server = {
           LANDING_PAGE = "explore";
           OFFLINE_MODE = true;
+          DISABLE_SSH = false;
         };
         picture = {
           DISABLE_GRAVATAR = true;

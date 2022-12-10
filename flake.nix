@@ -5,7 +5,7 @@
     myNixpkgs.url = github:NixOS/nixpkgs/nixos-22.11;
     flake-utils.url = github:numtide/flake-utils;
     home-manager = {
-      url = github:nix-community/home-manager/release-22.05;
+      url = github:nix-community/home-manager/release-22.11;
       inputs.nixpkgs.follows = "myNixpkgs";
     };
     nix-doom-emacs = {

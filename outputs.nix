@@ -59,8 +59,6 @@
   }))
   // {
 
-  hmConfigurations = import ./home/configurations.nix inputs;
-
   hmModules = import ./home/modules;
 
   nixosConfigurations = import ./nixos/configurations.nix inputs;

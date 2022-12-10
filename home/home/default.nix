@@ -21,6 +21,8 @@ let
   ];
 in
 {
+  home.stateVersion = "20.09";
+
   programs.git = {
     signing = {
       key = "D68C84695C087E0F733A28D0EEB8D1CE62C4DFEA";

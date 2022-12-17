@@ -68,23 +68,23 @@ in
     };
 
     services.borgbackup.jobs.gs = mkIf cfg.gs.enable {
-        paths = "/";
-        exclude = backupExcludes;
-        repo = "/backup/${config.networking.hostName}";
-        doInit = false;
-        encryption = {
-          mode = "repokey";
-          passCommand = "cat ${cfg.gs.passphrasePath}";
-        };
-        compression = "auto,lz4";
-        prune.keep = {
-          within = "1d"; # Keep all archives from the last day
-          daily = 7;
-          weekly = 2;
-          monthly = -1; # Keep at least one archive for each month
-          yearly = -1; # Keep at least one archive for each year
-        };
-        startAt = "monthly";
+      paths = "/";
+      exclude = backupExcludes;
+      repo = "/backup/${config.networking.hostName}";
+      doInit = false;
+      encryption = {
+        mode = "repokey";
+        passCommand = "cat ${cfg.gs.passphrasePath}";
+      };
+      compression = "auto,lz4";
+      prune.keep = {
+        within = "1d"; # Keep all archives from the last day
+        daily = 7;
+        weekly = 2;
+        monthly = -1; # Keep at least one archive for each month
+        yearly = -1; # Keep at least one archive for each year
+      };
+      startAt = "monthly";
     };
 
     services.borgbackup.jobs.bs = mkIf cfg.bs.enable {

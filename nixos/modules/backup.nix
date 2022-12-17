@@ -58,8 +58,8 @@ in
     };
   };
 
-  config = mkIf cfg.gs.enable {
-    fileSystems = mkIf cfg.gs {
+  config = {
+    fileSystems = mkIf cfg.gs.enable {
       "/backup" = {
         device = "/dev/disk/by-uuid/0fdab735-cc3e-493a-b4ec-cbf6a77d48d5";
         fsType = "ext4";
@@ -67,8 +67,7 @@ in
       };
     };
 
-    services.borgbackup.jobs.gs =
-      {
+    services.borgbackup.jobs.gs = mkIf cfg.gs.enable {
         paths = "/";
         exclude = backupExcludes;
         repo = "/backup/${config.networking.hostName}";
@@ -86,26 +85,25 @@ in
           yearly = -1; # Keep at least one archive for each year
         };
         startAt = "monthly";
-      }
-      // mkIf cfg.bs.enable {
-        services.borgbackup.jobs.bs = {
-          paths = "/";
-          exclude = backupExcludes;
-          repo = "borg@backup0.dadada.li:/mnt/storage/backup/${config.networking.hostName}";
-          doInit = false;
-          environment = {
-            BORG_RSH = "ssh -i ${cfg.bs.sshIdentityFile} -o 'StrictHostKeyChecking accept-new' -o 'TCPKeepAlive=yes'";
-          };
-          encryption = {
-            mode = "repokey";
-            passCommand = "cat ${cfg.bs.passphrasePath}";
-          };
-          compression = "auto,lz4";
-          startAt = "daily";
-          environment = {
-            BORG_RELOCATED_REPO_ACCESS_IS_OK = "yes";
-          };
-        };
+    };
+
+    services.borgbackup.jobs.bs = mkIf cfg.bs.enable {
+      paths = "/";
+      exclude = backupExcludes;
+      repo = "borg@backup0.dadada.li:/mnt/storage/backup/${config.networking.hostName}";
+      doInit = false;
+      environment = {
+        BORG_RSH = "ssh -i ${cfg.bs.sshIdentityFile} -o 'StrictHostKeyChecking accept-new' -o 'TCPKeepAlive=yes'";
       };
+      encryption = {
+        mode = "repokey";
+        passCommand = "cat ${cfg.bs.passphrasePath}";
+      };
+      compression = "auto,lz4";
+      startAt = "daily";
+      environment = {
+        BORG_RELOCATED_REPO_ACCESS_IS_OK = "yes";
+      };
+    };
   };
 }

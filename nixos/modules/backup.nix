@@ -15,6 +15,7 @@ with lib; let
     "/mnt"
     "/nix"
     "/proc"
+    "/root"
     "/run"
     "/sys"
     "/tmp"

@@ -42,7 +42,7 @@ in
 
           prefetch = true;
           prefetch-key = true;
-          serve-expired = true;
+          serve-expired = false;
 
           aggressive-nsec = true;
           hide-identity = true;

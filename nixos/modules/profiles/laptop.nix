@@ -40,8 +40,8 @@ with lib; {
   };
 
   virtualisation = {
-    libvirtd.enable = mkDefault true;
-    docker.enable = mkDefault true;
+    libvirtd.enable = mkDefault false;
+    docker.enable = mkDefault false;
     docker.liveRestore = false;
   };
 

@@ -15,6 +15,13 @@ let
         echo "Signing paths" $OUT_PATHS
         nix store sign --key-file /etc/nix/key.private $OUT_PATHS
       '';
+  noMtpUdevRules = pkgs.writeTextFile {
+    name = "no-mtp-probe";
+    text = ''
+      ATTR{idVendor}=="0403", ATTR{idProduct}=="6010", ENV{MTP_NO_PROBE}="1", GROUP="dialout", MODE="0666"
+    '';
+    destination = "/etc/udev/rules.d/00-no-mtp.rules";
+  };
 in
 {
   imports = [
@@ -91,13 +98,18 @@ in
       21027 # Syncthing
     ];
   };
-
+  
+  systemd.services.modem-manager.enable = lib.mkForce false;
+  systemd.services."dbus-org.freedesktop.ModemManager1".enable = lib.mkForce false;
+  
+  services.udev.packages= [ noMtpUdevRules ];
+  
   virtualisation.libvirtd.enable = true;
 
   users.users = {
     dadada = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "kvm" "video" "scanner" "lp" "docker" ];
+      extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "kvm" "video" "scanner" "lp" "docker" "dialout" ];
       shell = "/run/current-system/sw/bin/zsh";
     };
   };

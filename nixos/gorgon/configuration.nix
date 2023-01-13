@@ -15,12 +15,13 @@ let
         echo "Signing paths" $OUT_PATHS
         nix store sign --key-file /etc/nix/key.private $OUT_PATHS
       '';
-  noMtpUdevRules = pkgs.writeTextFile {
-    name = "no-mtp-probe";
+
+  xilinxJtag = pkgs.writeTextFile {
+    name = "xilinx-jtag";
     text = ''
-      ATTR{idVendor}=="0403", ATTR{idProduct}=="6010", ENV{MTP_NO_PROBE}="1", GROUP="dialout", MODE="0666"
+      ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", TAG+="uaccess"
     '';
-    destination = "/etc/udev/rules.d/00-no-mtp.rules";
+    destination = "/etc/udev/rules.d/61-xilinx-jtag.rules";
   };
 in
 {
@@ -102,7 +103,7 @@ in
   systemd.services.modem-manager.enable = lib.mkForce false;
   systemd.services."dbus-org.freedesktop.ModemManager1".enable = lib.mkForce false;
   
-  services.udev.packages= [ noMtpUdevRules ];
+  services.udev.packages= [ xilinxJtag ];#noMtpUdevRules ];
   
   virtualisation.libvirtd.enable = true;
 

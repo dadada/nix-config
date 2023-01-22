@@ -81,6 +81,13 @@ in
     security.sudo.wheelNeedsPassword = false;
     services.openssh.openFirewall = true;
 
+    system.autoUpgrade = {
+      enable = true;
+      flake = "github:dadada/nix-config.git#${config.networking.hostName}";
+      allowReboot = true;
+      randomizedDelaySec = "45min";
+    };
+
     users.users =
       mapAttrs
         (user: keys: {

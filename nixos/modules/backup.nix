@@ -60,15 +60,24 @@ in
   };
 
   config = {
-    fileSystems = mkIf cfg.gs.enable {
-      "/backup" = {
-        device = "/dev/disk/by-uuid/0fdab735-cc3e-493a-b4ec-cbf6a77d48d5";
-        fsType = "ext4";
-        options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
-      };
-    };
+    systemd.mounts = mkIf cfg.gs.enable [
+      {
+        type = "ext4";
+        what = "/dev/disk/by-uuid/0fdab735-cc3e-493a-b4ec-cbf6a77d48d5";
+        where = "/backup";
+        options = "nofail noauto";
+      }
+    ];
+
+    systemd.automounts = mkIf cfg.gs.enable [
+      {
+        where = "/backup";
+        automountConfig.TimeoutIdleSec = "600";
+      }
+    ];
 
     services.borgbackup.jobs.gs = mkIf cfg.gs.enable {
+      removableDevice = true;
       paths = "/";
       exclude = backupExcludes;
       repo = "/backup/${config.networking.hostName}";
@@ -88,6 +97,8 @@ in
       startAt = "monthly";
     };
 
+    systemd.services."borgbackup-job-gs".enable = false;
+    systemd.services."borgbackup-job-gs".wants = [ "backup.mount" ];
     systemd.timers."borgbackup-job-gs".enable = false;
 
     services.borgbackup.jobs.bs = mkIf cfg.bs.enable {

@@ -99,12 +99,12 @@ in
       21027 # Syncthing
     ];
   };
-  
+
   systemd.services.modem-manager.enable = lib.mkForce false;
   systemd.services."dbus-org.freedesktop.ModemManager1".enable = lib.mkForce false;
-  
-  services.udev.packages= [ xilinxJtag ];#noMtpUdevRules ];
-  
+
+  services.udev.packages = [ xilinxJtag ]; #noMtpUdevRules ];
+
   virtualisation.libvirtd.enable = true;
 
   users.users = {

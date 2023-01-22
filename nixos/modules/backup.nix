@@ -88,6 +88,8 @@ in
       startAt = "monthly";
     };
 
+    systemd.timers."borgbackup-job-gs".enable = false;
+
     services.borgbackup.jobs.bs = mkIf cfg.bs.enable {
       paths = "/";
       exclude = backupExcludes;

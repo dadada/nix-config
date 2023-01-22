@@ -18,6 +18,7 @@ in
   "pruflas-wg-hydra-key.age".publicKeys = [ systems.pruflas dadada ];
   "hydra-github-authorization.age".publicKeys = [ systems.pruflas dadada ];
   "miniflux-admin-credentials.age".publicKeys = [ systems.surgat dadada ];
+  "gorgon-backup-gs-passphrase.age".publicKeys = [ systems.gorgon dadada ];
 } //
 backupSecrets "gorgon" //
 backupSecrets "ifrit" //

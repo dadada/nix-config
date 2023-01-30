@@ -16,7 +16,7 @@ let
   nixosSystem = { system ? "x86_64-linux", extraModules ? [ ] }: nixpkgs.lib.nixosSystem {
     inherit system;
 
-    modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [ agenix.nixosModule ] ++ extraModules;
+    modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [ agenix.nixosModules.age ] ++ extraModules;
   };
 in
 {

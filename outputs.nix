@@ -1,6 +1,5 @@
 # Adapted from Mic92/dotfiles
 { self
-, deploy-rs
 , flake-utils
 , homePage
 , nixpkgs
@@ -27,8 +26,7 @@
         pkgs = import nixpkgs {
           inherit system;
           overlays = [
-            agenix.overlay
-            (final: prev: { deploy-rs = deploy-rs.defaultPackage.${system}; })
+            agenix.overlays.default
             devshell.overlay
           ];
         };
@@ -68,8 +66,6 @@
   overlays = import ./overlays.nix;
 
   hydraJobs = import ./hydra-jobs.nix inputs;
-
-  deploy = import ./deploy.nix inputs;
 
   checks = import ./checks.nix inputs;
 }

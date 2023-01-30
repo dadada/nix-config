@@ -1,5 +1,4 @@
 { self
-, deploy-rs
 , flake-utils
 , nixpkgs
 , ...
@@ -17,5 +16,5 @@
           buildInputs = [ formatter ];
         }
         "${formatter}/bin/nixpkgs-fmt --check ${./.} && touch $out";
-    } // deploy-rs.lib."${system}".deployChecks self.deploy;
+    };
   })).checks

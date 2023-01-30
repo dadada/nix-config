@@ -32,10 +32,6 @@
       url = github:ryantm/agenix;
       inputs.nixpkgs.follows = "myNixpkgs";
     };
-    deploy-rs = {
-      url = github:serokell/deploy-rs;
-      inputs.nixpkgs.follows = "myNixpkgs";
-    };
     devshell = {
       url = github:numtide/devshell;
       inputs.nixpkgs.follows = "myNixpkgs";

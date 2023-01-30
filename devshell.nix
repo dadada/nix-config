@@ -37,12 +37,6 @@
       category = "dev";
     }
     {
-      name = "deploy";
-      help = "Deploy this flake";
-      package = "deploy-rs";
-      category = "deploy";
-    }
-    {
       name = "check";
       help = "Run checks";
       category = "dev";

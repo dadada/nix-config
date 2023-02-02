@@ -95,6 +95,7 @@ with pkgs; [
   pandoc # document converter and templater
   pass
   pavucontrol
+  picocom
   pinentry-gnome
   playerctl
   procs # ps in rust

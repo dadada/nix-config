@@ -83,7 +83,7 @@ in
 
     system.autoUpgrade = {
       enable = true;
-      flake = "github:dadada/nix-config.git#${config.networking.hostName}";
+      flake = "github:dadada/nix-config#${config.networking.hostName}";
       allowReboot = true;
       randomizedDelaySec = "45min";
     };

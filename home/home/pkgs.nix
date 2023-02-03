@@ -23,6 +23,7 @@ with pkgs; [
   duf # disk usage
   dyff # diff tool for YAML
   evince
+  evolution
   exa
   ffmpeg
   file

@@ -3,7 +3,9 @@
 , lib
 , ...
 }:
-with lib; {
+let
+  secretsPath = config.dadada.secrets.path;
+in with lib; {
   imports = [
     ./backup.nix
     ./base.nix

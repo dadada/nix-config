@@ -72,4 +72,11 @@ with lib; {
     pulse.enable = true;
   };
   hardware.pulseaudio.enable = false;
+
+  dadada.backupClient.gs = {
+    enable = true;
+    passphrasePath = config.age.secrets."${config.networking.hostName}-backup-passphrase-gs".path;
+  };
+
+  age.secrets."${config.networking.hostName}-backup-passphrase-gs".file = "${secretsPath}/${config.networking.hostName}-backup-passphrase-gs.age";
 }

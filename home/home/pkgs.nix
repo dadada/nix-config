@@ -123,7 +123,6 @@ with pkgs; [
   steam
   tcpdump
   tdesktop
-  thunderbird
   tmux
   ttyd
   unzip

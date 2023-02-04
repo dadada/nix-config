@@ -41,7 +41,6 @@ in
   networking.hostName = "gorgon";
 
   dadada = {
-    autoUpgrade.enable = false;
     #headphones.enable = true;
     steam.enable = true;
     kanboard.enable = true;

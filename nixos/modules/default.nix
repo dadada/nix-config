@@ -12,14 +12,13 @@
   kanboard = import ./kanboard;
   miniflux = import ./miniflux.nix;
   networking = import ./networking.nix;
-  nix = import ./nix.nix;
+  inputs = import ./inputs.nix;
   nixpkgs = import ./nixpkgs.nix;
   packages = import ./packages.nix;
   secrets = import ./secrets.nix;
   share = import ./share.nix;
   steam = import ./steam.nix;
   sway = import ./sway.nix;
-  update = import ./update.nix;
   vpnServer = import ./vpnServer.nix;
   weechat = import ./weechat.nix;
 }

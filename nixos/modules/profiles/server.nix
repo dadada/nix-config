@@ -14,19 +14,25 @@ with lib; {
 
   dadada.admin.enable = true;
   dadada.networking.localResolver.enable = true;
-  dadada.autoUpgrade.enable = mkDefault true;
 
   environment.noXlibs = mkDefault true;
   documentation.enable = mkDefault false;
   documentation.nixos.enable = mkDefault false;
 
-  i18n.defaultLocale = mkDefault "en_US.UTF-8";
-  console = mkDefault {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-  };
-
   services.journald.extraConfig = ''
     SystemKeepFree = 2G
   '';
+
+  system.autoUpgrade = {
+    enable = true;
+    flake = "github:dadada/nix-config#${config.networking.hostName}";
+    allowReboot = true;
+    randomizedDelaySec = "45min";
+  };
+
+  security.acme = {
+    defaults.email = "d553a78d-0349-48db-9c20-5b27af3a1dfc@dadada.li";
+    acceptTerms = true;
+  };
+
 }

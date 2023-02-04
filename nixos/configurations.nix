@@ -8,6 +8,7 @@
 , scripts
 , recipemd
 , helix
+, nixos-generators
 , ...
 }@inputs:
 let
@@ -81,6 +82,25 @@ in
   agares = nixosSystem {
     extraModules = [
       ./agares/configuration.nix
+    ];
+  };
+
+  installer = nixpkgs.lib.nixosSystem rec {
+    system = "x86_64-linux";
+    modules = [
+      nixos-generators.nixosModules.install-iso
+      self.nixosModules.admin
+      {
+        networking.tempAddresses = "disabled";
+        dadada.admin.enable = true;
+        documentation.enable = false;
+        documentation.nixos.enable = false;
+        i18n.defaultLocale = "en_US.UTF-8";
+        console = {
+          font = "Lat2-Terminus16";
+          keyMap = "us";
+        };
+      }
     ];
   };
 }

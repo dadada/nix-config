@@ -188,8 +188,6 @@ in
   dadada.networking.localResolver.uwu = true;
   dadada.networking.localResolver.s0 = true;
 
-  dadada.autoUpgrade.enable = mkDefault true;
-
   documentation.enable = false;
   documentation.nixos.enable = false;
 

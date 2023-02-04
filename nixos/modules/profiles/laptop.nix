@@ -5,7 +5,8 @@
 }:
 let
   secretsPath = config.dadada.secrets.path;
-in with lib; {
+in
+with lib; {
   imports = [
     ./backup.nix
     ./base.nix
@@ -21,33 +22,7 @@ in with lib; {
     source-code-pro
   ]);
 
-  time.timeZone = mkDefault "Europe/Berlin";
-
-  i18n.defaultLocale = mkDefault "en_US.UTF-8";
-
-  console.keyMap = mkDefault "us";
-
   users.mutableUsers = mkDefault true;
-
-  programs.zsh = mkDefault {
-    enable = true;
-    autosuggestions.enable = true;
-    enableCompletion = true;
-    histSize = 100000;
-    vteIntegration = true;
-    syntaxHighlighting = {
-      enable = true;
-      highlighters = [ "main" "brackets" "pattern" "root" "line" ];
-    };
-  };
-
-  virtualisation = {
-    libvirtd.enable = mkDefault false;
-    docker.enable = mkDefault false;
-    docker.liveRestore = false;
-  };
-
-  virtualisation.docker.extraOptions = mkDefault "--bip=192.168.1.5/24";
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = mkDefault true;

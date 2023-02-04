@@ -81,13 +81,6 @@ in
     security.sudo.wheelNeedsPassword = false;
     services.openssh.openFirewall = true;
 
-    system.autoUpgrade = {
-      enable = true;
-      flake = "github:dadada/nix-config#${config.networking.hostName}";
-      allowReboot = true;
-      randomizedDelaySec = "45min";
-    };
-
     users.users =
       mapAttrs
         (user: keys: {
@@ -98,7 +91,7 @@ in
         })
         cfg.users;
 
-    nix.trustedUsers = builtins.attrNames cfg.users;
+    nix.settings.trusted-users = builtins.attrNames cfg.users;
 
     users.mutableUsers = mkDefault false;
 

@@ -37,6 +37,11 @@
       inputs.nixpkgs.follows = "myNixpkgs";
     };
     helix.url = github:helix-editor/helix/22.08.1;
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { ... } @ args: import ./outputs.nix args;

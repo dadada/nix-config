@@ -107,7 +107,7 @@ in
       repo = "borg@backup0.dadada.li:/mnt/storage/backup/${config.networking.hostName}";
       doInit = false;
       environment = {
-        BORG_RSH = "ssh -i ${cfg.bs.sshIdentityFile} -o 'StrictHostKeyChecking accept-new' -o 'TCPKeepAlive=yes'";
+        BORG_RSH = "ssh -6 -i ${cfg.bs.sshIdentityFile} -o 'StrictHostKeyChecking accept-new' -o 'TCPKeepAlive=yes'";
       };
       encryption = {
         mode = "repokey";

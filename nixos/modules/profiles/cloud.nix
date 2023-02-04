@@ -9,7 +9,7 @@ in
     enable = true;
     ssh = {
       enable = true;
-      port = 43235;
+      port = 22;
       hostKeys = [
         config.age.secrets."${initrdHostKey}".path
       ];
@@ -30,5 +30,7 @@ in
   age.secrets."${initrdHostKey}" = {
     file = "${secretsPath}/${initrdHostKey}.age";
     mode = "600";
+    path = "/etc/initrd/${initrdHostKey}";
+    symlink = false;
   };
 }

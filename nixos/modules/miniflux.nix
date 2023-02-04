@@ -31,9 +31,7 @@ in
 
     age.secrets.${adminCredentialsFile} = {
       file = "${config.dadada.secrets.path}/${adminCredentialsFile}.age";
-      owner = config.systemd.services.miniflux.serviceConfig.User;
-      group = "root";
-      mode = "0700";
+      mode = "0600";
     };
   };
 }

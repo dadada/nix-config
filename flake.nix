@@ -29,7 +29,7 @@
       url = github:dadada/recipemd/nix-flake;
     };
     agenix = {
-      url = github:ryantm/agenix;
+      url = github:ryantm/agenix/0.13.0;
       inputs.nixpkgs.follows = "myNixpkgs";
     };
     devshell = {

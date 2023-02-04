@@ -26,7 +26,7 @@
         pkgs = import nixpkgs {
           inherit system;
           overlays = [
-            agenix.overlays.default
+            agenix.overlay
             devshell.overlay
           ];
         };

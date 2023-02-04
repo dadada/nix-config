@@ -9,6 +9,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    ../modules/profiles/cloud.nix
   ];
 
   networking.hostName = hostName;
@@ -50,7 +51,10 @@ in
   };
 
   networking.useDHCP = false;
-  networking.interfaces.ens3.useDHCP = true;
+  networking.interfaces.ens3 = {
+    useDHCP = true;
+    ipv4.addresses = [{ address = "49.12.3.98"; prefixLength = 32; }];
+  };
 
   networking.firewall = {
     enable = true;
@@ -82,14 +86,6 @@ in
     address = "fe80::1";
     interface = "ens3";
   };
-
-  #boot.initrd.network.ssh = {
-  #  enable = true;
-  #  port = 22;
-  #  authorizedKeys = "${keys}/dadada.pub";
-  #  hostKeys = [
-  #  ];
-  #};
 
   swapDevices = [
     {

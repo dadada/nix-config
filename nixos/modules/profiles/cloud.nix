@@ -11,7 +11,7 @@ in
       enable = true;
       port = 43235;
       hostKeys = [
-        age.secrets."${initrdHostKey}"
+        config.age.secrets."${initrdHostKey}".path
       ];
       authorizedKeys = with lib;
         concatLists (mapAttrsToList
@@ -28,7 +28,7 @@ in
   };
 
   age.secrets."${initrdHostKey}" = {
-    file = "${secretsPath}/${initrdHostKey}";
+    file = "${secretsPath}/${initrdHostKey}.age";
     mode = "600";
   };
 }

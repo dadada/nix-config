@@ -15,7 +15,6 @@ with lib; {
   dadada.admin.enable = true;
   dadada.networking.localResolver.enable = true;
 
-  environment.noXlibs = mkDefault true;
   documentation.enable = mkDefault false;
   documentation.nixos.enable = mkDefault false;
 

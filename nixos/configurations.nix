@@ -103,4 +103,6 @@ in
       }
     ];
   };
+
+  ninurta = nixosSystem { extraModules = [ ./ninurta/configuration.nix ]; };
 }

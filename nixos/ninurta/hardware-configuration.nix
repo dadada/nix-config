@@ -29,7 +29,8 @@
     };
 
   fileSystems."/var" =
-    { device = "/dev/disk/by-label/ninurta";
+    {
+      device = "/dev/disk/by-label/ninurta";
       fsType = "btrfs";
       options = [ "subvol=var" ];
     };

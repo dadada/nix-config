@@ -22,6 +22,7 @@ with pkgs; [
   dstat
   duf # disk usage
   dyff # diff tool for YAML
+  element-desktop
   evince
   evolution
   exa
@@ -72,6 +73,7 @@ with pkgs; [
   ldns
   liboping # oping, ping multiple hosts at once
   libreoffice
+  librewolf
   libvirt
   lsof
   lynis

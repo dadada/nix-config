@@ -114,6 +114,7 @@ with pkgs; [
   ripgrep
   rust-analyzer
   rustup
+  saleae-logic-2
   sd # search and displace like sed but with better syntax
   signal-desktop
   silver-searcher

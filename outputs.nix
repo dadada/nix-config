@@ -27,7 +27,7 @@
           inherit system;
           overlays = [
             agenix.overlay
-            devshell.overlay
+            devshell.overlays.default
           ];
         };
         extraModules = [ "${devshell}/extra/git/hooks.nix" ];

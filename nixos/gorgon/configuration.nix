@@ -23,6 +23,14 @@ let
     '';
     destination = "/etc/udev/rules.d/61-xilinx-jtag.rules";
   };
+  saleaeLogic = pkgs.writeTextFile {
+    name = "saleae-logic";
+    text = ''
+      # Saleae Logic analyzer (USB Based)
+      ATTRS{idVendor}=="21a9", ATTRS{idProduct}=="1006", TAG+="uaccess"
+    '';
+    destination = "/etc/udev/rules.d/61-saleae-logic.rules";
+  };
 in
 {
   imports = [
@@ -102,7 +110,7 @@ in
   systemd.services.modem-manager.enable = lib.mkForce false;
   systemd.services."dbus-org.freedesktop.ModemManager1".enable = lib.mkForce false;
 
-  services.udev.packages = [ xilinxJtag ]; #noMtpUdevRules ];
+  services.udev.packages = [ xilinxJtag saleaeLogic ]; #noMtpUdevRules ];
 
   virtualisation.libvirtd.enable = true;
 

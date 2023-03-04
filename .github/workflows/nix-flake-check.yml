@@ -20,7 +20,7 @@ jobs:
           system-features = nixos-test benchmark big-parallel kvm
     - uses: cachix/cachix-action@v12
       with:
-        name: mycache
+        name: dadada
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: nix flake check

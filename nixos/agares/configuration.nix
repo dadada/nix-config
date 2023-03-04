@@ -79,5 +79,8 @@
     dmidecode
   ];
 
+  # Running router VM. They have to be restarted in the right order, so network comes up cleanly. Not ideal.
+  system.autoUpgrade.allowReboot = false;
+
   system.stateVersion = "22.05";
 }

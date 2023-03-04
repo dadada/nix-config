@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-} @ inputs:
+{ pkgs }:
 {
   map = pkgs.callPackage ./map.nix { };
 }

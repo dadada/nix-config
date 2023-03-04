@@ -2,26 +2,13 @@
   description = "dadada's nix flake";
 
   inputs = {
-    myNixpkgs.url = github:NixOS/nixpkgs/nixos-22.11;
+    nixpkgs.url = github:NixOS/nixpkgs/nixos-22.11;
     flake-utils.url = github:numtide/flake-utils;
     home-manager = {
       url = github:nix-community/home-manager/release-22.11;
-      inputs.nixpkgs.follows = "myNixpkgs";
-    };
-    nix-doom-emacs = {
-      url = github:nix-community/nix-doom-emacs;
-      inputs.nixpkgs.follows = "myNixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
-    nixpkgs.follows = "myNixpkgs";
-    nvd = {
-      url = git+https://gitlab.com/khumba/nvd.git;
-      inputs.nixpkgs.follows = "myNixpkgs";
-    };
-    scripts = {
-      url = git+https://git.dadada.li/dadada/scripts.git?ref=main;
-      inputs.nixpkgs.follows = "myNixpkgs";
-    };
     homePage = {
       url = github:dadada/dadada.li;
     };
@@ -30,14 +17,16 @@
     };
     agenix = {
       url = github:ryantm/agenix/0.13.0;
-      inputs.nixpkgs.follows = "myNixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     devshell = {
       url = github:numtide/devshell;
-      inputs.nixpkgs.follows = "myNixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    helix.url = github:helix-editor/helix/22.08.1;
-
+    helix = {
+      url = github:helix-editor/helix/22.12;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";

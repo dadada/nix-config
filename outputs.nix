@@ -4,10 +4,7 @@
 , homePage
 , nixpkgs
 , home-manager
-, nix-doom-emacs
 , nixos-hardware
-, nvd
-, scripts
 , recipemd
 , agenix
 , devshell
@@ -16,9 +13,7 @@
 } @ inputs:
 (flake-utils.lib.eachDefaultSystem (system:
   let
-    pkgs = nixpkgs.legacyPackages.${system};
-    selfPkgs = self.packages.${system};
-    formatter = self.formatter.${system};
+    pkgs = import nixpkgs { inherit system; };
   in
   {
     devShells.default =
@@ -34,7 +29,7 @@
       in
       import ./devshell.nix { inherit pkgs extraModules; };
 
-    formatter = nixpkgs.legacyPackages."${system}".nixpkgs-fmt;
+    formatter = pkgs.nixpkgs-fmt;
 
     jobsets = (import ./jobsets.nix {
       inherit pkgs;
@@ -47,13 +42,13 @@
         };
         nixpkgs = {
           type = "git";
-          value = "git://github.com/NixOS/nixpkgs.git nixpkgs-22.05";
+          value = "git://github.com/NixOS/nixpkgs.git nixpkgs-22.11";
           emailresponsible = false;
         };
       };
     });
 
-    packages = import ./pkgs (inputs // { inherit pkgs; });
+    packages = import ./pkgs { inherit pkgs; };
   }))
   // {
 

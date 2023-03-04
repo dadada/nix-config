@@ -4,8 +4,6 @@
 , home-manager
 , homePage
 , nixos-hardware
-, nvd
-, scripts
 , recipemd
 , helix
 , nixos-generators
@@ -28,7 +26,7 @@ in
       {
         nixpkgs.overlays = nixpkgs.lib.attrValues self.overlays;
         dadada.pkgs = (getDefaultPkgs system {
-          inherit scripts nvd recipemd;
+          inherit recipemd;
         }) // self.packages.${system};
 
         # Add flakes to registry and nix path.

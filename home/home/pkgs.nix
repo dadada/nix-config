@@ -90,7 +90,6 @@ with pkgs; [
   nix-index
   nmap
   nmon
-  nvd
   obs-studio
   openscad
   openssl

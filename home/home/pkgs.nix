@@ -22,7 +22,6 @@ with pkgs; [
   dstat
   duf # disk usage
   dyff # diff tool for YAML
-  element-desktop
   evince
   evolution
   exa

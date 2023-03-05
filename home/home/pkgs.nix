@@ -29,7 +29,7 @@ with pkgs; [
   ffmpeg
   file
   firefox
-  fractal
+  fractal-next
   fx # themable json viewer
   fzf
   fzf

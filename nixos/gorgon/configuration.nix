@@ -75,6 +75,8 @@ in
 
   programs.adb.enable = true;
 
+  programs.wireshark.enable = true;
+
   services.avahi.enable = true;
 
   # Enable CUPS to print documents.
@@ -117,7 +119,7 @@ in
   users.users = {
     dadada = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "kvm" "video" "scanner" "lp" "docker" "dialout" ];
+      extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "kvm" "video" "scanner" "lp" "docker" "dialout" "wireshark" ];
       shell = "/run/current-system/sw/bin/zsh";
     };
   };

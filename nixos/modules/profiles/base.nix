@@ -14,6 +14,7 @@ in
 
   nix.nixPath = lib.mapAttrsToList (name: value: "${name}=${value}") inputs;
   nix.registry = lib.mapAttrs' (name: value: lib.nameValuePair name { flake = value; }) inputs;
+  nix.settings.flake-registry = "${config.dadada.inputs.flake-registry}/flake-registry.json";
 
   nix.settings.substituters = [
     https://cache.nixos.org/

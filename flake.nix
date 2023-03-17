@@ -31,6 +31,10 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-registry = {
+      url = "github:NixOS/flake-registry";
+      flake = false;
+    };
   };
 
   outputs = { ... } @ args: import ./outputs.nix args;

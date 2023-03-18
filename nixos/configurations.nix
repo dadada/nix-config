@@ -7,6 +7,7 @@
 , recipemd
 , helix
 , nixos-generators
+, flake-registry
 , ...
 }@inputs:
 let
@@ -15,7 +16,10 @@ let
   nixosSystem = { system ? "x86_64-linux", extraModules ? [ ] }: nixpkgs.lib.nixosSystem {
     inherit system;
 
-    modules = (nixpkgs.lib.attrValues self.nixosModules) ++ [ agenix.nixosModules.age ] ++ extraModules;
+    modules = [{
+      # Add flakes to registry and nix path.
+      dadada.inputs = inputs // { dadada = self; };
+    }] ++ (nixpkgs.lib.attrValues self.nixosModules) ++ [ agenix.nixosModules.age ] ++ extraModules;
   };
 in
 {
@@ -28,9 +32,6 @@ in
         dadada.pkgs = (getDefaultPkgs system {
           inherit recipemd;
         }) // self.packages.${system};
-
-        # Add flakes to registry and nix path.
-        dadada.inputs = inputs // { dadada = self; };
       }
 
       nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen1

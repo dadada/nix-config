@@ -1,6 +1,7 @@
 # Adapted from Mic92/dotfiles
 { self
 , flake-utils
+, flake-registry
 , homePage
 , nixpkgs
 , home-manager

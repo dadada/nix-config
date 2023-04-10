@@ -74,7 +74,12 @@ in
   };
 
   programs.adb.enable = true;
-  programs.firefox.enable = true;
+
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox-wayland;
+  };
+
   programs.wireshark.enable = true;
 
   services.avahi.enable = true;

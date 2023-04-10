@@ -74,7 +74,7 @@ in
   };
 
   programs.adb.enable = true;
-
+  programs.firefox.enable = true;
   programs.wireshark.enable = true;
 
   services.avahi.enable = true;

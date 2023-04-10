@@ -27,7 +27,6 @@ with pkgs; [
   exa
   ffmpeg
   file
-  firefox
   fractal-next
   fx # themable json viewer
   fzf

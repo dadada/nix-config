@@ -5,7 +5,6 @@
 , homePage
 , nixos-hardware
 , recipemd
-, helix
 , nixos-generators
 , flake-registry
 , ...
@@ -37,16 +36,16 @@ in
       nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen1
 
       home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.sharedModules = (nixpkgs.lib.attrValues self.hmModules) ++ [
-          { dadada.home.helix.package = helix.packages.${system}.helix; }
-          { manual.manpages.enable = false; }
-        ];
-        home-manager.users.dadada = import ../home/home;
-      }
-
+      ({ pkgs, lib, ... }:
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.sharedModules = (nixpkgs.lib.attrValues self.hmModules) ++ [
+            { dadada.home.helix.package = pkgs.helix; }
+            { manual.manpages.enable = false; }
+          ];
+          home-manager.users.dadada = import ../home/home;
+        })
       ./modules/profiles/laptop.nix
       ./gorgon/configuration.nix
     ];

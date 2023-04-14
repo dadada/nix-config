@@ -23,10 +23,6 @@
       url = github:numtide/devshell;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    helix = {
-      url = github:helix-editor/helix/23.03;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";

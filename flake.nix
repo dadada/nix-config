@@ -24,7 +24,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     helix = {
-      url = github:helix-editor/helix/22.12;
+      url = github:helix-editor/helix/23.03;
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-generators = {

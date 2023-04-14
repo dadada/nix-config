@@ -219,19 +219,20 @@
         "nixpkgs": [
           "nixpkgs"
         ],
+        "parts": "parts",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1670381690,
-        "narHash": "sha256-0VPEA2XixJ+5NGS0zcnntcDWDByUQD4EFuoSSE+Q7yk=",
+        "lastModified": 1680250441,
+        "narHash": "sha256-Qrn3mB6bb1DSvKxOJ9oAlxuMk64Fzg2W4BVmk6y3deA=",
         "owner": "helix-editor",
         "repo": "helix",
-        "rev": "96ff64a84a4948b0aa85a453276cb0091fb9c792",
+        "rev": "3cf037237f1d080fdcb7990250955701389ae072",
         "type": "github"
       },
       "original": {
         "owner": "helix-editor",
-        "ref": "22.12",
+        "ref": "23.03",
         "repo": "helix",
         "type": "github"
       }
@@ -385,6 +386,24 @@
         "type": "indirect"
       }
     },
+    "nixpkgs-lib": {
+      "locked": {
+        "dir": "lib",
+        "lastModified": 1680213900,
+        "narHash": "sha256-cIDr5WZIj3EkKyCgj/6j3HBH4Jj1W296z7HTcWj1aMA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e3652e0735fbec227f342712f180f4f21f0594f2",
+        "type": "github"
+      },
+      "original": {
+        "dir": "lib",
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1681269223,
@@ -410,6 +429,24 @@
       "original": {
         "id": "nixpkgs",
         "type": "indirect"
+      }
+    },
+    "parts": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib"
+      },
+      "locked": {
+        "lastModified": 1680392223,
+        "narHash": "sha256-n3g7QFr85lDODKt250rkZj2IFS3i4/8HBU2yKHO3tqw=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "dcc36e45d054d7bb554c9cdab69093debd91a0b5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
       }
     },
     "recipemd": {

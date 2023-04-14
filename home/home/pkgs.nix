@@ -71,7 +71,6 @@ with pkgs; [
   ldns
   liboping # oping, ping multiple hosts at once
   libreoffice
-  librewolf
   libvirt
   lsof
   lynis

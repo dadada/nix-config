@@ -53,5 +53,6 @@ in
     };
   };
 
+  services.smartd.enable = mkDefault true;
 }
 

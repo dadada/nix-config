@@ -32,5 +32,4 @@ with lib; {
     acceptTerms = true;
   };
 
-  services.smartd.enable = true;
 }

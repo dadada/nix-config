@@ -64,11 +64,13 @@ in
             "dadada.li"
             (mkIf cfg.localResolver.uwu "uwu")
             (mkIf cfg.localResolver.s0 "space.stratum0.net")
+            (mkIf cfg.localResolver.s0 "s0")
           ];
           domain-insecure = [
             "dadada.li"
             (mkIf cfg.localResolver.uwu "uwu")
             (mkIf cfg.localResolver.s0 "space.stratum0.net")
+            (mkIf cfg.localResolver.s0 "s0")
           ];
           interface = [
             "127.0.0.1"
@@ -98,6 +100,14 @@ in
           (
             mkIf cfg.localResolver.s0 {
               name = "space.stratum0.net.";
+              forward-addr = [
+                "192.168.178.1"
+              ];
+            }
+          )
+          (
+            mkIf cfg.localResolver.s0 {
+              name = "s0.";
               forward-addr = [
                 "192.168.178.1"
               ];

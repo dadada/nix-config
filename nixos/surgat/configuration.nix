@@ -109,6 +109,9 @@ in
     ];
   };
 
+  services.resolved.enable = true;
+  networking.resolvconf.useLocalResolver = true;
+
   system.autoUpgrade.allowReboot = false;
 
   system.stateVersion = "20.09";

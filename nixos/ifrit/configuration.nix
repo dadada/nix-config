@@ -60,5 +60,7 @@ in
 
   environment.systemPackages = [ pkgs.curl ];
 
+  services.smartd.enable = true;
+
   system.stateVersion = "20.03";
 }

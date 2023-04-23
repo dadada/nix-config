@@ -52,7 +52,5 @@ in
       highlighters = [ "main" "brackets" "pattern" "root" "line" ];
     };
   };
-
-  services.smartd.enable = mkDefault true;
 }
 

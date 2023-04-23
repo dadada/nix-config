@@ -19,6 +19,8 @@
     networking.localResolver.enable = true;
   };
 
+  services.smartd.enable = true;
+
   networking.hostName = "agares";
   networking.domain = "dadada.li";
 

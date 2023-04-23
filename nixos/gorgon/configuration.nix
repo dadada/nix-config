@@ -31,6 +31,14 @@ let
     '';
     destination = "/etc/udev/rules.d/61-saleae-logic.rules";
   };
+  keychron = pkgs.writeTextFile {
+    name = "keychron";
+    text = ''
+      # Saleae Logic analyzer (USB Based)
+      ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0280", TAG+="uaccess"
+    '';
+    destination = "/etc/udev/rules.d/61-keychron.rules";
+  };
 in
 {
   imports = [
@@ -117,7 +125,7 @@ in
   systemd.services.modem-manager.enable = lib.mkForce false;
   systemd.services."dbus-org.freedesktop.ModemManager1".enable = lib.mkForce false;
 
-  services.udev.packages = [ xilinxJtag saleaeLogic ]; #noMtpUdevRules ];
+  services.udev.packages = [ xilinxJtag saleaeLogic keychron ]; #noMtpUdevRules ];
 
   virtualisation.libvirtd.enable = true;
 

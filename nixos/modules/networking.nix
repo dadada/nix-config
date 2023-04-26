@@ -30,7 +30,7 @@ in
   };
 
   config = {
-    #networking.resolvconf.useLocalResolver = mkIf cfg.localResolver.enable true;
+    networking.resolvconf.useLocalResolver = mkIf cfg.localResolver.enable true;
     networking.networkmanager.dns = mkIf cfg.localResolver.enable "unbound";
 
     services.unbound = mkIf cfg.localResolver.enable {

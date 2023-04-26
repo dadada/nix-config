@@ -68,7 +68,7 @@ in
     networking = {
       enableBsShare = true;
       localResolver = {
-        enable = false;
+        enable = true;
         uwu = true;
         s0 = true;
       };
@@ -142,10 +142,9 @@ in
     "127.0.0.2" = [ "kanboard.dadada.li" ];
   };
 
-  networking.wg-quick.interfaces.uwupn = {
-    address = [ "10.11.0.24/32" "fc00:1337:dead:beef::10.11.0.24/128" ];
+  networking.wireguard.interfaces.uwupn = {
+    ips = [ "10.11.0.24/32" "fc00:1337:dead:beef::10.11.0.24/128" ];
     privateKeyFile = "/var/lib/wireguard/uwu";
-    dns = [ "10.11.0.1" ];
     peers = [
       {
         publicKey = "tuoiOWqgHz/lrgTcLjX+xIhvxh9jDH6gmDw2ZMvX5T8=";

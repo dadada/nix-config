@@ -68,7 +68,7 @@ in
     networking = {
       enableBsShare = true;
       localResolver = {
-        enable = true;
+        enable = false;
         uwu = true;
         s0 = true;
       };

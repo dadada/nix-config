@@ -92,6 +92,17 @@ in
 
   services.avahi.enable = true;
 
+  services.paperless = {
+    enable = true;
+    passwordFile = config.age.secrets.paperless.path;
+  };
+
+  age.secrets.paperless = {
+    file =  "${config.dadada.secrets.path}/paperless.age";
+    mode = "700";
+    owner = "paperless";
+  };
+
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;

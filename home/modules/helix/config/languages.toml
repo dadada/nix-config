@@ -1,3 +1,10 @@
 [[language]]
 name = "rust"
 config = { rust-analyzer = { checkOnSave = { command = "clippy" } } }
+
+[[language]]
+name = "latex"
+language-server = { command = "ltex-ls" }
+file-types = ["tex"]
+scope = "source.latex"
+roots = []

@@ -3,5 +3,9 @@ line-number = "relative"
 mouse = true
 auto-completion = true
 
+[editor.soft-wrap]
+enable = true
+
 [keys.normal]
 C-q = [ "goto_prev_paragraph", "goto_next_paragraph", ":reflow 80" ]
+

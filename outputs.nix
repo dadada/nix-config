@@ -9,6 +9,7 @@
 , recipemd
 , agenix
 , devshell
+, helix
 , ...
 } @ inputs:
 (flake-utils.lib.eachDefaultSystem (system:

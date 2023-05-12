@@ -31,6 +31,7 @@
       url = "github:NixOS/flake-registry";
       flake = false;
     };
+    helix.url = "github:helix-editor/helix/23.03";
   };
 
   outputs = { ... } @ args: import ./outputs.nix args;

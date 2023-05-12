@@ -97,8 +97,16 @@ in
     passwordFile = config.age.secrets.paperless.path;
   };
 
+  systemd.tmpfiles.rules = let cfg = config.services.paperless; in [
+    (if cfg.consumptionDirIsPublic then
+      "d '${cfg.consumptionDir}' 777 - - - -"
+    else
+      "d '${cfg.consumptionDir}' 770 ${cfg.user} ${config.users.users.${cfg.user}.group} - -"
+    )
+  ];
+
   age.secrets.paperless = {
-    file =  "${config.dadada.secrets.path}/paperless.age";
+    file = "${config.dadada.secrets.path}/paperless.age";
     mode = "700";
     owner = "paperless";
   };
@@ -143,7 +151,7 @@ in
   users.users = {
     dadada = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "kvm" "video" "scanner" "lp" "docker" "dialout" "wireshark" ];
+      extraGroups = [ "wheel" "networkmanager" "libvirtd" "adbusers" "kvm" "video" "scanner" "lp" "docker" "dialout" "wireshark" "paperless" ];
       shell = "/run/current-system/sw/bin/zsh";
     };
   };

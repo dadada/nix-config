@@ -20,7 +20,7 @@ in
             tabwidth = 4;
           };
           alias = { };
-          pager = "delta";
+          pager = "delta --light";
         };
         column.ui = "never";
         checkout.defaultRemote = "origin";
@@ -35,7 +35,7 @@ in
           algorithm = "histogram";
           colorMoved = "default";
         };
-        interactive.diffFilter = "delta --color-only";
+        interactive.diffFilter = "delta --color-only --light";
         merge.conflictstyle = "diff3";
         status = {
           short = true;

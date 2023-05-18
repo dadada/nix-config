@@ -65,7 +65,7 @@ in
         type = "ext4";
         what = "/dev/disk/by-uuid/0fdab735-cc3e-493a-b4ec-cbf6a77d48d5";
         where = "/backup";
-        options = "nofail noauto";
+        options = "nofail,noauto";
       }
     ];
 
@@ -97,9 +97,9 @@ in
       startAt = "monthly";
     };
 
-    systemd.services."borgbackup-job-gs".enable = false;
+    systemd.services."borgbackup-job-gs".enable = true;
     systemd.services."borgbackup-job-gs".wants = [ "backup.mount" ];
-    systemd.timers."borgbackup-job-gs".enable = false;
+    systemd.timers."borgbackup-job-gs".enable = true;
 
     services.borgbackup.jobs.bs = mkIf cfg.bs.enable {
       paths = "/";

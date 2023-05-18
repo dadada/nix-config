@@ -1,3 +1,5 @@
+theme = "emacs"
+
 [editor]
 line-number = "relative"
 mouse = true

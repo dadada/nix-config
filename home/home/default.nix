@@ -66,6 +66,40 @@ in
     Install = { WantedBy = [ "graphical-session.target" ]; };
   };
 
+  programs.offlineimap.enable = false;
+  xdg.configFile."offlineimap/config".text = ''
+    [general]
+    accounts = tu-bs,mailbox
+
+    [Account tu-bs]
+    localrepository = tu-bs-local
+    remoterepository = tu-bs-remote
+
+    [Repository tu-bs-local]
+    type = Maildir
+    localfolders = ~/lib/backup/y0067212@tu-bs.de
+
+    [Repository tu-bs-remote]
+    type = IMAP
+    remotehost = mail.tu-braunschweig.de
+    remoteuser = y0067212
+    sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+    [Account mailbox]
+    localrepository = mailbox-local
+    remoterepository = mailbox-remote
+
+    [Repository mailbox-local]
+    type = Maildir
+    localfolders = ~/lib/backup/mailbox.org
+
+    [Repository mailbox-remote]
+    type = IMAP
+    remotehost = imap.mailbox.org
+    remoteuser = dadada@dadada.li
+    sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+  '';
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 

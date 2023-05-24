@@ -89,6 +89,7 @@ with pkgs; [
   nmap
   nmon
   obs-studio
+  offlineimap
   openscad
   openssl
   p7zip

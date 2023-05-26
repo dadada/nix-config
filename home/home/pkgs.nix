@@ -122,6 +122,7 @@ with pkgs; [
   sqlite
   sshfs-fuse
   steam
+  taplo
   tcpdump
   tdesktop
   tmux

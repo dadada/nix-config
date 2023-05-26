@@ -202,5 +202,5 @@ in
     ];
   };
 
-  system.stateVersion = "20.03";
+  system.stateVersion = "22.11";
 }

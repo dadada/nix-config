@@ -59,7 +59,6 @@ in
   dadada = {
     #headphones.enable = true;
     steam.enable = true;
-    kanboard.enable = true;
     #fido2 = {
     #  credential = "04ea2813a116f634e90f9728dbbb45f1c0f93b7811941a5a14fb75e711794df0c26552dae2262619c1da2be7562ec9dd94888c71a9326fea70dfe16214b5ea8ec01473070000";
     #  enablePam = true;
@@ -151,7 +150,6 @@ in
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
-    defaultNetwork.dnsname.enable = true;
   };
 
   users.users = {

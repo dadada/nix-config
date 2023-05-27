@@ -77,7 +77,7 @@ in
     programs.zsh.enable = mkDefault true;
 
     services.sshd.enable = true;
-    services.openssh.passwordAuthentication = false;
+    services.openssh.settings.PasswordAuthentication = false;
     security.sudo.wheelNeedsPassword = false;
     services.openssh.openFirewall = true;
 

@@ -9,7 +9,6 @@
   gitea = import ./gitea.nix;
   headphones = import ./headphones.nix;
   homepage = import ./homepage.nix;
-  kanboard = import ./kanboard;
   miniflux = import ./miniflux.nix;
   networking = import ./networking.nix;
   inputs = import ./inputs.nix;

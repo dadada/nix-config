@@ -14,20 +14,24 @@ in
     services.gitea = {
       enable = true;
       appName = "dadada Gitea";
-      rootUrl = "https://git.dadada.li/";
-      log.level = "Error";
-      domain = config.networking.domain;
-      cookieSecure = true;
-      enableUnixSocket = true;
       database = {
         type = "postgres";
       };
-      disableRegistration = true;
+
       settings = {
+        service = {
+          DISABLE_REGISTRATION = true;
+        };
+        sessions = {
+          COOKIE_SECURE = true;
+        };
         server = {
+          ROOT_URL = "https://git.dadada.li/";
+          PROTOCOL = "http+unix";
           LANDING_PAGE = "explore";
           OFFLINE_MODE = true;
           DISABLE_SSH = false;
+          DOMAIN = "git.dadada.li";
         };
         picture = {
           DISABLE_GRAVATAR = true;
@@ -41,6 +45,7 @@ in
         };
         log = {
           DISABLE_ROUTER_LOG = true;
+          LEVEL = "Error";
         };
         cache = {
           ENABLE = true;

@@ -133,7 +133,10 @@ in
     }
   ];
 
-  services.resolved.enable = true;
+  services.resolved = {
+    enable = true;
+    fallbackDns = [ "9.9.9.9" "2620:fe::fe"];
+  };
 
   system.autoUpgrade.allowReboot = false;
 

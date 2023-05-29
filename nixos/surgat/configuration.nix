@@ -50,10 +50,62 @@ in
     bs.enable = true;
   };
 
-  networking.useDHCP = false;
-  networking.interfaces.ens3 = {
-    useDHCP = true;
-    ipv4.addresses = [{ address = "49.12.3.98"; prefixLength = 32; }];
+  systemd.network = {
+    enable = true;
+    networks = {
+      "10-wan" = {
+        matchConfig.Name = "ens3";
+        networkConfig.DHCP = "ipv4";
+        address = [
+          "49.12.3.98/32"
+          "2a01:4f8:c17:1d70::/64"
+        ];
+        routes = [
+          { routeConfig.Gateway = "fe80::1"; }
+          {
+            routeConfig = {
+              Gateway = "172.31.1.1";
+              GatewayOnLink = true;
+            };
+          }
+        ];
+        linkConfig.RequiredForOnline = "routable";
+      };
+      "10-hydra" = {
+        matchConfig.Name = "hydra";
+        address = [ "10.3.3.1/24" ];
+        DHCP = "no";
+        networkConfig.IPv6AcceptRA = false;
+        linkConfig.RequiredForOnline = "no";
+        routes = [
+          {
+            routeConfig = {
+              Gateway = "10.3.3.3";
+              Destination = "10.3.3.3/24";
+            };
+          }
+        ];
+      };
+    };
+    netdevs = {
+      "10-hydra" = {
+        netdevConfig = {
+          Kind = "wireguard";
+          Name = "hydra";
+        };
+        wireguardConfig = {
+          PrivateKeyFile = "/var/lib/wireguard/hydra";
+          ListenPort = 51235;
+        };
+        wireguardPeers = [{
+          wireguardPeerConfig = {
+            PublicKey = "Kw2HVRb1zeA7NAzBvI3UzmOj45VqM358EBuZWdlAUDE=";
+            AllowedIPs = [ "10.3.3.3/32" ];
+            PersistentKeepalive = 25;
+          };
+        }];
+      };
+    };
   };
 
   networking.firewall = {
@@ -74,18 +126,6 @@ in
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
 
-  networking.interfaces."ens3".ipv6.addresses = [
-    {
-      address = "2a01:4f8:c17:1d70::";
-      prefixLength = 64;
-    }
-  ];
-
-  networking.defaultGateway6 = {
-    address = "fe80::1";
-    interface = "ens3";
-  };
-
   swapDevices = [
     {
       device = "/var/swapfile";
@@ -93,23 +133,7 @@ in
     }
   ];
 
-  networking.wireguard.interfaces."hydra" = {
-    ips = [ "10.3.3.1/24" ];
-    listenPort = 51235;
-
-    privateKeyFile = "/var/lib/wireguard/hydra";
-
-    peers = [
-      {
-        publicKey = "Kw2HVRb1zeA7NAzBvI3UzmOj45VqM358EBuZWdlAUDE=";
-        allowedIPs = [ "10.3.3.3/32" ];
-        persistentKeepalive = 25;
-      }
-    ];
-  };
-
   services.resolved.enable = true;
-  networking.resolvconf.useLocalResolver = true;
 
   system.autoUpgrade.allowReboot = false;
 

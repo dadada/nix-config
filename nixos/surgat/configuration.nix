@@ -135,7 +135,7 @@ in
 
   services.resolved = {
     enable = true;
-    fallbackDns = [ "9.9.9.9" "2620:fe::fe"];
+    fallbackDns = [ "9.9.9.9" "2620:fe::fe" ];
   };
 
   system.autoUpgrade.allowReboot = false;

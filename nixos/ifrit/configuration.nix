@@ -31,8 +31,18 @@ in
   # weird issues with crappy plastic router
   networking.interfaces."ens3".tempAddress = "disabled";
 
-  networking.useDHCP = false;
-  networking.interfaces.ens3.useDHCP = true;
+  services.resolved.enable = true;
+
+  systemd.network = {
+    enable = true;
+    networks = {
+      "10-lan" = {
+        matchConfig.Name = "ens*";
+        networkConfig.DHCP = "ipv4";
+        linkConfig.RequiredForOnline = "routable";
+      };
+    };
+  };
 
   boot.kernelParams = [
     "console=ttyS0,115200"

@@ -8,6 +8,7 @@
     agenix
     nixpkgs-fmt
     nixos-rebuild
+    nixd
   ];
 
   commands = [

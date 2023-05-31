@@ -8,3 +8,8 @@ language-server = { command = "ltex-ls" }
 file-types = ["tex"]
 scope = "source.latex"
 roots = []
+
+[[language]]
+name = "nix"
+file-types = ["nix"]
+language-server = { command = "nixd" }

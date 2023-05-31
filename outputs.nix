@@ -10,6 +10,7 @@
 , agenix
 , devshell
 , helix
+, nixd
 , ...
 } @ inputs:
 (flake-utils.lib.eachDefaultSystem (system:
@@ -24,6 +25,7 @@
           overlays = [
             agenix.overlay
             devshell.overlays.default
+            (final: prev: { nixd = nixd.packages.${system}.nixd; })
           ];
         };
         extraModules = [ "${devshell}/extra/git/hooks.nix" ];

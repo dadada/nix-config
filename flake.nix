@@ -32,7 +32,17 @@
       flake = false;
     };
     helix.url = "github:helix-editor/helix/23.03";
+    nixd = {
+      url = "github:nix-community/nixd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { ... } @ args: import ./outputs.nix args;
+
+  nixConfig = {
+    extra-trusted-public-keys = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs=";
+    extra-substituters = "https://nix-community.cachix.org/ https://helix.cachix.org/";
+    extra-trusted-substituters = "https://nix-community.cachix.org/ https://helix.cachix.org/";
+  };
 }

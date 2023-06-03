@@ -18,6 +18,8 @@ in
     ./hardware-configuration.nix
   ];
 
+  dadada.backupClient.bs.enable = false;
+
   networking.hostName = "ninurta";
 
   networking.hosts = {

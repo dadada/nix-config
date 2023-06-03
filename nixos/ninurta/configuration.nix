@@ -48,19 +48,15 @@ in
       enable = true;
       network = {
         enable = true;
+        links = {
+          "10-lan" = {
+            matchConfig.Name = "e*";
+            linkConfig.MACAddressPolicy = "persistent";
+          };
+        };
         networks = {
-          "10-lan-enp" = {
-            matchConfig.Name = "enp*";
-            networkConfig.DHCP = "ipv4";
-            linkConfig.RequiredForOnline = "routable";
-          };
-          "10-lan-eth" = {
-            matchConfig.Name = "eth*";
-            networkConfig.DHCP = "ipv4";
-            linkConfig.RequiredForOnline = "routable";
-          };
-          "10-lan-ens" = {
-            matchConfig.Name = "ens*";
+          "10-lan" = {
+            matchConfig.Name = "e*";
             networkConfig.DHCP = "ipv4";
             linkConfig.RequiredForOnline = "routable";
           };
@@ -265,7 +261,26 @@ in
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome = {
+    enable = true;
+    extraGSettingsOverridePackages = with pkgs; [ gnome3.gnome-settings-daemon ];
+    extraGSettingsOverrides = ''
+      [org.gnome.desktop.screensaver]
+      lock-delay=3600
+      lock-enabled='true'
+
+      [org.gnome.desktop.session]
+      idle-delay=900
+
+      [org.gnome.settings-daemon.plugins.power]
+      power-button-action='nothing'
+      idle-dim=true
+      sleep-inactive-battery-type='nothing'
+      sleep-inactive-ac-timeout=3600
+      sleep-inactive-ac-type='nothing'
+      sleep-inactive-battery-timeout=1800
+    '';
+  };
 
   security.rtkit.enable = true;
 

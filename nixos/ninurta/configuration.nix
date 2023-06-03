@@ -266,19 +266,18 @@ in
     extraGSettingsOverridePackages = with pkgs; [ gnome3.gnome-settings-daemon ];
     extraGSettingsOverrides = ''
       [org.gnome.desktop.screensaver]
-      lock-delay=3600
-      lock-enabled='true'
+      lock-delay=uint32 30
+      lock-enabled=true
 
       [org.gnome.desktop.session]
-      idle-delay=900
+      idle-delay=uint32 0
 
       [org.gnome.settings-daemon.plugins.power]
-      power-button-action='nothing'
-      idle-dim=true
-      sleep-inactive-battery-type='nothing'
-      sleep-inactive-ac-timeout=3600
+      idle-dim=false
+      power-button-action='interactive'
+      power-saver-profile-on-low-battery=false
       sleep-inactive-ac-type='nothing'
-      sleep-inactive-battery-timeout=1800
+      sleep-inactive-battery-type='nothing'
     '';
   };
 

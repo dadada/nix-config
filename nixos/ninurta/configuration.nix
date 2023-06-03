@@ -33,6 +33,7 @@ in
     message = "Refusing to store private keys in store";
   };
 
+  boot.kernelParams = [ "ip=dhcp" ];
   boot.initrd = {
     network = {
       enable = true;
@@ -44,25 +45,26 @@ in
         hostKeys = [ initrdPrivateKey ];
       };
     };
-    systemd = {
-      enable = true;
-      network = {
-        enable = true;
-        links = {
-          "10-lan" = {
-            matchConfig.Name = "e*";
-            linkConfig.MACAddressPolicy = "persistent";
-          };
-        };
-        networks = {
-          "10-lan" = {
-            matchConfig.Name = "e*";
-            networkConfig.DHCP = "ipv4";
-            linkConfig.RequiredForOnline = "routable";
-          };
-        };
-      };
-    };
+    # Kinda does not work?
+    # systemd = {
+    #   enable = true;
+    #   network = {
+    #     enable = true;
+    #     links = {
+    #       "10-lan" = {
+    #         matchConfig.Name = "e*";
+    #         linkConfig.MACAddressPolicy = "persistent";
+    #       };
+    #     };
+    #     networks = {
+    #       "10-lan" = {
+    #         matchConfig.Name = "e*";
+    #         networkConfig.DHCP = "ipv4";
+    #         linkConfig.RequiredForOnline = "routable";
+    #       };
+    #     };
+    #   };
+    # };
   };
 
   fileSystems."/mnt/storage" = {

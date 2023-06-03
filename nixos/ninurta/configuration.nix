@@ -49,8 +49,18 @@ in
       network = {
         enable = true;
         networks = {
-          "10-lan" = {
+          "10-lan-enp" = {
             matchConfig.Name = "enp*";
+            networkConfig.DHCP = "ipv4";
+            linkConfig.RequiredForOnline = "routable";
+          };
+          "10-lan-eth" = {
+            matchConfig.Name = "eth*";
+            networkConfig.DHCP = "ipv4";
+            linkConfig.RequiredForOnline = "routable";
+          };
+          "10-lan-ens" = {
+            matchConfig.Name = "ens*";
             networkConfig.DHCP = "ipv4";
             linkConfig.RequiredForOnline = "routable";
           };
@@ -160,6 +170,12 @@ in
 
   systemd.network = {
     enable = true;
+    links = {
+      "10-lan" = {
+        matchConfig.Name = "enp*";
+        linkConfig.MACAddressPolicy = "persistent";
+      };
+    };
     networks = {
       "10-lan" = {
         matchConfig.Name = "enp*";

@@ -6,9 +6,9 @@ let
     "backup0.dadada.li"
   ];
   secretsPath = config.dadada.secrets.path;
-  wg0PrivKey = "${config.networking.hostName}-wg0-key";
-  wgHydraPrivKey = "${config.networking.hostName}-wg-hydra-key";
-  wg0PresharedKey = "${config.networking.hostName}-wg0-preshared-key";
+  wg0PrivKey = "pruflas-wg0-key";
+  wgHydraPrivKey = "pruflas-wg-hydra-key";
+  wg0PresharedKey = "pruflas-wg0-preshared-key";
   hydraGitHubAuth = "hydra-github-authorization";
   initrdPrivateKey = "/etc/ssh/initrd_ssh_host_ed25519_key";
 in

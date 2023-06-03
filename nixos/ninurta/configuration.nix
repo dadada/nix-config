@@ -10,6 +10,7 @@ let
   wgHydraPrivKey = "${config.networking.hostName}-wg-hydra-key";
   wg0PresharedKey = "${config.networking.hostName}-wg0-preshared-key";
   hydraGitHubAuth = "hydra-github-authorization";
+  initrdPrivateKey = "${config.networking.hostName}-initrd_ssh_host_ed25519_key.age";
 in
 {
   imports = [
@@ -19,9 +20,6 @@ in
 
   networking.hostName = "ninurta";
 
-  networking.useDHCP = false;
-  networking.interfaces.enp86s0.useDHCP = true;
-
   networking.hosts = {
     "127.0.0.1" = hostAliases;
     "::1" = hostAliases;
@@ -30,13 +28,43 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # TODO enable
-  # fileSystems."/mnt/storage" = {
-  #   device = "/dev/disk/by-uuid/a34e36fc-d7dd-4ceb-93c4-48f9c2727cb7";
-  #   mountPoint = "/mnt/storage";
-  #   neededForBoot = false;
-  #   options = [ "nofail" ];
-  # };
+  assertions = lib.singleton {
+    assertion = (config.boot.initrd.network.ssh.hostKeys != [ ]) -> config.boot.loader.supportsInitrdSecrets == true;
+    message = "Refusing to store private keys in store";
+  };
+
+  boot.initrd = let initrdKeyPath = "/etc/ssh/a_initrd_ssh_host_ed25519_key"; in {
+    network = {
+      enable = true;
+      flushBeforeStage2 = true;
+      ssh = {
+        enable = true;
+        port = 2222;
+        authorizedKeys = config.dadada.admin.users.dadada.keys;
+        hostKeys = [ config.age.secrets.${initrdPrivateKey}.path ];
+      };
+    };
+    systemd = {
+      enable = true;
+      network = {
+        enable = true;
+        networks = {
+          "10-lan" = {
+            matchConfig.Name = "enp*";
+            networkConfig.DHCP = "ipv4";
+            linkConfig.RequiredForOnline = "routable";
+          };
+        };
+      };
+    };
+  };
+
+  fileSystems."/mnt/storage" = {
+    device = "/dev/disk/by-uuid/a34e36fc-d7dd-4ceb-93c4-48f9c2727cb7";
+    mountPoint = "/mnt/storage";
+    neededForBoot = false;
+    options = [ "nofail" ];
+  };
 
   # TODO enable
   # dadada.borgServer = {
@@ -113,35 +141,90 @@ in
   age.secrets.${wg0PrivKey}.file = "${secretsPath}/${wg0PrivKey}.age";
   age.secrets.${wg0PresharedKey}.file = "${secretsPath}/${wg0PresharedKey}.age";
   age.secrets.${wgHydraPrivKey}.file = "${secretsPath}/${wgHydraPrivKey}.age";
+  age.secrets.${initrdPrivateKey}.file = "${secretsPath}/${initrdPrivateKey}.age";
 
-  networking.wireguard = {
-    enable = true;
-    interfaces.uwupn = {
-      allowedIPsAsRoutes = true;
-      privateKeyFile = config.age.secrets.${wg0PrivKey}.path;
-      ips = [ "10.11.0.39/32" "fc00:1337:dead:beef::10.11.0.39/128" ];
-      peers = [
-        {
-          publicKey = "tuoiOWqgHz/lrgTcLjX+xIhvxh9jDH6gmDw2ZMvX5T8=";
-          allowedIPs = [ "10.11.0.0/22" "fc00:1337:dead:beef::10.11.0.0/118" "192.168.178.0/23" ];
-          endpoint = "53c70r.de:51820";
-          persistentKeepalive = 25;
-          presharedKeyFile = config.age.secrets.${wg0PresharedKey}.path;
-        }
-      ];
+  services.snapper = {
+    cleanupInterval = "1d";
+    snapshotInterval = "hourly";
+    configs.var = {
+      SUBVOLUME = "/var";
+      TIMELINE_CREATE = true;
+      TIMELINE_CLEANUP = true;
+      TIMELINE_LIMIT_HOURLY = 24;
+      TIMELINE_LIMIT_DAILY = 13;
+      TIMELINE_LIMIT_WEEKLY = 6;
+      TIMELINE_LIMIT_MONTHLY = 3;
     };
-    interfaces.hydra = {
-      allowedIPsAsRoutes = true;
-      privateKeyFile = config.age.secrets.${wgHydraPrivKey}.path;
-      ips = [ "10.3.3.3/32" ];
-      peers = [
-        {
-          publicKey = "KzL+PKlv4LktIqqTqC9Esw8dkSZN2qSn/vq76UHbOlY=";
-          allowedIPs = [ "10.3.3.1/32" ];
-          endpoint = "hydra.dadada.li:51235";
-          persistentKeepalive = 25;
-        }
-      ];
+  };
+
+  services.smartd.enable = true;
+
+  systemd.network = {
+    enable = true;
+    networks = {
+      "10-lan" = {
+        matchConfig.Name = "enp*";
+        networkConfig.DHCP = "ipv4";
+        linkConfig.RequiredForOnline = "routable";
+      };
+      "10-hydra" = {
+        matchConfig.Name = "hydra";
+        address = [ "10.3.3.1/24" ];
+        DHCP = "no";
+        networkConfig.IPv6AcceptRA = false;
+        linkConfig.RequiredForOnline = "no";
+        routes = [
+          { routeConfig = { Gateway = "10.3.3.3"; Destination = "10.3.3.3/32"; }; }
+        ];
+      };
+      "10-uwu" = {
+        matchConfig.Name = "uwu";
+        address = [ "10.11.0.39/24" "fc00:1337:dead:beef::10.11.0.39/128" ];
+        DHCP = "no";
+        networkConfig.IPv6AcceptRA = false;
+        linkConfig.RequiredForOnline = "no";
+        routes = [
+          { routeConfig = { Destination = "10.11.0.0/22"; }; }
+          { routeConfig = { Destination = "fc00:1337:dead:beef::10.11.0.0/118"; }; }
+        ];
+      };
+    };
+    netdevs = {
+      "10-hydra" = {
+        netdevConfig = {
+          Kind = "wireguard";
+          Name = "hydra";
+        };
+        wireguardConfig = {
+          PrivateKeyFile = config.age.secrets.${wgHydraPrivKey}.path;
+          ListenPort = 51235;
+        };
+        wireguardPeers = [{
+          wireguardPeerConfig = {
+            PublicKey = "KzL+PKlv4LktIqqTqC9Esw8dkSZN2qSn/vq76UHbOlY=";
+            AllowedIPs = [ "10.3.3.1/32" ];
+            PersistentKeepalive = 25;
+          };
+        }];
+      };
+      "10-uwu" = {
+        netdevConfig = {
+          Kind = "wireguard";
+          Name = "uwu";
+        };
+        wireguardConfig = {
+          PrivateKeyFile = config.age.secrets.${wg0PrivKey}.path;
+        };
+        wireguardPeers = [{
+          wireguardPeerConfig = {
+            PublicKey = "tuoiOWqgHz/lrgTcLjX+xIhvxh9jDH6gmDw2ZMvX5T8=";
+            AllowedIPs = [ "10.11.0.0/22" "fc00:1337:dead:beef::10.11.0.0/118" "192.168.178.0/23" ];
+            PersistentKeepalive = 25;
+            PresharedKeyFile = config.age.secrets.${wg0PresharedKey}.path;
+            Endpoint = "53c70r.de:51820";
+          };
+        }];
+      };
     };
   };
 
@@ -160,11 +243,8 @@ in
     ];
   };
 
+  services.resolved.enable = true;
   networking.networkmanager.enable = false;
-
-  dadada.networking.localResolver.enable = true;
-  dadada.networking.localResolver.uwu = true;
-  dadada.networking.localResolver.s0 = true;
 
   # Desktop things for media playback
 
@@ -196,5 +276,5 @@ in
   documentation.enable = true;
   documentation.nixos.enable = true;
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 }

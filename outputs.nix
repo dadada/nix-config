@@ -51,7 +51,9 @@
       };
     });
 
-    packages = import ./pkgs { inherit pkgs; };
+    packages = import ./pkgs { inherit pkgs; } // {
+      installer-iso = self.nixosConfigurations.installer.config.system.build.isoImage;
+    };
   }))
   // {
 

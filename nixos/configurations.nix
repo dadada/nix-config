@@ -90,10 +90,11 @@ in
       nixos-generators.nixosModules.install-iso
       self.nixosModules.admin
       {
+        isoImage.isoName = nixpkgs.lib.mkForce "dadada-nixos-installer.iso";
         networking.tempAddresses = "disabled";
         dadada.admin.enable = true;
-        documentation.enable = false;
-        documentation.nixos.enable = false;
+        documentation.enable = true;
+        documentation.nixos.enable = true;
         i18n.defaultLocale = "en_US.UTF-8";
         console = {
           font = "Lat2-Terminus16";

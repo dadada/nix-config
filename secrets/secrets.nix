@@ -14,10 +14,10 @@ let
   };
 in
 {
-  "pruflas-wg0-key.age".publicKeys = [ systems.pruflas dadada ];
-  "pruflas-wg0-preshared-key.age".publicKeys = [ systems.pruflas dadada ];
-  "pruflas-wg-hydra-key.age".publicKeys = [ systems.pruflas dadada ];
-  "hydra-github-authorization.age".publicKeys = [ systems.pruflas dadada ];
+  "pruflas-wg0-key.age".publicKeys = [ systems.ninurta dadada ];
+  "pruflas-wg0-preshared-key.age".publicKeys = [ systems.ninurta dadada ];
+  "pruflas-wg-hydra-key.age".publicKeys = [ systems.ninurta dadada ];
+  "hydra-github-authorization.age".publicKeys = [ systems.ninurta dadada ];
   "miniflux-admin-credentials.age".publicKeys = [ systems.surgat dadada ];
   "gorgon-backup-passphrase-gs.age".publicKeys = [ systems.gorgon dadada ];
   "paperless.age".publicKeys = [ systems.gorgon dadada ];

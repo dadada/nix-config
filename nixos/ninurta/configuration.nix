@@ -10,7 +10,7 @@ let
   wgHydraPrivKey = "${config.networking.hostName}-wg-hydra-key";
   wg0PresharedKey = "${config.networking.hostName}-wg0-preshared-key";
   hydraGitHubAuth = "hydra-github-authorization";
-  initrdPrivateKey = "${config.networking.hostName}-initrd_ssh_host_ed25519_key.age";
+  initrdPrivateKey = "/etc/ssh/initrd_ssh_host_ed25519_key";
 in
 {
   imports = [
@@ -33,7 +33,7 @@ in
     message = "Refusing to store private keys in store";
   };
 
-  boot.initrd = let initrdKeyPath = "/etc/ssh/a_initrd_ssh_host_ed25519_key"; in {
+  boot.initrd = {
     network = {
       enable = true;
       flushBeforeStage2 = true;
@@ -41,7 +41,7 @@ in
         enable = true;
         port = 2222;
         authorizedKeys = config.dadada.admin.users.dadada.keys;
-        hostKeys = [ config.age.secrets.${initrdPrivateKey}.path ];
+        hostKeys = [ initrdPrivateKey ];
       };
     };
     systemd = {
@@ -141,7 +141,6 @@ in
   age.secrets.${wg0PrivKey}.file = "${secretsPath}/${wg0PrivKey}.age";
   age.secrets.${wg0PresharedKey}.file = "${secretsPath}/${wg0PresharedKey}.age";
   age.secrets.${wgHydraPrivKey}.file = "${secretsPath}/${wgHydraPrivKey}.age";
-  age.secrets.${initrdPrivateKey}.file = "${secretsPath}/${initrdPrivateKey}.age";
 
   services.snapper = {
     cleanupInterval = "1d";

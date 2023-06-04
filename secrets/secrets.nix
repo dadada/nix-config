@@ -24,6 +24,7 @@ in
   "surgat-ssh_host_ed25519_key.age".publicKeys = [ systems.surgat dadada ];
   "ninurta-initrd_ssh_host_ed25519_key.age".publicKeys = [ systems.ninurta dadada ];
 } //
+backupSecrets "ninurta" //
 backupSecrets "gorgon" //
 backupSecrets "ifrit" //
 backupSecrets "pruflas" //

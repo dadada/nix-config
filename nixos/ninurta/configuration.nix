@@ -44,7 +44,7 @@ in
         enable = true;
         port = 2222;
         authorizedKeys = config.dadada.admin.users.dadada.keys;
-        hostKeys = [ age.secrets.${initrdSshKey}.path ];
+        hostKeys = [ config.age.secrets.${initrdSshKey}.path ];
       };
     };
     # Kinda does not work?

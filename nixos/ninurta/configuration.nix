@@ -10,7 +10,7 @@ let
   wgHydraPrivKey = "pruflas-wg-hydra-key";
   wg0PresharedKey = "pruflas-wg0-preshared-key";
   hydraGitHubAuth = "hydra-github-authorization";
-  initrdPrivateKey = "/etc/ssh/initrd_ssh_host_ed25519_key";
+  initrdSshKey = "ninurta-initrd-ssh-key";
 in
 {
   imports = [
@@ -44,29 +44,29 @@ in
         enable = true;
         port = 2222;
         authorizedKeys = config.dadada.admin.users.dadada.keys;
-        hostKeys = [ initrdPrivateKey ];
+        hostKeys = [ age.secrets.${initrdSshKey}.path ];
       };
     };
     # Kinda does not work?
-    # systemd = {
-    #   enable = true;
-    #   network = {
-    #     enable = true;
-    #     links = {
-    #       "10-lan" = {
-    #         matchConfig.Name = "e*";
-    #         linkConfig.MACAddressPolicy = "persistent";
-    #       };
-    #     };
-    #     networks = {
-    #       "10-lan" = {
-    #         matchConfig.Name = "e*";
-    #         networkConfig.DHCP = "ipv4";
-    #         linkConfig.RequiredForOnline = "routable";
-    #       };
-    #     };
-    #   };
-    # };
+    systemd = {
+      enable = true;
+      network = {
+        enable = true;
+        links = {
+          "10-lan" = {
+            matchConfig.Name = "e*";
+            linkConfig.MACAddressPolicy = "persistent";
+          };
+        };
+        networks = {
+          "10-lan" = {
+            matchConfig.Name = "e*";
+            networkConfig.DHCP = "ipv4";
+            linkConfig.RequiredForOnline = "routable";
+          };
+        };
+      };
+    };
   };
 
   fileSystems."/mnt/storage" = {
@@ -151,6 +151,10 @@ in
   age.secrets.${wg0PrivKey}.file = "${secretsPath}/${wg0PrivKey}.age";
   age.secrets.${wg0PresharedKey}.file = "${secretsPath}/${wg0PresharedKey}.age";
   age.secrets.${wgHydraPrivKey}.file = "${secretsPath}/${wgHydraPrivKey}.age";
+  age.secrets.${initrdSshKey} = {
+    file = "${secretsPath}/${initrdSshKey}.age";
+    mode = "700";
+  };
 
   services.snapper = {
     cleanupInterval = "1d";

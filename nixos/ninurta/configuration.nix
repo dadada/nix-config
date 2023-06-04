@@ -46,6 +46,9 @@ in
         authorizedKeys = config.dadada.admin.users.dadada.keys;
         hostKeys = [ initrdSshKey ];
       };
+      postCommands = ''
+	      echo 'systemctl restart systemd-cryptsetup@luks.service' >> /root/.profile
+	    '';
     };
     # Kinda does not work?
     systemd = {

@@ -66,11 +66,6 @@ in
     luks.uuid = "3d0e5b93-90ca-412a-b4e0-3e6bfa47d3f4";
     networking = {
       enableBsShare = true;
-      localResolver = {
-        enable = false;
-        uwu = true;
-        s0 = true;
-      };
       vpnExtension = "3";
     };
     sway.enable = false;
@@ -168,6 +163,11 @@ in
   networking.wireguard.interfaces.uwupn = {
     ips = [ "10.11.0.24/32" "fc00:1337:dead:beef::10.11.0.24/128" ];
     privateKeyFile = "/var/lib/wireguard/uwu";
+
+    postSetup = ''
+      ${pkgs.systemd}/bin/resolvectl domain uwupn ~uwu
+      ${pkgs.systemd}/bin/resolvectl dns uwupn 10.0.0.1
+    '';
     peers = [
       {
         publicKey = "tuoiOWqgHz/lrgTcLjX+xIhvxh9jDH6gmDw2ZMvX5T8=";

@@ -22,7 +22,7 @@
   services.smartd.enable = true;
 
   networking.hostName = "agares";
-  networking.domain = "dadada.li";
+  networking.domain = "bs.dadada.li";
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;

@@ -18,6 +18,7 @@ in
   };
 
   networking.hostName = "ifrit";
+  networking.domain = "bs.dadada.li";
 
   networking.hosts = {
     "127.0.0.1" = hostAliases;

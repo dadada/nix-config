@@ -21,6 +21,7 @@ in
   dadada.backupClient.bs.enable = false;
 
   networking.hostName = "ninurta";
+  networking.domain = "bs.dadada.li";
 
   networking.hosts = {
     "127.0.0.1" = hostAliases;
@@ -47,8 +48,8 @@ in
         hostKeys = [ initrdSshKey ];
       };
       postCommands = ''
-	      echo 'systemctl restart systemd-cryptsetup@luks.service' >> /root/.profile
-	    '';
+          	      echo 'systemctl restart systemd-cryptsetup@luks.service' >> /root/.profile
+        	    '';
     };
     # Kinda does not work?
     systemd = {
@@ -204,6 +205,8 @@ in
       "10-uwu" = {
         matchConfig.Name = "uwu";
         address = [ "10.11.0.39/24" "fc00:1337:dead:beef::10.11.0.39/128" ];
+        dns = [ "10.11.0.1::%uwu#uwu" ];
+        domains = [ "uwu" ];
         DHCP = "no";
         networkConfig.IPv6AcceptRA = false;
         linkConfig.RequiredForOnline = "no";

@@ -54,5 +54,8 @@ in
       highlighters = [ "main" "brackets" "pattern" "root" "line" ];
     };
   };
+
+  networking.networkmanager.dns = mkDefault "systemd-resolved";
+  services.resolved.enable = mkDefault true;
 }
 

@@ -134,9 +134,11 @@ in
       dadada = {
         ips = [ "fd42:9c3b:f96d:201::${cfg.vpnExtension}/64" ];
         listenPort = 51234;
-
         privateKeyFile = "/var/lib/wireguard/privkey";
-
+        postSetup = ''
+          ${pkgs.systemd}/bin/resolvectl domain dadada ~bs.dadada.li
+          ${pkgs.systemd}/bin/resolvectl dns dadada fd42:9c3b:f96d:201::
+        '';
         peers = [
           {
             publicKey = vpnPubKey;

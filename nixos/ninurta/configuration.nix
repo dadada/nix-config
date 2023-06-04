@@ -10,7 +10,7 @@ let
   wgHydraPrivKey = "pruflas-wg-hydra-key";
   wg0PresharedKey = "pruflas-wg0-preshared-key";
   hydraGitHubAuth = "hydra-github-authorization";
-  initrdSshKey = "ninurta-initrd-ssh-key";
+  initrdSshKey = "/etc/ssh/ssh_initrd_ed25519_key";
 in
 {
   imports = [
@@ -44,7 +44,7 @@ in
         enable = true;
         port = 2222;
         authorizedKeys = config.dadada.admin.users.dadada.keys;
-        hostKeys = [ config.age.secrets.${initrdSshKey}.path ];
+        hostKeys = [ initrdSshKey ];
       };
     };
     # Kinda does not work?
@@ -151,10 +151,12 @@ in
   age.secrets.${wg0PrivKey}.file = "${secretsPath}/${wg0PrivKey}.age";
   age.secrets.${wg0PresharedKey}.file = "${secretsPath}/${wg0PresharedKey}.age";
   age.secrets.${wgHydraPrivKey}.file = "${secretsPath}/${wgHydraPrivKey}.age";
-  age.secrets.${initrdSshKey} = {
-    file = "${secretsPath}/${initrdSshKey}.age";
-    mode = "700";
-  };
+
+  # This does not work, since the key is needed earlier than run-agenix.mount.
+  # age.secrets.${initrdSshKey} = {
+  #   file = "${secretsPath}/${initrdSshKey}.age";
+  #   mode = "700";
+  # };
 
   services.snapper = {
     cleanupInterval = "1d";

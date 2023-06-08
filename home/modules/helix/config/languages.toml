@@ -12,4 +12,4 @@ roots = []
 [[language]]
 name = "nix"
 file-types = ["nix"]
-language-server = { command = "nixd" }
+language-server = { command = "nil" }

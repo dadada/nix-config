@@ -32,10 +32,6 @@
       flake = false;
     };
     helix.url = "github:helix-editor/helix/23.03";
-    nixd = {
-      url = "github:nix-community/nixd";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = { ... } @ args: import ./outputs.nix args;

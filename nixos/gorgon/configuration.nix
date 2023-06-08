@@ -167,6 +167,7 @@ in
     postSetup = ''
       ${pkgs.systemd}/bin/resolvectl domain uwupn ~uwu
       ${pkgs.systemd}/bin/resolvectl dns uwupn 10.0.0.1
+      ${pkgs.systemd}/bin/resolvectl dnssec uwupn false
     '';
     peers = [
       {

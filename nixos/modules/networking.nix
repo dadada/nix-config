@@ -138,6 +138,7 @@ in
         postSetup = ''
           ${pkgs.systemd}/bin/resolvectl domain dadada ~bs.dadada.li
           ${pkgs.systemd}/bin/resolvectl dns dadada fd42:9c3b:f96d:201::
+          ${pkgs.systemd}/bin/resolvectl dnssec dadada false
         '';
         peers = [
           {

@@ -17,6 +17,11 @@ in
     borgServer.path = "/mnt/storage/backup";
   };
 
+
+  dadada.ddns.domains = [
+    "backup0.dadada.li"
+  ];
+
   networking.hostName = "ifrit";
   networking.domain = "bs.dadada.li";
 

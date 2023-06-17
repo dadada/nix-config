@@ -78,7 +78,7 @@
     };
 
 
-  fileSystems."/mnt/storage/backup" =
+  fileSystems."/mnt/storage/backups" =
     {
       device = "/dev/disk/by-uuid/ce483e75-5886-4b03-a3f9-675b80560ac9";
       fsType = "btrfs";

@@ -3,7 +3,7 @@ let
   hostAliases = [
     "ifrit.dadada.li"
     "media.dadada.li"
-    "backup0.dadada.li"
+    "backup1.dadada.li"
   ];
   secretsPath = config.dadada.secrets.path;
   wg0PrivKey = "pruflas-wg0-key";
@@ -70,11 +70,12 @@ in
     };
   };
 
-  # TODO enable
-  # dadada.borgServer = {
-  #   enable = true;
-  #   path = "/mnt/storage/backup";
-  # };
+  dadada.ddns.domains = [ "backup1.dadada.li" ];
+
+  dadada.borgServer = {
+    enable = true;
+    path = "/mnt/storage/backups";
+  };
 
   age.secrets.${hydraGitHubAuth} = {
     file = "${secretsPath}/${hydraGitHubAuth}.age";
@@ -287,6 +288,24 @@ in
     '';
   };
 
+
+
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "powersave";
+    # powertop autotune
+    powertop.enable = true;
+    # This generally means no power management for SCSI
+    scsiLinkPolicy = "med_power_with_dipm";
+    # Configure the disks to spin down after 10 min of inactivity.
+    powerUpCommands = ''
+      find /dev -regextype sed -regex '/dev/sd[a-z]$' | xargs ${pkgs.hdparm}/sbin/hdparm -S 120
+    '';
+    powerDownCommands = ''
+      find /dev -regextype sed -regex '/dev/sd[a-z]$' | xargs ${pkgs.hdparm}/sbin/hdparm -S 0
+    '';
+  };
+
   security.rtkit.enable = true;
 
   services.pipewire = {
@@ -298,7 +317,13 @@ in
 
   hardware.pulseaudio.enable = false;
 
-  environment.systemPackages = [ pkgs.firefox pkgs.spotify pkgs.mpv ];
+  environment.systemPackages = with pkgs; [
+    firefox
+    spotify
+    mpv
+    smartmontools
+    hdparm
+  ];
 
   users.users."media" = {
     isNormalUser = true;

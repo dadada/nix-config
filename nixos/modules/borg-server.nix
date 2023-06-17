@@ -16,11 +16,6 @@ in
   };
 
   config = mkIf cfg.enable {
-
-    dadada.ddns.domains = [
-      "backup0.dadada.li"
-    ];
-
     users.users.borg.home = cfg.path;
     services.borgbackup.repos = {
       "metis" = {

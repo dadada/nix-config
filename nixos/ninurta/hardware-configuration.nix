@@ -69,14 +69,21 @@
     size = 32 * 1024; # 32 GByte
   }];
 
-  # TODO systemd networkd
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp86s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
+
+  fileSystems."/mnt/storage" =
+    {
+      device = "/dev/disk/by-uuid/ce483e75-5886-4b03-a3f9-675b80560ac9";
+      fsType = "btrfs";
+      options = [ "subvol=root" "compress=zstd" ];
+    };
+
+
+  fileSystems."/mnt/storage/backup" =
+    {
+      device = "/dev/disk/by-uuid/ce483e75-5886-4b03-a3f9-675b80560ac9";
+      fsType = "btrfs";
+      options = [ "subvol=backups" "noatime" ];
+    };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

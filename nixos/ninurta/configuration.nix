@@ -70,13 +70,6 @@ in
     };
   };
 
-  fileSystems."/mnt/storage" = {
-    device = "/dev/disk/by-uuid/a34e36fc-d7dd-4ceb-93c4-48f9c2727cb7";
-    mountPoint = "/mnt/storage";
-    neededForBoot = false;
-    options = [ "nofail" ];
-  };
-
   # TODO enable
   # dadada.borgServer = {
   #   enable = true;
@@ -91,7 +84,7 @@ in
   };
 
   services.hydra = {
-    enable = true;
+    enable = false;
     package = pkgs.hydra-unstable;
     hydraURL = "https://hydra.dadada.li";
     notificationSender = "hydra@localhost";

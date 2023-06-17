@@ -172,7 +172,7 @@ in
     peers = [
       {
         publicKey = "tuoiOWqgHz/lrgTcLjX+xIhvxh9jDH6gmDw2ZMvX5T8=";
-        allowedIPs = [ "10.11.0.0/22" "fc00:1337:dead:beef::10.11.0.0/118" "192.168.178.0/23" ];
+        allowedIPs = [ "10.11.0.0/22" "fc00:1337:dead:beef::10.11.0.0/118" ];
         endpoint = "53c70r.de:51820";
         persistentKeepalive = 25;
       }

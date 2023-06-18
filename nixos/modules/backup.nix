@@ -23,6 +23,7 @@ with lib; let
     "/var/lib/machines"
     "/var/log"
     "/var/tmp"
+    "/swapfile"
   ];
   cfg = config.dadada.backupClient;
 in

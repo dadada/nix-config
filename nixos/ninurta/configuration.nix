@@ -20,10 +20,9 @@ in
 
   dadada.backupClient.bs.enable = false;
   dadada.backupClient.backup1.enable = false;
+
   dadada.backupClient.backup2 = {
-    enable = false;
-    passphrasePath = config.age.secrets."${config.networking.hostName}-backup-passphrase".path;
-    sshIdentityFile = config.age.secrets."${config.networking.hostName}-backup-ssh-key".path;
+    enable = true;
     repo = "u355513-sub2@u355513-sub2.your-storagebox.de:/home/backup";
   };
 

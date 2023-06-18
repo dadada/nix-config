@@ -97,9 +97,9 @@ in
       startAt = "monthly";
     };
 
-    systemd.services."borgbackup-job-gs".enable = true;
-    systemd.services."borgbackup-job-gs".wants = [ "backup.mount" ];
-    systemd.timers."borgbackup-job-gs".enable = true;
+    systemd.services."borgbackup-job-gs".enable = mkIf cfg.gs.enable true;
+    systemd.services."borgbackup-job-gs".wants = mkIf cfg.gs.enable [ "backup.mount" ];
+    systemd.timers."borgbackup-job-gs".enable = mkIf cfg.gs.enable true;
 
     services.borgbackup.jobs.bs = mkIf cfg.bs.enable {
       paths = "/";

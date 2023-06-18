@@ -85,7 +85,7 @@ in
   };
 
   services.hydra = {
-    enable = false;
+    enable = true;
     package = pkgs.hydra-unstable;
     hydraURL = "https://hydra.dadada.li";
     notificationSender = "hydra@localhost";
@@ -165,6 +165,15 @@ in
       TIMELINE_LIMIT_WEEKLY = 6;
       TIMELINE_LIMIT_MONTHLY = 3;
     };
+    configs.storage = {
+      SUBVOLUME = "/mnt/storage";
+      TIMELINE_CREATE = true;
+      TIMELINE_CLEANUP = true;
+      TIMELINE_LIMIT_HOURLY = 24;
+      TIMELINE_LIMIT_DAILY = 13;
+      TIMELINE_LIMIT_WEEKLY = 6;
+      TIMELINE_LIMIT_MONTHLY = 3;
+    };
   };
 
   services.smartd.enable = true;
@@ -178,6 +187,14 @@ in
       };
     };
     networks = {
+      "10-wlan" = {
+        matchConfig.Name = "wlan*";
+        linkConfig.RequiredForOnline = false;
+      };
+      "10-wlo" = {
+        matchConfig.Name = "wlo*";
+        linkConfig.RequiredForOnline = false;
+      };
       "10-lan" = {
         matchConfig.Name = "enp*";
         networkConfig.DHCP = "ipv4";

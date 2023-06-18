@@ -77,6 +77,47 @@ in
     path = "/mnt/storage/backups";
   };
 
+  services.borgbackup.jobs."backup1.bs.dadada.li" = {
+    removableDevice = true;
+    paths = [
+      "/var/backup"
+      "/var/lib"
+      "/var/www"
+      "/home"
+    ];
+    exclude = [
+      "/home/*/.cache"
+      "/var/lib/machines"
+    ];
+    repo = "/mnt/storage/backups/${config.networking.hostName}";
+    doInit = true;
+    encryption = {
+      mode = "repokey";
+      passCommand = "cat ${config.age.secrets.ninurta-backup-passphrase.path}";
+    };
+    compression = "auto,lz4";
+    prune.keep = {
+      within = "1d"; # Keep all archives from the last day
+      daily = 7;
+      weekly = 2;
+      monthly = -1; # Keep at least one archive for each month
+      yearly = -1; # Keep at least one archive for each year
+    };
+    startAt = "daily";
+  };
+
+  services.postgresqlBackup = {
+    enable = true;
+    backupAll = true;
+    compression = "zstd";
+    location = "/var/backup/postgresql";
+  };
+
+  age.secrets."ninurta-backup-passphrase" = {
+    file = "${secretsPath}/ninurta-backup-passphrase.age";
+    mode = "400";
+  };
+
   age.secrets.${hydraGitHubAuth} = {
     file = "${secretsPath}/${hydraGitHubAuth}.age";
     mode = "440";

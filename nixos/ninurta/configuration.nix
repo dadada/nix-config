@@ -48,7 +48,6 @@ in
         hostKeys = [ initrdSshKey ];
       };
     };
-    # Kinda does not work?
     systemd = {
       enable = true;
       network = {
@@ -126,7 +125,7 @@ in
   };
 
   services.hydra = {
-    enable = true;
+    enable = false;
     package = pkgs.hydra-unstable;
     hydraURL = "https://hydra.dadada.li";
     notificationSender = "hydra@localhost";
@@ -182,11 +181,21 @@ in
 
   systemd.tmpfiles.rules = [
     "d /var/www/pruflas.uwu 0551 nginx nginx - -"
+    "d /mnt/storage/backups/ninurta 0750 ${config.users.users.borg.name} ${config.users.users.borg.group} - -"
   ];
 
-  age.secrets.${wg0PrivKey}.file = "${secretsPath}/${wg0PrivKey}.age";
-  age.secrets.${wg0PresharedKey}.file = "${secretsPath}/${wg0PresharedKey}.age";
-  age.secrets.${wgHydraPrivKey}.file = "${secretsPath}/${wgHydraPrivKey}.age";
+  age.secrets.${wg0PrivKey} = {
+    file = "${secretsPath}/${wg0PrivKey}.age";
+    owner = "systemd-network";
+  };
+  age.secrets.${wg0PresharedKey} = {
+    file = "${secretsPath}/${wg0PresharedKey}.age";
+    owner = "systemd-network";
+  };
+  age.secrets.${wgHydraPrivKey} = {
+    file = "${secretsPath}/${wgHydraPrivKey}.age";
+    owner = "systemd-network";
+  };
 
   # This does not work, since the key is needed earlier than run-agenix.mount.
   # age.secrets.${initrdSshKey} = {
@@ -243,12 +252,12 @@ in
       };
       "10-hydra" = {
         matchConfig.Name = "hydra";
-        address = [ "10.3.3.1/24" ];
+        address = [ "10.3.3.3/24" ];
         DHCP = "no";
         networkConfig.IPv6AcceptRA = false;
-        linkConfig.RequiredForOnline = "no";
+        linkConfig.RequiredForOnline = false;
         routes = [
-          { routeConfig = { Gateway = "10.3.3.3"; Destination = "10.3.3.3/32"; }; }
+          { routeConfig = { Gateway = "10.3.3.1"; Destination = "10.3.3.3/32"; }; }
         ];
       };
       "10-uwu" = {
@@ -258,7 +267,7 @@ in
         domains = [ "uwu" ];
         DHCP = "no";
         networkConfig.IPv6AcceptRA = false;
-        linkConfig.RequiredForOnline = "no";
+        linkConfig.RequiredForOnline = false;
         routes = [
           { routeConfig = { Destination = "10.11.0.0/22"; }; }
           { routeConfig = { Destination = "fc00:1337:dead:beef::10.11.0.0/118"; }; }

@@ -23,7 +23,7 @@ with lib; {
   system.autoUpgrade = {
     enable = true;
     flake = "github:dadada/nix-config#${config.networking.hostName}";
-    allowReboot = mkDefault true;
+    allowReboot = mkDefault false;
     randomizedDelaySec = "45min";
   };
 

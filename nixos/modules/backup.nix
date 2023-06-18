@@ -56,6 +56,24 @@ in
           default = "/var/lib/borgbackup/bs/id_ed25519";
         };
       };
+      backup2 = {
+        enable = mkEnableOption "Enable backup to Hetzner storage box";
+        passphrasePath = mkOption {
+          type = types.str;
+          description = "The path to the passphrase file.";
+          default = "/var/lib/borgbackup/backup2/passphrase";
+        };
+        sshIdentityFile = mkOption {
+          type = types.str;
+          description = "Path to the SSH key that is used to transmit the backup.";
+          default = "/var/lib/borgbackup/backup2/id_ed25519";
+        };
+        repo = mkOption {
+          type = types.str;
+          description = "URL to the repo inside the sub-account.";
+          example = "u355513-sub1@u355513-sub1.your-storagebox.de:borg";
+        };
+      };
     };
   };
 
@@ -117,6 +135,25 @@ in
       startAt = "daily";
       environment = {
         BORG_RELOCATED_REPO_ACCESS_IS_OK = "yes";
+      };
+    };
+
+    services.borgbackup.jobs.backup2 = mkIf cfg.backup2.enable {
+      paths = "/";
+      exclude = backupExcludes;
+      repo = cfg.backup2.repo;
+      doInit = true;
+      environment = {
+        BORG_RSH = "ssh -6 -p23 -i ${cfg.backup2.sshIdentityFile} -o 'StrictHostKeyChecking accept-new' -o 'TCPKeepAlive=yes'";
+      };
+      encryption = {
+        mode = "repokey";
+        passCommand = "cat ${cfg.backup2.passphrasePath}";
+      };
+      compression = "auto,lz4";
+      startAt = "daily";
+      environment = {
+        BORG_RELOCATED_REPO_ACCESS_IS_OK = "no";
       };
     };
   };

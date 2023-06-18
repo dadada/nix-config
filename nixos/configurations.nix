@@ -47,7 +47,6 @@ in
           ];
           home-manager.users.dadada = import ../home/home;
         })
-      ./modules/profiles/laptop.nix
       ./gorgon/configuration.nix
     ];
   };

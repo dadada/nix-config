@@ -42,8 +42,16 @@ let
 in
 {
   imports = [
+    ../modules/profiles/laptop.nix
     ./hardware-configuration.nix
   ];
+
+  dadada.backupClient.backup2 = {
+    enable = true;
+    passphrasePath = config.age.secrets."${config.networking.hostName}-backup-passphrase".path;
+    sshIdentityFile = config.age.secrets."${config.networking.hostName}-backup-ssh-key".path;
+    repo = "u355513-sub1@u355513-sub1.your-storagebox.de:/home/backup";
+  };
 
   nix.extraOptions = ''
     experimental-features = nix-command flakes

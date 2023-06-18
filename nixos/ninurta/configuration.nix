@@ -125,7 +125,7 @@ in
   };
 
   services.hydra = {
-    enable = false;
+    enable = true;
     package = pkgs.hydra-unstable;
     hydraURL = "https://hydra.dadada.li";
     notificationSender = "hydra@localhost";

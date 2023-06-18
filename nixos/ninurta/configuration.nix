@@ -174,7 +174,7 @@ in
       root = "/var/www/pruflas.uwu";
       locations."/" = {
         tryFiles = "$uri $uri/ = 404";
-        index = "index.html";
+        index = "index.txt";
       };
     };
   };

@@ -158,8 +158,8 @@ in
     services.borgbackup.jobs.backup1 = mkIf cfg.bs.enable {
       paths = "/";
       exclude = backupExcludes;
-      repo = "borg@backup1.dadada.li:/mnt/storage/backup/${config.networking.hostName}";
-      doInit = false;
+      repo = "borg@backup1.dadada.li:/mnt/storage/backups/${config.networking.hostName}";
+      doInit = true;
       environment = {
         BORG_RSH = "ssh -6 -i ${cfg.backup1.sshIdentityFile} -o 'StrictHostKeyChecking accept-new' -o 'TCPKeepAlive=yes'";
       };

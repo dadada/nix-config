@@ -76,6 +76,8 @@ in
   };
 
   dadada.ddns.domains = [ "backup1.dadada.li" ];
+  dadada.ddns.credentialsPath = config.age.secrets."ddns-credentials".path;
+  dadada.ddns.interface = "backup";
 
   dadada.borgServer = {
     enable = true;
@@ -116,6 +118,11 @@ in
     backupAll = true;
     compression = "zstd";
     location = "/var/backup/postgresql";
+  };
+
+  age.secrets."ddns-credentials" = {
+    file = "${secretsPath}/ddns-credentials.age";
+    mode = "400";
   };
 
   age.secrets."ninurta-backup-passphrase" = {
@@ -241,6 +248,10 @@ in
         matchConfig.Name = "enp*";
         linkConfig.MACAddressPolicy = "persistent";
       };
+      "20-backup" = {
+        matchConfig.Name = "backup";
+        linkConfig.MACAddressPolicy = "persistent";
+      };
     };
     networks = {
       "10-wlan" = {
@@ -255,6 +266,11 @@ in
         matchConfig.Name = "enp*";
         networkConfig.DHCP = "ipv4";
         linkConfig.RequiredForOnline = "routable";
+      };
+      "20-backup" = {
+        matchConfig.Name = "backup";
+        networkConfig.DHCP = "ipv4";
+        linkConfig.RequiredForOnline = false;
       };
       "10-hydra" = {
         matchConfig.Name = "hydra";
@@ -315,6 +331,13 @@ in
             Endpoint = "53c70r.de:51820";
           };
         }];
+      };
+      "20-backup" = {
+        netdevConfig = {
+          Name = "backup";
+          Kind = "vlan";
+        };
+        vlanConfig.Id = 13;
       };
     };
   };

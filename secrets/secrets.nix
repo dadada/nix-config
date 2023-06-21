@@ -23,6 +23,7 @@ in
   "paperless.age".publicKeys = [ systems.gorgon dadada ];
   "surgat-ssh_host_ed25519_key.age".publicKeys = [ systems.surgat dadada ];
   "ninurta-initrd-ssh-key.age".publicKeys = [ systems.ninurta dadada ];
+  "ddns-credentials.age".publicKeys = [ systems.ninurta dadada ];
 } //
 backupSecrets "ninurta" //
 backupSecrets "gorgon" //

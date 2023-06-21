@@ -17,7 +17,20 @@ with lib; let
     systemd.services = listToAttrs (forEach domains (domain:
       nameValuePair "ddns-${domain}"
         {
-          serviceConfig.Type = "oneshot";
+          serviceConfig = {
+            Type = "oneshot";
+            PrivateTmp = true;
+            PrivateDevices = true;
+            PrivateUsers = true;
+            PrivateMounts = true;
+            PrivateIPC = true;
+            ProtectHome = true;
+            ProtectSystem = "strict";
+            ProtectKernelTunables = true;
+            BindReadOnlyPaths = [ credentialsPath ];
+            NoNewPrivileges = true;
+            CapabilitBoundingSet = [ ];
+          };
           script = ''
             function url() {
               echo "https://svc.joker.com/nic/update?username=$1&password=$2&hostname=$3"

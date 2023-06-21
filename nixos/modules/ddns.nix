@@ -29,7 +29,6 @@ with lib; let
 
             curl_url=$(url "$user" "$password" ${domain})
 
-            ${pkgs.curl}/bin/curl -4 "$curl_url" ${if interface == null then "" else "--interface ${interface}"}
             ${pkgs.curl}/bin/curl -6 "$curl_url" ${if interface == null then "" else "--interface ${interface}"}
           '';
         }));

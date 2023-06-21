@@ -1,6 +1,5 @@
 { config
 , pkgs
-, lib
 , ...
 }:
 let
@@ -52,6 +51,13 @@ in
       enable = true;
       repo = "u355513-sub3@u355513-sub3.your-storagebox.de:/home/backup";
     };
+  };
+
+  services.postgresqlBackup = {
+    enable = true;
+    backupAll = true;
+    compression = "zstd";
+    location = "/var/backup/postgresql";
   };
 
   systemd.network = {

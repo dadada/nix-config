@@ -284,7 +284,7 @@ in
       "10-uwu" = {
         matchConfig.Name = "uwu";
         address = [ "10.11.0.39/24" "fc00:1337:dead:beef::10.11.0.39/128" ];
-        dns = [ "10.11.0.1::%uwu#uwu" ];
+        dns = [ "10.11.0.1%uwu#uwu" ];
         domains = [ "uwu" ];
         DHCP = "no";
         networkConfig.IPv6AcceptRA = false;

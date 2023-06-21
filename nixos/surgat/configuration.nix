@@ -47,7 +47,11 @@ in
   dadada.homePage.enable = true;
   dadada.share.enable = true;
   dadada.backupClient = {
-    bs.enable = true;
+    backup1.enable = true;
+    backup2 = {
+      enable = true;
+      repo = "u355513-sub3@u355513-sub3.your-storagebox.de:/home/backup";
+    };
   };
 
   systemd.network = {

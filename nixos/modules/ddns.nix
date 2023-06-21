@@ -5,17 +5,17 @@
 }:
 with lib; let
   cfg = config.dadada.ddns;
-  ddnsConfig = hostNames: {
-    systemd.timers = listToAttrs (forEach hostNames (hostname:
-      nameValuePair "ddns-${hostname}"
+  ddnsConfig = { domains, credentialsPath, interface }: {
+    systemd.timers = listToAttrs (forEach domains (domain:
+      nameValuePair "ddns-${domain}"
         {
           wantedBy = [ "timers.target" ];
-          partOf = [ "ddns-${hostname}.service" ];
+          partOf = [ "ddns-${domain}.service" ];
           timerConfig.OnCalendar = "hourly";
         }));
 
-    systemd.services = listToAttrs (forEach hostNames (hostname:
-      nameValuePair "ddns-${hostname}"
+    systemd.services = listToAttrs (forEach domains (domain:
+      nameValuePair "ddns-${domain}"
         {
           serviceConfig.Type = "oneshot";
           script = ''
@@ -24,13 +24,13 @@ with lib; let
             }
 
             IFS=':'
-            read -r user password < /var/lib/ddns/credentials
+            read -r user password < ${credentialsPath}
             unset IFS
 
-            curl_url=$(url "$user" "$password" ${hostname})
+            curl_url=$(url "$user" "$password" ${domain})
 
-            ${pkgs.curl}/bin/curl -4 "$curl_url"
-            ${pkgs.curl}/bin/curl -6 "$curl_url"
+            ${pkgs.curl}/bin/curl -4 "$curl_url" ${if interface == null then "" else "--interface ${interface}"}
+            ${pkgs.curl}/bin/curl -6 "$curl_url" ${if interface == null then "" else "--interface ${interface}"}
           '';
         }));
   };
@@ -47,7 +47,17 @@ in
       '';
       default = [ ];
     };
+    dadada.ddns.credentialsPath = mkOption {
+      type = types.path;
+      description = "Credentials file";
+      default = "/var/lib/ddns/credentials";
+    };
+    dadada.ddns.interface = mkOption {
+      type = types.nullOr types.str;
+      description = "Source interface to use";
+      default = null;
+    };
   };
 
-  config = ddnsConfig cfg.domains;
+  config = with cfg; ddnsConfig { inherit domains interface credentialsPath; };
 }

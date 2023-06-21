@@ -248,10 +248,6 @@ in
         matchConfig.Name = "enp*";
         linkConfig.MACAddressPolicy = "persistent";
       };
-      "20-backup" = {
-        matchConfig.Name = "backup";
-        linkConfig.MACAddressPolicy = "persistent";
-      };
     };
     networks = {
       "10-wlan" = {
@@ -265,11 +261,14 @@ in
       "10-lan" = {
         matchConfig.Name = "enp*";
         networkConfig.DHCP = "ipv4";
+        networkConfig.VLAN = [ "backup" ];
+        networkConfig.IPv6PrivacyExtensions = false;
         linkConfig.RequiredForOnline = "routable";
       };
       "20-backup" = {
         matchConfig.Name = "backup";
         networkConfig.DHCP = "ipv4";
+        networkConfig.IPv6PrivacyExtensions = false;
         linkConfig.RequiredForOnline = false;
       };
       "10-hydra" = {

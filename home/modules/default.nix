@@ -2,10 +2,6 @@
   alacritty = import ./alacritty;
   colors = import ./colors.nix;
   direnv = import ./direnv.nix;
-
-  # Disable because can't get importing the module to work
-  #emacs = import ./emacs;
-
   fish = import ./fish.nix;
   git = import ./git.nix;
   gpg = import ./gpg.nix;

@@ -278,7 +278,7 @@ in
         networkConfig.IPv6AcceptRA = false;
         linkConfig.RequiredForOnline = false;
         routes = [
-          { routeConfig = { Gateway = "10.3.3.1"; Destination = "10.3.3.3/32"; }; }
+          { routeConfig = { Destination = "10.3.3.1/24"; }; }
         ];
       };
       "10-uwu" = {
@@ -310,6 +310,7 @@ in
             PublicKey = "KzL+PKlv4LktIqqTqC9Esw8dkSZN2qSn/vq76UHbOlY=";
             AllowedIPs = [ "10.3.3.1/32" ];
             PersistentKeepalive = 25;
+            Endpoint = "surgat.dadada.li:51235";
           };
         }];
       };

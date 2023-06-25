@@ -89,10 +89,7 @@ in
         linkConfig.RequiredForOnline = "no";
         routes = [
           {
-            routeConfig = {
-              Gateway = "10.3.3.3";
-              Destination = "10.3.3.3/24";
-            };
+            routeConfig = { Destination = "10.3.3.0/24"; };
           }
         ];
       };
@@ -111,7 +108,6 @@ in
           wireguardPeerConfig = {
             PublicKey = "Kw2HVRb1zeA7NAzBvI3UzmOj45VqM358EBuZWdlAUDE=";
             AllowedIPs = [ "10.3.3.3/32" ];
-            PersistentKeepalive = 25;
           };
         }];
       };

@@ -32,23 +32,6 @@
 
     formatter = pkgs.nixpkgs-fmt;
 
-    jobsets = (import ./jobsets.nix {
-      inherit pkgs;
-      projectName = "nix-config";
-      declInput = {
-        src = {
-          type = "git";
-          value = "git://github.com/dadada/nix-config.git main";
-          emailresponsible = false;
-        };
-        nixpkgs = {
-          type = "git";
-          value = "git://github.com/NixOS/nixpkgs.git nixpkgs-22.11";
-          emailresponsible = false;
-        };
-      };
-    });
-
     packages = import ./pkgs { inherit pkgs; } // {
       installer-iso = self.nixosConfigurations.installer.config.system.build.isoImage;
     };

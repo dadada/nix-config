@@ -6,8 +6,6 @@
 , nixos-hardware
 , recipemd
 , nixos-generators
-, flake-registry
-, helix
 , ...
 }@inputs:
 let
@@ -42,7 +40,7 @@ in
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.sharedModules = (nixpkgs.lib.attrValues self.hmModules) ++ [
-            { dadada.home.helix.package = helix.packages.${system}.helix; }
+            { dadada.home.helix.package = pkgs.helix; }
             { manual.manpages.enable = false; }
           ];
           home-manager.users.dadada = import ../home/home;
@@ -83,7 +81,7 @@ in
     ];
   };
 
-  installer = nixpkgs.lib.nixosSystem rec {
+  installer = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
       nixos-generators.nixosModules.install-iso

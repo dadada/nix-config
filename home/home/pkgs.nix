@@ -13,7 +13,6 @@ with pkgs; [
   binutils
   bluez-tools
   btop # htop
-  citrix_workspace
   choose # alternative to cut and awk with more readable syntax
   colordiff
   darcs

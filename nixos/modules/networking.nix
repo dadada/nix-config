@@ -132,7 +132,7 @@ in
 
     networking.wireguard.interfaces = mkIf (cfg.vpnExtension != null) {
       dadada = {
-        ips = [ "fd42:9c3b:f96d:201::${cfg.vpnExtension}/64" "192.168.120.${cfg.vpnExtension}/17" ];
+        ips = [ "fd42:9c3b:f96d:201::${cfg.vpnExtension}/64" "192.168.120.${cfg.vpnExtension}/24" ];
         listenPort = 51234;
         privateKeyFile = "/var/lib/wireguard/privkey";
         postSetup = ''

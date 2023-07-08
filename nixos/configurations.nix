@@ -17,6 +17,7 @@ let
     modules = [{
       # Add flakes to registry and nix path.
       dadada.inputs = inputs // { dadada = self; };
+      nixpkgs.overlays = nixpkgs.lib.attrValues self.overlays;
     }] ++ (nixpkgs.lib.attrValues self.nixosModules) ++ [ agenix.nixosModules.age ] ++ extraModules;
   };
 in
@@ -101,5 +102,9 @@ in
     ];
   };
 
-  ninurta = nixosSystem { extraModules = [ ./ninurta/configuration.nix ]; };
+  ninurta = nixosSystem {
+    extraModules = [
+      ./ninurta/configuration.nix
+    ];
+  };
 }

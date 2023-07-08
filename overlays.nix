@@ -38,4 +38,8 @@
       };
     });
   };
+  
+  soft-serve = final: prev: {
+    soft-serve = prev.callPackage ./pkgs/soft-serve.nix { };
+  };
 }

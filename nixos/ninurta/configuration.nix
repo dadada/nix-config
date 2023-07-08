@@ -11,12 +11,29 @@ let
   wg0PresharedKey = "pruflas-wg0-preshared-key";
   hydraGitHubAuth = "hydra-github-authorization";
   initrdSshKey = "/etc/ssh/ssh_initrd_ed25519_key";
+  softServePort = 23231;
 in
 {
   imports = [
     ../modules/profiles/server.nix
     ./hardware-configuration.nix
   ];
+
+  services.soft-serve = {
+    enable = true;
+    settings = {
+      name = "dadada's repos";
+      log_format = "text";
+      ssh = {
+        listen_addr = ":${toString softServePort}";
+        public_url = "ssh://soft-serve.dadada.li:${toString softServePort}";
+        max_timeout = 30;
+        idle_timeout = 120;
+      };
+      stats.listen_addr = ":23233";
+      initial_admin_keys = config.dadada.admin.users.dadada.keys;
+    };
+  };
 
   dadada.backupClient.bs.enable = false;
   dadada.backupClient.backup1.enable = false;
@@ -75,7 +92,7 @@ in
     };
   };
 
-  dadada.ddns.domains = [ "backup1.dadada.li" ];
+  dadada.ddns.domains = [ "backup1.dadada.li" "soft-serve.dadada.li" ];
   dadada.ddns.credentialsPath = config.age.secrets."ddns-credentials".path;
   dadada.ddns.interface = "backup";
 
@@ -350,6 +367,7 @@ in
       80 # HTTP
       443 # HTTPS
       3000 # Hydra
+      softServePort
     ];
     allowedUDPPorts = [
       51234 # Wireguard
@@ -383,8 +401,6 @@ in
       sleep-inactive-battery-type='nothing'
     '';
   };
-
-
 
   powerManagement = {
     enable = true;

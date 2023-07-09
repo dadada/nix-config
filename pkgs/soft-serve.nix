@@ -1,6 +1,6 @@
 # Borrowed from nixpkgs.
 # See https://github.com/NixOS/nixpkgs/issues/86349
-{ lib, buildGoModule, fetchFromGitHub, makeWrapper, git }:
+{ lib, buildGoModule, fetchFromGitHub, makeWrapper, git, bash }:
 
 buildGoModule rec {
   pname = "soft-serve";
@@ -23,7 +23,7 @@ buildGoModule rec {
 
   postInstall = ''
     wrapProgram $out/bin/soft \
-      --prefix PATH : "${lib.makeBinPath [ git ]}"
+      --prefix PATH : "${lib.makeBinPath [ git bash ]}"
   '';
 
   meta = with lib; {

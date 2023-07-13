@@ -20,7 +20,7 @@ in
             tabwidth = 4;
           };
           alias = { };
-          pager = "delta --light";
+          pager = "delta";
         };
         column.ui = "never";
         checkout.defaultRemote = "origin";

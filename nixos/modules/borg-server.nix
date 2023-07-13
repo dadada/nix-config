@@ -52,13 +52,13 @@ in
         allowSubRepos = false;
         authorizedKeysAppendOnly = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxsyJeZVlVix0FPE8S/Gx0DVutS1ZNESVdYvHBwo36wGlYpSsQoSy/2HSwbpxs88MOGw1QNboxvvpBxCWxZ5HyjxuO5SwYgtmpjPXvmqfVqNXXnLChhSnKgk9b+HesQJCbHyrF9ZAJXEFCOGhOL3YTgd6lTX3lQUXgh/LEDlrPrigUMDNPecPWxpPskP6Vvpe9u+duhL+ihyxXaV+CoPk8nkWrov5jCGPiM48pugbwAfqARyZDgFpmWwL7Xg2UKgVZ1ttHZCWwH+htgioVZMYpdkQW1aq6LLGwN34Hj2VKXzmJN5frh6vQoZr2AFGHNKyJwAMpqnoY//QwuREpZTrh root@fginfo.ibr.cs.tu-bs.de" ];
         path = "${cfg.path}/fginfo";
-        quota = "10G";
+        quota = "50G";
       };
       "fginfo-git" = {
         allowSubRepos = false;
         authorizedKeysAppendOnly = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDmI6cUv3j0T9ofFB286sDwXwwczqi41cp4MZyGH3VWQnqBPNjICqAdY3CLhgvGBCxSe6ZgKQ+5YLsGSSlU1uhrJXW2UiVKuIPd0kjMF/9e8hmNoTTh0pdk9THfz9LLAdI1vPin1EeVReuDXlZkCI7DFYuTO9yiyZ1uLZUfT1KBRoqiqyypZhut7zT3UaDs2L+Y5hho6WiTdm7INuz6HEB7qYXzrmx93hlcuLZA7fDfyMO9F4APZFUqefcUIEyDI2b+Q/8Q2/rliT2PoC69XLVlj7HyVhfgKsOnopwBDNF3rRcJ6zz4WICPM18i4ZCmfoDTL/cFr5c41Lan1X7wS5wR root@fginfo-git" ];
         path = "${cfg.path}/fginfo-git";
-        quota = "10G";
+        quota = "50G";
       };
     };
 

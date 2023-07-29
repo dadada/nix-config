@@ -212,6 +212,10 @@ in
   systemd.tmpfiles.rules = [
     "d /var/www/pruflas.uwu 0551 nginx nginx - -"
     "d /mnt/storage/backups/ninurta 0750 ${config.users.users.borg.name} ${config.users.users.borg.group} - -"
+    "v /var/.snapshots 0755 root root - -"
+    "v /home/.snapshots 0755 root root - -"
+    "v /mnt/storage/.snapshots 0755 root root - -"
+    "v /mnt/storage/backups 0755 root root - -"
   ];
 
   age.secrets.${wg0PrivKey} = {
@@ -236,6 +240,15 @@ in
   services.snapper = {
     cleanupInterval = "1d";
     snapshotInterval = "hourly";
+    configs.home = {
+      SUBVOLUME = "/home";
+      TIMELINE_CREATE = true;
+      TIMELINE_CLEANUP = true;
+      TIMELINE_LIMIT_HOURLY = 24;
+      TIMELINE_LIMIT_DAILY = 13;
+      TIMELINE_LIMIT_WEEKLY = 6;
+      TIMELINE_LIMIT_MONTHLY = 3;
+    };
     configs.var = {
       SUBVOLUME = "/var";
       TIMELINE_CREATE = true;

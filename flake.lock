@@ -185,16 +185,16 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1690200740,
-        "narHash": "sha256-aRkEXGmCbAGcvDcdh/HB3YN+EvoPoxmJMOaqRZmf6vM=",
-        "owner": "NixOS",
+        "lastModified": 1690648710,
+        "narHash": "sha256-Je0cdqxMjhnaPG2Hf6/iuG86q3O8Wt8QFkwzR+c03b4=",
+        "owner": "dadada",
         "repo": "nixos-hardware",
-        "rev": "ba9650b14e83b365fb9e731f7d7c803f22d2aecf",
+        "rev": "debee0861ec3f155dc3b18e69eeff533d9c3f97d",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "master",
+        "owner": "dadada",
+        "ref": "fix-linux-firmware",
         "repo": "nixos-hardware",
         "type": "github"
       }

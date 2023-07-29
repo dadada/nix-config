@@ -35,7 +35,7 @@ in
           algorithm = "histogram";
           colorMoved = "default";
         };
-        interactive.diffFilter = "delta --color-only --light";
+        interactive.diffFilter = "delta --color-only";
         merge.conflictstyle = "diff3";
         status = {
           short = true;

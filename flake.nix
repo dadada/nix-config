@@ -8,7 +8,7 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:dadada/nixos-hardware/fix-linux-firmware";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     homePage = {
       url = "github:dadada/dadada.li";
     };

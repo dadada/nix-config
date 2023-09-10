@@ -1,6 +1,6 @@
 [primary]
-background = "0xffffff"
-foreground = "0x1e1e1e"
+background = "0x1e1e1e"
+foreground = "0xffffff"
 
 [normal]
 black = "0x171421"

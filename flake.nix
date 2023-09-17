@@ -11,9 +11,12 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     homePage = {
       url = "github:dadada/dadada.li";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     recipemd = {
       url = "github:dadada/recipemd/nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
     agenix = {
       url = "github:ryantm/agenix/0.13.0";

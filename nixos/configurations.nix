@@ -4,12 +4,16 @@
 , home-manager
 , homePage
 , nixos-hardware
-, recipemd
 , nixos-generators
 , ...
 }@inputs:
 let
-  getDefaultPkgs = system: flakes: nixpkgs.lib.mapAttrs (_: value: nixpkgs.lib.getAttr system value.defaultPackage) flakes;
+  more-packages = system: {
+    more-packages = final: prev: {
+      recipemd = inputs.recipemd.packages.${system}.recipemd;
+      jujutsu = inputs.jujutsu.packages.${system}.jujutsu;
+    };
+  };
 
   nixosSystem = { system ? "x86_64-linux", extraModules ? [ ] }: nixpkgs.lib.nixosSystem {
     inherit system;
@@ -17,7 +21,7 @@ let
     modules = [{
       # Add flakes to registry and nix path.
       dadada.inputs = inputs // { dadada = self; };
-      nixpkgs.overlays = nixpkgs.lib.attrValues self.overlays;
+      nixpkgs.overlays = nixpkgs.lib.attrValues (self.overlays // (more-packages system));
     }] ++ (nixpkgs.lib.attrValues self.nixosModules) ++ [ agenix.nixosModules.age ] ++ extraModules;
   };
 in
@@ -28,9 +32,7 @@ in
     extraModules = [
       {
         nixpkgs.overlays = nixpkgs.lib.attrValues self.overlays;
-        dadada.pkgs = (getDefaultPkgs system {
-          inherit recipemd;
-        }) // self.packages.${system};
+        dadada.pkgs = self.packages.${system};
       }
 
       nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen1
@@ -62,7 +64,7 @@ in
     system = "x86_64-linux";
     extraModules = [
       {
-        dadada.homePage.package = homePage.defaultPackage.${system};
+        dadada.homePage.package = homePage.packages.${system}.homePage;
       }
       ./modules/profiles/server.nix
       ./surgat/configuration.nix

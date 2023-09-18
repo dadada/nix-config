@@ -105,11 +105,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1655227494,
-        "narHash": "sha256-GLglKS4pPWOuiFH7e+2c112npURXvehFIT9oB8AOoXc=",
+        "lastModified": 1695058498,
+        "narHash": "sha256-YgKWk75O7hIEmNgbTS5WXG+oBas+068grW1hcE37ykc=",
         "owner": "dadada",
         "repo": "dadada.li",
-        "rev": "fa49858d6bc479ab14b5aecdf88c34d3004756fd",
+        "rev": "30c1ee54d94622da2d582e3767c0baf5abe2cf3f",
         "type": "github"
       },
       "original": {
@@ -121,16 +121,40 @@
     "hugo-theme-anubis": {
       "flake": false,
       "locked": {
-        "lastModified": 1626675855,
-        "narHash": "sha256-Vj77NcXxPOcatDbLvW+d90hsUpYH+2eyhpyXv82ZTts=",
+        "lastModified": 1693734155,
+        "narHash": "sha256-/saWnt2ryheBvW9aHqpjAE4aNBhEhkrD62Ch8CI2GvM=",
         "owner": "mitrichius",
         "repo": "hugo-theme-anubis",
-        "rev": "5dab60e04a37896c09a32137aefe821c63b3af04",
+        "rev": "e4e2c0bc4145ee152a32fdd940ed398ab0b77e6c",
         "type": "github"
       },
       "original": {
         "owner": "mitrichius",
         "repo": "hugo-theme-anubis",
+        "type": "github"
+      }
+    },
+    "jujutsu": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1695053459,
+        "narHash": "sha256-gQ1ydO1DKhJbXXU7/nbG6HD0zficKu2UHIchNgjNtPw=",
+        "owner": "martinvonz",
+        "repo": "jj",
+        "rev": "39c0f0d2d568adb0149fbe5532b0cf10c52e0a17",
+        "type": "github"
+      },
+      "original": {
+        "owner": "martinvonz",
+        "repo": "jj",
         "type": "github"
       }
     },
@@ -234,10 +258,36 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "homePage": "homePage",
+        "jujutsu": "jujutsu",
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "recipemd": "recipemd"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "flake-utils": [
+          "jujutsu",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "jujutsu",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1691719735,
+        "narHash": "sha256-GhPn5EIhGt7aFwgC6RELZJC7mUIol9O0k7Dsf2Hu0AM=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "ac9d8b2e9acc153145e6fa3c78f9ba458ae517bf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "systems": {

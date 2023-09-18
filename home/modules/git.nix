@@ -56,8 +56,6 @@ in
       };
     };
 
-    home.file.".jjconfig.toml".source = ./jjconfig.toml;
-
     home.packages = with pkgs; [
       delta
       git-branchless
@@ -65,7 +63,6 @@ in
       gitAndTools.hub
       gitAndTools.lab
       gitAndTools.git-absorb
-      jujutsu
       meld
     ];
   };

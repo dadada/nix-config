@@ -62,6 +62,7 @@ with pkgs; [
   jameica
   jc # convert output to json
   josm
+  jujutsu
   jq
   jq
   #jupyter

@@ -128,8 +128,6 @@ in
   environment.systemPackages = with pkgs; [
     chromium
     ghostscript
-    config.dadada.pkgs.recipemd
-    config.dadada.pkgs.map
     cachix
   ];
 

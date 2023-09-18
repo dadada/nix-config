@@ -34,6 +34,11 @@
       url = "github:NixOS/flake-registry";
       flake = false;
     };
+    jujutsu = {
+      url = "github:martinvonz/jj";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs = { ... } @ args: import ./outputs.nix args;

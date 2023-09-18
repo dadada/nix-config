@@ -100,6 +100,8 @@ in
     sslcacertfile = /etc/ssl/certs/ca-certificates.crt
   '';
 
+  home.file.".jjconfig.toml".source = ./jjconfig.toml;
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 

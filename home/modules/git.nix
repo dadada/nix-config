@@ -56,12 +56,17 @@ in
       };
     };
 
+    home.file.".jjconfig.toml".source = ./jjconfig.toml;
+
     home.packages = with pkgs; [
       delta
+      git-branchless
       git-lfs
       gitAndTools.hub
       gitAndTools.lab
       gitAndTools.git-absorb
+      jujutsu
+      meld
     ];
   };
 }

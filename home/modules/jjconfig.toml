@@ -1,0 +1,8 @@
+[user]
+name = "Tim Schubert"
+email = "dadada@dadada.li"
+
+[ui]
+diff-editor = ["scm-diff-editor", "--dir-diff", "$left", "$right"]
+diff-instructions = false
+merge-editor = ["meld"]

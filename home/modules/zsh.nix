@@ -61,6 +61,7 @@ in
         gst = "git status";
         gsta = "git stash";
         gstap = "git stash apply";
+        exa = "eza";
         ls = "exa";
         la = "exa -a";
         ll = "exa -la --no-filesize --changed --time-style=long-iso --git  --octal-permissions --no-permissions --no-user --ignore-glob=\".git\"";

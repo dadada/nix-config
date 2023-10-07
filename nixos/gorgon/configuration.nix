@@ -1,21 +1,9 @@
 { config
 , pkgs
 , lib
-, secretsPath
 , ...
 }:
 let
-  signHook =
-    pkgs.writeShellScript "/etc/nix/sign-cache.sh"
-      ''
-        set -eu
-        set -f # disable globbing
-        export IFS=' '
-
-        echo "Signing paths" $OUT_PATHS
-        nix store sign --key-file /etc/nix/key.private $OUT_PATHS
-      '';
-
   xilinxJtag = pkgs.writeTextFile {
     name = "xilinx-jtag";
     text = ''
@@ -65,13 +53,16 @@ in
   networking.hostName = "gorgon";
 
   dadada = {
-    #headphones.enable = true;
     steam.enable = true;
-    #fido2 = {
-    #  credential = "04ea2813a116f634e90f9728dbbb45f1c0f93b7811941a5a14fb75e711794df0c26552dae2262619c1da2be7562ec9dd94888c71a9326fea70dfe16214b5ea8ec01473070000";
-    #  enablePam = true;
-    #};
-    luks.uuid = "3d0e5b93-90ca-412a-b4e0-3e6bfa47d3f4";
+    yubikey = {
+      enable = true;
+      #luksUuid = "3d0e5b93-90ca-412a-b4e0-3e6bfa47d3f4";
+      fido2Credentials = [
+        "0295c215865e4d988cf5148db9197ae58bc26b0838b35e2b35bafdb837e9f8b103309466d7cfa8c71d6c01d4908e2708"
+        "f8a4359e4a67d8a149a72ad5fb2db0fbc11e2480102e5a2e353297dce5e1ad53419acade31eb4a4bd803b808c29ba0b4"
+      ];
+    };
+
     networking = {
       enableBsShare = true;
       vpnExtension = "3";

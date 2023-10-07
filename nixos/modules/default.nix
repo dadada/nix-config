@@ -21,4 +21,5 @@
   sway = import ./sway.nix;
   vpnServer = import ./vpnServer.nix;
   weechat = import ./weechat.nix;
+  yubikey = import ./yubikey.nix;
 }

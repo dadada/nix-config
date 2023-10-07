@@ -12,7 +12,7 @@ in
   config = mkIf cfg.enable {
     services.gnome-keyring = {
       enable = false;
-      components = [ "pkcs11" "secrets" ];
+      components = [ "secrets" ];
     };
   };
 }

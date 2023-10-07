@@ -29,9 +29,5 @@ in
       enableSshSupport = false;
       pinentryFlavor = "gnome3";
     };
-
-    programs.git.extraConfig = {
-      commit = { gpgSign = true; };
-    };
   };
 }

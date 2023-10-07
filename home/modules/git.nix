@@ -45,6 +45,7 @@ in
         commit.verbose = true;
         log.date = "iso8601-local";
         tag.gpgSign = true;
+        gpg.format = "ssh";
         pull = {
           prune = true;
           ff = "only";

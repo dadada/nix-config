@@ -2,9 +2,8 @@
   dadada = {
     shell = "zsh";
     keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJyTgdVPPxQeL5KZo9frZQlDIv2QkelJw3gNGoGtUMfw tim@metis"
       "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIE2JWU+BuWSvoiGFSTDQ9/1SCvfJEnkFQsFLYPNlY6wcAAAABHNzaDo= dadada <dadada@dadada.li>"
-      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIM8ROKVEwEJlSzlRr/l5T505UZuBn3uCCTNHIhG5n+nTAAAABHNzaDo= dadada Backup <dadada@dadada.li>"
+      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIOFHB9T6fjkuIU8jW9gGiYGSEFSfrnY/6GJUfmfMx10HAAAABHNzaDo= Backup dadada <dadada@dadada.li>"
     ];
   };
 }

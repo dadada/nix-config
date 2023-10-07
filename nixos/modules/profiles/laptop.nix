@@ -15,6 +15,8 @@ with lib; {
   networking.domain = mkDefault "dadada.li";
 
   services.fwupd.enable = mkDefault true;
+  programs.ssh.startAgent = true;
+  programs.ssh.enableAskPassword = true;
 
   age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 

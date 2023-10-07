@@ -23,15 +23,6 @@ in
 {
   home.stateVersion = "20.09";
 
-  programs.git = {
-    signing = {
-      key = "~/.ssh/dadada-git-signing";
-      signByDefault = true;
-    };
-    userEmail = "dadada@dadada.li";
-    userName = "dadada";
-  };
-
   programs.gpg.settings.default-key = "99658A3EB5CD7C13";
 
   dadada.home =

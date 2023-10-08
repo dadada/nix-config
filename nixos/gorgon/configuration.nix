@@ -57,7 +57,7 @@ in
           device = "/dev/disk/by-uuid/3d0e5b93-90ca-412a-b4e0-3e6bfa47d3f4";
           preLVM = true;
           allowDiscards = true;
-          crypttabExtraOpts = ["fido2-device=auto"];
+          crypttabExtraOpts = [ "fido2-device=auto" ];
         };
       };
     };

@@ -48,30 +48,35 @@ in
     keep-derivations = true
   '';
 
-  boot.kernelModules = [ "kvm-amd" ];
+  boot = {
+    kernelModules = [ "kvm-amd" ];
+    initrd = {
+      systemd.enable = true;
+      luks.devices = {
+        root = {
+          device = "/dev/disk/by-uuid/3d0e5b93-90ca-412a-b4e0-3e6bfa47d3f4";
+          preLVM = true;
+          allowDiscards = true;
+          crypttabExtraOpts = ["fido2-device=auto"];
+        };
+      };
+    };
+    kernel.sysctl = {
+      "vm.swappiness" = 90;
+    };
+  };
 
   networking.hostName = "gorgon";
 
   dadada = {
     steam.enable = true;
-    yubikey = {
-      enable = true;
-      #luksUuid = "3d0e5b93-90ca-412a-b4e0-3e6bfa47d3f4";
-      fido2Credentials = [
-        "0295c215865e4d988cf5148db9197ae58bc26b0838b35e2b35bafdb837e9f8b103309466d7cfa8c71d6c01d4908e2708"
-        "f8a4359e4a67d8a149a72ad5fb2db0fbc11e2480102e5a2e353297dce5e1ad53419acade31eb4a4bd803b808c29ba0b4"
-      ];
-    };
+    yubikey.enable = true;
 
     networking = {
       enableBsShare = true;
       vpnExtension = "3";
     };
     sway.enable = false;
-  };
-
-  boot.kernel.sysctl = {
-    "vm.swappiness" = 90;
   };
 
   programs.adb.enable = true;

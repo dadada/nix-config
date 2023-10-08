@@ -4,7 +4,6 @@
   borgServer = import ./borg-server.nix;
   ddns = import ./ddns.nix;
   element = import ./element.nix;
-  fido2 = import ./fido2.nix;
   fileShare = import ./fileShare.nix;
   gitea = import ./gitea.nix;
   headphones = import ./headphones.nix;

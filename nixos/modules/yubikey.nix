@@ -24,21 +24,6 @@ in
   };
 
   config = mkIf yubikey.enable {
-    boot.initrd.luks = {
-      fido2Support = true;
-      devices = mkIf (yubikey.luksUuid != null) {
-        root = {
-          device = "/dev/disk/by-uuid/${yubikey.luksUuid}";
-          preLVM = true;
-          allowDiscards = true;
-          fido2 = mkIf (yubikey.fido2Credentials != [ ]) {
-            credentials = yubikey.fido2Credentials;
-            passwordLess = true;
-          };
-        };
-      };
-    };
-
     security.pam = {
       # Keys must be placed in $XDG_CONFIG_HOME/Yubico/u2f_keys
       services = {
@@ -56,8 +41,8 @@ in
     services.udev.packages = [ pkgs.yubikey-personalization ];
 
     environment.systemPackages = with pkgs; [
-      fido2luks
-      linuxPackages.acpi_call
+      #fido2luks
+      #linuxPackages.acpi_call
       pam_u2f
       pamtester
       yubikey-manager

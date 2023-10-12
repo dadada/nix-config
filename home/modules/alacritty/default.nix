@@ -41,7 +41,7 @@ in
         };
         shell.program = "tmux";
         window.decorations = "none";
-        colors = lib.trivial.importTOML ./colors.toml;
+        colors = (lib.trivial.importTOML ./colors.toml).colors;
       };
     };
   };

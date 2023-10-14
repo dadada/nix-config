@@ -1,0 +1,140 @@
+flush ruleset
+
+define IF_MGMT = "enp1s0"
+define IF_FF = "ff.11"
+define IF_LAN = "lan.10"
+define IF_WAN = "ppp0"
+define IF_SRV = "srv.13"
+
+# Modem uses this for internet uplink via our WAN
+define IF_MODEM = "enp2s0"
+
+define IF_ROADW = "roadwarrior"
+
+table inet filter {
+  # Will give "no such file or directory if hardware does not support flow offloading"
+  # flowtable f {
+  #   hook ingress priority 0; devices = { enp1s0, enp2s0 }; flags offload;
+  # }
+
+  chain input_local {
+    ip6 saddr != ::1/128 log prefix "Dropped IPv6 nonlocalhost packet on loopback:" drop
+    accept comment "Accept traffic to loopback interface"
+  }
+
+  chain input_icmp_untrusted {
+    # Allow ICMP echo
+    ip protocol icmp icmp type { echo-request } limit rate 1000/second burst 5 packets accept comment "Accept echo request"
+
+    # Allow some ICMPv6
+    icmpv6 type { destination-unreachable, packet-too-big, time-exceeded, echo-request, echo-reply, parameter-problem, mld-listener-query, mld-listener-report, mld-listener-done, mld-listener-reduction, nd-router-solicit, nd-router-advert, nd-neighbor-solicit, nd-neighbor-advert, mld2-listener-report } limit rate 1000/second burst 5 packets accept comment "Allow some ICMPv6"
+  }
+
+  chain input_modem {
+    jump input_icmp_untrusted
+  }
+
+  chain input_wan {
+    # DHCPv6 client
+    meta nfproto ipv6 udp sport 547 accept comment "Allow DHCPv6 client"
+
+    jump input_icmp_untrusted
+
+    udp dport 51234 accept comment "Wireguard roadwarriors"
+  }
+
+  chain input_lan {
+    counter accept comment "Accept all traffic from LAN"
+  }
+
+  chain input_mgmt {
+    counter accept comment "Accept all traffic from MGMT"
+  }
+
+  chain input_srv {
+    counter accept comment "Accept all traffic from services"
+  }
+
+  chain input_roadw {
+    counter accept comment "Accept all traffic from roadwarriors"
+  }
+
+  chain input_ff {
+    jump input_icmp_untrusted
+
+    # DHCP
+    meta nfproto ipv6 udp dport 547 accept comment "Allow DHCPv6 client"
+
+    # Allow DNS and DHCP from Freifunk
+    udp dport { 53, 67 } accept comment "Allow DNS and DHCP from Freifunk"
+  }
+
+  chain input {
+    type filter hook input priority filter; policy drop;
+
+    ct state {established, related} counter accept comment "Accept packets from established and related connections"
+    ct state invalid counter drop comment "Early drop of invalid packets"
+
+    iifname vmap { lo : accept, $IF_WAN : jump input_wan, $IF_LAN : jump input_lan, $IF_FF : jump input_ff, $IF_ROADW : jump input_roadw, $IF_MODEM : jump input_modem, $IF_MGMT : jump input_mgmt }
+  }
+
+# Only works if hardware flow offloading is available
+#  chain offload {
+#    type filter hook forward priority -100; policy accept;
+#    ip protocol tcp flow add @f
+#    counter packets 0 bytes 0
+#  }
+
+  chain forward {
+    type filter hook forward priority filter; policy drop;
+
+    # Accept connections tracked by destination NAT
+    ct status dnat counter accept comment "Accept connections tracked by DNAT"
+
+    # TCP options
+    tcp flags syn tcp option maxseg size set rt mtu comment "Remove TCP maximum segment size and set a size based on route information"
+
+    # ICMPv6
+    icmpv6 type { destination-unreachable, packet-too-big, time-exceeded, echo-request, echo-reply, parameter-problem } limit rate 5/second counter accept comment "Forward up to five ICMP messages of allowed types per second"
+    meta l4proto ipv6-icmp accept comment "Forward ICMP in IPv6"
+
+    # mgmt <-> *
+    iifname { $IF_LAN, $IF_ROADW } oifname $IF_MGMT counter reject comment "Reject traffic from LAN and roadwarrior to MGMT"
+    iifname $IF_MGMT oifname { $IF_LAN, $IF_ROADW } counter reject comment "Reject traffic from MGMT to LAN and roadwarrior"
+    # drop (instead of reject) everything else to MGMT
+
+    # LAN, ROADW -> * (except mgmt)
+    iifname { $IF_LAN, $IF_ROADW } counter accept comment "Allow all traffic forwarding from LAN and roadwarrior to all interfaces, except to mgmt"
+
+    # FF -> WAN
+    iifname $IF_FF oifname $IF_WAN counter accept comment "Allow all traffic forwarding from Freifunk to WAN"
+
+    # { WAN, SRV } -> { FF, LAN, RW, SRV }
+    iifname { $IF_WAN, $IF_SRV } oifname { $IF_FF, $IF_LAN, $IF_ROADW, $IF_SRV } ct state established,related counter accept comment "Allow established back from WAN and SRV"
+
+    # WAN -> SRV
+    iifname $IF_WAN oifname $IF_SRV tcp dport ssh accept comment "Allow all SSH traffic forwarding from WAN to services"
+  }
+
+  chain output {
+    type filter hook output priority 100; policy accept;
+  }
+}
+
+table ip nat {
+  chain prerouting {
+    type nat hook prerouting priority dstnat; policy accept;
+  }
+
+  chain postrouting {
+    type nat hook postrouting priority srcnat; policy accept;
+    ip saddr { 192.168.96.0/19 } oifname { $IF_WAN } masquerade comment "Masquerade traffic from LANs"
+  }
+}
+
+table arp filter {
+  chain input {
+    type filter hook input priority filter; policy drop;
+    iifname { $IF_MGMT, $IF_LAN, $IF_FF, $IF_MODEM } limit rate 1/second burst 2 packets accept comment "Limit number of ARP messages from LAN, FF, MGMT, modem"
+  }
+}

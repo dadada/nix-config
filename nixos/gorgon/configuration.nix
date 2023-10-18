@@ -90,6 +90,11 @@ in
 
   services.avahi.enable = true;
 
+  services.tor = {
+    enable = true;
+    client.enable = true;
+  };
+
   services.paperless = {
     enable = true;
     passwordFile = config.age.secrets.paperless.path;

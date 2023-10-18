@@ -117,6 +117,7 @@ with pkgs; [
   silver-searcher
   skim # fzf in Rust
   slurp
+  socat
   spotify
   sqlite
   sshfs-fuse

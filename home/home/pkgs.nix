@@ -27,6 +27,7 @@ with pkgs; [
   exa
   ffmpeg
   file
+  fluffychat
   fractal-next
   fx # themable json viewer
   fzf

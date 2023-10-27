@@ -424,7 +424,8 @@ in
     scsiLinkPolicy = "med_power_with_dipm";
     # Configure the disks to spin down after 10 min of inactivity.
     powerUpCommands = ''
-      find /dev -regextype sed -regex '/dev/sd[a-z]$' | xargs ${pkgs.hdparm}/sbin/hdparm -S 120
+      # 5 minutes = 300 seconds (1-240 is multiples of 5 seconds)
+      find /dev -regextype sed -regex '/dev/sd[a-z]$' | xargs ${pkgs.hdparm}/sbin/hdparm -S 60
     '';
     powerDownCommands = ''
       find /dev -regextype sed -regex '/dev/sd[a-z]$' | xargs ${pkgs.hdparm}/sbin/hdparm -S 0

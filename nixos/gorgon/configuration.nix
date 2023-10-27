@@ -50,6 +50,7 @@ in
 
   boot = {
     kernelModules = [ "kvm-amd" ];
+    kernelParams = [ "resume=/dev/disk/by-label/swap" ];
     initrd = {
       systemd.enable = true;
       luks.devices = {

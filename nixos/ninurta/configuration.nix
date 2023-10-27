@@ -59,7 +59,16 @@ in
     message = "Refusing to store private keys in store";
   };
 
-  boot.kernelParams = [ "ip=dhcp" ];
+  boot.kernelParams = [
+    # Use the in-kernel DHCP client (yes that exists)
+    "ip=dhcp"
+
+    # Wait forever for the filesystem root to show up
+    "rootflags=x-systemd.device-timeout=0"
+
+    # Wait forever to enter the LUKS passphrase via SSH
+    "rd.luks.options=timeout=0"
+  ];
   boot.initrd = {
     network = {
       enable = true;

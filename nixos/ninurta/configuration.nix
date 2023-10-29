@@ -432,13 +432,6 @@ in
     # This generally means no power management for SCSI
     scsiLinkPolicy = "med_power_with_dipm";
     # Configure the disks to spin down after 10 min of inactivity.
-    powerUpCommands = ''
-      # 5 minutes = 300 seconds (1-240 is multiples of 5 seconds)
-      find /dev -regextype sed -regex '/dev/sd[a-z]$' | xargs ${pkgs.hdparm}/sbin/hdparm -S 60
-    '';
-    powerDownCommands = ''
-      find /dev -regextype sed -regex '/dev/sd[a-z]$' | xargs ${pkgs.hdparm}/sbin/hdparm -S 0
-    '';
   };
 
   security.rtkit.enable = true;
@@ -449,6 +442,16 @@ in
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  services.udev.packages = [
+    (pkgs.writeTextFile {
+      name = "60-hdparm";
+      text = ''
+        ACTION=="add|change", KERNEL=="sd[a-z]", ATTRS{queue/rotational}=="1", RUN+="/usr/bin/hdparm -S 60 /dev/%k"
+      '';
+      destination = "/etc/udev/rules.d/60-hdparm.rules";
+    })
+  ];
 
   hardware.pulseaudio.enable = false;
 

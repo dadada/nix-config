@@ -50,6 +50,9 @@ in
   };
 
   networking.networkmanager.dns = mkDefault "systemd-resolved";
-  services.resolved.enable = mkDefault true;
+  services.resolved = {
+    enable = mkDefault true;
+    fallbackDns = [ "9.9.9.9#dns.quad9.net" "2620:fe::fe:11#dns11.quad9.net" ];
+  };
 }
 

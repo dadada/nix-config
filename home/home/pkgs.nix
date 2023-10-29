@@ -141,6 +141,6 @@ with pkgs; [
   xsv # cut for csv
   xxh # portable shells
   youtube-dl
-  zotero
+  # zotero Marked as insecure
   zsh
 ]

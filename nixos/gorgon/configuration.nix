@@ -72,12 +72,6 @@ in
   dadada = {
     steam.enable = true;
     yubikey.enable = true;
-
-    networking = {
-      enableBsShare = true;
-      vpnExtension = "3";
-    };
-    sway.enable = false;
   };
 
   programs.adb.enable = true;
@@ -186,6 +180,24 @@ in
       }
     ];
   };
+
+  # https://lists.zx2c4.com/pipermail/wireguard/2017-November/002028.html
+  systemd.timers.wg-reresolve-dns = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "wg-reresolve-dns.service" ];
+    timerConfig.OnCalendar = "hourly";
+  };
+
+  systemd.services.wg-reresolve-dns =
+    let
+      vpnPubKey = "x/y6I59buVzv9Lfzl+b17mGWbzxU+3Ke9mQNa1DLsDI=";
+    in
+    {
+      serviceConfig.Type = "oneshot";
+      script = ''
+        ${pkgs.wireguard-tools}/bin/wg set dadada peer ${vpnPubKey} endpoint vpn.dadada.li:51234 persistent-keepalive 25 allowed-ips fd42:9c3b:f96d::/48
+      '';
+    };
 
   #networking.wg-quick.interfaces.mullvad = {
   #  address = [ "10.68.15.202/32" "fc00:bbbb:bbbb:bb01::5:fc9/128" ];

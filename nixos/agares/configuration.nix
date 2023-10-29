@@ -16,7 +16,6 @@
 
   dadada = {
     admin.enable = true;
-    networking.localResolver.enable = true;
   };
 
   services.smartd.enable = true;

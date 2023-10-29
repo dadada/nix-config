@@ -1,6 +1,5 @@
 { self
 , agenix
-, eza
 , nixpkgs
 , home-manager
 , homePage
@@ -54,14 +53,6 @@ in
     ];
   };
 
-  ifrit = nixosSystem {
-    extraModules = [
-      ./modules/profiles/server.nix
-      ./ifrit/configuration.nix
-      ./ifrit/hardware-configuration.nix
-    ];
-  };
-
   surgat = nixosSystem rec {
     system = "x86_64-linux";
     extraModules = [
@@ -70,13 +61,6 @@ in
       }
       ./modules/profiles/server.nix
       ./surgat/configuration.nix
-    ];
-  };
-
-  pruflas = nixosSystem {
-    extraModules = [
-      ./modules/profiles/laptop.nix
-      ./pruflas/configuration.nix
     ];
   };
 

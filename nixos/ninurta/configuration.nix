@@ -17,6 +17,7 @@ in
   imports = [
     ../modules/profiles/server.nix
     ./hardware-configuration.nix
+    ./printing.nix
   ];
 
   services.soft-serve = {
@@ -388,10 +389,12 @@ in
       22 # SSH
       80 # HTTP
       443 # HTTPS
+      631 # Printing (TODO only allow from some networks)
       3000 # Hydra
       softServePort
     ];
     allowedUDPPorts = [
+      631 # Printing (TODO only allow from some networks)
       51234 # Wireguard
       51235 # Wireguard
     ];

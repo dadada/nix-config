@@ -1,5 +1,4 @@
-{ config
-, pkgs
+{ pkgs
 , lib
 , ...
 }:
@@ -92,6 +91,22 @@ in
   '';
 
   home.file.".jjconfig.toml".source = ./jjconfig.toml;
+
+  systemd.user.timers."backup-keepassxc" = {
+    Unit.Description = "Backup password DB";
+    Timer = {
+      OnBootSec= "15min";
+      OnUnitActiveSec = "1d";
+    };
+    Install.WantedBy = [ "timers.target" ];
+  };
+
+  systemd.user.services."backup-keepassxc" = {
+    Unit.Description = "Backup password DB";
+    Unit.Type = "oneshot";
+    Service.ExecStart = "${pkgs.openssh}/bin/scp -P 23 -i /home/dadada/.ssh/keepassxc-backup /home/dadada/lib/sync/Personal.kdbx u355513-sub4@u355513-sub4.your-storagebox.de:Personal.kdbx";
+    Install.WantedBy = [ "multi-user.target" ];
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

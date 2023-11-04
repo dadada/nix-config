@@ -22,13 +22,12 @@ with pkgs; [
   dstat
   duf # disk usage
   dyff # diff tool for YAML
+  element-desktop
   evince
   evolution
   exa
   ffmpeg
   file
-  fluffychat
-  fractal-next
   fx # themable json viewer
   fzf
   fzf

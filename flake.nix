@@ -22,7 +22,7 @@
       inputs.flake-utils.follows = "flake-utils";
     };
     agenix = {
-      url = "github:ryantm/agenix/0.13.0";
+      url = "github:ryantm/agenix/0.14.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     devshell = {

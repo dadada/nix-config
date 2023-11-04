@@ -95,7 +95,7 @@ in
   systemd.user.timers."backup-keepassxc" = {
     Unit.Description = "Backup password DB";
     Timer = {
-      OnBootSec= "15min";
+      OnBootSec = "15min";
       OnUnitActiveSec = "1d";
     };
     Install.WantedBy = [ "timers.target" ];

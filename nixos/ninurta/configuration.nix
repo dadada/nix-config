@@ -450,7 +450,7 @@ in
     (pkgs.writeTextFile {
       name = "60-hdparm";
       text = ''
-        ACTION=="add|change", KERNEL=="sd[a-z]", ATTRS{queue/rotational}=="1", RUN+="/usr/bin/hdparm -S 60 /dev/%k"
+        ACTION=="add|change", KERNEL=="sd[a-z]", ATTRS{queue/rotational}=="1", RUN+="${pkgs.hdparm}/bin/hdparm -S 60 /dev/%k"
       '';
       destination = "/etc/udev/rules.d/60-hdparm.rules";
     })

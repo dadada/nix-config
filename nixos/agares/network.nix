@@ -1,7 +1,5 @@
 { config, lib, ... }:
 let
-  mergeAttrsList = lib.attrsets.mergeAttrsList;
-  map = builtins.map;
   ulaPrefix = "fd42:9c3b:f96d"; # fd42:9c3b:f96d::/48
   ipv4Prefix = "192.168"; # 192.168.96.0/19
   domain = "bs.dadada.li";

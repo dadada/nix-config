@@ -166,7 +166,7 @@ in
           extraConfig = ''
             [CAKE]
             OverheadBytes = 65
-            Bandwidth = 95M
+            Bandwidth = 40M
             FlowIsolationMode = triple
           '';
         };
@@ -185,13 +185,16 @@ in
           extraConfig = ''
             [CAKE]
             OverheadBytes = 65
-            Bandwidth = 36M
+            Bandwidth = 40M
             FlowIsolationMode = triple
+            NAT=true
+
             [DHCPv6]
             PrefixDelegationHint= ::/56
             UseAddress = false
             UseDelegatedPrefix = true
             WithoutRA = solicit
+
             [DHCPPrefixDelegation]
             UplinkInterface=:self
           '';

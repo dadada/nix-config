@@ -3,7 +3,7 @@
   dadada.ddns = {
     domains = [ "vpn.dadada.li" ];
     credentialsPath = config.age.secrets."ddns-credentials".path;
-    interface = "wan";
+    interface = "ppp0";
   };
 
   age.secrets."ddns-credentials" = {

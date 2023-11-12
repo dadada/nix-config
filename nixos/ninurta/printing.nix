@@ -33,6 +33,7 @@
       userServices = true;
     };
   };
+
   services.printing = {
     listenAddresses = [ "192.168.101.184:631" "fd42:9c3b:f96d:101:4a21:bff:fe3e:9cfe:631" ];
     allowFrom = [ "from 192.168.101.0/24" ];

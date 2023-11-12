@@ -198,29 +198,7 @@ in
     allowed-uris = https://github.com/NixOS https://github.com/nix-community https://github.com/dadada https://git.dadada.li/ github.com/ryantm/agenix github.com/serokell/deploy-rs https://gitlab.com/khumba/nvd.git https://github.com/real-or-random/dokuwiki-plugin-icalevents https://github.com/giterlizzi/dokuwiki-template-bootstrap3
   '';
 
-  services.nginx = {
-    enable = true;
-    recommendedTlsSettings = true;
-    recommendedOptimisation = true;
-    recommendedGzipSettings = true;
-    logError = "/dev/null";
-    appendHttpConfig = ''
-      access_log off;
-    '';
-
-    virtualHosts."pruflas.uwu" = {
-      enableACME = false;
-      forceSSL = false;
-      root = "/var/www/pruflas.uwu";
-      locations."/" = {
-        tryFiles = "$uri $uri/ = 404";
-        index = "index.txt";
-      };
-    };
-  };
-
   systemd.tmpfiles.rules = [
-    "d /var/www/pruflas.uwu 0551 nginx nginx - -"
     "d /mnt/storage/backups/ninurta 0750 ${config.users.users.borg.name} ${config.users.users.borg.group} - -"
     "v /var/.snapshots 0755 root root - -"
     "v /home/.snapshots 0755 root root - -"
@@ -387,14 +365,12 @@ in
     allowPing = true;
     allowedTCPPorts = [
       22 # SSH
-      80 # HTTP
-      443 # HTTPS
-      631 # Printing (TODO only allow from some networks)
+      631 # Printing
       3000 # Hydra
       softServePort
     ];
     allowedUDPPorts = [
-      631 # Printing (TODO only allow from some networks)
+      631 # Printing
       51234 # Wireguard
       51235 # Wireguard
     ];

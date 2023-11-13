@@ -14,7 +14,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     homePage = {
       url = "github:dadada/dadada.li";
-      inputs.nixpkgs.follows = "nixpkgs";
+      flake = false;
     };
     recipemd = {
       url = "github:dadada/recipemd/nix-flake";

@@ -57,7 +57,7 @@ in
     system = "x86_64-linux";
     extraModules = [
       {
-        dadada.homePage.package = homePage.packages.${system}.homePage;
+        dadada.homePage.package = homePage;
       }
       ./modules/profiles/server.nix
       ./surgat/configuration.nix

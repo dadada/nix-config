@@ -1,5 +1,4 @@
 { config
-, pkgs
 , lib
 , ...
 }:
@@ -10,8 +9,8 @@ with lib; {
   options.dadada.homePage = {
     enable = mkEnableOption "Enable home page";
     package = mkOption {
-      type = lib.types.package;
-      description = "Package containing the homepage";
+      type = lib.types.path;
+      description = "Path containing the homepage";
     };
   };
   config = mkIf cfg.enable {

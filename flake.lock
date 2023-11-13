@@ -235,12 +235,7 @@
       }
     },
     "homePage": {
-      "inputs": {
-        "hugo-theme-anubis": "hugo-theme-anubis",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
+      "flake": false,
       "locked": {
         "lastModified": 1699795243,
         "narHash": "sha256-rBonL9sYcTX5db1PehLVbaf9cFJWB6n4vv522IG1n70=",
@@ -252,22 +247,6 @@
       "original": {
         "owner": "dadada",
         "repo": "dadada.li",
-        "type": "github"
-      }
-    },
-    "hugo-theme-anubis": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1693734155,
-        "narHash": "sha256-/saWnt2ryheBvW9aHqpjAE4aNBhEhkrD62Ch8CI2GvM=",
-        "owner": "mitrichius",
-        "repo": "hugo-theme-anubis",
-        "rev": "e4e2c0bc4145ee152a32fdd940ed398ab0b77e6c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mitrichius",
-        "repo": "hugo-theme-anubis",
         "type": "github"
       }
     },

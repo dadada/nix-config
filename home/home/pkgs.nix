@@ -88,6 +88,7 @@ with pkgs; [
   nix-index
   nmap
   nmon
+  nodePackages.prettier
   obs-studio
   offlineimap
   openscad

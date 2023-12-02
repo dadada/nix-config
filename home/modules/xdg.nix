@@ -18,7 +18,6 @@ with lib; let
     "application/xhtml+xml" = "firefox.desktop";
     "application/x-extension-xhtml" = "firefox.desktop";
     "application/x-extension-xht" = "firefox.desktop";
-    "text/plain" = "vim.desktop";
     "application/pdf" = "org.pwmt.zathura.desktop";
   };
   cfg = config.dadada.home.xdg;

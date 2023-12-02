@@ -14,7 +14,6 @@
   packages = import ./packages.nix;
   secrets = import ./secrets.nix;
   share = import ./share.nix;
-  soft-serve = import ./soft-serve.nix;
   steam = import ./steam.nix;
   sway = import ./sway.nix;
   vpnServer = import ./vpnServer.nix;

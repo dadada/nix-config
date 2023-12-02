@@ -5,6 +5,7 @@ let
   domain = "bs.dadada.li";
 in
 {
+  networking.useDHCP = false;
   systemd.network = {
     enable = true;
     links = {

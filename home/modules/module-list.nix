@@ -14,7 +14,6 @@
   ./syncthing.nix
   ./termite.nix
   ./tmux.nix
-  ./vim
   ./xdg.nix
   ./zsh.nix
 ]

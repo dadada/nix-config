@@ -378,6 +378,7 @@ in
 
   services.resolved.enable = true;
   networking.networkmanager.enable = false;
+  networking.useDHCP = false;
 
   # Desktop things for media playback
 

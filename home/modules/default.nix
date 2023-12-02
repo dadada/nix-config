@@ -16,7 +16,6 @@
   syncthing = import ./syncthing.nix;
   termite = import ./termite.nix;
   tmux = import ./tmux.nix;
-  vim = import ./vim;
   xdg = import ./xdg.nix;
   zsh = import ./zsh.nix;
 }

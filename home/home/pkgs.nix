@@ -89,6 +89,7 @@ with pkgs; [
   nmap
   nmon
   nodePackages.prettier
+  map-cmd
   obs-studio
   offlineimap
   openscad

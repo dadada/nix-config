@@ -96,7 +96,7 @@ in
     users.mutableUsers = mkDefault false;
 
     environment.systemPackages = with pkgs; [
-      vim
+      helix
       tmux
     ];
 

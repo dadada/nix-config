@@ -38,12 +38,4 @@
       };
     });
   };
-
-  soft-serve = final: prev: {
-    soft-serve = prev.callPackage ./pkgs/soft-serve.nix { };
-  };
-
-  map = final: prev: {
-    map = prev.callPackage ./pkgs/map.nix { };
-  };
 }

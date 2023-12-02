@@ -60,6 +60,8 @@ in
     location = "/var/backup/postgresql";
   };
 
+  networking.useDHCP = false;
+
   systemd.network = {
     enable = true;
     networks = {

@@ -20,7 +20,7 @@ with lib; {
 
   age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
-  fonts.fonts = mkDefault (with pkgs; [
+  fonts.packages = mkDefault (with pkgs; [
     source-code-pro
   ]);
 

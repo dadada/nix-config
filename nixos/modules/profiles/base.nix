@@ -4,6 +4,10 @@ let
   inputs = config.dadada.inputs;
 in
 {
+  imports = [
+    ./upgrade-pg-cluster.nix
+  ];
+
   i18n.defaultLocale = mkDefault "en_US.UTF-8";
   console = mkDefault {
     font = "Lat2-Terminus16";

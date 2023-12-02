@@ -146,5 +146,7 @@ in
 
   system.autoUpgrade.allowReboot = false;
 
-  system.stateVersion = "20.09";
+  services.postgresql.package = pkgs.postgresql_15;
+
+  system.stateVersion = "23.05";
 }

@@ -1,10 +1,19 @@
+[language-server.rust-analyzer]
+config = { rust-analyzer = { checkOnSave = { command = "clippy" } } }
+
+[language-server.nil]
+command = "nil"
+
+[language-server.ltex-ls]
+command = "ltex-ls"
+
 [[language]]
 name = "rust"
-config = { rust-analyzer = { checkOnSave = { command = "clippy" } } }
+language-servers = [ {name="rust-analyzer"} ]
 
 [[language]]
 name = "latex"
-language-server = { command = "ltex-ls" }
+language-servers = [{ name = "ltex-ls" }]
 file-types = ["tex"]
 scope = "source.latex"
 roots = []
@@ -12,4 +21,4 @@ roots = []
 [[language]]
 name = "nix"
 file-types = ["nix"]
-language-server = { command = "nil" }
+language-servers = [{ name = "nil" }]

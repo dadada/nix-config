@@ -5,8 +5,8 @@
 }:
 with lib; let
   apps = {
-    "x-scheme-handler/mailto" = "userapp-Thunderbird-PB7NI0.desktop";
-    "message/rfc822" = "userapp-Thunderbird-PB7NI0.desktop";
+    "x-scheme-handler/mailto" = "evolution.desktop";
+    "message/rfc822" = "evolution.desktop";
     "x-scheme-handler/http" = "firefox.desktop";
     "x-scheme-handler/https" = "firefox.desktop";
     "x-scheme-handler/ftp" = "firefox.desktop";
@@ -18,7 +18,7 @@ with lib; let
     "application/xhtml+xml" = "firefox.desktop";
     "application/x-extension-xhtml" = "firefox.desktop";
     "application/x-extension-xht" = "firefox.desktop";
-    "application/pdf" = "org.pwmt.zathura.desktop";
+    "application/pdf" = "evince.desktop";
   };
   cfg = config.dadada.home.xdg;
 in
@@ -44,9 +44,9 @@ in
       };
     };
     home.packages = with pkgs; [
+      evince
       firefox
       xdg_utils
-      zathura
     ];
   };
 }

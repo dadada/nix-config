@@ -19,6 +19,10 @@ let
   ];
 in
 {
+  imports = [
+    ./dconf.nix
+  ];
+
   home.stateVersion = "20.09";
 
   programs.gpg.settings.default-key = "99658A3EB5CD7C13";

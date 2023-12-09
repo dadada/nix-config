@@ -47,7 +47,7 @@ in
             { dadada.home.helix.package = pkgs.helix; }
             { manual.manpages.enable = false; }
           ];
-          home-manager.users.dadada = import ../home/home;
+          home-manager.users.dadada = import ../home;
         })
       ./gorgon/configuration.nix
     ];

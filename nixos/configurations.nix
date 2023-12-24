@@ -10,9 +10,7 @@
 let
   more-packages = system: {
     more-packages = final: prev: {
-      exa = inputs.eza.packages.${system}.default;
       recipemd = inputs.recipemd.packages.${system}.recipemd;
-      jujutsu = inputs.jujutsu.packages.${system}.jujutsu;
     };
   };
 

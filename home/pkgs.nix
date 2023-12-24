@@ -25,7 +25,6 @@ with pkgs; [
   element-desktop
   evince
   evolution
-  exa
   ffmpeg
   file
   fx # themable json viewer

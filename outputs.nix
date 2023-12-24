@@ -9,8 +9,6 @@
 , recipemd
 , agenix
 , devshell
-, jujutsu
-, eza
 , ...
 } @ inputs:
 (flake-utils.lib.eachDefaultSystem (system:

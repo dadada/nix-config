@@ -80,6 +80,6 @@ in
       };
     };
 
-    home.packages = [ pkgs.exa ];
+    home.packages = [ pkgs.eza ];
   };
 }

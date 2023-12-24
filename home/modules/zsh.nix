@@ -72,7 +72,7 @@ in
 
     home.packages = with pkgs; [
       fzf
-      exa
+      eza
       zsh-git-prompt
       tmux
     ];

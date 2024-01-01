@@ -108,6 +108,7 @@ with pkgs; [
   python38Packages.dateutil
   python38Packages.managesieve
   ranger
+  recipemd
   reptyr
   ripgrep
   ripgrep

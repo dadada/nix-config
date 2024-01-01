@@ -8,19 +8,13 @@
 , ...
 }@inputs:
 let
-  more-packages = system: {
-    more-packages = final: prev: {
-      recipemd = inputs.recipemd.packages.${system}.recipemd;
-    };
-  };
-
   nixosSystem = { system ? "x86_64-linux", extraModules ? [ ] }: nixpkgs.lib.nixosSystem {
     inherit system;
 
     modules = [{
       # Add flakes to registry and nix path.
       dadada.inputs = inputs // { dadada = self; };
-      nixpkgs.overlays = nixpkgs.lib.attrValues (self.overlays // (more-packages system));
+      nixpkgs.overlays = nixpkgs.lib.attrValues self.overlays;
     }] ++ (nixpkgs.lib.attrValues self.nixosModules) ++ [ agenix.nixosModules.age ] ++ extraModules;
   };
 in
@@ -51,7 +45,7 @@ in
     ];
   };
 
-  surgat = nixosSystem rec {
+  surgat = nixosSystem {
     system = "x86_64-linux";
     extraModules = [
       {

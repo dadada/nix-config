@@ -6,7 +6,6 @@
 , nixpkgs
 , home-manager
 , nixos-hardware
-, recipemd
 , agenix
 , devshell
 , ...

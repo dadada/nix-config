@@ -9,4 +9,15 @@
       };
     });
   };
+
+  recipemd = final: prev: {
+    pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+      (
+        python-final: python-prev: {
+          recipemd = python-final.callPackage ./pkgs/recipemd.nix { };
+        }
+      )
+    ];
+    recipemd = prev.python3Packages.toPythonApplication final.python3Packages.recipemd;
+  };
 }

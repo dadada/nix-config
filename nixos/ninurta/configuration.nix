@@ -279,14 +279,26 @@ in
       "10-lan" = {
         matchConfig.Name = "enp*";
         networkConfig.DHCP = "ipv4";
+        networkConfig.Domains = [ "bs.dadada.li" ];
         networkConfig.VLAN = [ "backup" ];
         networkConfig.IPv6PrivacyExtensions = false;
         linkConfig.RequiredForOnline = "routable";
+        dhcpV4Config = {
+          UseDomains = true;
+          UseDNS = true;
+          UseNTP = true;
+        };
+        ipv6AcceptRAConfig = {
+          UseDomains = true;
+          UseDNS = true;
+        };
       };
       "20-backup" = {
         matchConfig.Name = "backup";
-        networkConfig.DHCP = "ipv4";
-        networkConfig.IPv6PrivacyExtensions = false;
+        networkConfig = {
+          DHCP = "ipv4";
+          IPv6PrivacyExtensions = false;
+        };
         linkConfig.RequiredForOnline = false;
       };
       "10-hydra" = {

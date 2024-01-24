@@ -10,7 +10,7 @@ in
     enable = true;
     links = {
       "10-persistent" = {
-        matchConfig.OriginalName = [ "enp1s0" "enp2s0" ];
+        matchConfig.OriginalName = [ "enp1s0" "enp2s0" ]; # takes search domains from the [Network]
         linkConfig.MACAddressPolicy = "persistent";
       };
     };
@@ -90,14 +90,18 @@ in
             }
           ];
           dhcpServerConfig = {
-            DNS = "${ipv4Prefix}.${subnetId}.1";
-            NTP = "${ipv4Prefix}.${subnetId}.1";
+            DNS = "_server_address";
+            NTP = "_server_address";
             EmitDNS = true;
             EmitNTP = true;
             EmitRouter = true;
             PoolOffset = 100;
             PoolSize = 100;
-            SendOption = "12:string:${domain}";
+          };
+          ipv6SendRAConfig = {
+            EmitDNS = true;
+            DNS = "_link_local";
+            EmitDomains = true; # takes search domains from the [Network]
           };
           linkConfig = {
             RequiredForOnline = "no";

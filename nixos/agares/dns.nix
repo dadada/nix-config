@@ -39,10 +39,10 @@
         use-caps-for-id = true;
         val-permissive-mode = true;
         local-data = [
-          "agares.bs.dadada.li. 10800 IN A 192.168.101.1"
-          "ninurta.bs.dadada.li. 10800 IN A 192.168.101.184"
-          "agares.bs.dadada.li. 10800 IN AAAA fd42:9c3b:f96d:101::1"
-          "ninurta.bs.dadada.li. 10800 IN A fd42:9c3b:f96d:101:4a21:bff:fe3e:9cfe"
+          "\"agares.bs.dadada.li. 10800 IN A 192.168.101.1\""
+          "\"ninurta.bs.dadada.li. 10800 IN A 192.168.101.184\""
+          "\"agares.bs.dadada.li. 10800 IN AAAA fd42:9c3b:f96d:101::1\""
+          "\"ninurta.bs.dadada.li. 10800 IN A fd42:9c3b:f96d:101:4a21:bff:fe3e:9cfe\""
         ];
         local-zone = [
           "\"168.192.in-addr.arpa.\" nodefault"

@@ -221,9 +221,9 @@ in
         };
         "10-roadw" = {
           matchConfig.Name = "roadw";
-          address = [
-            "${ipv4Prefix}.120.1/32"
-            "${ulaPrefix}:120::1/128"
+          addresses = [
+            { addressConfig.Address = "${ipv4Prefix}.120.1/24"; }
+            { addressConfig.Address = "${ulaPrefix}:120::1/64"; }
           ];
           DHCP = "no";
           networkConfig.IPv6AcceptRA = false;

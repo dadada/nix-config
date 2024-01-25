@@ -9,7 +9,7 @@ define IF_SRV = "srv.13"
 # Modem uses this for internet uplink via our WAN
 define IF_MODEM = "enp2s0"
 
-define IF_ROADW = "roadwarrior"
+define IF_ROADW = "roadw"
 
 table inet filter {
   # Will give "no such file or directory if hardware does not support flow offloading"

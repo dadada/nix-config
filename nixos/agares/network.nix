@@ -169,7 +169,7 @@ in
           extraConfig = ''
             [CAKE]
             OverheadBytes = 65
-            Bandwidth = 40M
+            Bandwidth = 100M
             FlowIsolationMode = triple
           '';
         };

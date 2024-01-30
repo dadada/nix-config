@@ -118,6 +118,7 @@ in
             [CAKE]
             OverheadBytes = 38
             Bandwidth = 1G
+            RTT = lan
           '';
         };
       in
@@ -171,6 +172,7 @@ in
             OverheadBytes = 65
             Bandwidth = 100M
             FlowIsolationMode = triple
+            RTT = internet
           '';
         };
 
@@ -191,6 +193,7 @@ in
             Bandwidth = 40M
             FlowIsolationMode = triple
             NAT=true
+            RTT = internet
 
             [DHCPv6]
             PrefixDelegationHint= ::/56

@@ -37,7 +37,6 @@ with pkgs; [
   glow
   glow # render markdown
   gnome.gnome-tweaks
-  gnucash
   gnumake
   gnupg
   gping # ping with graphs

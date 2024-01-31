@@ -463,6 +463,8 @@ in
     password = "media";
   };
 
+  virtualization.libvirtd.enable = true;
+
   documentation.enable = true;
   documentation.nixos.enable = true;
 

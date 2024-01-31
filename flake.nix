@@ -23,7 +23,6 @@
     devshell = {
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
     };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";

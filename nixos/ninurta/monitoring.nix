@@ -12,7 +12,7 @@
     };
   };
   services.munin-cron = {
-      enable = true;
+    enable = true;
     hosts = ''
       [${config.networking.hostName}]
         address localhost

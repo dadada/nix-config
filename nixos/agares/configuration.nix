@@ -82,6 +82,14 @@
     tcpdump
   ];
 
+  services.munin-node = {
+    enable = true;
+    extraConfig = ''
+      host_name ${config.networking.hostName}
+      cidr_allow 192.168.101.184/32
+    '';
+  };
+
   # Running router VM. They have to be restarted in the right order, so network comes up cleanly. Not ideal.
   system.autoUpgrade.allowReboot = false;
 

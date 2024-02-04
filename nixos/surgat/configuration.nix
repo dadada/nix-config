@@ -123,6 +123,7 @@ in
       22 # SSH
       80
       443 # HTTPS
+      4949 # munin-node
     ];
     allowedUDPPorts = [
       51234 # Wireguard
@@ -149,6 +150,14 @@ in
   system.autoUpgrade.allowReboot = false;
 
   services.postgresql.package = pkgs.postgresql_15;
+
+  services.munin-node = {
+    enable = true;
+    extraConfig = ''
+      host_name surgat
+      cidr_allow 10.3.3.3/32
+    '';
+  };
 
   system.stateVersion = "23.05";
 }

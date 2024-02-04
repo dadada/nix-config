@@ -18,6 +18,7 @@ in
     ../modules/profiles/server.nix
     ./hardware-configuration.nix
     ./printing.nix
+    ./monitoring.nix
   ];
 
   services.soft-serve = {
@@ -377,6 +378,7 @@ in
     allowPing = true;
     allowedTCPPorts = [
       22 # SSH
+      80 # munin web
       631 # Printing
       3000 # Hydra
       softServePort

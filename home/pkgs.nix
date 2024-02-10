@@ -130,7 +130,6 @@ with pkgs; [
   tmux
   ttyd
   unzip
-  up # ultimate-plumber, interactive pipes
   usbutils
   virt-manager
   viu # view images from the terminal

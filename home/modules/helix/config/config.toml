@@ -9,5 +9,4 @@ auto-completion = true
 enable = true
 
 [keys.normal]
-C-q = [ "goto_prev_paragraph", "goto_next_paragraph", ":reflow 80" ]
-
+C-q = [ ":reflow 80" ]

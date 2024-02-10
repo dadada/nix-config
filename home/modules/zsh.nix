@@ -34,6 +34,7 @@ in
         source ${pkgs.zsh-git-prompt}/share/zsh-git-prompt/zshrc.sh
         source ${pkgs.fzf}/share/fzf/key-bindings.zsh
         source ${pkgs.fzf}/share/fzf/completion.zsh
+        eval "$(${pkgs.h}/bin/h --setup ~/src)"
 
         bindkey -e '^n' autosuggest-accept
 

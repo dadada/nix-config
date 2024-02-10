@@ -43,6 +43,7 @@ with pkgs; [
   graphviz
   grim
   gron # make json grepable
+  h # Manage git repos
   hexyl # hex viewer
   htop
   http-prompt

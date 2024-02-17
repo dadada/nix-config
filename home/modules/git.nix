@@ -56,21 +56,37 @@ in
           colorMoved = "default";
         };
         interactive.diffFilter = "delta --color-only";
-        merge.conflictstyle = "diff3";
+        merge = {
+          conflictstyle = "zdiff3";
+          keepbackup = false;
+          tool = "meld";
+        };
         status = {
           short = true;
           branch = true;
           showUntrackedFiled = "all";
         };
         log.date = "iso8601-local";
+        fetch.prune = true;
         pull = {
           prune = true;
           ff = "only";
           rebase = "interactive";
         };
-        push.default = "upstream";
-        rebase.abbreviateCommands = true;
+        push = {
+          default = "current";
+          autoSetupRemote = true;
+        };
+        rebase = {
+          abbreviateCommands = true;
+           # Automatically force-update any branches that point to commits that are being rebased.
+          updateRefs = true;
+        };
         rerere.enabled = true;
+        transfer.fsckobjects = true;
+        fetch.fsckobjects = true;
+        receive.fsckObjects = true;
+        branch.sort = "-committerdate";
       };
     };
 

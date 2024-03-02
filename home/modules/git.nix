@@ -79,7 +79,7 @@ in
         };
         rebase = {
           abbreviateCommands = true;
-           # Automatically force-update any branches that point to commits that are being rebased.
+          # Automatically force-update any branches that point to commits that are being rebased.
           updateRefs = true;
         };
         rerere.enabled = true;

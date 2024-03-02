@@ -169,7 +169,7 @@ in
         passCommand = "cat ${cfg.backup1.passphrasePath}";
       };
       compression = "auto,lz4";
-      startAt = "hourly";
+      startAt = "daily";
     };
 
     services.borgbackup.jobs.backup2 = mkIf cfg.backup2.enable {
@@ -185,7 +185,7 @@ in
         passCommand = "cat ${cfg.backup2.passphrasePath}";
       };
       compression = "auto,lz4";
-      startAt = "hourly";
+      startAt = "daily";
       environment = {
         BORG_RELOCATED_REPO_ACCESS_IS_OK = "no";
       };

@@ -36,7 +36,7 @@
   }))
   // {
 
-  hmModules = import ./home/modules;
+  hmModules = import ./home/modules.nix { lib = nixpkgs.lib; };
 
   nixosConfigurations = import ./nixos/configurations.nix inputs;
 

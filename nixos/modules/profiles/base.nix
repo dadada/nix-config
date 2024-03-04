@@ -54,6 +54,11 @@ in
   };
 
   networking.networkmanager.dns = mkDefault "systemd-resolved";
+
+  networking.hosts = {
+    "fd42:9c3b:f96d:101:4a21:bff:fe3e:9cfe" = [ "backup1.dadada.li" ];
+  };
+
   services.resolved = {
     enable = mkDefault true;
     fallbackDns = [ "9.9.9.9#dns.quad9.net" "2620:fe::fe:11#dns11.quad9.net" ];

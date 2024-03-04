@@ -158,7 +158,6 @@ in
   };
 
   networking.hosts = {
-    "10.1.2.9" = [ "fgprinter.fginfo.tu-bs.de" ];
     "127.0.0.2" = [ "kanboard.dadada.li" ];
   };
 

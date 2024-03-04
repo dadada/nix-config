@@ -103,10 +103,6 @@ in
     };
   };
 
-  dadada.ddns.domains = [ "backup1.dadada.li" "soft-serve.dadada.li" ];
-  dadada.ddns.credentialsPath = config.age.secrets."ddns-credentials".path;
-  dadada.ddns.interface = "backup";
-
   dadada.borgServer = {
     enable = true;
     path = "/mnt/storage/backups";
@@ -146,11 +142,6 @@ in
     backupAll = true;
     compression = "zstd";
     location = "/var/backup/postgresql";
-  };
-
-  age.secrets."ddns-credentials" = {
-    file = "${secretsPath}/ddns-credentials.age";
-    mode = "400";
   };
 
   age.secrets."ninurta-backup-passphrase" = {
@@ -281,7 +272,7 @@ in
         matchConfig.Name = "enp*";
         networkConfig.DHCP = "ipv4";
         networkConfig.Domains = [ "bs.dadada.li" ];
-        networkConfig.VLAN = [ "backup" ];
+        networkConfig.VLAN = [ ];
         networkConfig.IPv6PrivacyExtensions = false;
         linkConfig.RequiredForOnline = "routable";
         dhcpV4Config = {
@@ -294,22 +285,15 @@ in
           UseDNS = true;
         };
       };
-      "20-backup" = {
-        matchConfig.Name = "backup";
-        networkConfig = {
-          DHCP = "ipv4";
-          IPv6PrivacyExtensions = false;
-        };
-        linkConfig.RequiredForOnline = false;
-      };
-      "10-hydra" = {
-        matchConfig.Name = "hydra";
-        address = [ "10.3.3.3/24" ];
+      "10-surgat" = {
+        matchConfig.Name = "surgat";
+        address = [ "10.3.3.3/32" "fd42:9c3b:f96d:121::3/128"];
         DHCP = "no";
         networkConfig.IPv6AcceptRA = false;
         linkConfig.RequiredForOnline = false;
         routes = [
           { routeConfig = { Destination = "10.3.3.1/24"; }; }
+          { routeConfig = { Destination = "fd42:9c3b:f96d:121::1/64"; }; }
         ];
       };
       "10-uwu" = {
@@ -327,10 +311,10 @@ in
       };
     };
     netdevs = {
-      "10-hydra" = {
+      "10-surgat" = {
         netdevConfig = {
           Kind = "wireguard";
-          Name = "hydra";
+          Name = "surgat";
         };
         wireguardConfig = {
           PrivateKeyFile = config.age.secrets.${wgHydraPrivKey}.path;
@@ -339,7 +323,7 @@ in
         wireguardPeers = [{
           wireguardPeerConfig = {
             PublicKey = "KzL+PKlv4LktIqqTqC9Esw8dkSZN2qSn/vq76UHbOlY=";
-            AllowedIPs = [ "10.3.3.1/32" ];
+            AllowedIPs = [ "10.3.3.1/32" "fd42:9c3b:f96d:121::1/128" ];
             PersistentKeepalive = 25;
             Endpoint = "surgat.dadada.li:51235";
           };
@@ -363,13 +347,6 @@ in
           };
         }];
       };
-      "20-backup" = {
-        netdevConfig = {
-          Name = "backup";
-          Kind = "vlan";
-        };
-        vlanConfig.Id = 13;
-      };
     };
   };
 
@@ -388,6 +365,7 @@ in
       51234 # Wireguard
       51235 # Wireguard
     ];
+    logReversePathDrops = true;
   };
 
   services.resolved.enable = true;

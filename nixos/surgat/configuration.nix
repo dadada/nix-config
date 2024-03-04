@@ -83,24 +83,24 @@ in
         ];
         linkConfig.RequiredForOnline = "routable";
       };
-      "10-hydra" = {
-        matchConfig.Name = "hydra";
-        address = [ "10.3.3.1/24" ];
+      "10-ninurta" = {
+        matchConfig.Name = "ninurta";
+        address = [ "10.3.3.1/32" "fd42:9c3b:f96d:121::1/128" ];
         DHCP = "no";
         networkConfig.IPv6AcceptRA = false;
         linkConfig.RequiredForOnline = "no";
         routes = [
-          {
-            routeConfig = { Destination = "10.3.3.0/24"; };
-          }
+          { routeConfig = { Destination = "10.3.3.3/24"; }; }
+          { routeConfig = { Destination = "fd42:9c3b:f96d:121::/64"; }; }
+          { routeConfig = { Destination = "fd42:9c3b:f96d:101::/64"; }; }
         ];
       };
     };
     netdevs = {
-      "10-hydra" = {
+      "10-ninurta" = {
         netdevConfig = {
           Kind = "wireguard";
-          Name = "hydra";
+          Name = "ninurta";
         };
         wireguardConfig = {
           PrivateKeyFile = "/var/lib/wireguard/hydra";
@@ -109,7 +109,7 @@ in
         wireguardPeers = [{
           wireguardPeerConfig = {
             PublicKey = "Kw2HVRb1zeA7NAzBvI3UzmOj45VqM358EBuZWdlAUDE=";
-            AllowedIPs = [ "10.3.3.3/32" ];
+            AllowedIPs = [ "10.3.3.3/32" "fd42:9c3b:f96d:121::3/128" "fd42:9c3b:f96d:101:4a21:bff:fe3e:9cfe/128"] ;
           };
         }];
       };

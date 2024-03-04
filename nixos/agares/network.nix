@@ -40,15 +40,6 @@ in
           Id = 11;
         };
       };
-      "20-srv" = {
-        netdevConfig = {
-          Kind = "vlan";
-          Name = "srv.13";
-        };
-        vlanConfig = {
-          Id = 13;
-        };
-      };
       "20-roadw" = {
         netdevConfig = {
           Kind = "wireguard";
@@ -124,7 +115,7 @@ in
       in
       {
         "10-mgmt" = subnet "enp1s0" "100" // {
-          networkConfig.VLAN = [ "lan.10" "ff.11" "srv.13" ];
+          networkConfig.VLAN = [ "lan.10" "ff.11" ];
           dhcpServerStaticLeases = [
             {
               # legion
@@ -162,8 +153,6 @@ in
         };
 
         "30-ff" = subnet "ff.11" "102";
-
-        "30-srv" = subnet "srv.13" "103";
 
         "30-ifb4ppp0" = {
           name = "ifb4ppp0";

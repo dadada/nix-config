@@ -4,7 +4,6 @@ define IF_MGMT = "enp1s0"
 define IF_FF = "ff.11"
 define IF_LAN = "lan.10"
 define IF_WAN = "ppp0"
-define IF_SRV = "srv.13"
 
 # Modem uses this for internet uplink via our WAN
 define IF_MODEM = "enp2s0"
@@ -51,10 +50,6 @@ table inet filter {
     counter accept comment "Accept all traffic from MGMT"
   }
 
-  chain input_srv {
-    counter accept comment "Accept all traffic from services"
-  }
-
   chain input_roadw {
     counter accept comment "Accept all traffic from roadwarriors"
   }
@@ -69,23 +64,13 @@ table inet filter {
     udp dport { 53, 67 } accept comment "Allow DNS and DHCP from Freifunk"
   }
 
-  chain input_srv {
-    jump input_icmp_untrusted
-
-    # DHCP
-    meta nfproto ipv6 udp dport 547 accept comment "Allow DHCPv6 client"
-
-    # Allow DNS and DHCP from SRV
-    udp dport { 53, 67 } accept comment "Allow DNS and DHCP from services"
-  }
-
   chain input {
     type filter hook input priority filter; policy drop;
 
     ct state {established, related} counter accept comment "Accept packets from established and related connections"
     ct state invalid counter drop comment "Early drop of invalid packets"
 
-    iifname vmap { lo : accept, $IF_WAN : jump input_wan, $IF_LAN : jump input_lan, $IF_FF : jump input_ff, $IF_ROADW : jump input_roadw, $IF_MODEM : jump input_modem, $IF_MGMT : jump input_mgmt, $IF_SRV : jump input_srv }
+    iifname vmap { lo : accept, $IF_WAN : jump input_wan, $IF_LAN : jump input_lan, $IF_FF : jump input_ff, $IF_ROADW : jump input_roadw, $IF_MODEM : jump input_modem, $IF_MGMT : jump input_mgmt }
   }
 
 # Only works if hardware flow offloading is available
@@ -117,13 +102,10 @@ table inet filter {
     iifname { $IF_LAN, $IF_ROADW } counter accept comment "Allow all traffic forwarding from LAN and roadwarrior to all interfaces, except to mgmt"
 
     # FF -> WAN
-    iifname { $IF_FF, $IF_SRV } oifname $IF_WAN counter accept comment "Allow all traffic forwarding from Freifunk and services to WAN"
+    iifname { $IF_FF } oifname $IF_WAN counter accept comment "Allow all traffic forwarding from Freifunk and services to WAN"
 
-    # { WAN, SRV } -> { FF, LAN, RW, SRV }
-    iifname { $IF_WAN, $IF_SRV } oifname { $IF_FF, $IF_LAN, $IF_ROADW, $IF_SRV } ct state established,related counter accept comment "Allow established back from WAN and SRV"
-
-    # WAN -> SRV
-    iifname $IF_WAN oifname $IF_SRV tcp dport ssh accept comment "Allow all SSH traffic forwarding from WAN to services"
+    # { WAN } -> { FF, LAN, RW }
+    iifname { $IF_WAN } oifname { $IF_FF, $IF_LAN, $IF_ROADW } ct state established,related counter accept comment "Allow established back from WAN"
   }
 
   chain output {
@@ -145,6 +127,6 @@ table ip nat {
 table arp filter {
   chain input {
     type filter hook input priority filter; policy drop;
-    iifname { $IF_MGMT, $IF_LAN, $IF_FF, $IF_SRV, $IF_MODEM } limit rate 1/second burst 2 packets accept comment "Limit number of ARP messages from LAN, FF, MGMT, SRV, modem"
+    iifname { $IF_MGMT, $IF_LAN, $IF_FF, $IF_MODEM } limit rate 1/second burst 2 packets accept comment "Limit number of ARP messages from LAN, FF, MGMT, modem"
   }
 }

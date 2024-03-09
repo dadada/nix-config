@@ -16,7 +16,7 @@ in
     home.file.".config/helix".source = ./config;
     home.packages = [
       cfg.package
-      pkgs.nixd
+      #pkgs.nixd
     ];
   };
 }

@@ -160,25 +160,6 @@ in
     "127.0.0.2" = [ "kanboard.dadada.li" ];
   };
 
-  networking.wireguard.interfaces.uwupn = {
-    ips = [ "10.11.0.24/32" "fc00:1337:dead:beef::10.11.0.24/128" ];
-    privateKeyFile = "/var/lib/wireguard/uwu";
-
-    postSetup = ''
-      ${pkgs.systemd}/bin/resolvectl domain uwupn ~uwu
-      ${pkgs.systemd}/bin/resolvectl dns uwupn 10.11.0.1
-      ${pkgs.systemd}/bin/resolvectl dnssec uwupn false
-    '';
-    peers = [
-      {
-        publicKey = "tuoiOWqgHz/lrgTcLjX+xIhvxh9jDH6gmDw2ZMvX5T8=";
-        allowedIPs = [ "10.11.0.0/22" "fc00:1337:dead:beef::10.11.0.0/118" ];
-        endpoint = "53c70r.de:51820";
-        persistentKeepalive = 25;
-      }
-    ];
-  };
-
   # https://lists.zx2c4.com/pipermail/wireguard/2017-November/002028.html
   systemd.timers.wg-reresolve-dns = {
     wantedBy = [ "timers.target" ];

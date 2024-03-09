@@ -287,7 +287,7 @@ in
       };
       "10-surgat" = {
         matchConfig.Name = "surgat";
-        address = [ "10.3.3.3/32" "fd42:9c3b:f96d:121::3/128"];
+        address = [ "10.3.3.3/32" "fd42:9c3b:f96d:121::3/128" ];
         DHCP = "no";
         networkConfig.IPv6AcceptRA = false;
         linkConfig.RequiredForOnline = false;

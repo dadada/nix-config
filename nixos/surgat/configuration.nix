@@ -109,7 +109,7 @@ in
         wireguardPeers = [{
           wireguardPeerConfig = {
             PublicKey = "Kw2HVRb1zeA7NAzBvI3UzmOj45VqM358EBuZWdlAUDE=";
-            AllowedIPs = [ "10.3.3.3/32" "fd42:9c3b:f96d:121::3/128" "fd42:9c3b:f96d:101:4a21:bff:fe3e:9cfe/128"] ;
+            AllowedIPs = [ "10.3.3.3/32" "fd42:9c3b:f96d:121::3/128" "fd42:9c3b:f96d:101:4a21:bff:fe3e:9cfe/128" ];
           };
         }];
       };

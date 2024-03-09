@@ -1,8 +1,8 @@
 [language-server.rust-analyzer]
 config = { rust-analyzer = { checkOnSave = { command = "clippy" } } }
 
-[language-server.nil]
-command = "nil"
+[language-server.nixd]
+command = "nixd"
 
 [language-server.ltex-ls]
 command = "ltex-ls"
@@ -21,4 +21,4 @@ roots = []
 [[language]]
 name = "nix"
 file-types = ["nix"]
-language-servers = [{ name = "nil" }]
+language-servers = [{ name = "nixd" }]

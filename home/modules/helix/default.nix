@@ -16,7 +16,7 @@ in
     home.file.".config/helix".source = ./config;
     home.packages = [
       cfg.package
-      pkgs.rnix-lsp
+      pkgs.nixd
     ];
   };
 }

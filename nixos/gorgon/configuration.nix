@@ -124,7 +124,6 @@ in
   environment.systemPackages = with pkgs; [
     chromium
     ghostscript
-    cachix
   ];
 
   networking.firewall = {

@@ -142,5 +142,6 @@ with pkgs; [
   xxh # portable shells
   youtube-dl
   # zotero Marked as insecure
+  zeal
   zsh
 ]

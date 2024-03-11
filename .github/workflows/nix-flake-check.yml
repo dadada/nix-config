@@ -18,7 +18,7 @@ jobs:
           experimental-features = nix-command flakes
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
           system-features = nixos-test benchmark big-parallel kvm
-    - uses: cachix/cachix-action@v12
+    - uses: cachix/cachix-action@v14
       with:
         name: dadada
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'

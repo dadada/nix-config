@@ -20,8 +20,4 @@
     ];
     recipemd = prev.python3Packages.toPythonApplication final.python3Packages.recipemd;
   };
-
-  insecure = final: prev: {
-    hydra_unstable = prev.hydra_unstable.override { nix = final.nixVersions.unstable; };
-  };
 }

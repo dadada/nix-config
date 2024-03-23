@@ -367,15 +367,21 @@ in
       22 # SSH
       80 # munin web
       631 # Printing
-      3000 # Hydra
-      softServePort
     ];
     allowedUDPPorts = [
       631 # Printing
       51234 # Wireguard
       51235 # Wireguard
     ];
-    logReversePathDrops = true;
+    interfaces = {
+      uwu.allowedTCPPorts = [
+        softServePort
+      ];
+      wg0.allowedTCPPorts = [
+        3000 # Hydra
+        4949 # munin-node
+      ];
+    };
   };
 
   services.resolved.enable = true;

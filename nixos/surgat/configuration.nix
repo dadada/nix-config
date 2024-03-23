@@ -123,11 +123,13 @@ in
       22 # SSH
       80
       443 # HTTPS
-      4949 # munin-node
     ];
     allowedUDPPorts = [
       51234 # Wireguard
       51235 # Wireguard
+    ];
+    interfaces.ninurta.allowedTCPPorts = [
+      4949 # munin-node
     ];
   };
 

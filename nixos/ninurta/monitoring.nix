@@ -15,13 +15,13 @@
     enable = true;
     hosts = ''
       [${config.networking.hostName}]
-        address localhost
+        address 10.3.3.3
 
       [surgat]
         address 10.3.3.1
 
       [agares]
-        address 192.168.101.1
+        address 10.3.3.2
     '';
   };
   services.munin-node.enable = true;

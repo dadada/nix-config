@@ -27,6 +27,7 @@ in
   "etc-ppp-chap-secrets.age".publicKeys = [ systems.agares dadada ];
   "etc-ppp-telekom-secret.age".publicKeys = [ systems.agares dadada ];
   "wg-privkey-vpn-dadada-li.age".publicKeys = [ systems.agares dadada ];
+  "agares-wg0-key.age".publicKeys = [ systems.agares dadada ];
 } //
 backupSecrets "ninurta" //
 backupSecrets "gorgon" //

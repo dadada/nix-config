@@ -63,6 +63,26 @@ in
             };
         }];
       };
+      "20-wg0" = {
+        netdevConfig = {
+          Kind = "wireguard";
+          Name = "wg0";
+        };
+        wireguardConfig = {
+          PrivateKeyFile = config.age.secrets."wg-privkey-wg0".path;
+          ListenPort = 51235;
+        };
+        wireguardPeers = lib.singleton {
+          wireguardPeerConfig = {
+            PublicKey = "Kw2HVRb1zeA7NAzBvI3UzmOj45VqM358EBuZWdlAUDE=";
+            AllowedIPs = [
+              "10.3.3.3/32"
+              "fd42:9c3b:f96d:121::3/128"
+              "fd42:9c3b:f96d:101:4a21:bff:fe3e:9cfe/128"
+            ];
+          };
+        };
+      };
     };
     networks =
       let
@@ -124,6 +144,17 @@ in
                 MACAddress = "80:CC:9C:95:4A:60";
               };
             }
+          ];
+        };
+        "30-wg0" = {
+          matchConfig.Name = "wg0";
+          address = [ "10.3.3.2/32" "fd42:9c3b:f96d:121::2/128" ];
+          DHCP = "no";
+          networkConfig.IPv6AcceptRA = false;
+          linkConfig.RequiredForOnline = false;
+          routes = [
+            { routeConfig = { Destination = "10.3.3.1/24"; }; }
+            { routeConfig = { Destination = "fd42:9c3b:f96d:121::1/64"; }; }
           ];
         };
         "30-lan" = subnet "lan.10" "101" // {
@@ -234,6 +265,11 @@ in
 
   age.secrets."wg-privkey-vpn-dadada-li" = {
     file = "${config.dadada.secrets.path}/wg-privkey-vpn-dadada-li.age";
+    owner = "systemd-network";
+  };
+
+  age.secrets."wg-privkey-wg0" = {
+    file = "${config.dadada.secrets.path}/agares-wg0-key.age";
     owner = "systemd-network";
   };
 

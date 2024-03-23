@@ -64,13 +64,17 @@ table inet filter {
     udp dport { 53, 67 } accept comment "Allow DNS and DHCP from Freifunk"
   }
 
+  chain input_wg0 {
+    tcp dport 4949 accept comment "Munin node"
+  }
+
   chain input {
     type filter hook input priority filter; policy drop;
 
     ct state {established, related} counter accept comment "Accept packets from established and related connections"
     ct state invalid counter drop comment "Early drop of invalid packets"
 
-    iifname vmap { lo : accept, $IF_WAN : jump input_wan, $IF_LAN : jump input_lan, $IF_FF : jump input_ff, $IF_ROADW : jump input_roadw, $IF_MODEM : jump input_modem, $IF_MGMT : jump input_mgmt }
+    iifname vmap { lo : accept, $IF_WAN : jump input_wan, $IF_LAN : jump input_lan, $IF_FF : jump input_ff, $IF_ROADW : jump input_roadw, $IF_MODEM : jump input_modem, $IF_MGMT : jump input_mgmt, wg0 : jump input_wg0 }
   }
 
 # Only works if hardware flow offloading is available

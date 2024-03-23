@@ -86,7 +86,7 @@
     enable = true;
     extraConfig = ''
       host_name ${config.networking.hostName}
-      cidr_allow 192.168.101.184/32
+      cidr_allow 10.3.3.3/32
     '';
   };
 

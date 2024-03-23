@@ -6,9 +6,9 @@ let
     "backup1.dadada.li"
   ];
   secretsPath = config.dadada.secrets.path;
-  wg0PrivKey = "pruflas-wg0-key";
+  uwuPrivKey = "pruflas-wg0-key";
   wgHydraPrivKey = "pruflas-wg-hydra-key";
-  wg0PresharedKey = "pruflas-wg0-preshared-key";
+  uwuPresharedKey = "pruflas-wg0-preshared-key";
   hydraGitHubAuth = "hydra-github-authorization";
   initrdSshKey = "/etc/ssh/ssh_initrd_ed25519_key";
   softServePort = 23231;
@@ -198,12 +198,13 @@ in
     "v /mnt/storage/backups 0755 root root - -"
   ];
 
-  age.secrets.${wg0PrivKey} = {
-    file = "${secretsPath}/${wg0PrivKey}.age";
+  age.secrets.${uwuPrivKey} = {
+    file = "${secretsPath}/${uwuPrivKey}.age";
     owner = "systemd-network";
   };
-  age.secrets.${wg0PresharedKey} = {
-    file = "${secretsPath}/${wg0PresharedKey}.age";
+
+  age.secrets.${uwuPresharedKey} = {
+    file = "${secretsPath}/${uwuPresharedKey}.age";
     owner = "systemd-network";
   };
   age.secrets.${wgHydraPrivKey} = {
@@ -285,8 +286,8 @@ in
           UseDNS = true;
         };
       };
-      "10-surgat" = {
-        matchConfig.Name = "surgat";
+      "30-wg0" = {
+        matchConfig.Name = "wg0";
         address = [ "10.3.3.3/32" "fd42:9c3b:f96d:121::3/128" ];
         DHCP = "no";
         networkConfig.IPv6AcceptRA = false;
@@ -296,7 +297,7 @@ in
           { routeConfig = { Destination = "fd42:9c3b:f96d:121::1/64"; }; }
         ];
       };
-      "10-uwu" = {
+      "30-uwu" = {
         matchConfig.Name = "uwu";
         address = [ "10.11.0.39/24" "fc00:1337:dead:beef::10.11.0.39/128" ];
         dns = [ "10.11.0.1%uwu#uwu" ];
@@ -311,38 +312,47 @@ in
       };
     };
     netdevs = {
-      "10-surgat" = {
+      "20-wg0" = {
         netdevConfig = {
           Kind = "wireguard";
-          Name = "surgat";
+          Name = "wg0";
         };
         wireguardConfig = {
           PrivateKeyFile = config.age.secrets.${wgHydraPrivKey}.path;
           ListenPort = 51235;
         };
-        wireguardPeers = [{
-          wireguardPeerConfig = {
-            PublicKey = "KzL+PKlv4LktIqqTqC9Esw8dkSZN2qSn/vq76UHbOlY=";
-            AllowedIPs = [ "10.3.3.1/32" "fd42:9c3b:f96d:121::1/128" ];
-            PersistentKeepalive = 25;
-            Endpoint = "surgat.dadada.li:51235";
-          };
-        }];
+        wireguardPeers = [
+          {
+            wireguardPeerConfig = {
+              PublicKey = "KzL+PKlv4LktIqqTqC9Esw8dkSZN2qSn/vq76UHbOlY=";
+              AllowedIPs = [ "10.3.3.1/32" "fd42:9c3b:f96d:121::1/128" ];
+              PersistentKeepalive = 25;
+              Endpoint = "surgat.dadada.li:51235";
+            };
+          }
+          {
+            wireguardPeerConfig = {
+              PublicKey = "INfv++4R+Kd2jdh/3CooM70ZeeoN6aeU6mo+T4C8gWU=";
+              AllowedIPs = [ "10.3.3.2/32" "fd42:9c3b:f96d:121::2/128" ];
+              Endpoint = "192.168.101.1:51235";
+            };
+          }
+        ];
       };
-      "10-uwu" = {
+      "20-uwu" = {
         netdevConfig = {
           Kind = "wireguard";
           Name = "uwu";
         };
         wireguardConfig = {
-          PrivateKeyFile = config.age.secrets.${wg0PrivKey}.path;
+          PrivateKeyFile = config.age.secrets.${uwuPrivKey}.path;
         };
         wireguardPeers = [{
           wireguardPeerConfig = {
             PublicKey = "tuoiOWqgHz/lrgTcLjX+xIhvxh9jDH6gmDw2ZMvX5T8=";
             AllowedIPs = [ "10.11.0.0/22" "fc00:1337:dead:beef::10.11.0.0/118" "192.168.178.0/23" ];
             PersistentKeepalive = 25;
-            PresharedKeyFile = config.age.secrets.${wg0PresharedKey}.path;
+            PresharedKeyFile = config.age.secrets.${uwuPresharedKey}.path;
             Endpoint = "53c70r.de:51820";
           };
         }];

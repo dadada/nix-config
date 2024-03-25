@@ -134,18 +134,28 @@ in
         };
       in
       {
-        "10-mgmt" = subnet "enp1s0" "100" // {
-          networkConfig.VLAN = [ "lan.10" "ff.11" ];
-          dhcpServerStaticLeases = [
-            {
-              # legion
-              dhcpServerStaticLeaseConfig = {
-                Address = "192.168.100.107";
-                MACAddress = "80:CC:9C:95:4A:60";
-              };
-            }
-          ];
-        };
+        "10-mgmt" = lib.mkMerge [
+          (subnet "enp1s0" "100")
+          {
+            networkConfig.VLAN = [ "lan.10" "ff.11" ];
+            dhcpServerStaticLeases = [
+              {
+                # legion
+                dhcpServerStaticLeaseConfig = {
+                  Address = "192.168.100.107";
+                  MACAddress = "80:CC:9C:95:4A:60";
+                };
+              }
+              {
+                # danyal
+                dhcpServerStaticLeaseConfig = {
+                  Address = "192.168.100.108";
+                  MACAddress = "c8:9e:43:a3:3d:7f";
+                };
+              }
+            ];
+          }
+        ];
         "30-wg0" = {
           matchConfig.Name = "wg0";
           address = [ "10.3.3.2/32" "fd42:9c3b:f96d:121::2/128" ];
